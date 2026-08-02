@@ -1,9 +1,10 @@
-<section class="unblooked-hero">
+<section class="unblooked">
 
-  <div class="background-grid"></div>
+  <div class="grid"></div>
+  <div class="stars"></div>
   <div class="glow"></div>
 
-  <div class="content">
+  <div class="panel">
 
     <h1>
       UNBLOOKED
@@ -14,8 +15,8 @@
       Explore worlds. Play games. Unlock experiences.
     </p>
 
-    <a href="https://peakio.base44.app" class="launch">
-      🚀 LAUNCH HUB
+    <a href="https://peakio.base44.app" class="button">
+      🚀 ENTER HUB
     </a>
 
   </div>
@@ -30,85 +31,120 @@
 }
 
 
-.unblooked-hero {
+.unblooked {
 
-  width:100%;
   min-height:100vh;
+  width:100%;
 
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 
   overflow:hidden;
 
   position:relative;
 
   background:
-
-  radial-gradient(
-  circle at top,
-  #7c3aed,
-  #111827 60%
+  linear-gradient(
+  160deg,
+  #120022,
+  #4c1d95,
+  #ec4899
   );
 
-  font-family:
-  Arial, sans-serif;
+  font-family:Arial, sans-serif;
 
 }
 
 
-/* futuristic moving grid */
+/* moving cyber grid */
 
-.background-grid {
+.grid {
 
- position:absolute;
+position:absolute;
 
- inset:0;
+inset:0;
 
- background-image:
+background-image:
 
- linear-gradient(
- rgba(255,255,255,.08) 1px,
- transparent 1px
- ),
+linear-gradient(
+rgba(255,255,255,.08) 1px,
+transparent 1px
+),
 
- linear-gradient(
- 90deg,
- rgba(255,255,255,.08) 1px,
- transparent 1px
- );
+linear-gradient(
+90deg,
+rgba(255,255,255,.08) 1px,
+transparent 1px
+);
 
+background-size:
+60px 60px;
 
- background-size:
- 50px 50px;
+transform:
+perspective(600px)
+rotateX(65deg);
 
-
- transform:
- perspective(500px)
- rotateX(65deg);
-
-
- animation:
- gridMove 12s linear infinite;
-
+animation:
+moveGrid 12s linear infinite;
 
 }
 
 
-@keyframes gridMove {
+@keyframes moveGrid {
 
 from {
- background-position:0 0;
+background-position:0 0;
 }
 
 to {
- background-position:0 500px;
+background-position:0 600px;
 }
 
 }
 
 
-/* glowing atmosphere */
+/* stars */
+
+.stars {
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+radial-gradient(
+white 1px,
+transparent 2px
+);
+
+background-size:
+80px 80px;
+
+opacity:.4;
+
+animation:
+moveStars 15s linear infinite;
+
+}
+
+
+@keyframes moveStars {
+
+from {
+transform:translateY(0);
+}
+
+to {
+transform:translateY(300px);
+}
+
+}
+
+
+
+/* glow */
 
 .glow {
 
@@ -118,19 +154,16 @@ width:700px;
 
 height:700px;
 
-
 background:
 
 radial-gradient(
 circle,
-rgba(236,72,153,.7),
+#ff7ad9,
 transparent 65%
 );
 
-
 filter:
-blur(80px);
-
+blur(90px);
 
 animation:
 pulse 5s infinite alternate;
@@ -142,48 +175,76 @@ pulse 5s infinite alternate;
 
 from {
 transform:scale(.8);
-opacity:.5;
 }
 
 to {
 transform:scale(1.2);
-opacity:1;
 }
 
 }
 
 
 
-/* text area */
+/* glass panel */
 
-.content {
+.panel {
 
 position:relative;
 
-z-index:2;
+z-index:5;
 
 text-align:center;
 
-color:white;
+padding:
+
+55px 80px;
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+border:
+
+1px solid rgba(255,255,255,.3);
+
+
+border-radius:35px;
+
+
+backdrop-filter:
+blur(20px);
+
+
+box-shadow:
+
+0 0 50px rgba(255,100,220,.4);
 
 }
 
 
+
+/* title */
+
 h1 {
 
-font-size:
-clamp(50px,8vw,100px);
-
 margin:0;
+
+font-size:
+
+clamp(55px,8vw,100px);
 
 font-weight:900;
 
 letter-spacing:8px;
 
+color:white;
+
 
 text-shadow:
 
-0 0 20px #ec4899,
+0 0 25px #ff4fd8,
 0 0 50px #8b5cf6;
 
 }
@@ -198,38 +259,45 @@ color:#f9a8d4;
 }
 
 
+
 p {
+
+color:white;
 
 font-size:22px;
 
 opacity:.85;
 
 margin:
+
 25px 0 40px;
 
 }
 
 
-/* launch button */
 
-.launch {
+/* button */
+
+.button {
 
 display:inline-block;
 
-
 padding:
 
-20px 60px;
+20px 65px;
+
+
+border-radius:20px;
+
+
+text-decoration:none;
+
+color:white;
 
 
 font-size:22px;
 
 font-weight:bold;
-
-
-color:white;
-
-text-decoration:none;
 
 
 background:
@@ -241,12 +309,9 @@ linear-gradient(
 );
 
 
-border-radius:18px;
-
-
 box-shadow:
 
-0 0 30px #ec4899;
+0 0 35px #ec4899;
 
 
 transition:.3s;
@@ -254,19 +319,18 @@ transition:.3s;
 }
 
 
-.launch:hover {
+.button:hover {
 
 transform:
+
 translateY(-8px)
 scale(1.08);
 
 
 box-shadow:
 
-0 0 60px #ec4899,
-0 0 100px #8b5cf6;
+0 0 70px #ec4899;
 
 }
-
 
 </style>
