@@ -4,193 +4,136 @@
 <title>Unblooked Games</title>
 
 <style>
-
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    margin: 0;
     height: 100vh;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    background:
+    radial-gradient(circle at top, #17345c, #050814 70%);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(-45deg, #050505, #111827, #001f3f, #111);
-    background-size: 400% 400%;
-    animation: backgroundMove 12s infinite alternate;
 }
 
-/* Animated background */
-@keyframes backgroundMove {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
+/* Moving futuristic background */
+body::before {
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle, rgba(0,200,255,.15) 2px, transparent 3px);
+    background-size:60px 60px;
+    animation: move 20s linear infinite;
 }
 
-
-/* Floating particles */
-.particle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.4;
-    animation: float 8s infinite;
-}
-
-@keyframes float {
-    from {
-        transform: translateY(100vh);
-    }
-
-    to {
-        transform: translateY(-10vh);
-    }
+@keyframes move {
+    from {transform:translate(0,0);}
+    to {transform:translate(-200px,-200px);}
 }
 
 
-/* Main box */
-.container {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 60px;
-    border-radius: 25px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 40px rgba(0,170,255,0.4);
-    animation: appear 1.5s ease;
+.hud {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:600px;
+    padding:50px;
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:25px;
+
+    box-shadow:
+    0 0 40px rgba(0,200,255,.3);
 }
 
 
-@keyframes appear {
-    from {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-/* Title */
 h1 {
-    font-size: 55px;
-    margin: 0;
+    font-size:55px;
+    letter-spacing:5px;
+
     text-shadow:
-    0 0 10px #00aaff,
-    0 0 30px #0088ff;
-
-    animation: glow 2s infinite alternate;
-}
-
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px #00aaff;
-    }
-
-    to {
-        text-shadow: 0 0 35px #00ffff;
-    }
+    0 0 10px #00eaff,
+    0 0 30px #008cff;
 }
 
 
 p {
-    font-size: 20px;
-    opacity: 0.8;
+    margin:20px;
+    color:#cbd5ff;
 }
 
 
-/* Button */
 button {
+    margin-top:20px;
+    padding:18px 60px;
 
-    margin-top: 25px;
-    padding: 20px 70px;
-
-    font-size: 28px;
-
-    border: none;
-    border-radius: 15px;
-
+    font-size:20px;
     color:white;
-    background:#0099ff;
+
+    background:#00aaff;
+    border:none;
+    border-radius:50px;
 
     cursor:pointer;
 
     box-shadow:
-    0 0 20px #0099ff;
+    0 0 20px #00aaff;
 
-    animation: pulse 2s infinite;
+    transition:.3s;
 }
 
 
 button:hover {
-
-    transform: scale(1.15);
-
-    background:#00ccff;
-
+    transform:scale(1.1);
+    box-shadow:
+    0 0 50px #00ffff;
 }
 
 
-@keyframes pulse {
+.scan {
+    position:absolute;
+    width:100%;
+    height:2px;
+    background:#00ffff;
+    animation:scan 4s infinite;
+    opacity:.4;
+}
 
-    0% {
-        box-shadow:0 0 10px #0099ff;
-    }
 
-    50% {
-        box-shadow:0 0 40px #00ffff;
-    }
-
-    100% {
-        box-shadow:0 0 10px #0099ff;
-    }
-
+@keyframes scan {
+    0% {top:0;}
+    100% {top:100%;}
 }
 
 </style>
-
 </head>
 
 
 <body>
 
+<div class="scan"></div>
 
-<!-- particles -->
-<div class="particle" style="left:10%; animation-delay:0s;"></div>
-<div class="particle" style="left:30%; animation-delay:2s;"></div>
-<div class="particle" style="left:50%; animation-delay:4s;"></div>
-<div class="particle" style="left:70%; animation-delay:1s;"></div>
-<div class="particle" style="left:90%; animation-delay:3s;"></div>
+<div class="hud">
 
+<h1>🎮 UNBLOOKED</h1>
 
-<div class="container">
-
-<h1>🎮 Unblooked Games</h1>
-
-<p>Your gateway to awesome browser games</p>
-
-
-<a href="https://peakio.base44.app" target="_blank">
+<p>
+ENTER THE FUTURE OF BROWSER GAMING
+</p>
 
 <button>
-PLAY NOW
+ENTER HUB
 </button>
-
-</a>
-
 
 </div>
 
