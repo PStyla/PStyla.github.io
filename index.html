@@ -1,48 +1,93 @@
-<button class="corner-button" onclick="openGames()">
-  🎮 Play Games
-</button>
+<div class="pixel-world">
+  <div class="stars"></div>
 
-<script>
-function openGames() {
-  window.location.href = "https://peakio.base44.app";
-}
-</script>
+  <a href="https://peakio.base44.app" class="anime-button">
+    ✨ Enter Peakio
+  </a>
+</div>
 
 <style>
-.corner-button {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
+.pixel-world {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  padding: 14px 28px;
-  min-width: 160px;
+  background:
+    linear-gradient(#ff9de2, #8c7cff, #2b164f);
+}
 
-  background: linear-gradient(135deg, #2563eb, #111827);
+/* Pixel cloud layers */
+.pixel-world::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.35) 10%, transparent 11%),
+    radial-gradient(circle, rgba(255,180,240,.3) 12%, transparent 13%);
+  background-size: 80px 80px;
+  animation: moveClouds 20s linear infinite;
+  image-rendering: pixelated;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(white 2px, transparent 3px);
+  background-size: 60px 60px;
+  opacity: .5;
+  animation: starsMove 8s linear infinite;
+}
+
+@keyframes moveClouds {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes starsMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(60px);
+  }
+}
+
+.anime-button {
+  z-index: 2;
+
+  padding: 18px 50px;
+
   color: white;
+  text-decoration: none;
 
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
 
-  border: 2px solid #60a5fa;
-  border-radius: 12px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
 
-  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 18px;
 
   box-shadow:
-    0 6px 20px rgba(0,0,0,0.5),
-    0 0 15px rgba(37,99,235,0.7);
+    0 0 25px #ff8eea;
 
-  transition: 0.3s ease;
+  transition: .3s;
 }
 
-.corner-button:hover {
-  transform: translateY(-4px);
+.anime-button:hover {
+  transform: scale(1.1);
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.6),
-    0 0 25px rgba(37,99,235,1);
-}
-
-.corner-button:active {
-  transform: scale(0.95);
+    0 0 45px #ff8eea;
 }
 </style>
