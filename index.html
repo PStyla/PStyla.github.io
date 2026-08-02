@@ -4,54 +4,177 @@
 <title>Unblooked Games</title>
 
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #111, #222);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
+    background: linear-gradient(-45deg, #050505, #111827, #001f3f, #111);
+    background-size: 400% 400%;
+    animation: backgroundMove 12s infinite alternate;
 }
 
+/* Animated background */
+@keyframes backgroundMove {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 8s infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh);
+    }
+
+    to {
+        transform: translateY(-10vh);
+    }
+}
+
+
+/* Main box */
 .container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px;
+    border-radius: 25px;
     background: rgba(255,255,255,0.08);
-    padding: 50px;
-    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0,170,255,0.4);
+    animation: appear 1.5s ease;
 }
 
+
+@keyframes appear {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Title */
 h1 {
     font-size: 55px;
-    margin-bottom: 10px;
+    margin: 0;
+    text-shadow:
+    0 0 10px #00aaff,
+    0 0 30px #0088ff;
+
+    animation: glow 2s infinite alternate;
 }
+
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #00aaff;
+    }
+
+    to {
+        text-shadow: 0 0 35px #00ffff;
+    }
+}
+
 
 p {
     font-size: 20px;
-    margin-bottom: 35px;
+    opacity: 0.8;
 }
 
+
+/* Button */
 button {
-    background: #00aaff;
-    color: white;
-    border: none;
-    padding: 20px 60px;
+
+    margin-top: 25px;
+    padding: 20px 70px;
+
     font-size: 28px;
+
+    border: none;
     border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
+
+    color:white;
+    background:#0099ff;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 20px #0099ff;
+
+    animation: pulse 2s infinite;
 }
+
 
 button:hover {
-    transform: scale(1.1);
-    background: #0088ff;
+
+    transform: scale(1.15);
+
+    background:#00ccff;
+
 }
+
+
+@keyframes pulse {
+
+    0% {
+        box-shadow:0 0 10px #0099ff;
+    }
+
+    50% {
+        box-shadow:0 0 40px #00ffff;
+    }
+
+    100% {
+        box-shadow:0 0 10px #0099ff;
+    }
+
+}
+
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- particles -->
+<div class="particle" style="left:10%; animation-delay:0s;"></div>
+<div class="particle" style="left:30%; animation-delay:2s;"></div>
+<div class="particle" style="left:50%; animation-delay:4s;"></div>
+<div class="particle" style="left:70%; animation-delay:1s;"></div>
+<div class="particle" style="left:90%; animation-delay:3s;"></div>
+
 
 <div class="container">
 
@@ -59,11 +182,18 @@ button:hover {
 
 <p>Your gateway to awesome browser games</p>
 
+
 <a href="https://peakio.base44.app" target="_blank">
-<button>PLAY NOW</button>
+
+<button>
+PLAY NOW
+</button>
+
 </a>
 
+
 </div>
+
 
 </body>
 </html>
