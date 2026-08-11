@@ -22,15 +22,16 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(8,8,12,.97);
+    background: rgba(8,8,12,.96);
     border-bottom: 1px solid #25252d;
 }
 
 .nav {
     max-width: 1250px;
-    min-height: 68px;
     margin: auto;
+    min-height: 68px;
     padding: 0 20px;
+
     display: flex;
     align-items: center;
     gap: 25px;
@@ -54,10 +55,13 @@ header {
 .search input {
     width: 100%;
     padding: 12px 16px;
+
     border-radius: 8px;
     border: 1px solid #292932;
+
     background: #15151c;
     color: white;
+
     outline: none;
     font-size: 14px;
 }
@@ -70,8 +74,10 @@ header {
     border: 1px solid #292932;
     background: #15151c;
     color: #ddd;
+
     padding: 10px 16px;
     border-radius: 7px;
+
     cursor: pointer;
     font-weight: bold;
 }
@@ -113,9 +119,12 @@ header {
 .category {
     border: 1px solid #292932;
     background: #15151c;
+
     color: #aaa;
+
     padding: 9px 14px;
     border-radius: 7px;
+
     cursor: pointer;
     font-weight: bold;
     font-size: 13px;
@@ -136,66 +145,63 @@ header {
 
 .game {
     overflow: hidden;
+
     background: #111117;
+
     border: 1px solid #25252d;
     border-radius: 9px;
-    transition: .18s ease;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease;
+
+    cursor: pointer;
 }
 
 .game:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: #8b5cf6;
-    box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
 
-/* REAL IMAGE THUMBNAILS */
+/* EMOJI THUMBNAILS */
 
 .thumbnail {
-    height: 165px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg,#27272f,#111117);
-}
 
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .35s ease;
-}
+    font-size: 58px;
 
-.game:hover .thumbnail img {
-    transform: scale(1.08);
+    background:
+        linear-gradient(
+            135deg,
+            var(--one),
+            var(--two)
+        );
 }
 
 .thumbnail::after {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-        to bottom,
-        transparent 35%,
-        rgba(0,0,0,.7)
-    );
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.35)
+        );
 }
 
-/* FALLBACK */
-
-.fallback {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 52px;
-    z-index: 0;
+.thumbnail {
+    transition: transform .2s ease;
 }
 
-.thumbnail img {
-    position: relative;
-    z-index: 1;
+.game:hover .thumbnail {
+    transform: scale(1.02);
 }
 
 .info {
@@ -216,14 +222,20 @@ header {
 
 .play {
     display: block;
+
     width: 100%;
+
     margin-top: 12px;
     padding: 9px;
+
     text-align: center;
     text-decoration: none;
+
     border-radius: 6px;
+
     background: #8b5cf6;
     color: white;
+
     font-size: 12px;
     font-weight: 900;
 }
@@ -238,29 +250,41 @@ header {
 
 .no-results {
     display: none;
+
     padding: 50px;
+
     text-align: center;
+
     color: #777;
+
     border: 1px dashed #292932;
     border-radius: 10px;
+
     margin-top: 20px;
 }
 
 footer {
     text-align: center;
+
     padding: 35px;
+
     color: #555;
+
     font-size: 12px;
+
     border-top: 1px solid #18181f;
 }
 
 @media(max-width:1000px) {
+
     .games {
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
+
 }
 
 @media(max-width:700px) {
+
     .nav {
         flex-wrap: wrap;
         padding: 14px;
@@ -273,14 +297,17 @@ footer {
     }
 
     .games {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media(max-width:450px) {
+
     .games {
         grid-template-columns: 1fr;
     }
+
 }
 </style>
 </head>
@@ -288,66 +315,98 @@ footer {
 <body>
 
 <header>
+
 <div class="nav">
 
 <div class="logo">
-<span>PStyla</span> Games
+    <span>PStyla</span> Games
 </div>
 
 <div class="search">
+
 <input
-id="search"
-type="search"
-placeholder="Search games..."
+    id="search"
+    type="search"
+    placeholder="Search games..."
 >
+
 </div>
 
 <button
-class="home"
-onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    class="home"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
 >
 Home
 </button>
 
 </div>
+
 </header>
 
 
 <main class="container">
 
 <div class="heading">
-<h1>Popular Games</h1>
-<span id="gameCount">16 Games</span>
+
+<h1>
+Popular Games
+</h1>
+
+<span id="gameCount">
+16 Games
+</span>
+
 </div>
 
 
 <div class="categories">
 
-<button class="category active" data-category="all">
+<button
+class="category active"
+data-category="all"
+>
 All
 </button>
 
-<button class="category" data-category="action">
+<button
+class="category"
+data-category="action"
+>
 Action
 </button>
 
-<button class="category" data-category="arcade">
+<button
+class="category"
+data-category="arcade"
+>
 Arcade
 </button>
 
-<button class="category" data-category="racing">
+<button
+class="category"
+data-category="racing"
+>
 Racing
 </button>
 
-<button class="category" data-category="sports">
+<button
+class="category"
+data-category="sports"
+>
 Sports
 </button>
 
-<button class="category" data-category="puzzle">
+<button
+class="category"
+data-category="puzzle"
+>
 Puzzle
 </button>
 
-<button class="category" data-category="platformer">
+<button
+class="category"
+data-category="platformer"
+>
 Platformer
 </button>
 
@@ -358,21 +417,29 @@ Platformer
 
 
 <!-- DRIFT BOSS -->
-<div class="game" data-name="Drift Boss" data-category="racing">
 
-<div class="thumbnail">
-<div class="fallback">🏎️</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/styles/mobile_game_image/public/2022-02/drift-boss-400x300.jpg"
-alt="Drift Boss"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Drift Boss"
+data-category="racing"
 >
+
+<div
+class="thumbnail"
+style="--one:#ef4444;--two:#7f1d1d"
+>
+🏎️
 </div>
 
 <div class="info">
-<div class="game-name">Drift Boss</div>
-<div class="game-category">Racing</div>
+
+<div class="game-name">
+Drift Boss
+</div>
+
+<div class="game-category">
+Racing
+</div>
 
 <a
 class="play"
@@ -382,26 +449,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- IRON SNOUT -->
-<div class="game" data-name="Iron Snout" data-category="action">
 
-<div class="thumbnail">
-<div class="fallback">🐷</div>
-
-<img
-src="https://topvaz.com/wp-content/uploads/2024/05/iron-snout.jpg"
-alt="Iron Snout"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Iron Snout"
+data-category="action"
 >
+
+<div
+class="thumbnail"
+style="--one:#ec4899;--two:#7c3aed"
+>
+🐷
 </div>
 
 <div class="info">
-<div class="game-name">Iron Snout</div>
-<div class="game-category">Action</div>
+
+<div class="game-name">
+Iron Snout
+</div>
+
+<div class="game-category">
+Action
+</div>
 
 <a
 class="play"
@@ -411,26 +488,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- RUN 3 -->
-<div class="game" data-name="Run 3" data-category="action">
 
-<div class="thumbnail">
-<div class="fallback">🏃</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-04/run-3.png"
-alt="Run 3"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Run 3"
+data-category="action"
 >
+
+<div
+class="thumbnail"
+style="--one:#06b6d4;--two:#2563eb"
+>
+🏃
 </div>
 
 <div class="info">
-<div class="game-name">Run 3</div>
-<div class="game-category">Action</div>
+
+<div class="game-name">
+Run 3
+</div>
+
+<div class="game-category">
+Action
+</div>
 
 <a
 class="play"
@@ -440,26 +527,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- PAPAS FREEZERIA -->
-<div class="game" data-name="Papas Freezeria" data-category="arcade">
 
-<div class="thumbnail">
-<div class="fallback">🍦</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-07/papas-freezeria-400x300.jpg"
-alt="Papa's Freezeria"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Papas Freezeria"
+data-category="arcade"
 >
+
+<div
+class="thumbnail"
+style="--one:#38bdf8;--two:#f472b6"
+>
+🍦
 </div>
 
 <div class="info">
-<div class="game-name">Papa's Freezeria</div>
-<div class="game-category">Arcade</div>
+
+<div class="game-name">
+Papa's Freezeria
+</div>
+
+<div class="game-category">
+Arcade
+</div>
 
 <a
 class="play"
@@ -469,26 +566,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- TINY FISHING -->
-<div class="game" data-name="Tiny Fishing" data-category="arcade">
 
-<div class="thumbnail">
-<div class="fallback">🎣</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-07/tiny-fishing-400x300.jpg"
-alt="Tiny Fishing"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Tiny Fishing"
+data-category="arcade"
 >
+
+<div
+class="thumbnail"
+style="--one:#0ea5e9;--two:#0369a1"
+>
+🎣
 </div>
 
 <div class="info">
-<div class="game-name">Tiny Fishing</div>
-<div class="game-category">Arcade</div>
+
+<div class="game-name">
+Tiny Fishing
+</div>
+
+<div class="game-category">
+Arcade
+</div>
 
 <a
 class="play"
@@ -498,26 +605,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- SLICE MASTER -->
-<div class="game" data-name="Slice Master" data-category="arcade">
 
-<div class="thumbnail">
-<div class="fallback">🔪</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-03/slice-master-400x300.jpg"
-alt="Slice Master"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Slice Master"
+data-category="arcade"
 >
+
+<div
+class="thumbnail"
+style="--one:#f97316;--two:#dc2626"
+>
+🔪
 </div>
 
 <div class="info">
-<div class="game-name">Slice Master</div>
-<div class="game-category">Arcade</div>
+
+<div class="game-name">
+Slice Master
+</div>
+
+<div class="game-category">
+Arcade
+</div>
 
 <a
 class="play"
@@ -527,26 +644,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- SUIKA -->
-<div class="game" data-name="Suika" data-category="puzzle">
 
-<div class="thumbnail">
-<div class="fallback">🍉</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2023-10/suika-watermelon-game-400x300.jpg"
-alt="Suika"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Suika"
+data-category="puzzle"
 >
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#16a34a"
+>
+🍉
 </div>
 
 <div class="info">
-<div class="game-name">Suika</div>
-<div class="game-category">Puzzle</div>
+
+<div class="game-name">
+Suika
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
 
 <a
 class="play"
@@ -556,26 +683,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- COOKIE CLICKER -->
-<div class="game" data-name="Cookie Clicker" data-category="arcade">
 
-<div class="thumbnail">
-<div class="fallback">🍪</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-07/cookie-clicker-400x300.jpg"
-alt="Cookie Clicker"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Cookie Clicker"
+data-category="arcade"
 >
+
+<div
+class="thumbnail"
+style="--one:#a16207;--two:#451a03"
+>
+🍪
 </div>
 
 <div class="info">
-<div class="game-name">Cookie Clicker</div>
-<div class="game-category">Arcade</div>
+
+<div class="game-name">
+Cookie Clicker
+</div>
+
+<div class="game-category">
+Arcade
+</div>
 
 <a
 class="play"
@@ -585,26 +722,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- MOTO X3M -->
-<div class="game" data-name="Moto X3M" data-category="racing">
 
-<div class="thumbnail">
-<div class="fallback">🏍️</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-07/moto-x3m-400x300.jpg"
-alt="Moto X3M"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Moto X3M"
+data-category="racing"
 >
+
+<div
+class="thumbnail"
+style="--one:#f97316;--two:#dc2626"
+>
+🏍️
 </div>
 
 <div class="info">
-<div class="game-name">Moto X3M</div>
-<div class="game-category">Racing</div>
+
+<div class="game-name">
+Moto X3M
+</div>
+
+<div class="game-category">
+Racing
+</div>
 
 <a
 class="play"
@@ -614,26 +761,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- 8 BALL POOL -->
-<div class="game" data-name="8 Ball Pool" data-category="sports">
 
-<div class="thumbnail">
-<div class="fallback">🎱</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-04/8-ball-pool-400x300.jpg"
-alt="8 Ball Pool"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="8 Ball Pool"
+data-category="sports"
 >
+
+<div
+class="thumbnail"
+style="--one:#166534;--two:#052e16"
+>
+🎱
 </div>
 
 <div class="info">
-<div class="game-name">8 Ball Pool</div>
-<div class="game-category">Sports</div>
+
+<div class="game-name">
+8 Ball Pool
+</div>
+
+<div class="game-category">
+Sports
+</div>
 
 <a
 class="play"
@@ -643,26 +800,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- SNAKE -->
-<div class="game" data-name="Snake" data-category="arcade">
 
-<div class="thumbnail">
-<div class="fallback">🐍</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-02/snake-400x300.jpg"
-alt="Snake"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Snake"
+data-category="arcade"
 >
+
+<div
+class="thumbnail"
+style="--one:#16a34a;--two:#14532d"
+>
+🐍
 </div>
 
 <div class="info">
-<div class="game-name">Snake</div>
-<div class="game-category">Arcade</div>
+
+<div class="game-name">
+Snake
+</div>
+
+<div class="game-category">
+Arcade
+</div>
 
 <a
 class="play"
@@ -672,26 +839,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- OVO -->
-<div class="game" data-name="OvO" data-category="platformer">
 
-<div class="thumbnail">
-<div class="fallback">🟣</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-02/ovo-400x300.jpg"
-alt="OvO"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="OvO"
+data-category="platformer"
 >
+
+<div
+class="thumbnail"
+style="--one:#6366f1;--two:#312e81"
+>
+🟣
 </div>
 
 <div class="info">
-<div class="game-name">OvO</div>
-<div class="game-category">Platformer</div>
+
+<div class="game-name">
+OvO
+</div>
+
+<div class="game-category">
+Platformer
+</div>
 
 <a
 class="play"
@@ -701,26 +878,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
-<!-- FIREBOY & WATERGIRL -->
-<div class="game" data-name="Fireboy and Watergirl" data-category="platformer">
+<!-- FIREBOY WATERGIRL -->
 
-<div class="thumbnail">
-<div class="fallback">🔥</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2021-07/fireboy-and-water-girl-forest-temple-400x300.jpg"
-alt="Fireboy and Watergirl"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Fireboy and Watergirl"
+data-category="platformer"
 >
+
+<div
+class="thumbnail"
+style="--one:#ef4444;--two:#2563eb"
+>
+🔥
 </div>
 
 <div class="info">
-<div class="game-name">Fireboy & Watergirl</div>
-<div class="game-category">Platformer</div>
+
+<div class="game-name">
+Fireboy & Watergirl
+</div>
+
+<div class="game-category">
+Platformer
+</div>
 
 <a
 class="play"
@@ -730,26 +917,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- PENALTY KICK -->
-<div class="game" data-name="Penalty Kick Online" data-category="sports">
 
-<div class="thumbnail">
-<div class="fallback">⚽</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-02/penalty-kick-online-400x300.jpg"
-alt="Penalty Kick Online"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Penalty Kick Online"
+data-category="sports"
 >
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#15803d"
+>
+⚽
 </div>
 
 <div class="info">
-<div class="game-name">Penalty Kick Online</div>
-<div class="game-category">Sports</div>
+
+<div class="game-name">
+Penalty Kick Online
+</div>
+
+<div class="game-category">
+Sports
+</div>
 
 <a
 class="play"
@@ -759,26 +956,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- EGGY CAR -->
-<div class="game" data-name="Eggy Car" data-category="racing">
 
-<div class="thumbnail">
-<div class="fallback">🥚</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2022-02/eggy-car-400x300.jpg"
-alt="Eggy Car"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="Eggy Car"
+data-category="racing"
 >
+
+<div
+class="thumbnail"
+style="--one:#facc15;--two:#f97316"
+>
+🥚
 </div>
 
 <div class="info">
-<div class="game-name">Eggy Car</div>
-<div class="game-category">Racing</div>
+
+<div class="game-name">
+Eggy Car
+</div>
+
+<div class="game-category">
+Racing
+</div>
 
 <a
 class="play"
@@ -788,26 +995,36 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
+
 </div>
+
 </div>
 
 
 <!-- WORLDGUESSR -->
-<div class="game" data-name="WorldGuessr" data-category="puzzle">
 
-<div class="thumbnail">
-<div class="fallback">🌎</div>
-
-<img
-src="https://www.coolmathgames.com/sites/default/files/2025-03/worldguessr-400x300.jpg"
-alt="WorldGuessr"
-onerror="this.style.display='none'"
+<div
+class="game"
+data-name="WorldGuessr"
+data-category="puzzle"
 >
+
+<div
+class="thumbnail"
+style="--one:#2563eb;--two:#7c3aed"
+>
+🌎
 </div>
 
 <div class="info">
-<div class="game-name">WorldGuessr</div>
-<div class="game-category">Puzzle</div>
+
+<div class="game-name">
+WorldGuessr
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
 
 <a
 class="play"
@@ -817,14 +1034,19 @@ rel="noopener noreferrer"
 >
 PLAY
 </a>
-</div>
-</div>
-
 
 </div>
 
+</div>
 
-<div class="no-results" id="noResults">
+
+</div>
+
+
+<div
+class="no-results"
+id="noResults"
+>
 😭 No games found.
 </div>
 
@@ -838,20 +1060,33 @@ PStyla Games © 2026
 
 <script>
 
-const search = document.getElementById("search");
-const games = document.querySelectorAll(".game");
-const categories = document.querySelectorAll(".category");
-const noResults = document.getElementById("noResults");
-const gameCount = document.getElementById("gameCount");
+const search =
+document.getElementById("search");
+
+const games =
+document.querySelectorAll(".game");
+
+const categories =
+document.querySelectorAll(".category");
+
+const noResults =
+document.getElementById("noResults");
+
+const gameCount =
+document.getElementById("gameCount");
 
 let currentCategory = "all";
+
 
 function updateGames() {
 
     const query =
-        search.value.toLowerCase().trim();
+        search.value
+        .toLowerCase()
+        .trim();
 
     let visible = 0;
+
 
     games.forEach(game => {
 
@@ -861,33 +1096,50 @@ function updateGames() {
         const category =
             game.dataset.category;
 
+
         const searchMatch =
             name.includes(query);
+
 
         const categoryMatch =
             currentCategory === "all" ||
             category === currentCategory;
 
-        if (searchMatch && categoryMatch) {
+
+        if (
+            searchMatch &&
+            categoryMatch
+        ) {
+
             game.classList.remove("hidden");
+
             visible++;
+
         } else {
+
             game.classList.add("hidden");
+
         }
 
     });
 
+
     gameCount.textContent =
         visible + " Games";
 
+
     noResults.style.display =
-        visible === 0 ? "block" : "none";
+        visible === 0
+        ? "block"
+        : "none";
 }
+
 
 search.addEventListener(
     "input",
     updateGames
 );
+
 
 categories.forEach(button => {
 
@@ -905,6 +1157,7 @@ categories.forEach(button => {
                 button.dataset.category;
 
             updateGames();
+
         }
     );
 
