@@ -1,400 +1,590 @@
-<div class="unblooked-world">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="sky"></div>
-  <div class="moon"></div>
-  <div class="clouds"></div>
-  <div class="particles"></div>
-
-  <div class="interface">
-
-    <h1>UNBLOOKED</h1>
-    <h2>GAMES</h2>
-
-    <p>
-      A universe of games waiting to be explored.
-    </p>
-
-    <a href="https://peakio.base44.app">
-      ENTER WORLD
-    </a>
-
-  </div>
-
-</div>
-
+<title>Unblooked Games</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-
-.unblooked-world{
-
-height:100vh;
-width:100%;
-
-overflow:hidden;
-
-position:relative;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-family:
-"Segoe UI", sans-serif;
-
-background:
-linear-gradient(
-180deg,
-#080014,
-#24104d,
-#7b3f8c
-);
-
+html {
+    scroll-behavior: smooth;
 }
 
-
-/* moving sky */
-
-.sky{
-
-position:absolute;
-inset:0;
-
-background:
-
-radial-gradient(
-circle at 50% 20%,
-rgba(255,180,240,.35),
-transparent 30%
-),
-
-linear-gradient(
-180deg,
-transparent,
-rgba(255,120,220,.25)
-);
-
-animation:
-skyPulse 8s infinite alternate;
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #09070f;
+    color: white;
+    overflow-x: hidden;
 }
 
+/* BACKGROUND */
 
-@keyframes skyPulse{
-
-from{
-opacity:.7;
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(170, 70, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 70, 190, 0.13), transparent 30%),
+        linear-gradient(135deg, #09070f, #100b1c 50%, #08070d);
 }
 
-to{
-opacity:1;
+.grid {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    opacity: .12;
+    background-image:
+        linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(55deg) scale(1.6);
+    transform-origin: center bottom;
 }
 
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: #dca8ff;
+    border-radius: 50%;
+    opacity: .6;
+    animation: float 8s infinite ease-in-out;
 }
 
+.p1 { left: 15%; top: 25%; animation-delay: 0s; }
+.p2 { left: 70%; top: 20%; animation-delay: 2s; }
+.p3 { left: 82%; top: 65%; animation-delay: 4s; }
+.p4 { left: 30%; top: 75%; animation-delay: 1s; }
+.p5 { left: 55%; top: 45%; animation-delay: 3s; }
 
-
-/* moon */
-
-.moon{
-
-position:absolute;
-
-top:12%;
-right:15%;
-
-width:160px;
-height:160px;
-
-border-radius:50%;
-
-background:
-radial-gradient(
-circle,
-#fff,
-#ffd6f7
-);
-
-box-shadow:
-
-0 0 40px #ffd6f7,
-0 0 100px #ff7bd5;
-
+@keyframes float {
+    0%,100% { transform: translateY(0); opacity:.3; }
+    50% { transform: translateY(-35px); opacity:.9; }
 }
 
+/* NAVBAR */
 
-/* clouds */
-
-.clouds{
-
-position:absolute;
-
-bottom:-100px;
-
-width:120%;
-height:300px;
-
-
-background:
-
-radial-gradient(
-ellipse,
-rgba(255,255,255,.25),
-transparent 60%
-);
-
-filter:blur(25px);
-
-
-animation:
-cloudMove 25s infinite alternate;
-
+nav {
+    width: 100%;
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-
-@keyframes cloudMove{
-
-from{
-transform:translateX(-80px);
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
 }
 
-to{
-transform:translateX(80px);
+.logo span {
+    color: #d58cff;
 }
 
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
 }
 
-
-
-/* particles */
-
-.particles{
-
-position:absolute;
-
-inset:0;
-
-background-image:
-
-radial-gradient(
-white 1px,
-transparent 2px
-);
-
-background-size:
-
-70px 70px;
-
-opacity:.45;
-
-
-animation:
-
-particleFloat 18s linear infinite;
-
+.nav-links a {
+    color: #aaa3b5;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .2s;
 }
 
-
-@keyframes particleFloat{
-
-from{
-transform:translateY(0);
+.nav-links a:hover {
+    color: white;
 }
 
-to{
-transform:translateY(-400px);
+/* HERO */
+
+.hero {
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
 }
 
+.hero-content {
+    max-width: 850px;
 }
 
-
-
-
-/* main UI */
-
-.interface{
-
-position:relative;
-
-z-index:5;
-
-text-align:center;
-
-color:white;
-
-
-animation:
-intro 1.5s ease;
-
-
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid rgba(213,140,255,.35);
+    background: rgba(213,140,255,.08);
+    color: #d9a5ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
 }
 
-
-@keyframes intro{
-
-from{
-
-opacity:0;
-transform:translateY(40px);
-
+.hero h1 {
+    font-size: clamp(55px, 10vw, 105px);
+    line-height: .9;
+    letter-spacing: -5px;
+    font-weight: 900;
 }
 
-to{
-
-opacity:1;
-transform:none;
-
+.hero h1 span {
+    color: #d68cff;
+    text-shadow: 0 0 45px rgba(214,140,255,.35);
 }
 
+.hero p {
+    color: #aaa5b0;
+    max-width: 560px;
+    margin: 28px auto;
+    line-height: 1.7;
+    font-size: 16px;
 }
 
-
-
-h1{
-
-font-size:
-
-clamp(60px,10vw,130px);
-
-
-letter-spacing:
-
-15px;
-
-
-font-weight:900;
-
-
-text-shadow:
-
-0 0 30px #ff6bd6,
-0 0 80px #9b5cff;
-
-
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-
-
-h2{
-
-font-size:
-
-clamp(30px,5vw,70px);
-
-
-letter-spacing:
-
-25px;
-
-
-color:#ffc4ef;
-
-
-margin-top:-20px;
-
-
+.button {
+    border: none;
+    padding: 14px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: .25s;
 }
 
-
-
-p{
-
-margin:
-
-35px 0;
-
-
-font-size:22px;
-
-opacity:.85;
-
+.primary {
+    background: #d58cff;
+    color: #120b18;
 }
 
-
-
-/* button */
-
-.interface a{
-
-
-display:inline-block;
-
-
-padding:
-
-22px 80px;
-
-
-border-radius:30px;
-
-
-background:
-
-rgba(255,255,255,.15);
-
-
-border:
-
-1px solid rgba(255,255,255,.5);
-
-
-backdrop-filter:
-
-blur(20px);
-
-
-
-color:white;
-
-text-decoration:none;
-
-
-font-size:24px;
-
-font-weight:700;
-
-
-
-box-shadow:
-
-0 0 40px rgba(255,100,220,.7);
-
-
-
-transition:.4s;
-
-
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(213,140,255,.3);
 }
 
-
-
-.interface a:hover{
-
-
-transform:
-
-translateY(-10px)
-scale(1.08);
-
-
-background:
-
-rgba(255,255,255,.25);
-
-
-box-shadow:
-
-0 0 80px #ff6bd6;
-
-
+.secondary {
+    border: 1px solid #393140;
+    color: white;
+    background: rgba(255,255,255,.03);
 }
 
+.secondary:hover {
+    border-color: #d58cff;
+    transform: translateY(-3px);
+}
 
+/* GAMES */
 
+section {
+    padding: 80px 7%;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title small {
+    color: #bd72e8;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    margin-top: 8px;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.game {
+    min-height: 210px;
+    padding: 25px;
+    border: 1px solid #292330;
+    background: rgba(18,14,26,.8);
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.game::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -70px;
+    top: -70px;
+    background: #b96cff;
+    filter: blur(70px);
+    opacity: .12;
+}
+
+.game:hover {
+    transform: translateY(-6px);
+    border-color: #80529b;
+}
+
+.game-number {
+    color: #695d72;
+    font-size: 12px;
+}
+
+.game h3 {
+    margin-top: 35px;
+    font-size: 24px;
+}
+
+.game p {
+    color: #85808c;
+    font-size: 13px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.play {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #403747;
+    color: white;
+    padding: 9px 15px;
+    cursor: pointer;
+}
+
+.play:hover {
+    border-color: #d58cff;
+}
+
+/* FEATURE */
+
+.feature {
+    border-top: 1px solid #211c27;
+    border-bottom: 1px solid #211c27;
+    background: rgba(255,255,255,.015);
+}
+
+.feature-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.feature h2 {
+    font-size: 42px;
+    margin: 12px 0;
+}
+
+.feature p {
+    color: #918b99;
+    line-height: 1.7;
+}
+
+.fake-screen {
+    min-height: 280px;
+    border: 1px solid #332b3b;
+    background:
+        linear-gradient(135deg, rgba(213,140,255,.08), transparent),
+        #0e0b14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fake-screen::after {
+    content: "UNBLOOKED";
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,.08);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 40px 7%;
+    border-top: 1px solid #211c27;
+    color: #68616e;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+footer strong {
+    color: #a89eae;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 75vh;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .feature-box {
+        grid-template-columns: 1fr;
+    }
+
+    .fake-screen {
+        min-height: 200px;
+    }
+}
 </style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="grid"></div>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+<div class="particle p4"></div>
+<div class="particle p5"></div>
+
+<nav>
+    <div class="logo">
+        UNBLO<span>OKED</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#games">Games</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</nav>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            UNBLOOKED GAMES • ONLINE
+        </div>
+
+        <h1>
+            PLAY<br>
+            <span>WITHOUT LIMITS.</span>
+        </h1>
+
+        <p>
+            Welcome to Unblooked Games. A growing collection of games,
+            experiences and random things to do when you have absolutely
+            nothing better to do.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#games" class="button primary">
+                EXPLORE GAMES
+            </a>
+
+            <a href="#featured" class="button secondary">
+                DISCOVER
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="games">
+
+    <div class="section-title">
+        <small>THE ARCADE</small>
+        <h2>Games</h2>
+    </div>
+
+    <div class="games">
+
+        <div class="game">
+            <div class="game-number">01 / ARCADE</div>
+            <h3>Number Quest</h3>
+            <p>
+                Guess the hidden number before your attempts run out.
+            </p>
+            <button class="play" onclick="numberQuest()">
+                PLAY
+            </button>
+        </div>
+
+        <div class="game">
+            <div class="game-number">02 / COMING SOON</div>
+            <h3>???</h3>
+            <p>
+                Something new is being built behind the scenes.
+            </p>
+            <button class="play" onclick="comingSoon()">
+                DETAILS
+            </button>
+        </div>
+
+        <div class="game">
+            <div class="game-number">03 / COMING SOON</div>
+            <h3>???</h3>
+            <p>
+                Another game is waiting to enter the arcade.
+            </p>
+            <button class="play" onclick="comingSoon()">
+                DETAILS
+            </button>
+        </div>
+
+        <div class="game">
+            <div class="game-number">04 / COMING SOON</div>
+            <h3>???</h3>
+            <p>
+                The empty slot won't stay empty forever.
+            </p>
+            <button class="play" onclick="comingSoon()">
+                DETAILS
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="featured" class="feature">
+
+    <div class="feature-box">
+
+        <div>
+            <div class="section-title">
+                <small>THE EXPERIENCE</small>
+                <h2>More than a game list.</h2>
+            </div>
+
+            <p>
+                Unblooked is being built as a place to explore,
+                play and discover new experiences. More games,
+                features and interactive areas will be added over time.
+            </p>
+        </div>
+
+        <div class="fake-screen"></div>
+
+    </div>
+
+</section>
+
+
+<section id="about">
+
+    <div class="section-title">
+        <small>ABOUT</small>
+        <h2>Built for players.</h2>
+    </div>
+
+    <p style="max-width:650px;color:#918b99;line-height:1.7;">
+        This website is an independent project created by
+        <strong style="color:white;">Peter Faamanu</strong>.
+        The goal is simple: create a clean place where people
+        can find and play different games without the site feeling
+        like a giant pile of buttons.
+    </p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div>
+        © 2026 <strong>Unblooked Games</strong>
+    </div>
+
+    <div>
+        Created by <strong>Peter Faamanu</strong>
+    </div>
+
+</footer>
+
+
+<script>
+
+function comingSoon() {
+    alert("This game isn't ready yet 👀");
+}
+
+function numberQuest() {
+
+    let number = Math.floor(Math.random() * 10) + 1;
+    let attempts = 3;
+
+    while (attempts > 0) {
+
+        let guess = prompt(
+            "NUMBER QUEST 🎮\n\nGuess a number from 1 to 10.\nAttempts left: " + attempts
+        );
+
+        if (guess === null) return;
+
+        guess = Number(guess);
+
+        if (!Number.isInteger(guess) || guess < 1 || guess > 10) {
+            alert("Pick a whole number between 1 and 10");
+            continue;
+        }
+
+        if (guess === number) {
+            alert("YOU GOT IT 🔥\n\nThe number was " + number + "!");
+            return;
+        }
+
+        attempts--;
+
+        if (attempts === 0) {
+            alert("Game over 💀\n\nThe number was " + number + ".");
+        } else if (guess < number) {
+            alert("Higher 👆\n\nTry again.");
+        } else {
+            alert("Lower 👇\n\nTry again.");
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
