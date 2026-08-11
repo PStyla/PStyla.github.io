@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PStyla Games</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -17,29 +19,38 @@ body {
     color: white;
 }
 
-/* NAV */
+/* =========================
+   NAVIGATION
+========================= */
+
 header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(8,8,12,.96);
+
+    background: rgba(8,8,12,.97);
+
     border-bottom: 1px solid #25252d;
 }
 
 .nav {
     max-width: 1250px;
     margin: auto;
+
     min-height: 68px;
+
     padding: 0 20px;
 
     display: flex;
     align-items: center;
+
     gap: 25px;
 }
 
 .logo {
     font-size: 25px;
     font-weight: 900;
+
     white-space: nowrap;
 }
 
@@ -54,15 +65,19 @@ header {
 
 .search input {
     width: 100%;
+
     padding: 12px 16px;
 
     border-radius: 8px;
+
     border: 1px solid #292932;
 
     background: #15151c;
+
     color: white;
 
     outline: none;
+
     font-size: 14px;
 }
 
@@ -72,13 +87,17 @@ header {
 
 .home {
     border: 1px solid #292932;
+
     background: #15151c;
+
     color: #ddd;
 
     padding: 10px 16px;
+
     border-radius: 7px;
 
     cursor: pointer;
+
     font-weight: bold;
 }
 
@@ -86,70 +105,101 @@ header {
     background: #24242d;
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 .container {
     max-width: 1250px;
+
     margin: auto;
+
     padding: 30px 20px 70px;
 }
 
 .heading {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 18px;
 }
 
 .heading h1 {
     margin: 0;
+
     font-size: 28px;
 }
 
 .heading span {
     color: #858592;
+
     font-size: 13px;
 }
 
-/* CATEGORIES */
+
+/* =========================
+   CATEGORIES
+========================= */
 
 .categories {
     display: flex;
+
     gap: 8px;
+
     flex-wrap: wrap;
+
     margin-bottom: 30px;
 }
 
 .category {
     border: 1px solid #292932;
+
     background: #15151c;
 
     color: #aaa;
 
     padding: 9px 14px;
+
     border-radius: 7px;
 
     cursor: pointer;
+
     font-weight: bold;
+
     font-size: 13px;
 }
 
 .category:hover,
 .category.active {
     background: #8b5cf6;
+
     color: white;
+
     border-color: #8b5cf6;
 }
 
-/* GAME GRID */
+
+/* =========================
+   GAME GRID
+========================= */
 
 .games {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 16px;
 }
 
-/* GAME */
+
+/* =========================
+   GAME CARD
+========================= */
 
 .game {
     overflow: hidden;
@@ -157,54 +207,82 @@ header {
     background: #111117;
 
     border: 1px solid #25252d;
+
     border-radius: 9px;
 
     transition:
         transform .18s ease,
-        border-color .18s ease;
+        border-color .18s ease,
+        box-shadow .18s ease;
 
     cursor: pointer;
 }
 
 .game:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
+
     border-color: #8b5cf6;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
 }
 
-/* THUMBNAIL */
+
+/* =========================
+   REAL GAME THUMBNAILS
+========================= */
 
 .thumbnail {
-    height: 150px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 160px;
 
     position: relative;
 
-    font-size: 58px;
+    overflow: hidden;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--one),
-            var(--two)
-        );
+    background: #15151c;
 }
+
+.thumbnail img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .35s ease;
+}
+
+.game:hover .thumbnail img {
+    transform: scale(1.08);
+}
+
+
+/* Dark image overlay */
 
 .thumbnail::after {
     content: "";
+
     position: absolute;
+
     inset: 0;
+
+    pointer-events: none;
 
     background:
         linear-gradient(
-            transparent,
-            rgba(0,0,0,.35)
+            to bottom,
+            rgba(0,0,0,0),
+            rgba(0,0,0,.65)
         );
 }
 
-/* INFO */
+
+/* =========================
+   GAME INFO
+========================= */
 
 .info {
     padding: 13px;
@@ -212,13 +290,17 @@ header {
 
 .game-name {
     font-size: 16px;
+
     font-weight: 900;
+
     margin-bottom: 5px;
 }
 
 .game-category {
     font-size: 11px;
+
     color: #888894;
+
     text-transform: uppercase;
 }
 
@@ -228,17 +310,21 @@ header {
     width: 100%;
 
     margin-top: 12px;
+
     padding: 9px;
 
     text-align: center;
+
     text-decoration: none;
 
     border-radius: 6px;
 
     background: #8b5cf6;
+
     color: white;
 
     font-size: 12px;
+
     font-weight: 900;
 }
 
@@ -246,7 +332,10 @@ header {
     background: #9d6cff;
 }
 
-/* HIDDEN */
+
+/* =========================
+   HIDDEN
+========================= */
 
 .hidden {
     display: none;
@@ -262,12 +351,16 @@ header {
     color: #777;
 
     border: 1px dashed #292932;
+
     border-radius: 10px;
 
     margin-top: 20px;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
@@ -281,30 +374,41 @@ footer {
     border-top: 1px solid #18181f;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:1000px) {
+
     .games {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+            repeat(3, 1fr);
     }
+
 }
 
 @media(max-width:700px) {
 
     .nav {
         flex-wrap: wrap;
+
         padding: 14px;
     }
 
     .search {
         order: 3;
+
         width: 100%;
+
         max-width: none;
     }
 
     .games {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
+
 }
 
 @media(max-width:450px) {
@@ -312,11 +416,15 @@ footer {
     .games {
         grid-template-columns: 1fr;
     }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -325,6 +433,7 @@ footer {
 <div class="logo">
     <span>PStyla</span> Games
 </div>
+
 
 <div class="search">
 
@@ -335,6 +444,7 @@ footer {
 >
 
 </div>
+
 
 <button
     class="home"
@@ -348,11 +458,15 @@ Home
 </header>
 
 
+
 <main class="container">
+
 
 <div class="heading">
 
-<h1>Popular Games</h1>
+<h1>
+    Popular Games
+</h1>
 
 <span id="gameCount">
     16 Games
@@ -361,7 +475,6 @@ Home
 </div>
 
 
-<!-- CATEGORIES -->
 
 <div class="categories">
 
@@ -417,12 +530,14 @@ Platformer
 </div>
 
 
-<div class="games" id="games">
+
+<div
+class="games"
+id="games"
+>
 
 
-<!-- =========================
-     DRIFT BOSS
-========================= -->
+<!-- 1 DRIFT BOSS -->
 
 <div
 class="game"
@@ -430,11 +545,13 @@ data-name="Drift Boss"
 data-category="racing"
 >
 
-<div
-class="thumbnail"
-style="--one:#ef4444;--two:#7f1d1d"
+<div class="thumbnail">
+
+<img
+src="images/drift-boss.jpg"
+alt="Drift Boss"
 >
-🏎️
+
 </div>
 
 <div class="info">
@@ -461,9 +578,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     IRON SNOUT
-========================= -->
+
+<!-- 2 IRON SNOUT -->
 
 <div
 class="game"
@@ -471,11 +587,13 @@ data-name="Iron Snout"
 data-category="action"
 >
 
-<div
-class="thumbnail"
-style="--one:#ec4899;--two:#7c3aed"
+<div class="thumbnail">
+
+<img
+src="images/iron-snout.jpg"
+alt="Iron Snout"
 >
-🐷
+
 </div>
 
 <div class="info">
@@ -502,9 +620,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     RUN 3
-========================= -->
+
+<!-- 3 RUN 3 -->
 
 <div
 class="game"
@@ -512,11 +629,13 @@ data-name="Run 3"
 data-category="action"
 >
 
-<div
-class="thumbnail"
-style="--one:#06b6d4;--two:#2563eb"
+<div class="thumbnail">
+
+<img
+src="images/run-3.jpg"
+alt="Run 3"
 >
-🏃
+
 </div>
 
 <div class="info">
@@ -543,9 +662,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     PAPAS FREEZERIA
-========================= -->
+
+<!-- 4 PAPAS FREEZERIA -->
 
 <div
 class="game"
@@ -553,11 +671,13 @@ data-name="Papas Freezeria"
 data-category="arcade"
 >
 
-<div
-class="thumbnail"
-style="--one:#38bdf8;--two:#f472b6"
+<div class="thumbnail">
+
+<img
+src="images/papas-freezeria.jpg"
+alt="Papa's Freezeria"
 >
-🍦
+
 </div>
 
 <div class="info">
@@ -584,9 +704,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     TINY FISHING
-========================= -->
+
+<!-- 5 TINY FISHING -->
 
 <div
 class="game"
@@ -594,11 +713,13 @@ data-name="Tiny Fishing"
 data-category="arcade"
 >
 
-<div
-class="thumbnail"
-style="--one:#0ea5e9;--two:#0369a1"
+<div class="thumbnail">
+
+<img
+src="images/tiny-fishing.jpg"
+alt="Tiny Fishing"
 >
-🎣
+
 </div>
 
 <div class="info">
@@ -625,9 +746,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     SLICE MASTER
-========================= -->
+
+<!-- 6 SLICE MASTER -->
 
 <div
 class="game"
@@ -635,11 +755,13 @@ data-name="Slice Master"
 data-category="arcade"
 >
 
-<div
-class="thumbnail"
-style="--one:#f97316;--two:#dc2626"
+<div class="thumbnail">
+
+<img
+src="images/slice-master.jpg"
+alt="Slice Master"
 >
-🔪
+
 </div>
 
 <div class="info">
@@ -666,21 +788,22 @@ PLAY
 </div>
 
 
-<!-- =========================
-     SUIKA
-========================= -->
+
+<!-- 7 SUIKA -->
 
 <div
 class="game"
-data-name="Suika Watermelon Game"
+data-name="Suika"
 data-category="puzzle"
 >
 
-<div
-class="thumbnail"
-style="--one:#22c55e;--two:#16a34a"
+<div class="thumbnail">
+
+<img
+src="images/suika.jpg"
+alt="Suika"
 >
-🍉
+
 </div>
 
 <div class="info">
@@ -707,9 +830,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     COOKIE CLICKER
-========================= -->
+
+<!-- 8 COOKIE CLICKER -->
 
 <div
 class="game"
@@ -717,11 +839,13 @@ data-name="Cookie Clicker"
 data-category="arcade"
 >
 
-<div
-class="thumbnail"
-style="--one:#a16207;--two:#451a03"
+<div class="thumbnail">
+
+<img
+src="images/cookie-clicker.jpg"
+alt="Cookie Clicker"
 >
-🍪
+
 </div>
 
 <div class="info">
@@ -748,9 +872,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     MOTO X3M
-========================= -->
+
+<!-- 9 MOTO X3M -->
 
 <div
 class="game"
@@ -758,11 +881,13 @@ data-name="Moto X3M"
 data-category="racing"
 >
 
-<div
-class="thumbnail"
-style="--one:#f97316;--two:#dc2626"
+<div class="thumbnail">
+
+<img
+src="images/moto-x3m.jpg"
+alt="Moto X3M"
 >
-🏍️
+
 </div>
 
 <div class="info">
@@ -789,9 +914,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     8 BALL POOL
-========================= -->
+
+<!-- 10 8 BALL POOL -->
 
 <div
 class="game"
@@ -799,11 +923,13 @@ data-name="8 Ball Pool"
 data-category="sports"
 >
 
-<div
-class="thumbnail"
-style="--one:#166534;--two:#052e16"
+<div class="thumbnail">
+
+<img
+src="images/8-ball-pool.jpg"
+alt="8 Ball Pool"
 >
-🎱
+
 </div>
 
 <div class="info">
@@ -830,9 +956,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     SNAKE
-========================= -->
+
+<!-- 11 SNAKE -->
 
 <div
 class="game"
@@ -840,11 +965,13 @@ data-name="Snake"
 data-category="arcade"
 >
 
-<div
-class="thumbnail"
-style="--one:#16a34a;--two:#14532d"
+<div class="thumbnail">
+
+<img
+src="images/snake.jpg"
+alt="Snake"
 >
-🐍
+
 </div>
 
 <div class="info">
@@ -871,9 +998,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     OVO
-========================= -->
+
+<!-- 12 OVO -->
 
 <div
 class="game"
@@ -881,11 +1007,13 @@ data-name="OvO"
 data-category="platformer"
 >
 
-<div
-class="thumbnail"
-style="--one:#6366f1;--two:#312e81"
+<div class="thumbnail">
+
+<img
+src="images/ovo.jpg"
+alt="OvO"
 >
-🟣
+
 </div>
 
 <div class="info">
@@ -912,9 +1040,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     FIREBOY AND WATERGIRL
-========================= -->
+
+<!-- 13 FIREBOY WATERGIRL -->
 
 <div
 class="game"
@@ -922,11 +1049,13 @@ data-name="Fireboy and Watergirl"
 data-category="platformer"
 >
 
-<div
-class="thumbnail"
-style="--one:#ef4444;--two:#2563eb"
+<div class="thumbnail">
+
+<img
+src="images/fireboy-watergirl.jpg"
+alt="Fireboy and Watergirl"
 >
-🔥
+
 </div>
 
 <div class="info">
@@ -953,9 +1082,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     PENALTY KICK
-========================= -->
+
+<!-- 14 PENALTY KICK -->
 
 <div
 class="game"
@@ -963,11 +1091,13 @@ data-name="Penalty Kick Online"
 data-category="sports"
 >
 
-<div
-class="thumbnail"
-style="--one:#22c55e;--two:#15803d"
+<div class="thumbnail">
+
+<img
+src="images/penalty-kick.jpg"
+alt="Penalty Kick Online"
 >
-⚽
+
 </div>
 
 <div class="info">
@@ -994,9 +1124,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     EGGY CAR
-========================= -->
+
+<!-- 15 EGGY CAR -->
 
 <div
 class="game"
@@ -1004,11 +1133,13 @@ data-name="Eggy Car"
 data-category="racing"
 >
 
-<div
-class="thumbnail"
-style="--one:#facc15;--two:#f97316"
+<div class="thumbnail">
+
+<img
+src="images/eggy-car.jpg"
+alt="Eggy Car"
 >
-🥚
+
 </div>
 
 <div class="info">
@@ -1035,9 +1166,8 @@ PLAY
 </div>
 
 
-<!-- =========================
-     WORLDGUESSR
-========================= -->
+
+<!-- 16 WORLDGUESSR -->
 
 <div
 class="game"
@@ -1045,11 +1175,13 @@ data-name="WorldGuessr"
 data-category="puzzle"
 >
 
-<div
-class="thumbnail"
-style="--one:#2563eb;--two:#7c3aed"
+<div class="thumbnail">
+
+<img
+src="images/worldguessr.jpg"
+alt="WorldGuessr"
 >
-🌎
+
 </div>
 
 <div class="info">
@@ -1086,12 +1218,17 @@ id="noResults"
 😭 No games found.
 </div>
 
+
 </main>
 
 
+
 <footer>
+
 PStyla Games © 2026
+
 </footer>
+
 
 
 <script>
@@ -1123,20 +1260,25 @@ function updateGames() {
 
     let visible = 0;
 
+
     games.forEach(game => {
 
         const name =
-            game.dataset.name.toLowerCase();
+            game.dataset.name
+            .toLowerCase();
 
         const category =
             game.dataset.category;
 
+
         const searchMatch =
             name.includes(query);
+
 
         const categoryMatch =
             currentCategory === "all" ||
             category === currentCategory;
+
 
         if (
             searchMatch &&
@@ -1155,13 +1297,16 @@ function updateGames() {
 
     });
 
+
     gameCount.textContent =
         visible + " Games";
+
 
     noResults.style.display =
         visible === 0
         ? "block"
         : "none";
+
 }
 
 
@@ -1194,6 +1339,7 @@ categories.forEach(button => {
 });
 
 </script>
+
 
 </body>
 </html>
