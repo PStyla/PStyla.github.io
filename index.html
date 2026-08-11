@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>PStyla Games</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -19,37 +17,29 @@ body {
     color: white;
 }
 
-/* =========================
-   TOP NAVIGATION
-========================= */
-
+/* NAV */
 header {
     position: sticky;
     top: 0;
-    z-index: 1000;
-
-    background: rgba(10,10,15,0.96);
-    border-bottom: 1px solid #24242c;
+    z-index: 100;
+    background: rgba(8,8,12,.96);
+    border-bottom: 1px solid #25252d;
 }
 
 .nav {
     max-width: 1250px;
     margin: auto;
-
-    height: 68px;
+    min-height: 68px;
+    padding: 0 20px;
 
     display: flex;
     align-items: center;
-
-    padding: 0 20px;
-
-    gap: 30px;
+    gap: 25px;
 }
 
 .logo {
     font-size: 25px;
     font-weight: 900;
-
     white-space: nowrap;
 }
 
@@ -59,144 +49,115 @@ header {
 
 .search {
     flex: 1;
-    max-width: 480px;
+    max-width: 500px;
 }
 
 .search input {
-
     width: 100%;
-
-    padding: 12px 17px;
+    padding: 12px 16px;
 
     border-radius: 8px;
-
-    border: 1px solid #292934;
+    border: 1px solid #292932;
 
     background: #15151c;
-
     color: white;
 
     outline: none;
-
     font-size: 14px;
 }
 
 .search input:focus {
-    border-color: #a855f7;
+    border-color: #8b5cf6;
 }
 
-.nav-button {
-
-    background: #191921;
-
-    border: 1px solid #292934;
-
+.home {
+    border: 1px solid #292932;
+    background: #15151c;
     color: #ddd;
 
-    padding: 10px 15px;
-
+    padding: 10px 16px;
     border-radius: 7px;
 
     cursor: pointer;
-
     font-weight: bold;
 }
 
-.nav-button:hover {
-    background: #22222d;
+.home:hover {
+    background: #24242d;
 }
 
-/* =========================
-   PAGE
-========================= */
+/* MAIN */
 
 .container {
-
     max-width: 1250px;
-
     margin: auto;
-
     padding: 30px 20px 70px;
 }
 
-.page-title {
-
-    font-size: 28px;
-
-    margin-bottom: 20px;
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
 }
 
-/* =========================
-   CATEGORY BAR
-========================= */
+.heading h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.heading span {
+    color: #858592;
+    font-size: 13px;
+}
+
+/* CATEGORIES */
 
 .categories {
-
     display: flex;
-
     gap: 8px;
-
     flex-wrap: wrap;
-
     margin-bottom: 30px;
 }
 
 .category {
-
+    border: 1px solid #292932;
     background: #15151c;
-
-    border: 1px solid #272731;
 
     color: #aaa;
 
     padding: 9px 14px;
-
-    border-radius: 6px;
+    border-radius: 7px;
 
     cursor: pointer;
-
-    font-size: 13px;
-
     font-weight: bold;
+    font-size: 13px;
 }
 
 .category:hover,
 .category.active {
-
     background: #8b5cf6;
-
-    border-color: #8b5cf6;
-
     color: white;
+    border-color: #8b5cf6;
 }
 
-/* =========================
-   GAME GRID
-========================= */
+/* GAME GRID */
 
 .games {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 
-/* =========================
-   GAME CARD
-========================= */
+/* GAME */
 
 .game {
+    overflow: hidden;
 
     background: #111117;
 
-    border: 1px solid #24242d;
-
+    border: 1px solid #25252d;
     border-radius: 9px;
-
-    overflow: hidden;
 
     transition:
         transform .18s ease,
@@ -206,25 +167,20 @@ header {
 }
 
 .game:hover {
-
     transform: translateY(-4px);
-
     border-color: #8b5cf6;
 }
 
-/* =========================
-   GAME THUMBNAIL
-========================= */
+/* THUMBNAIL */
 
 .thumbnail {
-
     height: 150px;
 
     display: flex;
-
+    align-items: center;
     justify-content: center;
 
-    align-items: center;
+    position: relative;
 
     font-size: 58px;
 
@@ -234,16 +190,11 @@ header {
             var(--one),
             var(--two)
         );
-
-    position: relative;
 }
 
 .thumbnail::after {
-
     content: "";
-
     position: absolute;
-
     inset: 0;
 
     background:
@@ -253,77 +204,55 @@ header {
         );
 }
 
-/* =========================
-   GAME INFO
-========================= */
+/* INFO */
 
 .info {
-
     padding: 13px;
 }
 
 .game-name {
-
     font-size: 16px;
-
-    font-weight: 800;
-
-    margin-bottom: 6px;
+    font-weight: 900;
+    margin-bottom: 5px;
 }
 
 .game-category {
-
     font-size: 11px;
-
-    color: #8f8f9d;
-
+    color: #888894;
     text-transform: uppercase;
 }
 
 .play {
-
     display: block;
 
     width: 100%;
 
     margin-top: 12px;
-
     padding: 9px;
 
     text-align: center;
-
     text-decoration: none;
 
     border-radius: 6px;
 
     background: #8b5cf6;
-
     color: white;
 
     font-size: 12px;
-
     font-weight: 900;
 }
 
 .play:hover {
-
     background: #9d6cff;
 }
 
-/* =========================
-   HIDDEN
-========================= */
+/* HIDDEN */
 
 .hidden {
     display: none;
 }
 
-/* =========================
-   NO RESULTS
-========================= */
-
 .no-results {
-
     display: none;
 
     padding: 50px;
@@ -332,17 +261,15 @@ header {
 
     color: #777;
 
-    border: 1px dashed #292934;
-
+    border: 1px dashed #292932;
     border-radius: 10px;
+
+    margin-top: 20px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
-
     text-align: center;
 
     padding: 35px;
@@ -354,57 +281,38 @@ footer {
     border-top: 1px solid #18181f;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
-@media(max-width:950px) {
-
+@media(max-width:1000px) {
     .games {
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
-
 }
 
 @media(max-width:700px) {
 
     .nav {
-
         flex-wrap: wrap;
-
-        height: auto;
-
         padding: 14px;
     }
 
     .search {
-
         order: 3;
-
         width: 100%;
-
         max-width: none;
     }
 
     .games {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 @media(max-width:450px) {
 
     .games {
-
         grid-template-columns: 1fr;
     }
-
 }
-
 </style>
 </head>
 
@@ -429,10 +337,10 @@ footer {
 </div>
 
 <button
-    class="nav-button"
+    class="home"
     onclick="window.scrollTo({top:0,behavior:'smooth'})"
 >
-    Home
+Home
 </button>
 
 </div>
@@ -440,82 +348,81 @@ footer {
 </header>
 
 
-<div class="container">
+<main class="container">
 
-<h1 class="page-title">
-    Popular Games
-</h1>
+<div class="heading">
+
+<h1>Popular Games</h1>
+
+<span id="gameCount">
+    16 Games
+</span>
+
+</div>
 
 
-<!-- =========================
-     CATEGORIES
-========================= -->
+<!-- CATEGORIES -->
 
 <div class="categories">
 
 <button
-    class="category active"
-    data-category="all"
+class="category active"
+data-category="all"
 >
-    All
+All
 </button>
 
 <button
-    class="category"
-    data-category="racing"
+class="category"
+data-category="action"
 >
-    Racing
+Action
 </button>
 
 <button
-    class="category"
-    data-category="driving"
+class="category"
+data-category="arcade"
 >
-    Driving
+Arcade
 </button>
 
 <button
-    class="category"
-    data-category="action"
+class="category"
+data-category="racing"
 >
-    Action
+Racing
 </button>
 
 <button
-    class="category"
-    data-category="arcade"
+class="category"
+data-category="sports"
 >
-    Arcade
+Sports
 </button>
 
 <button
-    class="category"
-    data-category="puzzle"
+class="category"
+data-category="puzzle"
 >
-    Puzzle
+Puzzle
 </button>
 
 <button
-    class="category"
-    data-category="platformer"
+class="category"
+data-category="platformer"
 >
-    Platformer
+Platformer
 </button>
 
 </div>
 
 
+<div class="games" id="games">
+
+
 <!-- =========================
-     GAMES
+     DRIFT BOSS
 ========================= -->
-
-<div
-    class="games"
-    id="games"
->
-
-
-<!-- DRIFT BOSS -->
 
 <div
 class="game"
@@ -525,7 +432,7 @@ data-category="racing"
 
 <div
 class="thumbnail"
-style="--one:#ef4444;--two:#7f1d1d;"
+style="--one:#ef4444;--two:#7f1d1d"
 >
 🏎️
 </div>
@@ -542,7 +449,7 @@ Racing
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/drift-boss/"
+href="https://www.coolmathgames.com/0-drift-boss"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -554,25 +461,314 @@ PLAY
 </div>
 
 
-<!-- DRIFT BOSS LEVELS -->
+<!-- =========================
+     IRON SNOUT
+========================= -->
 
 <div
 class="game"
-data-name="Drift Boss Levels"
-data-category="racing"
+data-name="Iron Snout"
+data-category="action"
 >
 
 <div
 class="thumbnail"
-style="--one:#f97316;--two:#991b1b;"
+style="--one:#ec4899;--two:#7c3aed"
 >
-🏁
+🐷
 </div>
 
 <div class="info">
 
 <div class="game-name">
-Drift Boss Levels
+Iron Snout
+</div>
+
+<div class="game-category">
+Action
+</div>
+
+<a
+class="play"
+href="https://topvaz.com/go/iron-snout/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     RUN 3
+========================= -->
+
+<div
+class="game"
+data-name="Run 3"
+data-category="action"
+>
+
+<div
+class="thumbnail"
+style="--one:#06b6d4;--two:#2563eb"
+>
+🏃
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Run 3
+</div>
+
+<div class="game-category">
+Action
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-run-3"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PAPAS FREEZERIA
+========================= -->
+
+<div
+class="game"
+data-name="Papas Freezeria"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#38bdf8;--two:#f472b6"
+>
+🍦
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Papa's Freezeria
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-papas-freezeria"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     TINY FISHING
+========================= -->
+
+<div
+class="game"
+data-name="Tiny Fishing"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#0ea5e9;--two:#0369a1"
+>
+🎣
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Tiny Fishing
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-tiny-fishing"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SLICE MASTER
+========================= -->
+
+<div
+class="game"
+data-name="Slice Master"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#f97316;--two:#dc2626"
+>
+🔪
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Slice Master
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-slice-master"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SUIKA
+========================= -->
+
+<div
+class="game"
+data-name="Suika Watermelon Game"
+data-category="puzzle"
+>
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#16a34a"
+>
+🍉
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Suika
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-suika-watermelon-game"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     COOKIE CLICKER
+========================= -->
+
+<div
+class="game"
+data-name="Cookie Clicker"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#a16207;--two:#451a03"
+>
+🍪
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Cookie Clicker
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-cookie-clicker"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     MOTO X3M
+========================= -->
+
+<div
+class="game"
+data-name="Moto X3M"
+data-category="racing"
+>
+
+<div
+class="thumbnail"
+style="--one:#f97316;--two:#dc2626"
+>
+🏍️
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Moto X3M
 </div>
 
 <div class="game-category">
@@ -581,7 +777,7 @@ Racing
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/drift-boss-levels/"
+href="https://www.coolmathgames.com/0-moto-x3m"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -593,34 +789,36 @@ PLAY
 </div>
 
 
-<!-- DRIFT BUS -->
+<!-- =========================
+     8 BALL POOL
+========================= -->
 
 <div
 class="game"
-data-name="Drift Bus"
-data-category="driving"
+data-name="8 Ball Pool"
+data-category="sports"
 >
 
 <div
 class="thumbnail"
-style="--one:#2563eb;--two:#06b6d4;"
+style="--one:#166534;--two:#052e16"
 >
-🚌
+🎱
 </div>
 
 <div class="info">
 
 <div class="game-name">
-Drift Bus
+8 Ball Pool
 </div>
 
 <div class="game-category">
-Driving
+Sports
 </div>
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/drift-bus/"
+href="https://www.coolmathgames.com/0-8-ball-pool"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -632,34 +830,36 @@ PLAY
 </div>
 
 
-<!-- DRIFT DONUT -->
+<!-- =========================
+     SNAKE
+========================= -->
 
 <div
 class="game"
-data-name="Drift Donut"
-data-category="racing"
+data-name="Snake"
+data-category="arcade"
 >
 
 <div
 class="thumbnail"
-style="--one:#ec4899;--two:#f59e0b;"
+style="--one:#16a34a;--two:#14532d"
 >
-🍩
+🐍
 </div>
 
 <div class="info">
 
 <div class="game-name">
-Drift Donut
+Snake
 </div>
 
 <div class="game-category">
-Racing
+Arcade
 </div>
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/drift-donut/"
+href="https://www.coolmathgames.com/0-snake"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -671,64 +871,27 @@ PLAY
 </div>
 
 
-<!-- POCKET DRIFT -->
+<!-- =========================
+     OVO
+========================= -->
 
 <div
 class="game"
-data-name="Pocket Drift"
-data-category="driving"
->
-
-<div
-class="thumbnail"
-style="--one:#3b82f6;--two:#06b6d4;"
->
-🚗
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Pocket Drift
-</div>
-
-<div class="game-category">
-Driving
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/pocket-drift/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- LOW'S ADVENTURES -->
-
-<div
-class="game"
-data-name="Lows Adventures 3"
+data-name="OvO"
 data-category="platformer"
 >
 
 <div
 class="thumbnail"
-style="--one:#22c55e;--two:#15803d;"
+style="--one:#6366f1;--two:#312e81"
 >
-🧑
+🟣
 </div>
 
 <div class="info">
 
 <div class="game-name">
-Low's Adventures 3
+OvO
 </div>
 
 <div class="game-category">
@@ -737,7 +900,7 @@ Platformer
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/lows-adventures-3/"
+href="https://www.coolmathgames.com/0-ovo"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -749,25 +912,150 @@ PLAY
 </div>
 
 
-<!-- HAPPY BOSS -->
+<!-- =========================
+     FIREBOY AND WATERGIRL
+========================= -->
 
 <div
 class="game"
-data-name="Happy Boss Pull Pin"
-data-category="puzzle"
+data-name="Fireboy and Watergirl"
+data-category="platformer"
 >
 
 <div
 class="thumbnail"
-style="--one:#eab308;--two:#f97316;"
+style="--one:#ef4444;--two:#2563eb"
 >
-🧩
+🔥
 </div>
 
 <div class="info">
 
 <div class="game-name">
-Happy Boss Pull Pin
+Fireboy & Watergirl
+</div>
+
+<div class="game-category">
+Platformer
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PENALTY KICK
+========================= -->
+
+<div
+class="game"
+data-name="Penalty Kick Online"
+data-category="sports"
+>
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#15803d"
+>
+⚽
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Penalty Kick Online
+</div>
+
+<div class="game-category">
+Sports
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-penalty-kick-online"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EGGY CAR
+========================= -->
+
+<div
+class="game"
+data-name="Eggy Car"
+data-category="racing"
+>
+
+<div
+class="thumbnail"
+style="--one:#facc15;--two:#f97316"
+>
+🥚
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Eggy Car
+</div>
+
+<div class="game-category">
+Racing
+</div>
+
+<a
+class="play"
+href="https://www.coolmathgames.com/0-eggy-car"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     WORLDGUESSR
+========================= -->
+
+<div
+class="game"
+data-name="WorldGuessr"
+data-category="puzzle"
+>
+
+<div
+class="thumbnail"
+style="--one:#2563eb;--two:#7c3aed"
+>
+🌎
+</div>
+
+<div class="info">
+
+<div class="game-name">
+WorldGuessr
 </div>
 
 <div class="game-category">
@@ -776,241 +1064,7 @@ Puzzle
 
 <a
 class="play"
-href="https://www.mortgagecalculator.org/money-games/happy-boss-pull-pin/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- RESCUE BOSS -->
-
-<div
-class="game"
-data-name="Rescue Boss Cut Rope"
-data-category="puzzle"
->
-
-<div
-class="thumbnail"
-style="--one:#dc2626;--two:#7f1d1d;"
->
-✂️
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Rescue Boss Cut Rope
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/rescue-boss-cut-rope/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- ANGRY BOSS -->
-
-<div
-class="game"
-data-name="Angry Boss"
-data-category="action"
->
-
-<div
-class="thumbnail"
-style="--one:#ef4444;--two:#450a0a;"
->
-😡
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Angry Boss
-</div>
-
-<div class="game-category">
-Action
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/angry-boss/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- SLIME ROCKET -->
-
-<div
-class="game"
-data-name="Slime Rocket"
-data-category="puzzle"
->
-
-<div
-class="thumbnail"
-style="--one:#22c55e;--two:#06b6d4;"
->
-🚀
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Slime Rocket
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/slime-rocket/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- MEGACITY HOP -->
-
-<div
-class="game"
-data-name="Megacity Hop"
-data-category="arcade"
->
-
-<div
-class="thumbnail"
-style="--one:#8b5cf6;--two:#2563eb;"
->
-🐸
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Megacity Hop
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/megacity-hop/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- JETPACK ADVENTURE -->
-
-<div
-class="game"
-data-name="Jetpack Adventure"
-data-category="action"
->
-
-<div
-class="thumbnail"
-style="--one:#06b6d4;--two:#7c3aed;"
->
-🚀
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Jetpack Adventure
-</div>
-
-<div class="game-category">
-Action
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/jetpack-adventure/"
-target="_blank"
-rel="noopener noreferrer"
->
-PLAY
-</a>
-
-</div>
-
-</div>
-
-
-<!-- FLABBY CHICK -->
-
-<div
-class="game"
-data-name="Flabby Chick"
-data-category="arcade"
->
-
-<div
-class="thumbnail"
-style="--one:#facc15;--two:#f97316;"
->
-🐤
-</div>
-
-<div class="info">
-
-<div class="game-name">
-Flabby Chick
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.mortgagecalculator.org/money-games/flabby-chick/"
+href="https://www.coolmathgames.com/0-worldguessr"
 target="_blank"
 rel="noopener noreferrer"
 >
@@ -1032,13 +1086,11 @@ id="noResults"
 😭 No games found.
 </div>
 
-</div>
+</main>
 
 
 <footer>
-
 PStyla Games © 2026
-
 </footer>
 
 
@@ -1056,37 +1108,35 @@ document.querySelectorAll(".category");
 const noResults =
 document.getElementById("noResults");
 
+const gameCount =
+document.getElementById("gameCount");
 
 let currentCategory = "all";
 
 
 function updateGames() {
 
-    const searchText =
+    const query =
         search.value
         .toLowerCase()
         .trim();
 
     let visible = 0;
 
-
     games.forEach(game => {
 
         const name =
-            game.dataset.name
-            .toLowerCase();
+            game.dataset.name.toLowerCase();
 
         const category =
             game.dataset.category;
 
-
         const searchMatch =
-            name.includes(searchText);
+            name.includes(query);
 
         const categoryMatch =
             currentCategory === "all" ||
             category === currentCategory;
-
 
         if (
             searchMatch &&
@@ -1105,12 +1155,13 @@ function updateGames() {
 
     });
 
+    gameCount.textContent =
+        visible + " Games";
 
     noResults.style.display =
         visible === 0
         ? "block"
         : "none";
-
 }
 
 
