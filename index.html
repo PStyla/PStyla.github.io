@@ -4,585 +4,1143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unblooked Games</title>
+<title>PStyla Games</title>
 
 <style>
+
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #09070f;
+    background: #08080c;
     color: white;
-    overflow-x: hidden;
 }
 
-/* BACKGROUND */
+/* =========================
+   TOP NAVIGATION
+========================= */
 
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -5;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(170, 70, 255, 0.18), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(255, 70, 190, 0.13), transparent 30%),
-        linear-gradient(135deg, #09070f, #100b1c 50%, #08070d);
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(10,10,15,0.96);
+    border-bottom: 1px solid #24242c;
 }
 
-.grid {
-    position: fixed;
-    inset: 0;
-    z-index: -4;
-    opacity: .12;
-    background-image:
-        linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
-    background-size: 50px 50px;
-    transform: perspective(500px) rotateX(55deg) scale(1.6);
-    transform-origin: center bottom;
-}
+.nav {
+    max-width: 1250px;
+    margin: auto;
 
-.particle {
-    position: fixed;
-    width: 3px;
-    height: 3px;
-    background: #dca8ff;
-    border-radius: 50%;
-    opacity: .6;
-    animation: float 8s infinite ease-in-out;
-}
+    height: 68px;
 
-.p1 { left: 15%; top: 25%; animation-delay: 0s; }
-.p2 { left: 70%; top: 20%; animation-delay: 2s; }
-.p3 { left: 82%; top: 65%; animation-delay: 4s; }
-.p4 { left: 30%; top: 75%; animation-delay: 1s; }
-.p5 { left: 55%; top: 45%; animation-delay: 3s; }
-
-@keyframes float {
-    0%,100% { transform: translateY(0); opacity:.3; }
-    50% { transform: translateY(-35px); opacity:.9; }
-}
-
-/* NAVBAR */
-
-nav {
-    width: 100%;
-    padding: 22px 6%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
+
+    padding: 0 20px;
+
+    gap: 30px;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 3px;
+    font-size: 25px;
+    font-weight: 900;
+
+    white-space: nowrap;
 }
 
 .logo span {
-    color: #d58cff;
+    color: #a855f7;
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
+.search {
+    flex: 1;
+    max-width: 480px;
 }
 
-.nav-links a {
-    color: #aaa3b5;
-    text-decoration: none;
+.search input {
+
+    width: 100%;
+
+    padding: 12px 17px;
+
+    border-radius: 8px;
+
+    border: 1px solid #292934;
+
+    background: #15151c;
+
+    color: white;
+
+    outline: none;
+
     font-size: 14px;
-    transition: .2s;
 }
 
-.nav-links a:hover {
-    color: white;
+.search input:focus {
+    border-color: #a855f7;
 }
 
-/* HERO */
+.nav-button {
 
-.hero {
-    min-height: 82vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 70px 20px;
-}
+    background: #191921;
 
-.hero-content {
-    max-width: 850px;
-}
+    border: 1px solid #292934;
 
-.badge {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid rgba(213,140,255,.35);
-    background: rgba(213,140,255,.08);
-    color: #d9a5ff;
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
+    color: #ddd;
 
-.hero h1 {
-    font-size: clamp(55px, 10vw, 105px);
-    line-height: .9;
-    letter-spacing: -5px;
-    font-weight: 900;
-}
+    padding: 10px 15px;
 
-.hero h1 span {
-    color: #d68cff;
-    text-shadow: 0 0 45px rgba(214,140,255,.35);
-}
+    border-radius: 7px;
 
-.hero p {
-    color: #aaa5b0;
-    max-width: 560px;
-    margin: 28px auto;
-    line-height: 1.7;
-    font-size: 16px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.button {
-    border: none;
-    padding: 14px 25px;
-    font-weight: bold;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: .25s;
+
+    font-weight: bold;
 }
 
-.primary {
-    background: #d58cff;
-    color: #120b18;
+.nav-button:hover {
+    background: #22222d;
 }
 
-.primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(213,140,255,.3);
+/* =========================
+   PAGE
+========================= */
+
+.container {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 30px 20px 70px;
 }
 
-.secondary {
-    border: 1px solid #393140;
+.page-title {
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   CATEGORY BAR
+========================= */
+
+.categories {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.category {
+
+    background: #15151c;
+
+    border: 1px solid #272731;
+
+    color: #aaa;
+
+    padding: 9px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.category:hover,
+.category.active {
+
+    background: #8b5cf6;
+
+    border-color: #8b5cf6;
+
     color: white;
-    background: rgba(255,255,255,.03);
 }
 
-.secondary:hover {
-    border-color: #d58cff;
-    transform: translateY(-3px);
-}
-
-/* GAMES */
-
-section {
-    padding: 80px 7%;
-}
-
-.section-title {
-    margin-bottom: 35px;
-}
-
-.section-title small {
-    color: #bd72e8;
-    letter-spacing: 3px;
-    font-size: 11px;
-}
-
-.section-title h2 {
-    font-size: 38px;
-    margin-top: 8px;
-}
+/* =========================
+   GAME GRID
+========================= */
 
 .games {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
 }
+
+/* =========================
+   GAME CARD
+========================= */
 
 .game {
-    min-height: 210px;
-    padding: 25px;
-    border: 1px solid #292330;
-    background: rgba(18,14,26,.8);
-    position: relative;
-    overflow: hidden;
-    transition: .3s;
-}
 
-.game::before {
-    content: "";
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    right: -70px;
-    top: -70px;
-    background: #b96cff;
-    filter: blur(70px);
-    opacity: .12;
+    background: #111117;
+
+    border: 1px solid #24242d;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease;
+
+    cursor: pointer;
 }
 
 .game:hover {
-    transform: translateY(-6px);
-    border-color: #80529b;
+
+    transform: translateY(-4px);
+
+    border-color: #8b5cf6;
 }
 
-.game-number {
-    color: #695d72;
-    font-size: 12px;
-}
+/* =========================
+   GAME THUMBNAIL
+========================= */
 
-.game h3 {
-    margin-top: 35px;
-    font-size: 24px;
-}
+.thumbnail {
 
-.game p {
-    color: #85808c;
-    font-size: 13px;
-    margin-top: 10px;
-    line-height: 1.5;
-}
+    height: 150px;
 
-.play {
-    margin-top: 20px;
-    background: transparent;
-    border: 1px solid #403747;
-    color: white;
-    padding: 9px 15px;
-    cursor: pointer;
-}
-
-.play:hover {
-    border-color: #d58cff;
-}
-
-/* FEATURE */
-
-.feature {
-    border-top: 1px solid #211c27;
-    border-bottom: 1px solid #211c27;
-    background: rgba(255,255,255,.015);
-}
-
-.feature-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.feature h2 {
-    font-size: 42px;
-    margin: 12px 0;
-}
-
-.feature p {
-    color: #918b99;
-    line-height: 1.7;
-}
-
-.fake-screen {
-    min-height: 280px;
-    border: 1px solid #332b3b;
-    background:
-        linear-gradient(135deg, rgba(213,140,255,.08), transparent),
-        #0e0b14;
     display: flex;
-    align-items: center;
+
     justify-content: center;
+
+    align-items: center;
+
+    font-size: 58px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--one),
+            var(--two)
+        );
+
     position: relative;
 }
 
-.fake-screen::after {
-    content: "UNBLOOKED";
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: 5px;
-    color: rgba(255,255,255,.08);
+.thumbnail::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.35)
+        );
 }
 
-/* FOOTER */
+/* =========================
+   GAME INFO
+========================= */
+
+.info {
+
+    padding: 13px;
+}
+
+.game-name {
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+}
+
+.game-category {
+
+    font-size: 11px;
+
+    color: #8f8f9d;
+
+    text-transform: uppercase;
+}
+
+.play {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 9px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+.play:hover {
+
+    background: #9d6cff;
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+    display: none;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+
+    display: none;
+
+    padding: 50px;
+
+    text-align: center;
+
+    color: #777;
+
+    border: 1px dashed #292934;
+
+    border-radius: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    padding: 40px 7%;
-    border-top: 1px solid #211c27;
-    color: #68616e;
+
+    text-align: center;
+
+    padding: 35px;
+
+    color: #555;
+
     font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
+
+    border-top: 1px solid #18181f;
 }
 
-footer strong {
-    color: #a89eae;
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:950px) {
+
+    .games {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
 }
 
-/* MOBILE */
+@media(max-width:700px) {
 
-@media (max-width: 700px) {
+    .nav {
 
-    .nav-links {
-        display: none;
+        flex-wrap: wrap;
+
+        height: auto;
+
+        padding: 14px;
     }
 
-    .hero {
-        min-height: 75vh;
+    .search {
+
+        order: 3;
+
+        width: 100%;
+
+        max-width: none;
     }
 
-    .hero h1 {
-        letter-spacing: -3px;
+    .games {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
-    .feature-box {
+}
+
+@media(max-width:450px) {
+
+    .games {
+
         grid-template-columns: 1fr;
     }
 
-    .fake-screen {
-        min-height: 200px;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-<div class="grid"></div>
+<header>
 
-<div class="particle p1"></div>
-<div class="particle p2"></div>
-<div class="particle p3"></div>
-<div class="particle p4"></div>
-<div class="particle p5"></div>
+<div class="nav">
 
-<nav>
-    <div class="logo">
-        UNBLO<span>OKED</span>
-    </div>
+<div class="logo">
+    <span>PStyla</span> Games
+</div>
 
-    <ul class="nav-links">
-        <li><a href="#games">Games</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
-</nav>
+<div class="search">
 
-<main>
+<input
+    id="search"
+    type="search"
+    placeholder="Search games..."
+>
 
-<section class="hero">
+</div>
 
-    <div class="hero-content">
+<button
+    class="nav-button"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+>
+    Home
+</button>
 
-        <div class="badge">
-            UNBLOOKED GAMES • ONLINE
-        </div>
+</div>
 
-        <h1>
-            PLAY<br>
-            <span>WITHOUT LIMITS.</span>
-        </h1>
-
-        <p>
-            Welcome to Unblooked Games. A growing collection of games,
-            experiences and random things to do when you have absolutely
-            nothing better to do.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#games" class="button primary">
-                EXPLORE GAMES
-            </a>
-
-            <a href="#featured" class="button secondary">
-                DISCOVER
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
+</header>
 
 
-<section id="games">
+<div class="container">
 
-    <div class="section-title">
-        <small>THE ARCADE</small>
-        <h2>Games</h2>
-    </div>
-
-    <div class="games">
-
-        <div class="game">
-            <div class="game-number">01 / ARCADE</div>
-            <h3>Number Quest</h3>
-            <p>
-                Guess the hidden number before your attempts run out.
-            </p>
-            <button class="play" onclick="numberQuest()">
-                PLAY
-            </button>
-        </div>
-
-        <div class="game">
-            <div class="game-number">02 / COMING SOON</div>
-            <h3>???</h3>
-            <p>
-                Something new is being built behind the scenes.
-            </p>
-            <button class="play" onclick="comingSoon()">
-                DETAILS
-            </button>
-        </div>
-
-        <div class="game">
-            <div class="game-number">03 / COMING SOON</div>
-            <h3>???</h3>
-            <p>
-                Another game is waiting to enter the arcade.
-            </p>
-            <button class="play" onclick="comingSoon()">
-                DETAILS
-            </button>
-        </div>
-
-        <div class="game">
-            <div class="game-number">04 / COMING SOON</div>
-            <h3>???</h3>
-            <p>
-                The empty slot won't stay empty forever.
-            </p>
-            <button class="play" onclick="comingSoon()">
-                DETAILS
-            </button>
-        </div>
-
-    </div>
-
-</section>
+<h1 class="page-title">
+    Popular Games
+</h1>
 
 
-<section id="featured" class="feature">
+<!-- =========================
+     CATEGORIES
+========================= -->
 
-    <div class="feature-box">
+<div class="categories">
 
-        <div>
-            <div class="section-title">
-                <small>THE EXPERIENCE</small>
-                <h2>More than a game list.</h2>
-            </div>
+<button
+    class="category active"
+    data-category="all"
+>
+    All
+</button>
 
-            <p>
-                Unblooked is being built as a place to explore,
-                play and discover new experiences. More games,
-                features and interactive areas will be added over time.
-            </p>
-        </div>
+<button
+    class="category"
+    data-category="racing"
+>
+    Racing
+</button>
 
-        <div class="fake-screen"></div>
+<button
+    class="category"
+    data-category="driving"
+>
+    Driving
+</button>
 
-    </div>
+<button
+    class="category"
+    data-category="action"
+>
+    Action
+</button>
 
-</section>
+<button
+    class="category"
+    data-category="arcade"
+>
+    Arcade
+</button>
+
+<button
+    class="category"
+    data-category="puzzle"
+>
+    Puzzle
+</button>
+
+<button
+    class="category"
+    data-category="platformer"
+>
+    Platformer
+</button>
+
+</div>
 
 
-<section id="about">
+<!-- =========================
+     GAMES
+========================= -->
 
-    <div class="section-title">
-        <small>ABOUT</small>
-        <h2>Built for players.</h2>
-    </div>
+<div
+    class="games"
+    id="games"
+>
 
-    <p style="max-width:650px;color:#918b99;line-height:1.7;">
-        This website is an independent project created by
-        <strong style="color:white;">Peter Faamanu</strong>.
-        The goal is simple: create a clean place where people
-        can find and play different games without the site feeling
-        like a giant pile of buttons.
-    </p>
 
-</section>
+<!-- DRIFT BOSS -->
 
-</main>
+<div
+class="game"
+data-name="Drift Boss"
+data-category="racing"
+>
+
+<div
+class="thumbnail"
+style="--one:#ef4444;--two:#7f1d1d;"
+>
+🏎️
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Drift Boss
+</div>
+
+<div class="game-category">
+Racing
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/drift-boss/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- DRIFT BOSS LEVELS -->
+
+<div
+class="game"
+data-name="Drift Boss Levels"
+data-category="racing"
+>
+
+<div
+class="thumbnail"
+style="--one:#f97316;--two:#991b1b;"
+>
+🏁
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Drift Boss Levels
+</div>
+
+<div class="game-category">
+Racing
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/drift-boss-levels/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- DRIFT BUS -->
+
+<div
+class="game"
+data-name="Drift Bus"
+data-category="driving"
+>
+
+<div
+class="thumbnail"
+style="--one:#2563eb;--two:#06b6d4;"
+>
+🚌
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Drift Bus
+</div>
+
+<div class="game-category">
+Driving
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/drift-bus/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- DRIFT DONUT -->
+
+<div
+class="game"
+data-name="Drift Donut"
+data-category="racing"
+>
+
+<div
+class="thumbnail"
+style="--one:#ec4899;--two:#f59e0b;"
+>
+🍩
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Drift Donut
+</div>
+
+<div class="game-category">
+Racing
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/drift-donut/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- POCKET DRIFT -->
+
+<div
+class="game"
+data-name="Pocket Drift"
+data-category="driving"
+>
+
+<div
+class="thumbnail"
+style="--one:#3b82f6;--two:#06b6d4;"
+>
+🚗
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Pocket Drift
+</div>
+
+<div class="game-category">
+Driving
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/pocket-drift/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- LOW'S ADVENTURES -->
+
+<div
+class="game"
+data-name="Lows Adventures 3"
+data-category="platformer"
+>
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#15803d;"
+>
+🧑
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Low's Adventures 3
+</div>
+
+<div class="game-category">
+Platformer
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/lows-adventures-3/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- HAPPY BOSS -->
+
+<div
+class="game"
+data-name="Happy Boss Pull Pin"
+data-category="puzzle"
+>
+
+<div
+class="thumbnail"
+style="--one:#eab308;--two:#f97316;"
+>
+🧩
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Happy Boss Pull Pin
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/happy-boss-pull-pin/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- RESCUE BOSS -->
+
+<div
+class="game"
+data-name="Rescue Boss Cut Rope"
+data-category="puzzle"
+>
+
+<div
+class="thumbnail"
+style="--one:#dc2626;--two:#7f1d1d;"
+>
+✂️
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Rescue Boss Cut Rope
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/rescue-boss-cut-rope/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- ANGRY BOSS -->
+
+<div
+class="game"
+data-name="Angry Boss"
+data-category="action"
+>
+
+<div
+class="thumbnail"
+style="--one:#ef4444;--two:#450a0a;"
+>
+😡
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Angry Boss
+</div>
+
+<div class="game-category">
+Action
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/angry-boss/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- SLIME ROCKET -->
+
+<div
+class="game"
+data-name="Slime Rocket"
+data-category="puzzle"
+>
+
+<div
+class="thumbnail"
+style="--one:#22c55e;--two:#06b6d4;"
+>
+🚀
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Slime Rocket
+</div>
+
+<div class="game-category">
+Puzzle
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/slime-rocket/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- MEGACITY HOP -->
+
+<div
+class="game"
+data-name="Megacity Hop"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#8b5cf6;--two:#2563eb;"
+>
+🐸
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Megacity Hop
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/megacity-hop/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- JETPACK ADVENTURE -->
+
+<div
+class="game"
+data-name="Jetpack Adventure"
+data-category="action"
+>
+
+<div
+class="thumbnail"
+style="--one:#06b6d4;--two:#7c3aed;"
+>
+🚀
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Jetpack Adventure
+</div>
+
+<div class="game-category">
+Action
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/jetpack-adventure/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+<!-- FLABBY CHICK -->
+
+<div
+class="game"
+data-name="Flabby Chick"
+data-category="arcade"
+>
+
+<div
+class="thumbnail"
+style="--one:#facc15;--two:#f97316;"
+>
+🐤
+</div>
+
+<div class="info">
+
+<div class="game-name">
+Flabby Chick
+</div>
+
+<div class="game-category">
+Arcade
+</div>
+
+<a
+class="play"
+href="https://www.mortgagecalculator.org/money-games/flabby-chick/"
+target="_blank"
+rel="noopener noreferrer"
+>
+PLAY
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="no-results"
+id="noResults"
+>
+😭 No games found.
+</div>
+
+</div>
 
 
 <footer>
 
-    <div>
-        © 2026 <strong>Unblooked Games</strong>
-    </div>
-
-    <div>
-        Created by <strong>Peter Faamanu</strong>
-    </div>
+PStyla Games © 2026
 
 </footer>
 
 
 <script>
 
-function comingSoon() {
-    alert("This game isn't ready yet 👀");
-}
+const search =
+document.getElementById("search");
 
-function numberQuest() {
+const games =
+document.querySelectorAll(".game");
 
-    let number = Math.floor(Math.random() * 10) + 1;
-    let attempts = 3;
+const categories =
+document.querySelectorAll(".category");
 
-    while (attempts > 0) {
+const noResults =
+document.getElementById("noResults");
 
-        let guess = prompt(
-            "NUMBER QUEST 🎮\n\nGuess a number from 1 to 10.\nAttempts left: " + attempts
-        );
 
-        if (guess === null) return;
+let currentCategory = "all";
 
-        guess = Number(guess);
 
-        if (!Number.isInteger(guess) || guess < 1 || guess > 10) {
-            alert("Pick a whole number between 1 and 10");
-            continue;
-        }
+function updateGames() {
 
-        if (guess === number) {
-            alert("YOU GOT IT 🔥\n\nThe number was " + number + "!");
-            return;
-        }
+    const searchText =
+        search.value
+        .toLowerCase()
+        .trim();
 
-        attempts--;
+    let visible = 0;
 
-        if (attempts === 0) {
-            alert("Game over 💀\n\nThe number was " + number + ".");
-        } else if (guess < number) {
-            alert("Higher 👆\n\nTry again.");
+
+    games.forEach(game => {
+
+        const name =
+            game.dataset.name
+            .toLowerCase();
+
+        const category =
+            game.dataset.category;
+
+
+        const searchMatch =
+            name.includes(searchText);
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            category === currentCategory;
+
+
+        if (
+            searchMatch &&
+            categoryMatch
+        ) {
+
+            game.classList.remove("hidden");
+
+            visible++;
+
         } else {
-            alert("Lower 👇\n\nTry again.");
+
+            game.classList.add("hidden");
+
         }
-    }
+
+    });
+
+
+    noResults.style.display =
+        visible === 0
+        ? "block"
+        : "none";
+
 }
+
+
+search.addEventListener(
+    "input",
+    updateGames
+);
+
+
+categories.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            categories.forEach(
+                b => b.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            currentCategory =
+                button.dataset.category;
+
+            updateGames();
+
+        }
+    );
+
+});
 
 </script>
 
