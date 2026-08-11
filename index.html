@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PStyla Games</title>
 
 <style>
@@ -11,26 +12,242 @@
     box-sizing: border-box;
 }
 
+:root {
+    --accent: #9b5cff;
+    --accent2: #d946ef;
+    --bg: #07070b;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #08080c;
+    background: var(--bg);
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    cursor: none;
 }
+
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+.cursor {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #c084fc;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(168,85,247,.8);
+    transition:
+        width .15s ease,
+        height .15s ease,
+        background .15s ease;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+}
+
+.cursor.big {
+    width: 38px;
+    height: 38px;
+    background: rgba(168,85,247,.14);
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(139,92,246,.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #08080d,
+            #12091b
+        );
+
+    transition:
+        background 1s ease;
+}
+
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(217,70,239,.08),
+            transparent 30%
+        );
+
+    animation:
+        backgroundMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove {
+
+    from {
+        transform: translate(-20px, 10px);
+    }
+
+    to {
+        transform: translate(30px, -20px);
+    }
+
+}
+
+
+/* =========================================
+   ENTER SCREEN
+========================================= */
+
+.enter-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 50000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #24113a,
+            #050507 70%
+        );
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+.enter-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.enter-box {
+    text-align: center;
+}
+
+.enter-logo {
+    font-size: clamp(45px, 9vw, 90px);
+    font-weight: 1000;
+    letter-spacing: -5px;
+
+    color: white;
+
+    text-shadow:
+        0 0 15px rgba(168,85,247,.8),
+        0 0 45px rgba(168,85,247,.35);
+
+    margin-bottom: 8px;
+}
+
+.enter-logo span {
+    color: #a855f7;
+}
+
+.enter-sub {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+.enter-button {
+    border: 1px solid #a855f7;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #c026d3
+        );
+
+    color: white;
+
+    padding:
+        14px 32px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    cursor: none;
+
+    box-shadow:
+        0 0 30px rgba(139,92,246,.25);
+
+    transition: .25s ease;
+}
+
+.enter-button:hover {
+    transform:
+        scale(1.07)
+        translateY(-3px);
+
+    box-shadow:
+        0 0 45px rgba(168,85,247,.55);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
 
 header {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(8,8,12,.96);
-    border-bottom: 1px solid #25252d;
+    z-index: 1000;
+
+    background:
+        rgba(7,7,11,.76);
+
+    backdrop-filter:
+        blur(16px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
 .nav {
-    max-width: 1250px;
+    max-width: 1400px;
     margin: auto;
-    min-height: 68px;
-    padding: 0 20px;
+
+    min-height: 72px;
+
+    padding: 0 28px;
 
     display: flex;
     align-items: center;
@@ -39,142 +256,482 @@ header {
 
 .logo {
     font-size: 25px;
-    font-weight: 900;
+    font-weight: 1000;
     white-space: nowrap;
+
+    text-shadow:
+        0 0 18px rgba(168,85,247,.35);
 }
 
 .logo span {
     color: #a855f7;
 }
 
+.logo-mark {
+    display: inline-flex;
+
+    width: 31px;
+    height: 31px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 7px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #d946ef
+        );
+
+    box-shadow:
+        0 0 18px rgba(168,85,247,.35);
+
+    font-size: 17px;
+}
+
 .search {
     flex: 1;
-    max-width: 500px;
+    max-width: 520px;
 }
 
 .search input {
     width: 100%;
-    padding: 12px 16px;
+
+    padding:
+        12px 16px;
+
+    border:
+        1px solid #292932;
 
     border-radius: 8px;
-    border: 1px solid #292932;
 
-    background: #15151c;
+    background:
+        rgba(20,20,27,.8);
+
     color: white;
 
     outline: none;
-    font-size: 14px;
+
+    cursor: none;
 }
 
 .search input:focus {
     border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 20px rgba(139,92,246,.15);
 }
 
-.home {
-    border: 1px solid #292932;
-    background: #15151c;
-    color: #ddd;
-
-    padding: 10px 16px;
-    border-radius: 7px;
-
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.home:hover {
-    background: #24242d;
-}
-
-.container {
-    max-width: 1250px;
-    margin: auto;
-    padding: 30px 20px 70px;
-}
-
-.heading {
+.music-control {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
+    gap: 8px;
 }
 
-.heading h1 {
+.music-button,
+.home-button {
+    border:
+        1px solid #292932;
+
+    background:
+        #15151c;
+
+    color: white;
+
+    padding:
+        10px 13px;
+
+    border-radius: 7px;
+
+    cursor: none;
+
+    transition: .2s ease;
+}
+
+.music-button:hover,
+.home-button:hover {
+    border-color: #8b5cf6;
+
+    background:
+        #21152f;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+main {
+    max-width: 1400px;
+    margin: auto;
+
+    padding:
+        34px 28px 80px;
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome {
+    margin-bottom: 20px;
+}
+
+.welcome-small {
+    color: #a855f7;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.welcome h1 {
+    font-size:
+        clamp(30px, 5vw, 52px);
+
+    margin:
+        5px 0;
+
+    letter-spacing: -2px;
+}
+
+.welcome p {
     margin: 0;
-    font-size: 28px;
+
+    color: #777;
 }
 
-.heading span {
-    color: #858592;
-    font-size: 13px;
+
+/* =========================================
+   FEATURED TILE
+========================================= */
+
+.featured {
+    position: relative;
+
+    height: 310px;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(168,85,247,.35);
+
+    background:
+        linear-gradient(
+            120deg,
+            #24133b,
+            #100c17
+        );
+
+    margin-bottom: 35px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
 }
+
+.featured::before {
+    content: "🐷";
+
+    position: absolute;
+
+    right: 8%;
+    top: 15px;
+
+    font-size: 190px;
+
+    opacity: .16;
+
+    filter:
+        blur(.5px);
+
+    transform:
+        rotate(-8deg);
+}
+
+.featured-content {
+    position: relative;
+    z-index: 2;
+
+    padding:
+        42px;
+}
+
+.featured-label {
+    color: #c084fc;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.featured h2 {
+    margin:
+        8px 0;
+
+    font-size:
+        clamp(35px, 6vw, 65px);
+
+    letter-spacing:
+        -3px;
+}
+
+.featured p {
+    max-width: 520px;
+
+    color: #999;
+
+    line-height: 1.5;
+}
+
+.featured-play {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding:
+        12px 22px;
+
+    border-radius: 7px;
+
+    background:
+        #8b5cf6;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    cursor: none;
+
+    transition: .2s ease;
+}
+
+.featured-play:hover {
+    transform:
+        translateY(-3px)
+        scale(1.04);
+
+    box-shadow:
+        0 12px 30px rgba(139,92,246,.35);
+}
+
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.toolbar {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 17px;
+}
+
+.toolbar h2 {
+    margin: 0;
+
+    font-size: 25px;
+}
+
+.random {
+    border:
+        1px solid #633bb4;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6d28d9
+        );
+
+    color: white;
+
+    padding:
+        10px 16px;
+
+    border-radius: 8px;
+
+    font-weight: 900;
+
+    cursor: none;
+
+    transition: .2s ease;
+}
+
+.random:hover {
+    transform:
+        translateY(-3px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 10px 25px rgba(139,92,246,.3);
+}
+
+
+/* =========================================
+   CATEGORIES
+========================================= */
 
 .categories {
     display: flex;
-    gap: 8px;
+
     flex-wrap: wrap;
-    margin-bottom: 30px;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
 }
 
 .category {
-    border: 1px solid #292932;
-    background: #15151c;
+    border:
+        1px solid #292932;
 
-    color: #aaa;
+    background:
+        rgba(21,21,28,.75);
 
-    padding: 9px 14px;
+    color: #999;
+
+    padding:
+        9px 14px;
+
     border-radius: 7px;
 
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
+
+    font-weight: 900;
+
+    cursor: none;
+
+    transition: .2s ease;
 }
 
 .category:hover,
 .category.active {
-    background: #8b5cf6;
+    background:
+        #8b5cf6;
+
     color: white;
-    border-color: #8b5cf6;
+
+    border-color:
+        #8b5cf6;
+
+    transform:
+        translateY(-2px);
 }
 
-.games {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+/* =========================================
+   PS4-STYLE GAME ROW
+========================================= */
+
+.game-row {
+    display: flex;
+
     gap: 16px;
+
+    overflow-x: auto;
+
+    padding:
+        8px 4px 22px;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        #8b5cf6
+        transparent;
 }
+
+.game-row::-webkit-scrollbar {
+    height: 5px;
+}
+
+.game-row::-webkit-scrollbar-thumb {
+    background: #8b5cf6;
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   GAME TILE
+========================================= */
 
 .game {
+    position: relative;
+
+    flex:
+        0 0 235px;
+
+    height: 300px;
+
     overflow: hidden;
+
+    border-radius: 12px;
+
+    border:
+        1px solid #292932;
 
     background: #111117;
 
-    border: 1px solid #25252d;
-    border-radius: 9px;
+    cursor: none;
 
     transition:
-        transform .18s ease,
-        border-color .18s ease;
-
-    cursor: pointer;
+        transform .28s cubic-bezier(.2,.8,.2,1),
+        border-color .25s ease,
+        box-shadow .25s ease;
 }
 
 .game:hover {
-    transform: translateY(-4px);
-    border-color: #8b5cf6;
+    transform:
+        translateY(-12px)
+        scale(1.045);
+
+    border-color:
+        #a855f7;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.55),
+        0 0 28px rgba(139,92,246,.18);
+
+    z-index: 10;
 }
 
-/* EMOJI THUMBNAILS */
+
+/* =========================================
+   TILE IMAGE / EMOJI
+========================================= */
 
 .thumbnail {
-    height: 150px;
+    height: 205px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     position: relative;
 
-    font-size: 58px;
+    overflow: hidden;
+
+    font-size: 85px;
 
     background:
         linear-gradient(
@@ -182,70 +739,264 @@ header {
             var(--one),
             var(--two)
         );
+
+    transition:
+        transform .35s ease;
+}
+
+.game:hover .thumbnail {
+    transform:
+        scale(1.07);
+}
+
+.thumbnail::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    top: -100px;
+    right: -80px;
+
+    filter:
+        blur(5px);
 }
 
 .thumbnail::after {
     content: "";
+
     position: absolute;
     inset: 0;
 
     background:
         linear-gradient(
-            transparent,
-            rgba(0,0,0,.35)
+            transparent 30%,
+            rgba(0,0,0,.55)
         );
 }
 
-.thumbnail {
-    transition: transform .2s ease;
-}
 
-.game:hover .thumbnail {
-    transform: scale(1.02);
-}
+/* =========================================
+   TILE INFO
+========================================= */
 
 .info {
-    padding: 13px;
+    position: relative;
+
+    height: 95px;
+
+    padding:
+        13px 14px;
+
+    background:
+        rgba(14,14,19,.97);
 }
 
 .game-name {
-    font-size: 16px;
-    font-weight: 900;
+    font-size: 17px;
+
+    font-weight: 1000;
+
     margin-bottom: 5px;
 }
 
 .game-category {
-    font-size: 11px;
-    color: #888894;
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
     text-transform: uppercase;
 }
 
 .play {
-    display: block;
+    position: absolute;
 
-    width: 100%;
+    right: 13px;
+    bottom: 13px;
 
-    margin-top: 12px;
-    padding: 9px;
+    padding:
+        7px 11px;
 
-    text-align: center;
-    text-decoration: none;
+    border-radius: 5px;
 
-    border-radius: 6px;
+    background:
+        #8b5cf6;
 
-    background: #8b5cf6;
     color: white;
 
-    font-size: 12px;
-    font-weight: 900;
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 1000;
+
+    cursor: none;
+
+    opacity: .85;
+
+    transition: .2s ease;
 }
 
-.play:hover {
-    background: #9d6cff;
+.game:hover .play {
+    opacity: 1;
+
+    box-shadow:
+        0 0 15px rgba(139,92,246,.5);
 }
+
+
+/* =========================================
+   WATERMARK
+========================================= */
+
+.watermark {
+    position: absolute;
+
+    right: 9px;
+    top: 9px;
+
+    z-index: 20;
+
+    font-size: 9px;
+
+    font-weight: 1000;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(255,255,255,.65);
+
+    text-shadow:
+        0 0 8px rgba(168,85,247,.8);
+
+    pointer-events: none;
+
+    transition:
+        .25s ease;
+}
+
+.game:hover .watermark {
+    color: white;
+
+    text-shadow:
+        0 0 12px #a855f7;
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================
+   RECENT
+========================================= */
+
+.section {
+    margin-top: 45px;
+}
+
+.section-title {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        13px;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    font-size: 22px;
+}
+
+.section-title span {
+    color: #666;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   ACHIEVEMENTS
+========================================= */
+
+.achievements {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.achievement {
+    padding: 20px;
+
+    text-align: center;
+
+    background:
+        rgba(17,17,23,.85);
+
+    border:
+        1px solid #25252d;
+
+    border-radius: 10px;
+
+    transition: .2s ease;
+}
+
+.achievement:hover {
+    border-color:
+        #8b5cf6;
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.3);
+}
+
+.achievement-icon {
+    font-size: 30px;
+}
+
+.achievement-name {
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    font-weight: 1000;
+}
+
+.achievement-desc {
+    color: #666;
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   HIDDEN
+========================================= */
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .no-results {
@@ -253,167 +1004,347 @@ header {
 
     padding: 50px;
 
+    border:
+        1px dashed #292932;
+
+    border-radius: 10px;
+
     text-align: center;
 
     color: #777;
-
-    border: 1px dashed #292932;
-    border-radius: 10px;
-
-    margin-top: 20px;
 }
+
+
+/* =========================================
+   FOOTER
+========================================= */
 
 footer {
     text-align: center;
 
-    padding: 35px;
+    padding:
+        35px;
 
-    color: #555;
+    color: #444;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    border-top: 1px solid #18181f;
+    border-top:
+        1px solid #17171d;
 }
 
-@media(max-width:1000px) {
 
-    .games {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-}
+/* =========================================
+   MOBILE
+========================================= */
 
 @media(max-width:700px) {
 
+    body {
+        cursor: default;
+    }
+
+    .cursor,
+    .cursor-dot {
+        display: none;
+    }
+
     .nav {
         flex-wrap: wrap;
-        padding: 14px;
+
+        padding: 13px;
     }
 
     .search {
-        order: 3;
-        width: 100%;
+        order: 5;
+
+        flex-basis: 100%;
+
         max-width: none;
     }
 
-    .games {
-        grid-template-columns: repeat(2, 1fr);
+    main {
+        padding:
+            25px 15px 60px;
     }
 
+    .featured {
+        height: 280px;
+    }
+
+    .featured-content {
+        padding: 28px;
+    }
+
+    .game {
+        flex-basis: 190px;
+
+        height: 260px;
+    }
+
+    .thumbnail {
+        height: 175px;
+    }
+
+    .achievements {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 }
 
-@media(max-width:450px) {
+@media(max-width:430px) {
 
-    .games {
+    .achievements {
         grid-template-columns: 1fr;
     }
 
+    .game {
+        flex-basis: 180px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<div class="background" id="background"></div>
+
+
+<!-- =========================================
+     ENTER SCREEN
+========================================= -->
+
+<div class="enter-screen" id="enterScreen">
+
+    <div class="enter-box">
+
+        <div class="enter-logo">
+            <span>P</span>Styla
+        </div>
+
+        <div class="enter-sub">
+            GAMES • MUSIC • PLAY
+        </div>
+
+        <button
+            class="enter-button"
+            id="enterButton"
+        >
+            🎮 ENTER PSTYLA
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CURSOR -->
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header>
 
 <div class="nav">
 
-<div class="logo">
-    <span>PStyla</span> Games
-</div>
+    <div class="logo">
 
-<div class="search">
+        <span class="logo-mark">
+            P
+        </span>
 
-<input
-    id="search"
-    type="search"
-    placeholder="Search games..."
->
+        <span>PStyla</span>
+        Games
 
-</div>
+    </div>
 
-<button
-    class="home"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})"
->
-Home
-</button>
+
+    <div class="search">
+
+        <input
+            id="search"
+            type="search"
+            placeholder="Search games..."
+        >
+
+    </div>
+
+
+    <div class="music-control">
+
+        <button
+            class="music-button"
+            id="musicButton"
+            title="Music"
+        >
+            🎵
+        </button>
+
+        <button
+            class="home-button"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        >
+            Home
+        </button>
+
+    </div>
 
 </div>
 
 </header>
 
 
-<main class="container">
+<!-- =========================================
+     MAIN
+========================================= -->
 
-<div class="heading">
+<main>
 
-<h1>
-Popular Games
-</h1>
 
-<span id="gameCount">
-16 Games
-</span>
+<div class="welcome">
+
+    <div class="welcome-small">
+        Welcome back
+    </div>
+
+    <h1>
+        PStyla Games
+    </h1>
+
+    <p>
+        Choose a game and get playing.
+    </p>
 
 </div>
 
+
+<!-- FEATURED -->
+
+<div class="featured">
+
+    <div class="featured-content">
+
+        <div class="featured-label">
+            🔥 GAME OF THE DAY
+        </div>
+
+        <h2>
+            Iron Snout
+        </h2>
+
+        <p>
+            A fast-paced action game where you
+            fight off waves of enemies.
+        </p>
+
+        <a
+            class="featured-play"
+            href="https://topvaz.com/go/iron-snout/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Iron Snout')"
+        >
+            PLAY NOW
+        </a>
+
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+</div>
+
+
+<!-- TOOLBAR -->
+
+<div class="toolbar">
+
+    <h2>
+        🎮 Games
+    </h2>
+
+    <button
+        class="random"
+        id="randomButton"
+    >
+        🎲 Surprise Me
+    </button>
+
+</div>
+
+
+<!-- CATEGORIES -->
 
 <div class="categories">
 
-<button
-class="category active"
-data-category="all"
->
-All
-</button>
+    <button
+        class="category active"
+        data-category="all"
+    >
+        All
+    </button>
 
-<button
-class="category"
-data-category="action"
->
-Action
-</button>
+    <button
+        class="category"
+        data-category="action"
+    >
+        Action
+    </button>
 
-<button
-class="category"
-data-category="arcade"
->
-Arcade
-</button>
+    <button
+        class="category"
+        data-category="arcade"
+    >
+        Arcade
+    </button>
 
-<button
-class="category"
-data-category="racing"
->
-Racing
-</button>
+    <button
+        class="category"
+        data-category="racing"
+    >
+        Racing
+    </button>
 
-<button
-class="category"
-data-category="sports"
->
-Sports
-</button>
+    <button
+        class="category"
+        data-category="sports"
+    >
+        Sports
+    </button>
 
-<button
-class="category"
-data-category="puzzle"
->
-Puzzle
-</button>
+    <button
+        class="category"
+        data-category="puzzle"
+    >
+        Puzzle
+    </button>
 
-<button
-class="category"
-data-category="platformer"
->
-Platformer
-</button>
+    <button
+        class="category"
+        data-category="platformer"
+    >
+        Platformer
+    </button>
 
 </div>
 
 
-<div class="games" id="games">
+<!-- GAME ROW -->
+
+<div
+    class="game-row"
+    id="games"
+>
 
 
 <!-- DRIFT BOSS -->
@@ -431,6 +1362,10 @@ style="--one:#ef4444;--two:#7f1d1d"
 🏎️
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -446,6 +1381,7 @@ class="play"
 href="https://www.coolmathgames.com/0-drift-boss"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Drift Boss')"
 >
 PLAY
 </a>
@@ -470,6 +1406,10 @@ style="--one:#ec4899;--two:#7c3aed"
 🐷
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -485,6 +1425,7 @@ class="play"
 href="https://topvaz.com/go/iron-snout/"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Iron Snout')"
 >
 PLAY
 </a>
@@ -509,6 +1450,10 @@ style="--one:#06b6d4;--two:#2563eb"
 🏃
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -524,6 +1469,7 @@ class="play"
 href="https://www.coolmathgames.com/0-run-3"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Run 3')"
 >
 PLAY
 </a>
@@ -548,6 +1494,10 @@ style="--one:#38bdf8;--two:#f472b6"
 🍦
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -563,6 +1513,7 @@ class="play"
 href="https://www.coolmathgames.com/0-papas-freezeria"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Papa’s Freezeria')"
 >
 PLAY
 </a>
@@ -587,6 +1538,10 @@ style="--one:#0ea5e9;--two:#0369a1"
 🎣
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -602,6 +1557,7 @@ class="play"
 href="https://www.coolmathgames.com/0-tiny-fishing"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Tiny Fishing')"
 >
 PLAY
 </a>
@@ -626,6 +1582,10 @@ style="--one:#f97316;--two:#dc2626"
 🔪
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -641,6 +1601,7 @@ class="play"
 href="https://www.coolmathgames.com/0-slice-master"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Slice Master')"
 >
 PLAY
 </a>
@@ -665,6 +1626,10 @@ style="--one:#22c55e;--two:#16a34a"
 🍉
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -680,6 +1645,7 @@ class="play"
 href="https://www.coolmathgames.com/0-suika-watermelon-game"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Suika')"
 >
 PLAY
 </a>
@@ -704,6 +1670,10 @@ style="--one:#a16207;--two:#451a03"
 🍪
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -719,6 +1689,7 @@ class="play"
 href="https://www.coolmathgames.com/0-cookie-clicker"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Cookie Clicker')"
 >
 PLAY
 </a>
@@ -743,6 +1714,10 @@ style="--one:#f97316;--two:#dc2626"
 🏍️
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -758,6 +1733,7 @@ class="play"
 href="https://www.coolmathgames.com/0-moto-x3m"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Moto X3M')"
 >
 PLAY
 </a>
@@ -767,7 +1743,7 @@ PLAY
 </div>
 
 
-<!-- 8 BALL POOL -->
+<!-- 8 BALL -->
 
 <div
 class="game"
@@ -780,6 +1756,10 @@ class="thumbnail"
 style="--one:#166534;--two:#052e16"
 >
 🎱
+</div>
+
+<div class="watermark">
+PSTYLA™
 </div>
 
 <div class="info">
@@ -797,6 +1777,7 @@ class="play"
 href="https://www.coolmathgames.com/0-8-ball-pool"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('8 Ball Pool')"
 >
 PLAY
 </a>
@@ -821,6 +1802,10 @@ style="--one:#16a34a;--two:#14532d"
 🐍
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -836,6 +1821,7 @@ class="play"
 href="https://www.coolmathgames.com/0-snake"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Snake')"
 >
 PLAY
 </a>
@@ -860,6 +1846,10 @@ style="--one:#6366f1;--two:#312e81"
 🟣
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -875,6 +1865,7 @@ class="play"
 href="https://www.coolmathgames.com/0-ovo"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('OvO')"
 >
 PLAY
 </a>
@@ -884,7 +1875,7 @@ PLAY
 </div>
 
 
-<!-- FIREBOY WATERGIRL -->
+<!-- FIREBOY -->
 
 <div
 class="game"
@@ -897,6 +1888,10 @@ class="thumbnail"
 style="--one:#ef4444;--two:#2563eb"
 >
 🔥
+</div>
+
+<div class="watermark">
+PSTYLA™
 </div>
 
 <div class="info">
@@ -914,6 +1909,7 @@ class="play"
 href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Fireboy & Watergirl')"
 >
 PLAY
 </a>
@@ -938,6 +1934,10 @@ style="--one:#22c55e;--two:#15803d"
 ⚽
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -953,6 +1953,7 @@ class="play"
 href="https://www.coolmathgames.com/0-penalty-kick-online"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Penalty Kick Online')"
 >
 PLAY
 </a>
@@ -977,6 +1978,10 @@ style="--one:#facc15;--two:#f97316"
 🥚
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -992,6 +1997,7 @@ class="play"
 href="https://www.coolmathgames.com/0-eggy-car"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('Eggy Car')"
 >
 PLAY
 </a>
@@ -1016,6 +2022,10 @@ style="--one:#2563eb;--two:#7c3aed"
 🌎
 </div>
 
+<div class="watermark">
+PSTYLA™
+</div>
+
 <div class="info">
 
 <div class="game-name">
@@ -1031,6 +2041,7 @@ class="play"
 href="https://www.coolmathgames.com/0-worldguessr"
 target="_blank"
 rel="noopener noreferrer"
+onclick="savePlayed('WorldGuessr')"
 >
 PLAY
 </a>
@@ -1050,15 +2061,203 @@ id="noResults"
 😭 No games found.
 </div>
 
+
+<!-- =========================================
+     RECENTLY PLAYED
+========================================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+🕐 Recently Played
+</h2>
+
+<span>
+Saved on this device
+</span>
+
+</div>
+
+<div
+class="game-row"
+id="recentGames"
+>
+</div>
+
+</section>
+
+
+<!-- =========================================
+     ACHIEVEMENTS
+========================================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+🏆 Achievements
+</h2>
+
+</div>
+
+
+<div class="achievements">
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🎮
+</div>
+
+<div class="achievement-name">
+First Game
+</div>
+
+<div class="achievement-desc">
+Play your first game
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🔥
+</div>
+
+<div class="achievement-name">
+Getting Addicted
+</div>
+
+<div class="achievement-desc">
+Play 5 different games
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🎲
+</div>
+
+<div class="achievement-name">
+Lucky Player
+</div>
+
+<div class="achievement-desc">
+Use Surprise Me
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🧭
+</div>
+
+<div class="achievement-name">
+Explorer
+</div>
+
+<div class="achievement-desc">
+Play every game
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
 </main>
 
 
 <footer>
+
 PStyla Games © 2026
+
 </footer>
 
 
+<!-- =========================================
+     YOUTUBE MUSIC
+========================================= -->
+
+<div
+id="youtubePlayer"
+style="
+position:fixed;
+width:1px;
+height:1px;
+left:-10px;
+bottom:-10px;
+opacity:0;
+pointer-events:none;
+"
+></div>
+
+
 <script>
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+const cursor =
+document.getElementById("cursor");
+
+const cursorDot =
+document.getElementById("cursorDot");
+
+
+document.addEventListener(
+"mousemove",
+e => {
+
+    cursor.style.left =
+        e.clientX + "px";
+
+    cursor.style.top =
+        e.clientY + "px";
+
+    cursorDot.style.left =
+        e.clientX + "px";
+
+    cursorDot.style.top =
+        e.clientY + "px";
+
+});
+
+
+document.querySelectorAll(
+"button,a,input,.game"
+).forEach(element => {
+
+    element.addEventListener(
+        "mouseenter",
+        () => cursor.classList.add("big")
+    );
+
+    element.addEventListener(
+        "mouseleave",
+        () => cursor.classList.remove("big")
+    );
+
+});
+
+
+/* =========================================
+   SEARCH
+========================================= */
 
 const search =
 document.getElementById("search");
@@ -1072,10 +2271,8 @@ document.querySelectorAll(".category");
 const noResults =
 document.getElementById("noResults");
 
-const gameCount =
-document.getElementById("gameCount");
-
-let currentCategory = "all";
+let currentCategory =
+"all";
 
 
 function updateGames() {
@@ -1091,7 +2288,8 @@ function updateGames() {
     games.forEach(game => {
 
         const name =
-            game.dataset.name.toLowerCase();
+            game.dataset.name
+            .toLowerCase();
 
         const category =
             game.dataset.category;
@@ -1099,7 +2297,6 @@ function updateGames() {
 
         const searchMatch =
             name.includes(query);
-
 
         const categoryMatch =
             currentCategory === "all" ||
@@ -1111,35 +2308,39 @@ function updateGames() {
             categoryMatch
         ) {
 
-            game.classList.remove("hidden");
+            game.classList.remove(
+                "hidden"
+            );
 
             visible++;
 
         } else {
 
-            game.classList.add("hidden");
+            game.classList.add(
+                "hidden"
+            );
 
         }
 
     });
 
 
-    gameCount.textContent =
-        visible + " Games";
-
-
     noResults.style.display =
         visible === 0
         ? "block"
         : "none";
+
 }
 
 
 search.addEventListener(
-    "input",
-    updateGames
-);
+"input",
+updateGames);
 
+
+/* =========================================
+   CATEGORIES
+========================================= */
 
 categories.forEach(button => {
 
@@ -1148,10 +2349,15 @@ categories.forEach(button => {
         () => {
 
             categories.forEach(
-                b => b.classList.remove("active")
+                b =>
+                b.classList.remove(
+                    "active"
+                )
             );
 
-            button.classList.add("active");
+            button.classList.add(
+                "active"
+            );
 
             currentCategory =
                 button.dataset.category;
@@ -1162,6 +2368,438 @@ categories.forEach(button => {
     );
 
 });
+
+
+/* =========================================
+   RECENTLY PLAYED
+========================================= */
+
+function savePlayed(name) {
+
+    let recent =
+        JSON.parse(
+            localStorage.getItem(
+                "pstylaRecent"
+            ) || "[]"
+        );
+
+
+    recent =
+        recent.filter(
+            item => item !== name
+        );
+
+
+    recent.unshift(name);
+
+
+    recent =
+        recent.slice(0,5);
+
+
+    localStorage.setItem(
+        "pstylaRecent",
+        JSON.stringify(recent)
+    );
+
+}
+
+
+function loadRecent() {
+
+    const container =
+        document.getElementById(
+            "recentGames"
+        );
+
+
+    const recent =
+        JSON.parse(
+            localStorage.getItem(
+                "pstylaRecent"
+            ) || "[]"
+        );
+
+
+    container.innerHTML = "";
+
+
+    recent.forEach(name => {
+
+        const original =
+            [...games].find(
+                game =>
+                game.dataset.name === name
+            );
+
+
+        if (!original) return;
+
+
+        const clone =
+            original.cloneNode(true);
+
+
+        clone.classList.remove(
+            "hidden"
+        );
+
+
+        container.appendChild(
+            clone
+        );
+
+    });
+
+}
+
+
+loadRecent();
+
+
+/* =========================================
+   RANDOM GAME
+========================================= */
+
+document
+.getElementById("randomButton")
+.addEventListener(
+    "click",
+    () => {
+
+        const available =
+            [...games].filter(
+                game =>
+                !game.classList.contains(
+                    "hidden"
+                )
+            );
+
+
+        if (!available.length)
+            return;
+
+
+        const chosen =
+            available[
+                Math.floor(
+                    Math.random() *
+                    available.length
+                )
+            ];
+
+
+        chosen.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+
+        chosen.style.boxShadow =
+            "0 0 45px rgba(168,85,247,.95)";
+
+
+        setTimeout(
+            () => {
+
+                chosen.style.boxShadow =
+                    "";
+
+            },
+            1800
+        );
+
+
+        savePlayed(
+            chosen.dataset.name
+        );
+
+        loadRecent();
+
+    }
+);
+
+
+/* =========================================
+   DYNAMIC BACKGROUND
+========================================= */
+
+const background =
+document.getElementById(
+    "background"
+);
+
+
+const gameColors = {
+
+    "Drift Boss":
+        "radial-gradient(circle at 50% 30%, rgba(239,68,68,.25), transparent 38%), linear-gradient(135deg,#100707,#160b0b)",
+
+    "Iron Snout":
+        "radial-gradient(circle at 50% 30%, rgba(236,72,153,.3), transparent 38%), linear-gradient(135deg,#16091a,#0c0712)",
+
+    "Run 3":
+        "radial-gradient(circle at 50% 30%, rgba(6,182,212,.25), transparent 38%), linear-gradient(135deg,#061218,#080a16)",
+
+    "Papa's Freezeria":
+        "radial-gradient(circle at 50% 30%, rgba(244,114,182,.25), transparent 38%), linear-gradient(135deg,#101522,#170b15)",
+
+    "Tiny Fishing":
+        "radial-gradient(circle at 50% 30%, rgba(14,165,233,.25), transparent 38%), linear-gradient(135deg,#06131a,#06101a)",
+
+    "Slice Master":
+        "radial-gradient(circle at 50% 30%, rgba(249,115,22,.25), transparent 38%), linear-gradient(135deg,#180b06,#130909)",
+
+    "Suika":
+        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.2), transparent 38%), linear-gradient(135deg,#07130b,#09100b)",
+
+    "Cookie Clicker":
+        "radial-gradient(circle at 50% 30%, rgba(161,98,7,.25), transparent 38%), linear-gradient(135deg,#140e06,#100b08)",
+
+    "Moto X3M":
+        "radial-gradient(circle at 50% 30%, rgba(249,115,22,.28), transparent 38%), linear-gradient(135deg,#170c06,#100b0a)",
+
+    "8 Ball Pool":
+        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.18), transparent 38%), linear-gradient(135deg,#06100b,#070c09)",
+
+    "Snake":
+        "radial-gradient(circle at 50% 30%, rgba(22,163,74,.2), transparent 38%), linear-gradient(135deg,#061109,#080d09)",
+
+    "OvO":
+        "radial-gradient(circle at 50% 30%, rgba(99,102,241,.28), transparent 38%), linear-gradient(135deg,#08091a,#0b0817)",
+
+    "Fireboy and Watergirl":
+        "radial-gradient(circle at 50% 30%, rgba(239,68,68,.22), transparent 38%), linear-gradient(135deg,#170808,#080d18)",
+
+    "Penalty Kick Online":
+        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.2), transparent 38%), linear-gradient(135deg,#061109,#080d0a)",
+
+    "Eggy Car":
+        "radial-gradient(circle at 50% 30%, rgba(250,204,21,.2), transparent 38%), linear-gradient(135deg,#171306,#110c07)",
+
+    "WorldGuessr":
+        "radial-gradient(circle at 50% 30%, rgba(37,99,235,.24), transparent 38%), linear-gradient(135deg,#070c18,#0c0716)"
+};
+
+
+games.forEach(game => {
+
+    game.addEventListener(
+        "mouseenter",
+        () => {
+
+            const color =
+                gameColors[
+                    game.dataset.name
+                ];
+
+
+            if (color) {
+
+                background.style.background =
+                    color;
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   ENTER SCREEN + MUSIC
+========================================= */
+
+const enterScreen =
+document.getElementById(
+    "enterScreen"
+);
+
+const enterButton =
+document.getElementById(
+    "enterButton"
+);
+
+const musicButton =
+document.getElementById(
+    "musicButton"
+);
+
+
+/*
+    YouTube videos:
+    85wZGRcHHAc
+    -5CTaDGlhZU
+*/
+
+let player;
+
+let currentSong = 0;
+
+const songs = [
+    "85wZGRcHHAc",
+    "-5CTaDGlhZU"
+];
+
+let musicStarted = false;
+let musicOn = true;
+
+
+/* Load YouTube API */
+
+const tag =
+document.createElement("script");
+
+tag.src =
+"https://www.youtube.com/iframe_api";
+
+document.head.appendChild(tag);
+
+
+/* YouTube creates this automatically */
+
+function onYouTubeIframeAPIReady() {
+
+    player =
+        new YT.Player(
+            "youtubePlayer",
+            {
+                height: "1",
+                width: "1",
+
+                videoId:
+                    songs[currentSong],
+
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    loop: 1,
+                    playlist:
+                        songs[currentSong],
+                    playsinline: 1
+                },
+
+                events: {
+
+                    onReady:
+                        function() {
+
+                            player.setVolume(35);
+
+                        }
+
+                }
+
+            }
+        );
+
+}
+
+
+enterButton.addEventListener(
+    "click",
+    () => {
+
+        enterScreen.classList.add(
+            "hide"
+        );
+
+
+        if (
+            player &&
+            player.playVideo
+        ) {
+
+            player.playVideo();
+
+            musicStarted = true;
+
+        }
+
+    }
+);
+
+
+/* Music button */
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (!player)
+            return;
+
+
+        if (musicOn) {
+
+            player.pauseVideo();
+
+            musicButton.textContent =
+                "🔇";
+
+            musicOn = false;
+
+        } else {
+
+            player.playVideo();
+
+            musicButton.textContent =
+                "🎵";
+
+            musicOn = true;
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   SWITCH SONG EVERY TIME THE CURRENT ONE
+   ENDS
+========================================= */
+
+function onPlayerStateChange(event) {
+
+    if (
+        event.data ===
+        YT.PlayerState.ENDED
+    ) {
+
+        currentSong++;
+
+        if (
+            currentSong >=
+            songs.length
+        ) {
+
+            currentSong = 0;
+
+        }
+
+
+        player.loadVideoById(
+            songs[currentSong]
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+if (
+    window.innerWidth <= 700
+) {
+
+    document.body.style.cursor =
+        "default";
+
+}
 
 </script>
 
