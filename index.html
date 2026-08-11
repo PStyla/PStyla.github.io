@@ -15,7 +15,7 @@
 :root {
     --accent: #9b5cff;
     --accent2: #d946ef;
-    --bg: #07070b;
+    --bg: #050507;
 }
 
 html {
@@ -24,17 +24,16 @@ html {
 
 body {
     margin: 0;
-    background: var(--bg);
+    background: #050507;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
     cursor: none;
 }
 
-
-/* =========================================
+/* =========================
    CUSTOM CURSOR
-========================================= */
+========================= */
 
 .cursor {
     position: fixed;
@@ -69,69 +68,204 @@ body {
     background: rgba(168,85,247,.14);
 }
 
-
-/* =========================================
-   BACKGROUND
-========================================= */
+/* =========================
+   FLOWING WATER BACKGROUND
+========================= */
 
 .background {
     position: fixed;
     inset: 0;
     z-index: -5;
+    overflow: hidden;
 
     background:
         radial-gradient(
-            circle at 50% 25%,
-            rgba(139,92,246,.18),
-            transparent 35%
+            ellipse at 30% 40%,
+            rgba(168,85,247,.20),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 75% 65%,
+            rgba(217,70,239,.14),
+            transparent 42%
         ),
         linear-gradient(
             135deg,
-            #08080d,
-            #12091b
+            #050507,
+            #100817 45%,
+            #08070d
         );
 
-    transition:
-        background 1s ease;
+    transition: background 1.2s ease;
 }
 
+.background::before,
 .background::after {
     content: "";
     position: absolute;
-    inset: 0;
 
-    background:
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(217,70,239,.08),
-            transparent 30%
-        );
+    width: 160%;
+    height: 70%;
+
+    left: -30%;
+    top: 15%;
+
+    border-radius: 50%;
+
+    filter: blur(35px);
+    opacity: .45;
+
+    transform: rotate(-8deg);
 
     animation:
-        backgroundMove 8s ease-in-out infinite alternate;
+        waterFlow 13s ease-in-out infinite alternate;
 }
 
-@keyframes backgroundMove {
-
-    from {
-        transform: translate(-20px, 10px);
-    }
-
-    to {
-        transform: translate(30px, -20px);
-    }
-
+.background::before {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(139,92,246,.18),
+            rgba(217,70,239,.22),
+            rgba(139,92,246,.10),
+            transparent
+        );
 }
 
+.background::after {
+    top: 35%;
+    opacity: .25;
 
-/* =========================================
+    animation:
+        waterFlow2 17s ease-in-out infinite alternate;
+}
+
+@keyframes waterFlow {
+    0% {
+        transform:
+            translateX(-8%)
+            translateY(5%)
+            rotate(-8deg)
+            scaleY(.8);
+    }
+
+    50% {
+        transform:
+            translateX(4%)
+            translateY(-8%)
+            rotate(-4deg)
+            scaleY(1.05);
+    }
+
+    100% {
+        transform:
+            translateX(10%)
+            translateY(7%)
+            rotate(-10deg)
+            scaleY(.85);
+    }
+}
+
+@keyframes waterFlow2 {
+    0% {
+        transform:
+            translateX(10%)
+            translateY(-5%)
+            rotate(7deg)
+            scaleY(.9);
+    }
+
+    100% {
+        transform:
+            translateX(-12%)
+            translateY(8%)
+            rotate(2deg)
+            scaleY(1.15);
+    }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    width: var(--size);
+    height: var(--size);
+
+    left: var(--x);
+    top: var(--y);
+
+    border-radius: 50%;
+
+    background:
+        rgba(216,180,254,.75);
+
+    box-shadow:
+        0 0 8px rgba(168,85,247,.65),
+        0 0 18px rgba(217,70,239,.25);
+
+    opacity: var(--opacity);
+
+    animation:
+        particleFlow
+        var(--duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--delay);
+}
+
+@keyframes particleFlow {
+    0% {
+        transform:
+            translate3d(-80px,80px,0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: var(--opacity);
+    }
+
+    50% {
+        transform:
+            translate3d(35vw,-20vh,0)
+            rotate(180deg);
+    }
+
+    80% {
+        opacity: var(--opacity);
+    }
+
+    100% {
+        transform:
+            translate3d(110vw,15vh,0)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
    ENTER SCREEN
-========================================= */
+========================= */
 
 .enter-screen {
     position: fixed;
     inset: 0;
-
     z-index: 50000;
 
     display: flex;
@@ -161,17 +295,13 @@ body {
 }
 
 .enter-logo {
-    font-size: clamp(45px, 9vw, 90px);
+    font-size: clamp(45px,9vw,90px);
     font-weight: 1000;
     letter-spacing: -5px;
-
-    color: white;
 
     text-shadow:
         0 0 15px rgba(168,85,247,.8),
         0 0 45px rgba(168,85,247,.35);
-
-    margin-bottom: 8px;
 }
 
 .enter-logo span {
@@ -181,7 +311,8 @@ body {
 .enter-sub {
     color: #888;
     font-size: 13px;
-    margin-bottom: 28px;
+    margin: 8px 0 28px;
+    letter-spacing: 2px;
 }
 
 .enter-button {
@@ -196,8 +327,7 @@ body {
 
     color: white;
 
-    padding:
-        14px 32px;
+    padding: 14px 32px;
 
     border-radius: 8px;
 
@@ -221,10 +351,9 @@ body {
         0 0 45px rgba(168,85,247,.55);
 }
 
-
-/* =========================================
+/* =========================
    HEADER
-========================================= */
+========================= */
 
 header {
     position: sticky;
@@ -232,10 +361,9 @@ header {
     z-index: 1000;
 
     background:
-        rgba(7,7,11,.76);
+        rgba(5,5,8,.72);
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter: blur(18px);
 
     border-bottom:
         1px solid rgba(255,255,255,.07);
@@ -301,8 +429,7 @@ header {
 .search input {
     width: 100%;
 
-    padding:
-        12px 16px;
+    padding: 12px 16px;
 
     border:
         1px solid #292932;
@@ -342,8 +469,7 @@ header {
 
     color: white;
 
-    padding:
-        10px 13px;
+    padding: 10px 13px;
 
     border-radius: 7px;
 
@@ -363,10 +489,9 @@ header {
         translateY(-2px);
 }
 
-
-/* =========================================
+/* =========================
    MAIN
-========================================= */
+========================= */
 
 main {
     max-width: 1400px;
@@ -375,11 +500,6 @@ main {
     padding:
         34px 28px 80px;
 }
-
-
-/* =========================================
-   WELCOME
-========================================= */
 
 .welcome {
     margin-bottom: 20px;
@@ -398,24 +518,21 @@ main {
 
 .welcome h1 {
     font-size:
-        clamp(30px, 5vw, 52px);
+        clamp(30px,5vw,52px);
 
-    margin:
-        5px 0;
+    margin: 5px 0;
 
     letter-spacing: -2px;
 }
 
 .welcome p {
     margin: 0;
-
     color: #777;
 }
 
-
-/* =========================================
-   FEATURED TILE
-========================================= */
+/* =========================
+   FEATURED
+========================= */
 
 .featured {
     position: relative;
@@ -432,14 +549,17 @@ main {
     background:
         linear-gradient(
             120deg,
-            #24133b,
-            #100c17
+            rgba(36,19,59,.88),
+            rgba(16,12,23,.84)
         );
 
     margin-bottom: 35px;
 
     box-shadow:
         0 25px 70px rgba(0,0,0,.45);
+
+    backdrop-filter:
+        blur(4px);
 }
 
 .featured::before {
@@ -454,19 +574,16 @@ main {
 
     opacity: .16;
 
-    filter:
-        blur(.5px);
+    filter: blur(.5px);
 
-    transform:
-        rotate(-8deg);
+    transform: rotate(-8deg);
 }
 
 .featured-content {
     position: relative;
     z-index: 2;
 
-    padding:
-        42px;
+    padding: 42px;
 }
 
 .featured-label {
@@ -480,14 +597,12 @@ main {
 }
 
 .featured h2 {
-    margin:
-        8px 0;
+    margin: 8px 0;
 
     font-size:
-        clamp(35px, 6vw, 65px);
+        clamp(35px,6vw,65px);
 
-    letter-spacing:
-        -3px;
+    letter-spacing: -3px;
 }
 
 .featured p {
@@ -503,13 +618,11 @@ main {
 
     margin-top: 8px;
 
-    padding:
-        12px 22px;
+    padding: 12px 22px;
 
     border-radius: 7px;
 
-    background:
-        #8b5cf6;
+    background: #8b5cf6;
 
     color: white;
 
@@ -531,10 +644,47 @@ main {
         0 12px 30px rgba(139,92,246,.35);
 }
 
+/* =========================
+   WATERMARK
+========================= */
 
-/* =========================================
+.watermark {
+    position: absolute;
+
+    right: 9px;
+    top: 9px;
+
+    z-index: 20;
+
+    font-size: 9px;
+
+    font-weight: 1000;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(255,255,255,.65);
+
+    text-shadow:
+        0 0 8px rgba(168,85,247,.8);
+
+    pointer-events: none;
+
+    transition: .25s ease;
+}
+
+.game:hover .watermark {
+    color: white;
+
+    text-shadow:
+        0 0 12px #a855f7;
+
+    transform: scale(1.08);
+}
+
+/* =========================
    TOOLBAR
-========================================= */
+========================= */
 
 .toolbar {
     display: flex;
@@ -549,7 +699,6 @@ main {
 
 .toolbar h2 {
     margin: 0;
-
     font-size: 25px;
 }
 
@@ -566,8 +715,7 @@ main {
 
     color: white;
 
-    padding:
-        10px 16px;
+    padding: 10px 16px;
 
     border-radius: 8px;
 
@@ -587,16 +735,13 @@ main {
         0 10px 25px rgba(139,92,246,.3);
 }
 
-
-/* =========================================
+/* =========================
    CATEGORIES
-========================================= */
+========================= */
 
 .categories {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 8px;
 
     margin-bottom: 25px;
@@ -611,8 +756,7 @@ main {
 
     color: #999;
 
-    padding:
-        9px 14px;
+    padding: 9px 14px;
 
     border-radius: 7px;
 
@@ -627,22 +771,19 @@ main {
 
 .category:hover,
 .category.active {
-    background:
-        #8b5cf6;
+    background: #8b5cf6;
 
     color: white;
 
-    border-color:
-        #8b5cf6;
+    border-color: #8b5cf6;
 
     transform:
         translateY(-2px);
 }
 
-
-/* =========================================
-   PS4-STYLE GAME ROW
-========================================= */
+/* =========================
+   GAME ROW
+========================= */
 
 .game-row {
     display: flex;
@@ -655,6 +796,7 @@ main {
         8px 4px 22px;
 
     scrollbar-width: thin;
+
     scrollbar-color:
         #8b5cf6
         transparent;
@@ -669,10 +811,9 @@ main {
     border-radius: 10px;
 }
 
-
-/* =========================================
-   GAME TILE
-========================================= */
+/* =========================
+   GAME CARDS
+========================= */
 
 .game {
     position: relative;
@@ -689,7 +830,8 @@ main {
     border:
         1px solid #292932;
 
-    background: #111117;
+    background:
+        rgba(17,17,23,.94);
 
     cursor: none;
 
@@ -713,11 +855,6 @@ main {
 
     z-index: 10;
 }
-
-
-/* =========================================
-   TILE IMAGE / EMOJI
-========================================= */
 
 .thumbnail {
     height: 205px;
@@ -765,8 +902,7 @@ main {
     top: -100px;
     right: -80px;
 
-    filter:
-        blur(5px);
+    filter: blur(5px);
 }
 
 .thumbnail::after {
@@ -781,11 +917,6 @@ main {
             rgba(0,0,0,.55)
         );
 }
-
-
-/* =========================================
-   TILE INFO
-========================================= */
 
 .info {
     position: relative;
@@ -823,8 +954,7 @@ main {
     right: 13px;
     bottom: 13px;
 
-    padding:
-        7px 11px;
+    padding: 7px 11px;
 
     border-radius: 5px;
 
@@ -853,92 +983,42 @@ main {
         0 0 15px rgba(139,92,246,.5);
 }
 
-
-/* =========================================
-   WATERMARK
-========================================= */
-
-.watermark {
-    position: absolute;
-
-    right: 9px;
-    top: 9px;
-
-    z-index: 20;
-
-    font-size: 9px;
-
-    font-weight: 1000;
-
-    letter-spacing: 1px;
-
-    color:
-        rgba(255,255,255,.65);
-
-    text-shadow:
-        0 0 8px rgba(168,85,247,.8);
-
-    pointer-events: none;
-
-    transition:
-        .25s ease;
-}
-
-.game:hover .watermark {
-    color: white;
-
-    text-shadow:
-        0 0 12px #a855f7;
-
-    transform:
-        scale(1.08);
-}
-
-
-/* =========================================
-   RECENT
-========================================= */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
     margin-top: 45px;
 }
 
 .section-title {
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
+    justify-content: space-between;
 
-    justify-content:
-        space-between;
-
-    margin-bottom:
-        13px;
+    margin-bottom: 13px;
 }
 
 .section-title h2 {
     margin: 0;
-
     font-size: 22px;
 }
 
 .section-title span {
     color: #666;
-
     font-size: 11px;
 }
 
-
-/* =========================================
+/* =========================
    ACHIEVEMENTS
-========================================= */
+========================= */
 
 .achievements {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
     gap: 12px;
 }
@@ -960,8 +1040,7 @@ main {
 }
 
 .achievement:hover {
-    border-color:
-        #8b5cf6;
+    border-color: #8b5cf6;
 
     transform:
         translateY(-5px);
@@ -990,10 +1069,22 @@ main {
     margin-top: 5px;
 }
 
+/* =========================
+   FOOTER
+========================= */
 
-/* =========================================
-   HIDDEN
-========================================= */
+footer {
+    text-align: center;
+
+    padding: 35px;
+
+    color: #444;
+
+    font-size: 11px;
+
+    border-top:
+        1px solid #17171d;
+}
 
 .hidden {
     display: none !important;
@@ -1014,29 +1105,9 @@ main {
     color: #777;
 }
 
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-    text-align: center;
-
-    padding:
-        35px;
-
-    color: #444;
-
-    font-size: 11px;
-
-    border-top:
-        1px solid #17171d;
-}
-
-
-/* =========================================
+/* =========================
    MOBILE
-========================================= */
+========================= */
 
 @media(max-width:700px) {
 
@@ -1051,15 +1122,12 @@ footer {
 
     .nav {
         flex-wrap: wrap;
-
         padding: 13px;
     }
 
     .search {
         order: 5;
-
         flex-basis: 100%;
-
         max-width: none;
     }
 
@@ -1078,7 +1146,6 @@ footer {
 
     .game {
         flex-basis: 190px;
-
         height: 260px;
     }
 
@@ -1088,7 +1155,7 @@ footer {
 
     .achievements {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
     }
 }
 
@@ -1101,23 +1168,17 @@ footer {
     .game {
         flex-basis: 180px;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
+<!-- FLOWING BACKGROUND -->
 <div class="background" id="background"></div>
+<div class="particles" id="particles"></div>
 
-
-<!-- =========================================
-     ENTER SCREEN
-========================================= -->
-
+<!-- ENTER SCREEN -->
 <div class="enter-screen" id="enterScreen">
 
     <div class="enter-box">
@@ -1132,8 +1193,7 @@ footer {
 
         <button
             class="enter-button"
-            id="enterButton"
-        >
+            id="enterButton">
             🎮 ENTER PSTYLA
         </button>
 
@@ -1141,17 +1201,11 @@ footer {
 
 </div>
 
-
 <!-- CURSOR -->
-
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
-
-<!-- =========================================
-     HEADER
-========================================= -->
-
+<!-- HEADER -->
 <header>
 
 <div class="nav">
@@ -1167,7 +1221,6 @@ footer {
 
     </div>
 
-
     <div class="search">
 
         <input
@@ -1178,21 +1231,17 @@ footer {
 
     </div>
 
-
     <div class="music-control">
 
         <button
             class="music-button"
-            id="musicButton"
-            title="Music"
-        >
+            id="musicButton">
             🎵
         </button>
 
         <button
             class="home-button"
-            onclick="window.scrollTo({top:0,behavior:'smooth'})"
-        >
+            onclick="window.scrollTo({top:0,behavior:'smooth'})">
             Home
         </button>
 
@@ -1202,13 +1251,9 @@ footer {
 
 </header>
 
-
-<!-- =========================================
-     MAIN
-========================================= -->
-
 <main>
 
+<!-- WELCOME -->
 
 <div class="welcome">
 
@@ -1225,7 +1270,6 @@ footer {
     </p>
 
 </div>
-
 
 <!-- FEATURED -->
 
@@ -1251,8 +1295,7 @@ footer {
             href="https://topvaz.com/go/iron-snout/"
             target="_blank"
             rel="noopener noreferrer"
-            onclick="savePlayed('Iron Snout')"
-        >
+            onclick="savePlayed('Iron Snout')">
             PLAY NOW
         </a>
 
@@ -1264,8 +1307,7 @@ footer {
 
 </div>
 
-
-<!-- TOOLBAR -->
+<!-- GAMES -->
 
 <div class="toolbar">
 
@@ -1275,13 +1317,11 @@ footer {
 
     <button
         class="random"
-        id="randomButton"
-    >
+        id="randomButton">
         🎲 Surprise Me
     </button>
 
 </div>
-
 
 <!-- CATEGORIES -->
 
@@ -1289,82 +1329,61 @@ footer {
 
     <button
         class="category active"
-        data-category="all"
-    >
+        data-category="all">
         All
     </button>
 
     <button
         class="category"
-        data-category="action"
-    >
+        data-category="action">
         Action
     </button>
 
     <button
         class="category"
-        data-category="arcade"
-    >
+        data-category="arcade">
         Arcade
     </button>
 
     <button
         class="category"
-        data-category="racing"
-    >
+        data-category="racing">
         Racing
     </button>
 
     <button
         class="category"
-        data-category="sports"
-    >
+        data-category="sports">
         Sports
     </button>
 
     <button
         class="category"
-        data-category="puzzle"
-    >
+        data-category="puzzle">
         Puzzle
     </button>
 
     <button
         class="category"
-        data-category="platformer"
-    >
+        data-category="platformer">
         Platformer
     </button>
 
 </div>
 
+<div class="game-row" id="games">
 
-<!-- GAME ROW -->
-
-<div
-    class="game-row"
-    id="games"
->
-
-
-<!-- DRIFT BOSS -->
-
-<div
-class="game"
+<!-- 1 -->
+<div class="game"
 data-name="Drift Boss"
-data-category="racing"
->
+data-category="racing">
 
-<div
-class="thumbnail"
-style="--one:#ef4444;--two:#7f1d1d"
->
+<div class="thumbnail"
+style="--one:#ef4444;--two:#7f1d1d">
 🏎️
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1381,34 +1400,24 @@ class="play"
 href="https://www.coolmathgames.com/0-drift-boss"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Drift Boss')"
->
+onclick="savePlayed('Drift Boss')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- IRON SNOUT -->
-
-<div
-class="game"
+<!-- 2 -->
+<div class="game"
 data-name="Iron Snout"
-data-category="action"
->
+data-category="action">
 
-<div
-class="thumbnail"
-style="--one:#ec4899;--two:#7c3aed"
->
+<div class="thumbnail"
+style="--one:#ec4899;--two:#7c3aed">
 🐷
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1425,34 +1434,24 @@ class="play"
 href="https://topvaz.com/go/iron-snout/"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Iron Snout')"
->
+onclick="savePlayed('Iron Snout')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- RUN 3 -->
-
-<div
-class="game"
+<!-- 3 -->
+<div class="game"
 data-name="Run 3"
-data-category="action"
->
+data-category="action">
 
-<div
-class="thumbnail"
-style="--one:#06b6d4;--two:#2563eb"
->
+<div class="thumbnail"
+style="--one:#06b6d4;--two:#2563eb">
 🏃
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1469,34 +1468,24 @@ class="play"
 href="https://www.coolmathgames.com/0-run-3"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Run 3')"
->
+onclick="savePlayed('Run 3')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
+<!-- 4 -->
+<div class="game"
+data-name="Papa's Freezeria"
+data-category="arcade">
 
-<!-- PAPAS FREEZERIA -->
-
-<div
-class="game"
-data-name="Papas Freezeria"
-data-category="arcade"
->
-
-<div
-class="thumbnail"
-style="--one:#38bdf8;--two:#f472b6"
->
+<div class="thumbnail"
+style="--one:#38bdf8;--two:#f472b6">
 🍦
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1513,34 +1502,24 @@ class="play"
 href="https://www.coolmathgames.com/0-papas-freezeria"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Papa’s Freezeria')"
->
+onclick="savePlayed('Papa’s Freezeria')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- TINY FISHING -->
-
-<div
-class="game"
+<!-- 5 -->
+<div class="game"
 data-name="Tiny Fishing"
-data-category="arcade"
->
+data-category="arcade">
 
-<div
-class="thumbnail"
-style="--one:#0ea5e9;--two:#0369a1"
->
+<div class="thumbnail"
+style="--one:#0ea5e9;--two:#0369a1">
 🎣
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1557,34 +1536,24 @@ class="play"
 href="https://www.coolmathgames.com/0-tiny-fishing"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Tiny Fishing')"
->
+onclick="savePlayed('Tiny Fishing')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- SLICE MASTER -->
-
-<div
-class="game"
+<!-- 6 -->
+<div class="game"
 data-name="Slice Master"
-data-category="arcade"
->
+data-category="arcade">
 
-<div
-class="thumbnail"
-style="--one:#f97316;--two:#dc2626"
->
+<div class="thumbnail"
+style="--one:#f97316;--two:#dc2626">
 🔪
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1601,34 +1570,24 @@ class="play"
 href="https://www.coolmathgames.com/0-slice-master"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Slice Master')"
->
+onclick="savePlayed('Slice Master')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- SUIKA -->
-
-<div
-class="game"
+<!-- 7 -->
+<div class="game"
 data-name="Suika"
-data-category="puzzle"
->
+data-category="puzzle">
 
-<div
-class="thumbnail"
-style="--one:#22c55e;--two:#16a34a"
->
+<div class="thumbnail"
+style="--one:#22c55e;--two:#16a34a">
 🍉
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1645,34 +1604,24 @@ class="play"
 href="https://www.coolmathgames.com/0-suika-watermelon-game"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Suika')"
->
+onclick="savePlayed('Suika')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- COOKIE CLICKER -->
-
-<div
-class="game"
+<!-- 8 -->
+<div class="game"
 data-name="Cookie Clicker"
-data-category="arcade"
->
+data-category="arcade">
 
-<div
-class="thumbnail"
-style="--one:#a16207;--two:#451a03"
->
+<div class="thumbnail"
+style="--one:#a16207;--two:#451a03">
 🍪
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1689,34 +1638,24 @@ class="play"
 href="https://www.coolmathgames.com/0-cookie-clicker"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Cookie Clicker')"
->
+onclick="savePlayed('Cookie Clicker')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- MOTO X3M -->
-
-<div
-class="game"
+<!-- 9 -->
+<div class="game"
 data-name="Moto X3M"
-data-category="racing"
->
+data-category="racing">
 
-<div
-class="thumbnail"
-style="--one:#f97316;--two:#dc2626"
->
+<div class="thumbnail"
+style="--one:#f97316;--two:#dc2626">
 🏍️
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1733,34 +1672,24 @@ class="play"
 href="https://www.coolmathgames.com/0-moto-x3m"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Moto X3M')"
->
+onclick="savePlayed('Moto X3M')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- 8 BALL -->
-
-<div
-class="game"
+<!-- 10 -->
+<div class="game"
 data-name="8 Ball Pool"
-data-category="sports"
->
+data-category="sports">
 
-<div
-class="thumbnail"
-style="--one:#166534;--two:#052e16"
->
+<div class="thumbnail"
+style="--one:#166534;--two:#052e16">
 🎱
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1777,34 +1706,24 @@ class="play"
 href="https://www.coolmathgames.com/0-8-ball-pool"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('8 Ball Pool')"
->
+onclick="savePlayed('8 Ball Pool')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- SNAKE -->
-
-<div
-class="game"
+<!-- 11 -->
+<div class="game"
 data-name="Snake"
-data-category="arcade"
->
+data-category="arcade">
 
-<div
-class="thumbnail"
-style="--one:#16a34a;--two:#14532d"
->
+<div class="thumbnail"
+style="--one:#16a34a;--two:#14532d">
 🐍
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1821,34 +1740,24 @@ class="play"
 href="https://www.coolmathgames.com/0-snake"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Snake')"
->
+onclick="savePlayed('Snake')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- OVO -->
-
-<div
-class="game"
+<!-- 12 -->
+<div class="game"
 data-name="OvO"
-data-category="platformer"
->
+data-category="platformer">
 
-<div
-class="thumbnail"
-style="--one:#6366f1;--two:#312e81"
->
+<div class="thumbnail"
+style="--one:#6366f1;--two:#312e81">
 🟣
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1865,34 +1774,24 @@ class="play"
 href="https://www.coolmathgames.com/0-ovo"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('OvO')"
->
+onclick="savePlayed('OvO')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- FIREBOY -->
-
-<div
-class="game"
+<!-- 13 -->
+<div class="game"
 data-name="Fireboy and Watergirl"
-data-category="platformer"
->
+data-category="platformer">
 
-<div
-class="thumbnail"
-style="--one:#ef4444;--two:#2563eb"
->
+<div class="thumbnail"
+style="--one:#ef4444;--two:#2563eb">
 🔥
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1909,34 +1808,24 @@ class="play"
 href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Fireboy & Watergirl')"
->
+onclick="savePlayed('Fireboy & Watergirl')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- PENALTY KICK -->
-
-<div
-class="game"
+<!-- 14 -->
+<div class="game"
 data-name="Penalty Kick Online"
-data-category="sports"
->
+data-category="sports">
 
-<div
-class="thumbnail"
-style="--one:#22c55e;--two:#15803d"
->
+<div class="thumbnail"
+style="--one:#22c55e;--two:#15803d">
 ⚽
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1953,34 +1842,24 @@ class="play"
 href="https://www.coolmathgames.com/0-penalty-kick-online"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Penalty Kick Online')"
->
+onclick="savePlayed('Penalty Kick Online')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- EGGY CAR -->
-
-<div
-class="game"
+<!-- 15 -->
+<div class="game"
 data-name="Eggy Car"
-data-category="racing"
->
+data-category="racing">
 
-<div
-class="thumbnail"
-style="--one:#facc15;--two:#f97316"
->
+<div class="thumbnail"
+style="--one:#facc15;--two:#f97316">
 🥚
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -1997,34 +1876,24 @@ class="play"
 href="https://www.coolmathgames.com/0-eggy-car"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('Eggy Car')"
->
+onclick="savePlayed('Eggy Car')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
-<!-- WORLDGUESSR -->
-
-<div
-class="game"
+<!-- 16 -->
+<div class="game"
 data-name="WorldGuessr"
-data-category="puzzle"
->
+data-category="puzzle">
 
-<div
-class="thumbnail"
-style="--one:#2563eb;--two:#7c3aed"
->
+<div class="thumbnail"
+style="--one:#2563eb;--two:#7c3aed">
 🌎
 </div>
 
-<div class="watermark">
-PSTYLA™
-</div>
+<div class="watermark">PSTYLA™</div>
 
 <div class="info">
 
@@ -2041,30 +1910,22 @@ class="play"
 href="https://www.coolmathgames.com/0-worldguessr"
 target="_blank"
 rel="noopener noreferrer"
-onclick="savePlayed('WorldGuessr')"
->
+onclick="savePlayed('WorldGuessr')">
 PLAY
 </a>
 
 </div>
-
 </div>
 
-
 </div>
-
 
 <div
 class="no-results"
-id="noResults"
->
+id="noResults">
 😭 No games found.
 </div>
 
-
-<!-- =========================================
-     RECENTLY PLAYED
-========================================= -->
+<!-- RECENTLY PLAYED -->
 
 <section class="section">
 
@@ -2082,16 +1943,12 @@ Saved on this device
 
 <div
 class="game-row"
-id="recentGames"
->
+id="recentGames">
 </div>
 
 </section>
 
-
-<!-- =========================================
-     ACHIEVEMENTS
-========================================= -->
+<!-- ACHIEVEMENTS -->
 
 <section class="section">
 
@@ -2102,7 +1959,6 @@ id="recentGames"
 </h2>
 
 </div>
-
 
 <div class="achievements">
 
@@ -2122,7 +1978,6 @@ Play your first game
 
 </div>
 
-
 <div class="achievement">
 
 <div class="achievement-icon">
@@ -2139,7 +1994,6 @@ Play 5 different games
 
 </div>
 
-
 <div class="achievement">
 
 <div class="achievement-icon">
@@ -2155,7 +2009,6 @@ Use Surprise Me
 </div>
 
 </div>
-
 
 <div class="achievement">
 
@@ -2177,20 +2030,13 @@ Play every game
 
 </section>
 
-
 </main>
 
-
 <footer>
-
 PStyla Games © 2026
-
 </footer>
 
-
-<!-- =========================================
-     YOUTUBE MUSIC
-========================================= -->
+<!-- HIDDEN YOUTUBE PLAYER -->
 
 <div
 id="youtubePlayer"
@@ -2202,78 +2048,123 @@ left:-10px;
 bottom:-10px;
 opacity:0;
 pointer-events:none;
-"
-></div>
-
+">
+</div>
 
 <script>
 
-/* =========================================
+/* =========================
+   PARTICLES
+========================= */
+
+const particleContainer =
+    document.getElementById("particles");
+
+for (let i = 0; i < 110; i++) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.style.setProperty(
+        "--x",
+        Math.random() * 100 + "%"
+    );
+
+    particle.style.setProperty(
+        "--y",
+        Math.random() * 100 + "%"
+    );
+
+    particle.style.setProperty(
+        "--size",
+        (Math.random() * 3 + 1) + "px"
+    );
+
+    particle.style.setProperty(
+        "--opacity",
+        Math.random() * .65 + .15
+    );
+
+    particle.style.setProperty(
+        "--duration",
+        (Math.random() * 12 + 9) + "s"
+    );
+
+    particle.style.setProperty(
+        "--delay",
+        -(Math.random() * 15) + "s"
+    );
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+/* =========================
    CUSTOM CURSOR
-========================================= */
+========================= */
 
 const cursor =
-document.getElementById("cursor");
+    document.getElementById("cursor");
 
 const cursorDot =
-document.getElementById("cursorDot");
-
+    document.getElementById("cursorDot");
 
 document.addEventListener(
-"mousemove",
-e => {
+    "mousemove",
+    e => {
 
-    cursor.style.left =
-        e.clientX + "px";
+        cursor.style.left =
+            e.clientX + "px";
 
-    cursor.style.top =
-        e.clientY + "px";
+        cursor.style.top =
+            e.clientY + "px";
 
-    cursorDot.style.left =
-        e.clientX + "px";
+        cursorDot.style.left =
+            e.clientX + "px";
 
-    cursorDot.style.top =
-        e.clientY + "px";
-
-});
-
+        cursorDot.style.top =
+            e.clientY + "px";
+    }
+);
 
 document.querySelectorAll(
-"button,a,input,.game"
+    "button,a,input,.game"
 ).forEach(element => {
 
     element.addEventListener(
         "mouseenter",
-        () => cursor.classList.add("big")
+        () =>
+            cursor.classList.add("big")
     );
 
     element.addEventListener(
         "mouseleave",
-        () => cursor.classList.remove("big")
+        () =>
+            cursor.classList.remove("big")
     );
-
 });
 
-
-/* =========================================
+/* =========================
    SEARCH
-========================================= */
+========================= */
 
 const search =
-document.getElementById("search");
+    document.getElementById("search");
 
 const games =
-document.querySelectorAll(".game");
+    document.querySelectorAll(".game");
 
 const categories =
-document.querySelectorAll(".category");
+    document.querySelectorAll(".category");
 
 const noResults =
-document.getElementById("noResults");
+    document.getElementById("noResults");
 
-let currentCategory =
-"all";
-
+let currentCategory = "all";
 
 function updateGames() {
 
@@ -2284,16 +2175,13 @@ function updateGames() {
 
     let visible = 0;
 
-
     games.forEach(game => {
 
         const name =
-            game.dataset.name
-            .toLowerCase();
+            game.dataset.name.toLowerCase();
 
         const category =
             game.dataset.category;
-
 
         const searchMatch =
             name.includes(query);
@@ -2301,7 +2189,6 @@ function updateGames() {
         const categoryMatch =
             currentCategory === "all" ||
             category === currentCategory;
-
 
         if (
             searchMatch &&
@@ -2319,28 +2206,23 @@ function updateGames() {
             game.classList.add(
                 "hidden"
             );
-
         }
-
     });
-
 
     noResults.style.display =
         visible === 0
         ? "block"
         : "none";
-
 }
 
-
 search.addEventListener(
-"input",
-updateGames);
+    "input",
+    updateGames
+);
 
-
-/* =========================================
+/* =========================
    CATEGORIES
-========================================= */
+========================= */
 
 categories.forEach(button => {
 
@@ -2363,16 +2245,13 @@ categories.forEach(button => {
                 button.dataset.category;
 
             updateGames();
-
         }
     );
-
 });
 
-
-/* =========================================
+/* =========================
    RECENTLY PLAYED
-========================================= */
+========================= */
 
 function savePlayed(name) {
 
@@ -2383,27 +2262,23 @@ function savePlayed(name) {
             ) || "[]"
         );
 
-
     recent =
         recent.filter(
             item => item !== name
         );
 
-
     recent.unshift(name);
-
 
     recent =
         recent.slice(0,5);
-
 
     localStorage.setItem(
         "pstylaRecent",
         JSON.stringify(recent)
     );
 
+    loadRecent();
 }
-
 
 function loadRecent() {
 
@@ -2412,7 +2287,6 @@ function loadRecent() {
             "recentGames"
         );
 
-
     const recent =
         JSON.parse(
             localStorage.getItem(
@@ -2420,9 +2294,7 @@ function loadRecent() {
             ) || "[]"
         );
 
-
     container.innerHTML = "";
-
 
     recent.forEach(name => {
 
@@ -2432,34 +2304,27 @@ function loadRecent() {
                 game.dataset.name === name
             );
 
-
-        if (!original) return;
-
+        if (!original)
+            return;
 
         const clone =
             original.cloneNode(true);
-
 
         clone.classList.remove(
             "hidden"
         );
 
-
         container.appendChild(
             clone
         );
-
     });
-
 }
-
 
 loadRecent();
 
-
-/* =========================================
+/* =========================
    RANDOM GAME
-========================================= */
+========================= */
 
 document
 .getElementById("randomButton")
@@ -2475,10 +2340,8 @@ document
                 )
             );
 
-
         if (!available.length)
             return;
-
 
         const chosen =
             available[
@@ -2488,16 +2351,13 @@ document
                 )
             ];
 
-
         chosen.scrollIntoView({
             behavior: "smooth",
             block: "center"
         });
 
-
         chosen.style.boxShadow =
             "0 0 45px rgba(168,85,247,.95)";
-
 
         setTimeout(
             () => {
@@ -2509,78 +2369,69 @@ document
             1800
         );
 
-
         savePlayed(
             chosen.dataset.name
         );
-
-        loadRecent();
-
     }
 );
 
-
-/* =========================================
-   DYNAMIC BACKGROUND
-========================================= */
-
-const background =
-document.getElementById(
-    "background"
-);
-
+/* =========================
+   GAME BACKGROUND COLOURS
+========================= */
 
 const gameColors = {
 
     "Drift Boss":
-        "radial-gradient(circle at 50% 30%, rgba(239,68,68,.25), transparent 38%), linear-gradient(135deg,#100707,#160b0b)",
+        "radial-gradient(circle at 50% 30%,rgba(239,68,68,.25),transparent 38%),linear-gradient(135deg,#100707,#160b0b)",
 
     "Iron Snout":
-        "radial-gradient(circle at 50% 30%, rgba(236,72,153,.3), transparent 38%), linear-gradient(135deg,#16091a,#0c0712)",
+        "radial-gradient(circle at 50% 30%,rgba(236,72,153,.30),transparent 38%),linear-gradient(135deg,#16091a,#0c0712)",
 
     "Run 3":
-        "radial-gradient(circle at 50% 30%, rgba(6,182,212,.25), transparent 38%), linear-gradient(135deg,#061218,#080a16)",
+        "radial-gradient(circle at 50% 30%,rgba(6,182,212,.25),transparent 38%),linear-gradient(135deg,#061218,#080a16)",
 
     "Papa's Freezeria":
-        "radial-gradient(circle at 50% 30%, rgba(244,114,182,.25), transparent 38%), linear-gradient(135deg,#101522,#170b15)",
+        "radial-gradient(circle at 50% 30%,rgba(244,114,182,.25),transparent 38%),linear-gradient(135deg,#101522,#170b15)",
 
     "Tiny Fishing":
-        "radial-gradient(circle at 50% 30%, rgba(14,165,233,.25), transparent 38%), linear-gradient(135deg,#06131a,#06101a)",
+        "radial-gradient(circle at 50% 30%,rgba(14,165,233,.25),transparent 38%),linear-gradient(135deg,#06131a,#06101a)",
 
     "Slice Master":
-        "radial-gradient(circle at 50% 30%, rgba(249,115,22,.25), transparent 38%), linear-gradient(135deg,#180b06,#130909)",
+        "radial-gradient(circle at 50% 30%,rgba(249,115,22,.25),transparent 38%),linear-gradient(135deg,#180b06,#130909)",
 
     "Suika":
-        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.2), transparent 38%), linear-gradient(135deg,#07130b,#09100b)",
+        "radial-gradient(circle at 50% 30%,rgba(34,197,94,.20),transparent 38%),linear-gradient(135deg,#07130b,#09100b)",
 
     "Cookie Clicker":
-        "radial-gradient(circle at 50% 30%, rgba(161,98,7,.25), transparent 38%), linear-gradient(135deg,#140e06,#100b08)",
+        "radial-gradient(circle at 50% 30%,rgba(161,98,7,.25),transparent 38%),linear-gradient(135deg,#140e06,#100b08)",
 
     "Moto X3M":
-        "radial-gradient(circle at 50% 30%, rgba(249,115,22,.28), transparent 38%), linear-gradient(135deg,#170c06,#100b0a)",
+        "radial-gradient(circle at 50% 30%,rgba(249,115,22,.28),transparent 38%),linear-gradient(135deg,#170c06,#100b0a)",
 
     "8 Ball Pool":
-        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.18), transparent 38%), linear-gradient(135deg,#06100b,#070c09)",
+        "radial-gradient(circle at 50% 30%,rgba(34,197,94,.18),transparent 38%),linear-gradient(135deg,#06100b,#070c09)",
 
     "Snake":
-        "radial-gradient(circle at 50% 30%, rgba(22,163,74,.2), transparent 38%), linear-gradient(135deg,#061109,#080d09)",
+        "radial-gradient(circle at 50% 30%,rgba(22,163,74,.20),transparent 38%),linear-gradient(135deg,#061109,#080d09)",
 
     "OvO":
-        "radial-gradient(circle at 50% 30%, rgba(99,102,241,.28), transparent 38%), linear-gradient(135deg,#08091a,#0b0817)",
+        "radial-gradient(circle at 50% 30%,rgba(99,102,241,.28),transparent 38%),linear-gradient(135deg,#08091a,#0b0817)",
 
     "Fireboy and Watergirl":
-        "radial-gradient(circle at 50% 30%, rgba(239,68,68,.22), transparent 38%), linear-gradient(135deg,#170808,#080d18)",
+        "radial-gradient(circle at 50% 30%,rgba(239,68,68,.22),transparent 38%),linear-gradient(135deg,#170808,#080d18)",
 
     "Penalty Kick Online":
-        "radial-gradient(circle at 50% 30%, rgba(34,197,94,.2), transparent 38%), linear-gradient(135deg,#061109,#080d0a)",
+        "radial-gradient(circle at 50% 30%,rgba(34,197,94,.20),transparent 38%),linear-gradient(135deg,#061109,#080d0a)",
 
     "Eggy Car":
-        "radial-gradient(circle at 50% 30%, rgba(250,204,21,.2), transparent 38%), linear-gradient(135deg,#171306,#110c07)",
+        "radial-gradient(circle at 50% 30%,rgba(250,204,21,.20),transparent 38%),linear-gradient(135deg,#171306,#110c07)",
 
     "WorldGuessr":
-        "radial-gradient(circle at 50% 30%, rgba(37,99,235,.24), transparent 38%), linear-gradient(135deg,#070c18,#0c0716)"
+        "radial-gradient(circle at 50% 30%,rgba(37,99,235,.24),transparent 38%),linear-gradient(135deg,#070c18,#0c0716)"
 };
 
+const background =
+    document.getElementById("background");
 
 games.forEach(game => {
 
@@ -2593,45 +2444,33 @@ games.forEach(game => {
                     game.dataset.name
                 ];
 
-
             if (color) {
 
                 background.style.background =
                     color;
-
             }
-
         }
     );
-
 });
 
-
-/* =========================================
-   ENTER SCREEN + MUSIC
-========================================= */
+/* =========================
+   ENTER + MUSIC
+========================= */
 
 const enterScreen =
-document.getElementById(
-    "enterScreen"
-);
+    document.getElementById(
+        "enterScreen"
+    );
 
 const enterButton =
-document.getElementById(
-    "enterButton"
-);
+    document.getElementById(
+        "enterButton"
+    );
 
 const musicButton =
-document.getElementById(
-    "musicButton"
-);
-
-
-/*
-    YouTube videos:
-    85wZGRcHHAc
-    -5CTaDGlhZU
-*/
+    document.getElementById(
+        "musicButton"
+    );
 
 let player;
 
@@ -2642,22 +2481,19 @@ const songs = [
     "-5CTaDGlhZU"
 ];
 
-let musicStarted = false;
 let musicOn = true;
 
-
-/* Load YouTube API */
+/* LOAD YOUTUBE API */
 
 const tag =
-document.createElement("script");
+    document.createElement("script");
 
 tag.src =
-"https://www.youtube.com/iframe_api";
+    "https://www.youtube.com/iframe_api";
 
 document.head.appendChild(tag);
 
-
-/* YouTube creates this automatically */
+/* CREATE PLAYER */
 
 function onYouTubeIframeAPIReady() {
 
@@ -2665,6 +2501,7 @@ function onYouTubeIframeAPIReady() {
         new YT.Player(
             "youtubePlayer",
             {
+
                 height: "1",
                 width: "1",
 
@@ -2672,12 +2509,13 @@ function onYouTubeIframeAPIReady() {
                     songs[currentSong],
 
                 playerVars: {
+
                     autoplay: 0,
                     controls: 0,
-                    loop: 1,
-                    playlist:
-                        songs[currentSong],
-                    playsinline: 1
+                    playsinline: 1,
+
+                    origin:
+                        window.location.origin
                 },
 
                 events: {
@@ -2685,17 +2523,19 @@ function onYouTubeIframeAPIReady() {
                     onReady:
                         function() {
 
-                            player.setVolume(35);
+                            player.setVolume(
+                                35
+                            );
+                        },
 
-                        }
-
+                    onStateChange:
+                        onPlayerStateChange
                 }
-
             }
         );
-
 }
 
+/* ENTER */
 
 enterButton.addEventListener(
     "click",
@@ -2705,23 +2545,17 @@ enterButton.addEventListener(
             "hide"
         );
 
-
         if (
             player &&
             player.playVideo
         ) {
 
             player.playVideo();
-
-            musicStarted = true;
-
         }
-
     }
 );
 
-
-/* Music button */
+/* MUSIC BUTTON */
 
 musicButton.addEventListener(
     "click",
@@ -2729,7 +2563,6 @@ musicButton.addEventListener(
 
         if (!player)
             return;
-
 
         if (musicOn) {
 
@@ -2748,17 +2581,11 @@ musicButton.addEventListener(
                 "🎵";
 
             musicOn = true;
-
         }
-
     }
 );
 
-
-/* =========================================
-   SWITCH SONG EVERY TIME THE CURRENT ONE
-   ENDS
-========================================= */
+/* SONG ROTATION */
 
 function onPlayerStateChange(event) {
 
@@ -2773,32 +2600,21 @@ function onPlayerStateChange(event) {
             currentSong >=
             songs.length
         ) {
-
             currentSong = 0;
-
         }
-
 
         player.loadVideoById(
             songs[currentSong]
         );
-
     }
-
 }
 
+/* MOBILE */
 
-/* =========================================
-   MOBILE
-========================================= */
-
-if (
-    window.innerWidth <= 700
-) {
+if (window.innerWidth <= 700) {
 
     document.body.style.cursor =
         "default";
-
 }
 
 </script>
