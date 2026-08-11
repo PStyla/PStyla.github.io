@@ -8,6 +8,11 @@
 <title>PStyla Games</title>
 
 <style>
+
+/* =========================================================
+   PSTYLA GAMES
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -31,20 +36,27 @@ body {
     cursor: none;
 }
 
-/* =========================
+
+/* =========================================================
    CUSTOM CURSOR
-========================= */
+   ========================================================= */
 
 .cursor {
     position: fixed;
     width: 18px;
     height: 18px;
+
     border: 2px solid #c084fc;
     border-radius: 50%;
+
     pointer-events: none;
     z-index: 99999;
+
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(168,85,247,.8);
+
+    box-shadow:
+        0 0 15px rgba(168,85,247,.8);
+
     transition:
         width .15s ease,
         height .15s ease,
@@ -53,29 +65,38 @@ body {
 
 .cursor-dot {
     position: fixed;
+
     width: 5px;
     height: 5px;
+
     background: white;
     border-radius: 50%;
+
     pointer-events: none;
     z-index: 100000;
+
     transform: translate(-50%, -50%);
 }
 
 .cursor.big {
     width: 38px;
     height: 38px;
-    background: rgba(168,85,247,.14);
+
+    background:
+        rgba(168,85,247,.14);
 }
 
-/* =========================
+
+/* =========================================================
    FLOWING WATER BACKGROUND
-========================= */
+   ========================================================= */
 
 .background {
     position: fixed;
     inset: 0;
+
     z-index: -5;
+
     overflow: hidden;
 
     background:
@@ -84,11 +105,13 @@ body {
             rgba(168,85,247,.20),
             transparent 45%
         ),
+
         radial-gradient(
             ellipse at 75% 65%,
             rgba(217,70,239,.14),
             transparent 42%
         ),
+
         linear-gradient(
             135deg,
             #050507,
@@ -96,12 +119,14 @@ body {
             #08070d
         );
 
-    transition: background 1.2s ease;
+    transition:
+        background 1.2s ease;
 }
 
 .background::before,
 .background::after {
     content: "";
+
     position: absolute;
 
     width: 160%;
@@ -113,12 +138,15 @@ body {
     border-radius: 50%;
 
     filter: blur(35px);
+
     opacity: .45;
 
     transform: rotate(-8deg);
 
     animation:
-        waterFlow 13s ease-in-out infinite alternate;
+        waterFlow
+        13s ease-in-out
+        infinite alternate;
 }
 
 .background::before {
@@ -135,13 +163,17 @@ body {
 
 .background::after {
     top: 35%;
+
     opacity: .25;
 
     animation:
-        waterFlow2 17s ease-in-out infinite alternate;
+        waterFlow2
+        17s ease-in-out
+        infinite alternate;
 }
 
 @keyframes waterFlow {
+
     0% {
         transform:
             translateX(-8%)
@@ -168,6 +200,7 @@ body {
 }
 
 @keyframes waterFlow2 {
+
     0% {
         transform:
             translateX(10%)
@@ -185,15 +218,20 @@ body {
     }
 }
 
-/* =========================
+
+/* =========================================================
    PARTICLES
-========================= */
+   ========================================================= */
 
 .particles {
     position: fixed;
+
     inset: 0;
+
     z-index: -4;
+
     pointer-events: none;
+
     overflow: hidden;
 }
 
@@ -215,7 +253,8 @@ body {
         0 0 8px rgba(168,85,247,.65),
         0 0 18px rgba(217,70,239,.25);
 
-    opacity: var(--opacity);
+    opacity:
+        var(--opacity);
 
     animation:
         particleFlow
@@ -228,6 +267,7 @@ body {
 }
 
 @keyframes particleFlow {
+
     0% {
         transform:
             translate3d(-80px,80px,0)
@@ -237,7 +277,8 @@ body {
     }
 
     10% {
-        opacity: var(--opacity);
+        opacity:
+            var(--opacity);
     }
 
     50% {
@@ -247,7 +288,8 @@ body {
     }
 
     80% {
-        opacity: var(--opacity);
+        opacity:
+            var(--opacity);
     }
 
     100% {
@@ -259,64 +301,245 @@ body {
     }
 }
 
-/* =========================
-   ENTER SCREEN
-========================= */
+
+/* =========================================================
+   NEW ANIMATED INTRO
+   ========================================================= */
 
 .enter-screen {
     position: fixed;
+
     inset: 0;
+
     z-index: 50000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background:
         radial-gradient(
             circle at center,
-            #24113a,
-            #050507 70%
+            #24113a 0%,
+            #10091a 35%,
+            #050507 75%
         );
 
+    overflow: hidden;
+
     transition:
-        opacity .7s ease,
-        visibility .7s ease;
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.enter-screen::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168,85,247,.20),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    animation:
+        introGlow
+        6s ease-in-out
+        infinite alternate;
+}
+
+@keyframes introGlow {
+
+    0% {
+        transform:
+            scale(.8)
+            translate(-20px,10px);
+    }
+
+    100% {
+        transform:
+            scale(1.25)
+            translate(20px,-10px);
+    }
 }
 
 .enter-screen.hide {
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 }
 
 .enter-box {
+    position: relative;
+
+    z-index: 2;
+
     text-align: center;
+
+    width: min(90%, 700px);
 }
 
+
+/* MAIN TITLE */
+
 .enter-logo {
-    font-size: clamp(45px,9vw,90px);
+    font-family:
+        "Advercase Start FF",
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+    font-size:
+        clamp(55px,10vw,110px);
+
     font-weight: 1000;
-    letter-spacing: -5px;
+
+    letter-spacing:
+        -5px;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(.92);
+
+    animation:
+        introTitle
+        1.2s
+        cubic-bezier(.2,.8,.2,1)
+        .2s
+        forwards;
 
     text-shadow:
         0 0 15px rgba(168,85,247,.8),
-        0 0 45px rgba(168,85,247,.35);
+        0 0 45px rgba(168,85,247,.35),
+        0 0 90px rgba(217,70,239,.18);
 }
 
 .enter-logo span {
-    color: #a855f7;
+    color:
+        #a855f7;
 }
 
-.enter-sub {
-    color: #888;
-    font-size: 13px;
-    margin: 8px 0 28px;
-    letter-spacing: 2px;
+@keyframes introTitle {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.88);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
+
+
+/* WELCOME TEXT */
+
+.enter-message {
+    margin:
+        18px auto 0;
+
+    max-width:
+        590px;
+
+    color:
+        #b7b0c2;
+
+    font-size:
+        clamp(14px,2vw,17px);
+
+    line-height:
+        1.7;
+
+    opacity: 0;
+
+    transform:
+        translateY(18px);
+
+    animation:
+        introMessage
+        .9s
+        ease
+        1.15s
+        forwards;
+}
+
+@keyframes introMessage {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* UPDATE TEXT */
+
+.enter-update {
+    margin-top:
+        10px;
+
+    color:
+        #777;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        .5px;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        introMessage
+        .8s
+        ease
+        1.65s
+        forwards;
+}
+
+.enter-update span {
+    color:
+        #c084fc;
+
+    font-weight:
+        900;
+}
+
+
+/* ENTER BUTTON */
 
 .enter-button {
-    border: 1px solid #a855f7;
+    margin-top:
+        30px;
+
+    border:
+        1px solid #a855f7;
 
     background:
         linear-gradient(
@@ -325,21 +548,53 @@ body {
             #c026d3
         );
 
-    color: white;
+    color:
+        white;
 
-    padding: 14px 32px;
+    padding:
+        14px 32px;
 
-    border-radius: 8px;
+    border-radius:
+        8px;
 
-    font-size: 14px;
-    font-weight: 900;
+    font-size:
+        14px;
 
-    cursor: none;
+    font-weight:
+        900;
+
+    cursor:
+        none;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        introButton
+        .8s
+        cubic-bezier(.2,.8,.2,1)
+        2.05s
+        forwards;
 
     box-shadow:
-        0 0 30px rgba(139,92,246,.25);
+        0 0 30px
+        rgba(139,92,246,.25);
 
-    transition: .25s ease;
+    transition:
+        .25s ease;
+}
+
+@keyframes introButton {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
 }
 
 .enter-button:hover {
@@ -348,65 +603,96 @@ body {
         translateY(-3px);
 
     box-shadow:
-        0 0 45px rgba(168,85,247,.55);
+        0 0 45px
+        rgba(168,85,247,.55);
 }
 
-/* =========================
+
+/* =========================================================
    HEADER
-========================= */
+   ========================================================= */
 
 header {
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 
     background:
         rgba(5,5,8,.72);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
 
     border-bottom:
         1px solid rgba(255,255,255,.07);
 }
 
 .nav {
-    max-width: 1400px;
-    margin: auto;
+    max-width:
+        1400px;
 
-    min-height: 72px;
+    margin:
+        auto;
 
-    padding: 0 28px;
+    min-height:
+        72px;
 
-    display: flex;
-    align-items: center;
-    gap: 25px;
+    padding:
+        0 28px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        25px;
 }
 
 .logo {
-    font-size: 25px;
-    font-weight: 1000;
-    white-space: nowrap;
+    font-size:
+        25px;
+
+    font-weight:
+        1000;
+
+    white-space:
+        nowrap;
 
     text-shadow:
-        0 0 18px rgba(168,85,247,.35);
+        0 0 18px
+        rgba(168,85,247,.35);
 }
 
 .logo span {
-    color: #a855f7;
+    color:
+        #a855f7;
 }
 
 .logo-mark {
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    width: 31px;
-    height: 31px;
+    width:
+        31px;
 
-    align-items: center;
-    justify-content: center;
+    height:
+        31px;
 
-    margin-right: 7px;
+    align-items:
+        center;
 
-    border-radius: 8px;
+    justify-content:
+        center;
+
+    margin-right:
+        7px;
+
+    border-radius:
+        8px;
 
     background:
         linear-gradient(
@@ -416,48 +702,71 @@ header {
         );
 
     box-shadow:
-        0 0 18px rgba(168,85,247,.35);
+        0 0 18px
+        rgba(168,85,247,.35);
 
-    font-size: 17px;
+    font-size:
+        17px;
 }
 
 .search {
-    flex: 1;
-    max-width: 520px;
+    flex:
+        1;
+
+    max-width:
+        520px;
 }
 
 .search input {
-    width: 100%;
+    width:
+        100%;
 
-    padding: 12px 16px;
+    padding:
+        12px 16px;
 
     border:
         1px solid #292932;
 
-    border-radius: 8px;
+    border-radius:
+        8px;
 
     background:
         rgba(20,20,27,.8);
 
-    color: white;
+    color:
+        white;
 
-    outline: none;
+    outline:
+        none;
 
-    cursor: none;
+    cursor:
+        none;
 }
 
 .search input:focus {
-    border-color: #8b5cf6;
+    border-color:
+        #8b5cf6;
 
     box-shadow:
-        0 0 20px rgba(139,92,246,.15);
+        0 0 20px
+        rgba(139,92,246,.15);
 }
 
 .music-control {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
 }
+
+
+/* =========================================================
+   TOP BUTTONS
+   ========================================================= */
 
 .music-button,
 .home-button {
@@ -467,20 +776,26 @@ header {
     background:
         #15151c;
 
-    color: white;
+    color:
+        white;
 
-    padding: 10px 13px;
+    padding:
+        10px 13px;
 
-    border-radius: 7px;
+    border-radius:
+        7px;
 
-    cursor: none;
+    cursor:
+        none;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .music-button:hover,
 .home-button:hover {
-    border-color: #8b5cf6;
+    border-color:
+        #8b5cf6;
 
     background:
         #21152f;
@@ -489,62 +804,238 @@ header {
         translateY(-2px);
 }
 
-/* =========================
+
+/* NEW TAB BUTTON */
+
+.new-tab-button {
+    position:
+        relative;
+
+    border:
+        1px solid #292932;
+
+    background:
+        #15151c;
+
+    color:
+        white;
+
+    padding:
+        10px 13px;
+
+    border-radius:
+        7px;
+
+    cursor:
+        none;
+
+    overflow:
+        hidden;
+
+    font-family:
+        inherit;
+
+    font-weight:
+        800;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* LIGHT SWEEP */
+
+.new-tab-button::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        -120%;
+
+    width:
+        80%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left .55s ease;
+}
+
+
+/* PURPLE GLOW */
+
+.new-tab-button::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        -5px;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #d946ef,
+            #8b5cf6
+        );
+
+    opacity:
+        0;
+
+    filter:
+        blur(12px);
+
+    z-index:
+        -1;
+
+    transition:
+        opacity .3s ease;
+}
+
+.new-tab-button:hover {
+    border-color:
+        #a855f7;
+
+    background:
+        linear-gradient(
+            135deg,
+            #21152f,
+            #16121e
+        );
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 18px
+        rgba(139,92,246,.3),
+
+        0 0 35px
+        rgba(217,70,239,.12);
+}
+
+.new-tab-button:hover::before {
+    left:
+        140%;
+}
+
+.new-tab-button:hover::after {
+    opacity:
+        .7;
+}
+
+.new-tab-button:active {
+    transform:
+        translateY(0)
+        scale(.96);
+}
+
+
+/* =========================================================
    MAIN
-========================= */
+   ========================================================= */
 
 main {
-    max-width: 1400px;
-    margin: auto;
+    max-width:
+        1400px;
+
+    margin:
+        auto;
 
     padding:
         34px 28px 80px;
 }
 
 .welcome {
-    margin-bottom: 20px;
+    margin-bottom:
+        20px;
 }
 
 .welcome-small {
-    color: #a855f7;
+    color:
+        #a855f7;
 
-    font-size: 11px;
-    font-weight: 900;
+    font-size:
+        11px;
 
-    letter-spacing: 2px;
+    font-weight:
+        900;
 
-    text-transform: uppercase;
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
 }
 
 .welcome h1 {
     font-size:
         clamp(30px,5vw,52px);
 
-    margin: 5px 0;
+    margin:
+        5px 0;
 
-    letter-spacing: -2px;
+    letter-spacing:
+        -2px;
 }
 
 .welcome p {
-    margin: 0;
-    color: #777;
+    margin:
+        0;
+
+    color:
+        #777;
 }
 
-/* =========================
+
+/* =========================================================
    FEATURED
-========================= */
+   ========================================================= */
 
 .featured {
-    position: relative;
+    position:
+        relative;
 
-    height: 310px;
+    height:
+        310px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    border-radius: 16px;
+    border-radius:
+        16px;
 
     border:
-        1px solid rgba(168,85,247,.35);
+        1px solid
+        rgba(168,85,247,.35);
 
     background:
         linear-gradient(
@@ -553,86 +1044,120 @@ main {
             rgba(16,12,23,.84)
         );
 
-    margin-bottom: 35px;
+    margin-bottom:
+        35px;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.45);
+        0 25px 70px
+        rgba(0,0,0,.45);
 
     backdrop-filter:
         blur(4px);
 }
 
 .featured::before {
-    content: "🐷";
+    content:
+        "🐷";
 
-    position: absolute;
+    position:
+        absolute;
 
-    right: 8%;
-    top: 15px;
+    right:
+        8%;
 
-    font-size: 190px;
+    top:
+        15px;
 
-    opacity: .16;
+    font-size:
+        190px;
 
-    filter: blur(.5px);
+    opacity:
+        .16;
 
-    transform: rotate(-8deg);
+    filter:
+        blur(.5px);
+
+    transform:
+        rotate(-8deg);
 }
 
 .featured-content {
-    position: relative;
-    z-index: 2;
+    position:
+        relative;
 
-    padding: 42px;
+    z-index:
+        2;
+
+    padding:
+        42px;
 }
 
 .featured-label {
-    color: #c084fc;
+    color:
+        #c084fc;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 }
 
 .featured h2 {
-    margin: 8px 0;
+    margin:
+        8px 0;
 
     font-size:
         clamp(35px,6vw,65px);
 
-    letter-spacing: -3px;
+    letter-spacing:
+        -3px;
 }
 
 .featured p {
-    max-width: 520px;
+    max-width:
+        520px;
 
-    color: #999;
+    color:
+        #999;
 
-    line-height: 1.5;
+    line-height:
+        1.5;
 }
 
 .featured-play {
-    display: inline-block;
+    display:
+        inline-block;
 
-    margin-top: 8px;
+    margin-top:
+        8px;
 
-    padding: 12px 22px;
+    padding:
+        12px 22px;
 
-    border-radius: 7px;
+    border-radius:
+        7px;
 
-    background: #8b5cf6;
+    background:
+        #8b5cf6;
 
-    color: white;
+    color:
+        white;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    cursor: none;
+    cursor:
+        none;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .featured-play:hover {
@@ -641,65 +1166,91 @@ main {
         scale(1.04);
 
     box-shadow:
-        0 12px 30px rgba(139,92,246,.35);
+        0 12px 30px
+        rgba(139,92,246,.35);
 }
 
-/* =========================
+
+/* =========================================================
    WATERMARK
-========================= */
+   ========================================================= */
 
 .watermark {
-    position: absolute;
+    position:
+        absolute;
 
-    right: 9px;
-    top: 9px;
+    right:
+        9px;
 
-    z-index: 20;
+    top:
+        9px;
 
-    font-size: 9px;
+    z-index:
+        20;
 
-    font-weight: 1000;
+    font-size:
+        9px;
 
-    letter-spacing: 1px;
+    font-weight:
+        1000;
+
+    letter-spacing:
+        1px;
 
     color:
         rgba(255,255,255,.65);
 
     text-shadow:
-        0 0 8px rgba(168,85,247,.8);
+        0 0 8px
+        rgba(168,85,247,.8);
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
-    transition: .25s ease;
+    transition:
+        .25s ease;
 }
 
 .game:hover .watermark {
-    color: white;
+    color:
+        white;
 
     text-shadow:
-        0 0 12px #a855f7;
+        0 0 12px
+        #a855f7;
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 }
 
-/* =========================
+
+/* =========================================================
    TOOLBAR
-========================= */
+   ========================================================= */
 
 .toolbar {
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: space-between;
+    align-items:
+        center;
 
-    gap: 15px;
+    justify-content:
+        space-between;
 
-    margin-bottom: 17px;
+    gap:
+        15px;
+
+    margin-bottom:
+        17px;
 }
 
 .toolbar h2 {
-    margin: 0;
-    font-size: 25px;
+    margin:
+        0;
+
+    font-size:
+        25px;
 }
 
 .random {
@@ -713,17 +1264,23 @@ main {
             #6d28d9
         );
 
-    color: white;
+    color:
+        white;
 
-    padding: 10px 16px;
+    padding:
+        10px 16px;
 
-    border-radius: 8px;
+    border-radius:
+        8px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    cursor: none;
+    cursor:
+        none;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .random:hover {
@@ -732,19 +1289,27 @@ main {
         rotate(-1deg);
 
     box-shadow:
-        0 10px 25px rgba(139,92,246,.3);
+        0 10px 25px
+        rgba(139,92,246,.3);
 }
 
-/* =========================
+
+/* =========================================================
    CATEGORIES
-========================= */
+   ========================================================= */
 
 .categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display:
+        flex;
 
-    margin-bottom: 25px;
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin-bottom:
+        25px;
 }
 
 .category {
@@ -754,48 +1319,63 @@ main {
     background:
         rgba(21,21,28,.75);
 
-    color: #999;
+    color:
+        #999;
 
-    padding: 9px 14px;
+    padding:
+        9px 14px;
 
-    border-radius: 7px;
+    border-radius:
+        7px;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    cursor: none;
+    cursor:
+        none;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .category:hover,
 .category.active {
-    background: #8b5cf6;
+    background:
+        #8b5cf6;
 
-    color: white;
+    color:
+        white;
 
-    border-color: #8b5cf6;
+    border-color:
+        #8b5cf6;
 
     transform:
         translateY(-2px);
 }
 
-/* =========================
+
+/* =========================================================
    GAME ROW
-========================= */
+   ========================================================= */
 
 .game-row {
-    display: flex;
+    display:
+        flex;
 
-    gap: 16px;
+    gap:
+        16px;
 
-    overflow-x: auto;
+    overflow-x:
+        auto;
 
     padding:
         8px 4px 22px;
 
-    scrollbar-width: thin;
+    scrollbar-width:
+        thin;
 
     scrollbar-color:
         #8b5cf6
@@ -803,29 +1383,38 @@ main {
 }
 
 .game-row::-webkit-scrollbar {
-    height: 5px;
+    height:
+        5px;
 }
 
 .game-row::-webkit-scrollbar-thumb {
-    background: #8b5cf6;
-    border-radius: 10px;
+    background:
+        #8b5cf6;
+
+    border-radius:
+        10px;
 }
 
-/* =========================
+
+/* =========================================================
    GAME CARDS
-========================= */
+   ========================================================= */
 
 .game {
-    position: relative;
+    position:
+        relative;
 
     flex:
         0 0 235px;
 
-    height: 300px;
+    height:
+        300px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
     border:
         1px solid #292932;
@@ -833,7 +1422,8 @@ main {
     background:
         rgba(17,17,23,.94);
 
-    cursor: none;
+    cursor:
+        none;
 
     transition:
         transform .28s cubic-bezier(.2,.8,.2,1),
@@ -853,22 +1443,31 @@ main {
         0 20px 45px rgba(0,0,0,.55),
         0 0 28px rgba(139,92,246,.18);
 
-    z-index: 10;
+    z-index:
+        10;
 }
 
 .thumbnail {
-    height: 205px;
+    height:
+        205px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    position: relative;
+    justify-content:
+        center;
 
-    overflow: hidden;
+    position:
+        relative;
 
-    font-size: 85px;
+    overflow:
+        hidden;
+
+    font-size:
+        85px;
 
     background:
         linear-gradient(
@@ -887,29 +1486,43 @@ main {
 }
 
 .thumbnail::before {
-    content: "";
+    content:
+        "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    width: 220px;
-    height: 220px;
+    width:
+        220px;
 
-    border-radius: 50%;
+    height:
+        220px;
+
+    border-radius:
+        50%;
 
     background:
         rgba(255,255,255,.08);
 
-    top: -100px;
-    right: -80px;
+    top:
+        -100px;
 
-    filter: blur(5px);
+    right:
+        -80px;
+
+    filter:
+        blur(5px);
 }
 
 .thumbnail::after {
-    content: "";
+    content:
+        "";
 
-    position: absolute;
-    inset: 0;
+    position:
+        absolute;
+
+    inset:
+        0;
 
     background:
         linear-gradient(
@@ -919,9 +1532,11 @@ main {
 }
 
 .info {
-    position: relative;
+    position:
+        relative;
 
-    height: 95px;
+    height:
+        95px;
 
     padding:
         13px 14px;
@@ -931,102 +1546,142 @@ main {
 }
 
 .game-name {
-    font-size: 17px;
+    font-size:
+        17px;
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 
-    margin-bottom: 5px;
+    margin-bottom:
+        5px;
 }
 
 .game-category {
-    color: #777;
+    color:
+        #777;
 
-    font-size: 10px;
+    font-size:
+        10px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 }
 
 .play {
-    position: absolute;
+    position:
+        absolute;
 
-    right: 13px;
-    bottom: 13px;
+    right:
+        13px;
 
-    padding: 7px 11px;
+    bottom:
+        13px;
 
-    border-radius: 5px;
+    padding:
+        7px 11px;
+
+    border-radius:
+        5px;
 
     background:
         #8b5cf6;
 
-    color: white;
+    color:
+        white;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    font-size: 10px;
+    font-size:
+        10px;
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 
-    cursor: none;
+    cursor:
+        none;
 
-    opacity: .85;
+    opacity:
+        .85;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .game:hover .play {
-    opacity: 1;
+    opacity:
+        1;
 
     box-shadow:
-        0 0 15px rgba(139,92,246,.5);
+        0 0 15px
+        rgba(139,92,246,.5);
 }
 
-/* =========================
+
+/* =========================================================
    SECTIONS
-========================= */
+   ========================================================= */
 
 .section {
-    margin-top: 45px;
+    margin-top:
+        45px;
 }
 
 .section-title {
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: space-between;
+    align-items:
+        center;
 
-    margin-bottom: 13px;
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        13px;
 }
 
 .section-title h2 {
-    margin: 0;
-    font-size: 22px;
+    margin:
+        0;
+
+    font-size:
+        22px;
 }
 
 .section-title span {
-    color: #666;
-    font-size: 11px;
+    color:
+        #666;
+
+    font-size:
+        11px;
 }
 
-/* =========================
+
+/* =========================================================
    ACHIEVEMENTS
-========================= */
+   ========================================================= */
 
 .achievements {
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
-    gap: 12px;
+    gap:
+        12px;
 }
 
 .achievement {
-    padding: 20px;
+    padding:
+        20px;
 
-    text-align: center;
+    text-align:
+        center;
 
     background:
         rgba(17,17,23,.85);
@@ -1034,101 +1689,147 @@ main {
     border:
         1px solid #25252d;
 
-    border-radius: 10px;
+    border-radius:
+        10px;
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
 .achievement:hover {
-    border-color: #8b5cf6;
+    border-color:
+        #8b5cf6;
 
     transform:
         translateY(-5px);
 
     box-shadow:
-        0 12px 30px rgba(0,0,0,.3);
+        0 12px 30px
+        rgba(0,0,0,.3);
 }
 
 .achievement-icon {
-    font-size: 30px;
+    font-size:
+        30px;
 }
 
 .achievement-name {
-    margin-top: 7px;
+    margin-top:
+        7px;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 }
 
 .achievement-desc {
-    color: #666;
+    color:
+        #666;
 
-    font-size: 10px;
+    font-size:
+        10px;
 
-    margin-top: 5px;
+    margin-top:
+        5px;
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-========================= */
+   ========================================================= */
 
 footer {
-    text-align: center;
+    text-align:
+        center;
 
-    padding: 35px;
+    padding:
+        35px;
 
-    color: #444;
+    color:
+        #444;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
     border-top:
         1px solid #17171d;
 }
 
 .hidden {
-    display: none !important;
+    display:
+        none !important;
 }
 
 .no-results {
-    display: none;
+    display:
+        none;
 
-    padding: 50px;
+    padding:
+        50px;
 
     border:
         1px dashed #292932;
 
-    border-radius: 10px;
+    border-radius:
+        10px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    color: #777;
+    color:
+        #777;
 }
 
-/* =========================
+
+/* =========================================================
    MOBILE
-========================= */
+   ========================================================= */
 
 @media(max-width:700px) {
 
     body {
-        cursor: default;
+        cursor:
+            default;
     }
 
     .cursor,
     .cursor-dot {
-        display: none;
+        display:
+            none;
     }
 
     .nav {
-        flex-wrap: wrap;
-        padding: 13px;
+        flex-wrap:
+            wrap;
+
+        padding:
+            13px;
     }
 
     .search {
-        order: 5;
-        flex-basis: 100%;
-        max-width: none;
+        order:
+            5;
+
+        flex-basis:
+            100%;
+
+        max-width:
+            none;
+    }
+
+    .music-control {
+        gap:
+            5px;
+    }
+
+    .new-tab-button {
+        padding:
+            9px 10px;
+
+        font-size:
+            11px;
     }
 
     main {
@@ -1137,20 +1838,26 @@ footer {
     }
 
     .featured {
-        height: 280px;
+        height:
+            280px;
     }
 
     .featured-content {
-        padding: 28px;
+        padding:
+            28px;
     }
 
     .game {
-        flex-basis: 190px;
-        height: 260px;
+        flex-basis:
+            190px;
+
+        height:
+            260px;
     }
 
     .thumbnail {
-        height: 175px;
+        height:
+            175px;
     }
 
     .achievements {
@@ -1162,50 +1869,113 @@ footer {
 @media(max-width:430px) {
 
     .achievements {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .game {
-        flex-basis: 180px;
+        flex-basis:
+            180px;
+    }
+
+    .logo {
+        font-size:
+            20px;
+    }
+
+    .music-button,
+    .home-button,
+    .new-tab-button {
+        padding:
+            8px 9px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- FLOWING BACKGROUND -->
-<div class="background" id="background"></div>
-<div class="particles" id="particles"></div>
 
-<!-- ENTER SCREEN -->
-<div class="enter-screen" id="enterScreen">
+<!-- =========================================================
+     BACKGROUND
+     ========================================================= -->
+
+<div
+    class="background"
+    id="background">
+</div>
+
+<div
+    class="particles"
+    id="particles">
+</div>
+
+
+<!-- =========================================================
+     ANIMATED INTRO
+     ========================================================= -->
+
+<div
+    class="enter-screen"
+    id="enterScreen">
 
     <div class="enter-box">
 
         <div class="enter-logo">
-            <span>P</span>Styla
+            <span>P</span>Styla Games
         </div>
 
-        <div class="enter-sub">
-            GAMES • MUSIC • PLAY
+        <div class="enter-message">
+
+            Hey 👋 thanks for choosing PStyla.
+
+            <br>
+
+            Enjoy our many games, discover
+            something new, and have fun.
+
+        </div>
+
+        <div class="enter-update">
+
+            ✨ New updates and games will arrive
+            every <span>1–2 weeks</span>.
+
         </div>
 
         <button
             class="enter-button"
             id="enterButton">
+
             🎮 ENTER PSTYLA
+
         </button>
 
     </div>
 
 </div>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
 
-<!-- HEADER -->
+<!-- =========================================================
+     CURSOR
+     ========================================================= -->
+
+<div
+    class="cursor"
+    id="cursor">
+</div>
+
+<div
+    class="cursor-dot"
+    id="cursorDot">
+</div>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
 <header>
 
 <div class="nav">
@@ -1221,6 +1991,7 @@ footer {
 
     </div>
 
+
     <div class="search">
 
         <input
@@ -1231,6 +2002,7 @@ footer {
 
     </div>
 
+
     <div class="music-control">
 
         <button
@@ -1239,10 +2011,24 @@ footer {
             🎵
         </button>
 
+
+        <!-- NEW TAB -->
+
+        <button
+            class="new-tab-button"
+            onclick="openNewPStylaTab()">
+
+            🪟 New Tab
+
+        </button>
+
+
         <button
             class="home-button"
             onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
             Home
+
         </button>
 
     </div>
@@ -1251,7 +2037,13 @@ footer {
 
 </header>
 
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
 <main>
+
 
 <!-- WELCOME -->
 
@@ -1270,6 +2062,7 @@ footer {
     </p>
 
 </div>
+
 
 <!-- FEATURED -->
 
@@ -1296,10 +2089,13 @@ footer {
             target="_blank"
             rel="noopener noreferrer"
             onclick="savePlayed('Iron Snout')">
+
             PLAY NOW
+
         </a>
 
     </div>
+
 
     <div class="watermark">
         PSTYLA™
@@ -1307,7 +2103,10 @@ footer {
 
 </div>
 
-<!-- GAMES -->
+
+<!-- =========================================================
+     GAME TOOLBAR
+     ========================================================= -->
 
 <div class="toolbar">
 
@@ -1318,10 +2117,13 @@ footer {
     <button
         class="random"
         id="randomButton">
+
         🎲 Surprise Me
+
     </button>
 
 </div>
+
 
 <!-- CATEGORIES -->
 
@@ -1371,561 +2173,719 @@ footer {
 
 </div>
 
-<div class="game-row" id="games">
 
-<!-- 1 -->
-<div class="game"
-data-name="Drift Boss"
-data-category="racing">
-
-<div class="thumbnail"
-style="--one:#ef4444;--two:#7f1d1d">
-🏎️
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Drift Boss
-</div>
-
-<div class="game-category">
-Racing
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-drift-boss"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Drift Boss')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 2 -->
-<div class="game"
-data-name="Iron Snout"
-data-category="action">
-
-<div class="thumbnail"
-style="--one:#ec4899;--two:#7c3aed">
-🐷
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Iron Snout
-</div>
-
-<div class="game-category">
-Action
-</div>
-
-<a
-class="play"
-href="https://topvaz.com/go/iron-snout/"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Iron Snout')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 3 -->
-<div class="game"
-data-name="Run 3"
-data-category="action">
-
-<div class="thumbnail"
-style="--one:#06b6d4;--two:#2563eb">
-🏃
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Run 3
-</div>
-
-<div class="game-category">
-Action
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-run-3"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Run 3')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 4 -->
-<div class="game"
-data-name="Papa's Freezeria"
-data-category="arcade">
-
-<div class="thumbnail"
-style="--one:#38bdf8;--two:#f472b6">
-🍦
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Papa's Freezeria
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-papas-freezeria"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Papa’s Freezeria')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 5 -->
-<div class="game"
-data-name="Tiny Fishing"
-data-category="arcade">
-
-<div class="thumbnail"
-style="--one:#0ea5e9;--two:#0369a1">
-🎣
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Tiny Fishing
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-tiny-fishing"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Tiny Fishing')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 6 -->
-<div class="game"
-data-name="Slice Master"
-data-category="arcade">
-
-<div class="thumbnail"
-style="--one:#f97316;--two:#dc2626">
-🔪
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Slice Master
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-slice-master"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Slice Master')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 7 -->
-<div class="game"
-data-name="Suika"
-data-category="puzzle">
-
-<div class="thumbnail"
-style="--one:#22c55e;--two:#16a34a">
-🍉
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Suika
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-suika-watermelon-game"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Suika')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 8 -->
-<div class="game"
-data-name="Cookie Clicker"
-data-category="arcade">
-
-<div class="thumbnail"
-style="--one:#a16207;--two:#451a03">
-🍪
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Cookie Clicker
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-cookie-clicker"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Cookie Clicker')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 9 -->
-<div class="game"
-data-name="Moto X3M"
-data-category="racing">
-
-<div class="thumbnail"
-style="--one:#f97316;--two:#dc2626">
-🏍️
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Moto X3M
-</div>
-
-<div class="game-category">
-Racing
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-moto-x3m"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Moto X3M')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 10 -->
-<div class="game"
-data-name="8 Ball Pool"
-data-category="sports">
-
-<div class="thumbnail"
-style="--one:#166534;--two:#052e16">
-🎱
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-8 Ball Pool
-</div>
-
-<div class="game-category">
-Sports
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-8-ball-pool"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('8 Ball Pool')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 11 -->
-<div class="game"
-data-name="Snake"
-data-category="arcade">
-
-<div class="thumbnail"
-style="--one:#16a34a;--two:#14532d">
-🐍
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Snake
-</div>
-
-<div class="game-category">
-Arcade
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-snake"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Snake')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 12 -->
-<div class="game"
-data-name="OvO"
-data-category="platformer">
-
-<div class="thumbnail"
-style="--one:#6366f1;--two:#312e81">
-🟣
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-OvO
-</div>
-
-<div class="game-category">
-Platformer
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-ovo"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('OvO')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 13 -->
-<div class="game"
-data-name="Fireboy and Watergirl"
-data-category="platformer">
-
-<div class="thumbnail"
-style="--one:#ef4444;--two:#2563eb">
-🔥
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Fireboy & Watergirl
-</div>
-
-<div class="game-category">
-Platformer
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Fireboy & Watergirl')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 14 -->
-<div class="game"
-data-name="Penalty Kick Online"
-data-category="sports">
-
-<div class="thumbnail"
-style="--one:#22c55e;--two:#15803d">
-⚽
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Penalty Kick Online
-</div>
-
-<div class="game-category">
-Sports
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-penalty-kick-online"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Penalty Kick Online')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 15 -->
-<div class="game"
-data-name="Eggy Car"
-data-category="racing">
-
-<div class="thumbnail"
-style="--one:#facc15;--two:#f97316">
-🥚
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-Eggy Car
-</div>
-
-<div class="game-category">
-Racing
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-eggy-car"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Eggy Car')">
-PLAY
-</a>
-
-</div>
-</div>
-
-<!-- 16 -->
-<div class="game"
-data-name="WorldGuessr"
-data-category="puzzle">
-
-<div class="thumbnail"
-style="--one:#2563eb;--two:#7c3aed">
-🌎
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">
-WorldGuessr
-</div>
-
-<div class="game-category">
-Puzzle
-</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-worldguessr"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('WorldGuessr')">
-PLAY
-</a>
-
-</div>
-</div>
-
-</div>
+<!-- =========================================================
+     GAMES
+     ========================================================= -->
 
 <div
-class="no-results"
-id="noResults">
-😭 No games found.
+    class="game-row"
+    id="games">
+
+
+<!-- 1 -->
+
+<div
+    class="game"
+    data-name="Drift Boss"
+    data-category="racing">
+
+    <div
+        class="thumbnail"
+        style="--one:#ef4444;--two:#7f1d1d">
+        🏎️
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Drift Boss
+        </div>
+
+        <div class="game-category">
+            Racing
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-drift-boss"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Drift Boss')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
 </div>
 
-<!-- RECENTLY PLAYED -->
+
+<!-- 2 -->
+
+<div
+    class="game"
+    data-name="Iron Snout"
+    data-category="action">
+
+    <div
+        class="thumbnail"
+        style="--one:#ec4899;--two:#7c3aed">
+        🐷
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Iron Snout
+        </div>
+
+        <div class="game-category">
+            Action
+        </div>
+
+        <a
+            class="play"
+            href="https://topvaz.com/go/iron-snout/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Iron Snout')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div
+    class="game"
+    data-name="Run 3"
+    data-category="action">
+
+    <div
+        class="thumbnail"
+        style="--one:#06b6d4;--two:#2563eb">
+        🏃
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Run 3
+        </div>
+
+        <div class="game-category">
+            Action
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-run-3"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Run 3')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div
+    class="game"
+    data-name="Papa's Freezeria"
+    data-category="arcade">
+
+    <div
+        class="thumbnail"
+        style="--one:#38bdf8;--two:#f472b6">
+        🍦
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Papa's Freezeria
+        </div>
+
+        <div class="game-category">
+            Arcade
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-papas-freezeria"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Papa’s Freezeria')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div
+    class="game"
+    data-name="Tiny Fishing"
+    data-category="arcade">
+
+    <div
+        class="thumbnail"
+        style="--one:#0ea5e9;--two:#0369a1">
+        🎣
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Tiny Fishing
+        </div>
+
+        <div class="game-category">
+            Arcade
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-tiny-fishing"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Tiny Fishing')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div
+    class="game"
+    data-name="Slice Master"
+    data-category="arcade">
+
+    <div
+        class="thumbnail"
+        style="--one:#f97316;--two:#dc2626">
+        🔪
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Slice Master
+        </div>
+
+        <div class="game-category">
+            Arcade
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-slice-master"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Slice Master')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div
+    class="game"
+    data-name="Suika"
+    data-category="puzzle">
+
+    <div
+        class="thumbnail"
+        style="--one:#22c55e;--two:#16a34a">
+        🍉
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Suika
+        </div>
+
+        <div class="game-category">
+            Puzzle
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-suika-watermelon-game"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Suika')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div
+    class="game"
+    data-name="Cookie Clicker"
+    data-category="arcade">
+
+    <div
+        class="thumbnail"
+        style="--one:#a16207;--two:#451a03">
+        🍪
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Cookie Clicker
+        </div>
+
+        <div class="game-category">
+            Arcade
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-cookie-clicker"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Cookie Clicker')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 9 -->
+
+<div
+    class="game"
+    data-name="Moto X3M"
+    data-category="racing">
+
+    <div
+        class="thumbnail"
+        style="--one:#f97316;--two:#dc2626">
+        🏍️
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Moto X3M
+        </div>
+
+        <div class="game-category">
+            Racing
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-moto-x3m"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Moto X3M')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 10 -->
+
+<div
+    class="game"
+    data-name="8 Ball Pool"
+    data-category="sports">
+
+    <div
+        class="thumbnail"
+        style="--one:#166534;--two:#052e16">
+        🎱
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            8 Ball Pool
+        </div>
+
+        <div class="game-category">
+            Sports
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-8-ball-pool"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('8 Ball Pool')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 11 -->
+
+<div
+    class="game"
+    data-name="Snake"
+    data-category="arcade">
+
+    <div
+        class="thumbnail"
+        style="--one:#16a34a;--two:#14532d">
+        🐍
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Snake
+        </div>
+
+        <div class="game-category">
+            Arcade
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-snake"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Snake')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 12 -->
+
+<div
+    class="game"
+    data-name="OvO"
+    data-category="platformer">
+
+    <div
+        class="thumbnail"
+        style="--one:#6366f1;--two:#312e81">
+        🟣
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            OvO
+        </div>
+
+        <div class="game-category">
+            Platformer
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-ovo"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('OvO')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 13 -->
+
+<div
+    class="game"
+    data-name="Fireboy and Watergirl"
+    data-category="platformer">
+
+    <div
+        class="thumbnail"
+        style="--one:#ef4444;--two:#2563eb">
+        🔥
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Fireboy & Watergirl
+        </div>
+
+        <div class="game-category">
+            Platformer
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Fireboy & Watergirl')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 14 -->
+
+<div
+    class="game"
+    data-name="Penalty Kick Online"
+    data-category="sports">
+
+    <div
+        class="thumbnail"
+        style="--one:#22c55e;--two:#15803d">
+        ⚽
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Penalty Kick Online
+        </div>
+
+        <div class="game-category">
+            Sports
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-penalty-kick-online"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Penalty Kick Online')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 15 -->
+
+<div
+    class="game"
+    data-name="Eggy Car"
+    data-category="racing">
+
+    <div
+        class="thumbnail"
+        style="--one:#facc15;--two:#f97316">
+        🥚
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            Eggy Car
+        </div>
+
+        <div class="game-category">
+            Racing
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-eggy-car"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('Eggy Car')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- 16 -->
+
+<div
+    class="game"
+    data-name="WorldGuessr"
+    data-category="puzzle">
+
+    <div
+        class="thumbnail"
+        style="--one:#2563eb;--two:#7c3aed">
+        🌎
+    </div>
+
+    <div class="watermark">
+        PSTYLA™
+    </div>
+
+    <div class="info">
+
+        <div class="game-name">
+            WorldGuessr
+        </div>
+
+        <div class="game-category">
+            Puzzle
+        </div>
+
+        <a
+            class="play"
+            href="https://www.coolmathgames.com/0-worldguessr"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="savePlayed('WorldGuessr')">
+
+            PLAY
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<div
+    class="no-results"
+    id="noResults">
+
+    😭 No games found.
+
+</div>
+
+
+<!-- =========================================================
+     RECENTLY PLAYED
+     ========================================================= -->
 
 <section class="section">
 
@@ -1942,13 +2902,16 @@ Saved on this device
 </div>
 
 <div
-class="game-row"
-id="recentGames">
+    class="game-row"
+    id="recentGames">
 </div>
 
 </section>
 
-<!-- ACHIEVEMENTS -->
+
+<!-- =========================================================
+     ACHIEVEMENTS
+     ========================================================= -->
 
 <section class="section">
 
@@ -1978,6 +2941,7 @@ Play your first game
 
 </div>
 
+
 <div class="achievement">
 
 <div class="achievement-icon">
@@ -1994,6 +2958,7 @@ Play 5 different games
 
 </div>
 
+
 <div class="achievement">
 
 <div class="achievement-icon">
@@ -2009,6 +2974,7 @@ Use Surprise Me
 </div>
 
 </div>
+
 
 <div class="achievement">
 
@@ -2032,30 +2998,40 @@ Play every game
 
 </main>
 
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <footer>
 PStyla Games © 2026
 </footer>
 
-<!-- HIDDEN YOUTUBE PLAYER -->
+
+<!-- =========================================================
+     HIDDEN YOUTUBE PLAYER
+     ========================================================= -->
 
 <div
-id="youtubePlayer"
-style="
-position:fixed;
-width:1px;
-height:1px;
-left:-10px;
-bottom:-10px;
-opacity:0;
-pointer-events:none;
-">
+    id="youtubePlayer"
+    style="
+        position:fixed;
+        width:1px;
+        height:1px;
+        left:-10px;
+        bottom:-10px;
+        opacity:0;
+        pointer-events:none;
+    ">
 </div>
+
 
 <script>
 
-/* =========================
+
+/* =========================================================
    PARTICLES
-========================= */
+   ========================================================= */
 
 const particleContainer =
     document.getElementById("particles");
@@ -2103,9 +3079,10 @@ for (let i = 0; i < 110; i++) {
     );
 }
 
-/* =========================
+
+/* =========================================================
    CUSTOM CURSOR
-========================= */
+   ========================================================= */
 
 const cursor =
     document.getElementById("cursor");
@@ -2128,6 +3105,7 @@ document.addEventListener(
 
         cursorDot.style.top =
             e.clientY + "px";
+
     }
 );
 
@@ -2146,11 +3124,28 @@ document.querySelectorAll(
         () =>
             cursor.classList.remove("big")
     );
+
 });
 
-/* =========================
+
+/* =========================================================
+   NEW TAB
+   ========================================================= */
+
+function openNewPStylaTab() {
+
+    window.open(
+        window.location.href,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+/* =========================================================
    SEARCH
-========================= */
+   ========================================================= */
 
 const search =
     document.getElementById("search");
@@ -2164,7 +3159,8 @@ const categories =
 const noResults =
     document.getElementById("noResults");
 
-let currentCategory = "all";
+let currentCategory =
+    "all";
 
 function updateGames() {
 
@@ -2173,12 +3169,14 @@ function updateGames() {
         .toLowerCase()
         .trim();
 
-    let visible = 0;
+    let visible =
+        0;
 
     games.forEach(game => {
 
         const name =
-            game.dataset.name.toLowerCase();
+            game.dataset.name
+            .toLowerCase();
 
         const category =
             game.dataset.category;
@@ -2206,7 +3204,9 @@ function updateGames() {
             game.classList.add(
                 "hidden"
             );
+
         }
+
     });
 
     noResults.style.display =
@@ -2220,9 +3220,10 @@ search.addEventListener(
     updateGames
 );
 
-/* =========================
+
+/* =========================================================
    CATEGORIES
-========================= */
+   ========================================================= */
 
 categories.forEach(button => {
 
@@ -2245,13 +3246,16 @@ categories.forEach(button => {
                 button.dataset.category;
 
             updateGames();
+
         }
     );
+
 });
 
-/* =========================
+
+/* =========================================================
    RECENTLY PLAYED
-========================= */
+   ========================================================= */
 
 function savePlayed(name) {
 
@@ -2280,6 +3284,7 @@ function savePlayed(name) {
     loadRecent();
 }
 
+
 function loadRecent() {
 
     const container =
@@ -2294,7 +3299,8 @@ function loadRecent() {
             ) || "[]"
         );
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
     recent.forEach(name => {
 
@@ -2317,14 +3323,17 @@ function loadRecent() {
         container.appendChild(
             clone
         );
+
     });
+
 }
 
 loadRecent();
 
-/* =========================
+
+/* =========================================================
    RANDOM GAME
-========================= */
+   ========================================================= */
 
 document
 .getElementById("randomButton")
@@ -2352,8 +3361,11 @@ document
             ];
 
         chosen.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
+            behavior:
+                "smooth",
+
+            block:
+                "center"
         });
 
         chosen.style.boxShadow =
@@ -2372,12 +3384,14 @@ document
         savePlayed(
             chosen.dataset.name
         );
+
     }
 );
 
-/* =========================
+
+/* =========================================================
    GAME BACKGROUND COLOURS
-========================= */
+   ========================================================= */
 
 const gameColors = {
 
@@ -2430,8 +3444,11 @@ const gameColors = {
         "radial-gradient(circle at 50% 30%,rgba(37,99,235,.24),transparent 38%),linear-gradient(135deg,#070c18,#0c0716)"
 };
 
+
 const background =
-    document.getElementById("background");
+    document.getElementById(
+        "background"
+    );
 
 games.forEach(game => {
 
@@ -2448,14 +3465,18 @@ games.forEach(game => {
 
                 background.style.background =
                     color;
+
             }
+
         }
     );
+
 });
 
-/* =========================
+
+/* =========================================================
    ENTER + MUSIC
-========================= */
+   ========================================================= */
 
 const enterScreen =
     document.getElementById(
@@ -2474,26 +3495,38 @@ const musicButton =
 
 let player;
 
-let currentSong = 0;
+let currentSong =
+    0;
 
 const songs = [
     "85wZGRcHHAc",
     "-5CTaDGlhZU"
 ];
 
-let musicOn = true;
+let musicOn =
+    true;
 
-/* LOAD YOUTUBE API */
+
+/* =========================================================
+   LOAD YOUTUBE API
+   ========================================================= */
 
 const tag =
-    document.createElement("script");
+    document.createElement(
+        "script"
+    );
 
 tag.src =
     "https://www.youtube.com/iframe_api";
 
-document.head.appendChild(tag);
+document.head.appendChild(
+    tag
+);
 
-/* CREATE PLAYER */
+
+/* =========================================================
+   CREATE PLAYER
+   ========================================================= */
 
 function onYouTubeIframeAPIReady() {
 
@@ -2502,20 +3535,29 @@ function onYouTubeIframeAPIReady() {
             "youtubePlayer",
             {
 
-                height: "1",
-                width: "1",
+                height:
+                    "1",
+
+                width:
+                    "1",
 
                 videoId:
                     songs[currentSong],
 
                 playerVars: {
 
-                    autoplay: 0,
-                    controls: 0,
-                    playsinline: 1,
+                    autoplay:
+                        0,
+
+                    controls:
+                        0,
+
+                    playsinline:
+                        1,
 
                     origin:
                         window.location.origin
+
                 },
 
                 events: {
@@ -2526,16 +3568,22 @@ function onYouTubeIframeAPIReady() {
                             player.setVolume(
                                 35
                             );
+
                         },
 
                     onStateChange:
                         onPlayerStateChange
+
                 }
+
             }
         );
 }
 
-/* ENTER */
+
+/* =========================================================
+   ENTER PSTYLA
+   ========================================================= */
 
 enterButton.addEventListener(
     "click",
@@ -2551,11 +3599,16 @@ enterButton.addEventListener(
         ) {
 
             player.playVideo();
+
         }
+
     }
 );
 
-/* MUSIC BUTTON */
+
+/* =========================================================
+   MUSIC BUTTON
+   ========================================================= */
 
 musicButton.addEventListener(
     "click",
@@ -2571,7 +3624,8 @@ musicButton.addEventListener(
             musicButton.textContent =
                 "🔇";
 
-            musicOn = false;
+            musicOn =
+                false;
 
         } else {
 
@@ -2580,12 +3634,18 @@ musicButton.addEventListener(
             musicButton.textContent =
                 "🎵";
 
-            musicOn = true;
+            musicOn =
+                true;
+
         }
+
     }
 );
 
-/* SONG ROTATION */
+
+/* =========================================================
+   SONG ROTATION
+   ========================================================= */
 
 function onPlayerStateChange(event) {
 
@@ -2600,21 +3660,32 @@ function onPlayerStateChange(event) {
             currentSong >=
             songs.length
         ) {
-            currentSong = 0;
+
+            currentSong =
+                0;
+
         }
 
         player.loadVideoById(
             songs[currentSong]
         );
+
     }
+
 }
 
-/* MOBILE */
 
-if (window.innerWidth <= 700) {
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+if (
+    window.innerWidth <= 700
+) {
 
     document.body.style.cursor =
         "default";
+
 }
 
 </script>
