@@ -1,1742 +1,1090 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PStyla Games</title>
-
-<style>
-*{box-sizing:border-box}
-
-:root{
---accent:#9b5cff;
---accent2:#d946ef;
-}
-
-html{scroll-behavior:smooth}
-
-body{
-margin:0;
-background:#050507;
-color:white;
-font-family:Arial,Helvetica,sans-serif;
-overflow-x:hidden;
-cursor:none;
-}
-
-/* =========================
-   WATER / 0 GRAVITY BG
-========================= */
-
-.background{
-position:fixed;
-inset:0;
-z-index:-5;
-overflow:hidden;
-background:
-radial-gradient(ellipse at 20% 30%,rgba(139,92,246,.22),transparent 45%),
-radial-gradient(ellipse at 80% 70%,rgba(217,70,239,.16),transparent 45%),
-linear-gradient(135deg,#050507,#100817,#07060c);
-}
-
-.background:before,
-.background:after{
-content:"";
-position:absolute;
-width:180%;
-height:75%;
-left:-40%;
-border-radius:50%;
-filter:blur(45px);
-opacity:.45;
-}
-
-.background:before{
-top:5%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(139,92,246,.15),
-rgba(217,70,239,.22),
-rgba(96,165,250,.12),
-transparent
-);
-animation:water1 16s ease-in-out infinite alternate;
-}
-
-.background:after{
-top:35%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(96,165,250,.12),
-rgba(168,85,247,.18),
-transparent
-);
-animation:water2 21s ease-in-out infinite alternate;
-}
-
-@keyframes water1{
-0%{transform:translate(-8%,5%) rotate(-8deg) scaleY(.8)}
-50%{transform:translate(7%,-8%) rotate(-2deg) scaleY(1.1)}
-100%{transform:translate(14%,7%) rotate(-10deg) scaleY(.9)}
-}
-
-@keyframes water2{
-0%{transform:translate(12%,-5%) rotate(6deg) scaleY(.9)}
-100%{transform:translate(-15%,9%) rotate(-3deg) scaleY(1.2)}
-}
-
-/* FLOATING PARTICLES */
-
-.particles{
-position:fixed;
-inset:0;
-z-index:-4;
-pointer-events:none;
-overflow:hidden;
-}
-
-.particle{
-position:absolute;
-width:var(--size);
-height:var(--size);
-left:var(--x);
-top:var(--y);
-border-radius:50%;
-background:rgba(216,180,254,.7);
-box-shadow:0 0 10px rgba(168,85,247,.7);
-animation:float var(--duration) linear infinite;
-animation-delay:var(--delay);
-}
-
-@keyframes float{
-0%{
-transform:translate3d(-80px,80px,0);
-opacity:0;
-}
-15%{opacity:var(--opacity)}
-50%{
-transform:translate3d(25vw,-20vh,0);
-}
-80%{opacity:var(--opacity)}
-100%{
-transform:translate3d(110vw,15vh,0);
-opacity:0;
-}
-}
-
-/* =========================
-   CURSOR
-========================= */
-
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
-border:2px solid #c084fc;
-border-radius:50%;
-pointer-events:none;
-z-index:99999;
-transform:translate(-50%,-50%);
-box-shadow:0 0 15px rgba(168,85,247,.8);
-transition:.15s ease;
-}
-
-.cursor-dot{
-position:fixed;
-width:5px;
-height:5px;
-background:white;
-border-radius:50%;
-pointer-events:none;
-z-index:100000;
-transform:translate(-50%,-50%);
-}
-
-.cursor.big{
-width:38px;
-height:38px;
-background:rgba(168,85,247,.14);
-}
-
-/* =========================
-   INTRO
-========================= */
-
-.enter-screen{
-position:fixed;
-inset:0;
-z-index:50000;
-display:flex;
-align-items:center;
-justify-content:center;
-background:
-radial-gradient(circle at center,#24113a,#10091a 40%,#050507 80%);
-transition:opacity .8s ease,visibility .8s ease;
-}
-
-.enter-screen.hide{
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-}
-
-.enter-box{
-text-align:center;
-width:min(90%,700px);
-}
-
-.enter-logo{
-font-family:"Advercase Start FF",Impact,"Arial Black",sans-serif;
-font-size:clamp(55px,10vw,110px);
-font-weight:1000;
-letter-spacing:-5px;
-opacity:0;
-transform:translateY(25px) scale(.92);
-animation:introTitle 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards;
-text-shadow:
-0 0 15px rgba(168,85,247,.8),
-0 0 45px rgba(168,85,247,.35),
-0 0 90px rgba(217,70,239,.18);
-}
-
-.enter-logo span{color:#a855f7}
-
-@keyframes introTitle{
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-}
-
-.enter-message{
-margin:18px auto 0;
-max-width:590px;
-color:#b7b0c2;
-font-size:clamp(14px,2vw,17px);
-line-height:1.7;
-opacity:0;
-transform:translateY(18px);
-animation:fadeUp .9s ease 1.15s forwards;
-}
-
-.enter-update{
-margin-top:10px;
-color:#777;
-font-size:12px;
-letter-spacing:.5px;
-opacity:0;
-transform:translateY(15px);
-animation:fadeUp .8s ease 1.65s forwards;
-}
-
-.enter-update span{
-color:#c084fc;
-font-weight:900;
-}
-
-@keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.enter-button{
-margin-top:30px;
-border:1px solid #a855f7;
-background:linear-gradient(135deg,#8b5cf6,#c026d3);
-color:white;
-padding:14px 32px;
-border-radius:8px;
-font-weight:900;
-cursor:none;
-opacity:0;
-transform:translateY(20px);
-animation:fadeUp .8s cubic-bezier(.2,.8,.2,1) 2.05s forwards;
-box-shadow:0 0 30px rgba(139,92,246,.25);
-transition:.25s ease;
-}
-
-.enter-button:hover{
-transform:scale(1.07) translateY(-3px);
-box-shadow:0 0 45px rgba(168,85,247,.55);
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(5,5,8,.72);
-backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.nav{
-max-width:1400px;
-margin:auto;
-min-height:72px;
-padding:0 28px;
-display:flex;
-align-items:center;
-gap:25px;
-}
-
-.logo{
-font-size:25px;
-font-weight:1000;
-white-space:nowrap;
-}
-
-.logo span{color:#a855f7}
-
-.logo-mark{
-display:inline-flex;
-width:31px;
-height:31px;
-align-items:center;
-justify-content:center;
-margin-right:7px;
-border-radius:8px;
-background:linear-gradient(135deg,#8b5cf6,#d946ef);
-box-shadow:0 0 18px rgba(168,85,247,.35);
-}
-
-.search{
-flex:1;
-max-width:520px;
-}
-
-.search input{
-width:100%;
-padding:12px 16px;
-border:1px solid #292932;
-border-radius:8px;
-background:rgba(20,20,27,.8);
-color:white;
-outline:none;
-cursor:none;
-}
-
-.search input:focus{
-border-color:#8b5cf6;
-box-shadow:0 0 20px rgba(139,92,246,.15);
-}
-
-.music-control{
-display:flex;
-gap:8px;
-}
-
-.music-button,
-.home-button,
-.new-tab-button{
-border:1px solid #292932;
-background:#15151c;
-color:white;
-padding:10px 13px;
-border-radius:7px;
-cursor:none;
-transition:.2s ease;
-}
-
-.music-button:hover,
-.home-button:hover,
-.new-tab-button:hover{
-border-color:#8b5cf6;
-background:#21152f;
-transform:translateY(-2px);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-main{
-max-width:1400px;
-margin:auto;
-padding:34px 28px 80px;
-}
-
-.welcome{
-margin-bottom:20px;
-}
-
-.welcome-small{
-color:#a855f7;
-font-size:11px;
-font-weight:900;
-letter-spacing:2px;
-text-transform:uppercase;
-}
-
-.welcome h1{
-font-size:clamp(30px,5vw,52px);
-margin:5px 0;
-letter-spacing:-2px;
-}
-
-.welcome p{
-margin:0;
-color:#777;
-}
-
-/* =========================
-   FEATURED
-========================= */
-
-.featured{
-position:relative;
-height:310px;
-overflow:hidden;
-border-radius:16px;
-border:1px solid rgba(168,85,247,.35);
-background:linear-gradient(120deg,rgba(36,19,59,.88),rgba(16,12,23,.84));
-margin-bottom:35px;
-box-shadow:0 25px 70px rgba(0,0,0,.45);
-}
-
-.featured:before{
-content:"🐷";
-position:absolute;
-right:8%;
-top:15px;
-font-size:190px;
-opacity:.16;
-}
-
-.featured-content{
-position:relative;
-z-index:2;
-padding:42px;
-}
-
-.featured-label{
-color:#c084fc;
-font-size:11px;
-font-weight:900;
-letter-spacing:2px;
-}
-
-.featured h2{
-margin:8px 0;
-font-size:clamp(35px,6vw,65px);
-letter-spacing:-3px;
-}
-
-.featured p{
-max-width:520px;
-color:#999;
-line-height:1.5;
-}
-
-.featured-play{
-display:inline-block;
-margin-top:8px;
-padding:12px 22px;
-border-radius:7px;
-background:#8b5cf6;
-color:white;
-text-decoration:none;
-font-weight:900;
-cursor:none;
-transition:.2s ease;
-}
-
-.featured-play:hover{
-transform:translateY(-3px) scale(1.04);
-box-shadow:0 12px 30px rgba(139,92,246,.35);
-}
-
-/* =========================
-   TOOLBAR
-========================= */
-
-.toolbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:17px;
-}
-
-.toolbar h2{margin:0}
-
-.random{
-border:1px solid #633bb4;
-background:linear-gradient(135deg,#8b5cf6,#6d28d9);
-color:white;
-padding:10px 16px;
-border-radius:8px;
-font-weight:900;
-cursor:none;
-}
-
-.random:hover{
-transform:translateY(-3px);
-box-shadow:0 10px 25px rgba(139,92,246,.3);
-}
-
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-bottom:25px;
-}
-
-.category{
-border:1px solid #292932;
-background:rgba(21,21,28,.75);
-color:#999;
-padding:9px 14px;
-border-radius:7px;
-font-size:12px;
-font-weight:900;
-cursor:none;
-transition:.2s ease;
-}
-
-.category:hover,
-.category.active{
-background:#8b5cf6;
-color:white;
-border-color:#8b5cf6;
-}
-
-/* =========================
-   GAMES
-========================= */
-
-.game-row{
-display:flex;
-gap:16px;
-overflow-x:auto;
-padding:8px 4px 22px;
-scrollbar-width:thin;
-scrollbar-color:#8b5cf6 transparent;
-}
-
-.game{
-position:relative;
-flex:0 0 235px;
-height:300px;
-overflow:hidden;
-border-radius:12px;
-border:1px solid #292932;
-background:rgba(17,17,23,.94);
-cursor:none;
-transition:.28s ease;
-}
-
-.game:hover{
-transform:translateY(-12px) scale(1.045);
-border-color:#a855f7;
-box-shadow:
-0 20px 45px rgba(0,0,0,.55),
-0 0 28px rgba(139,92,246,.18);
-z-index:10;
-}
-
-.thumbnail{
-height:205px;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-overflow:hidden;
-font-size:85px;
-background:linear-gradient(135deg,var(--one),var(--two));
-}
-
-.thumbnail:after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(transparent 30%,rgba(0,0,0,.55));
-}
-
-.watermark{
-position:absolute;
-right:9px;
-top:9px;
-z-index:20;
-font-size:9px;
-font-weight:1000;
-letter-spacing:1px;
-color:rgba(255,255,255,.65);
-}
-
-.info{
-height:95px;
-padding:13px 14px;
-background:rgba(14,14,19,.97);
-}
-
-.game-name{
-font-size:17px;
-font-weight:1000;
-margin-bottom:5px;
-}
-
-.game-category{
-color:#777;
-font-size:10px;
-font-weight:900;
-text-transform:uppercase;
-}
-
-.play{
-position:absolute;
-right:13px;
-bottom:13px;
-padding:7px 11px;
-border-radius:5px;
-background:#8b5cf6;
-color:white;
-text-decoration:none;
-font-size:10px;
-font-weight:1000;
-cursor:none;
-}
-
-.game:hover .play{
-box-shadow:0 0 15px rgba(139,92,246,.5);
-}
-
-.hidden{display:none!important}
-
-.no-results{
-display:none;
-padding:50px;
-border:1px dashed #292932;
-border-radius:10px;
-text-align:center;
-color:#777;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-.section{
-margin-top:45px;
-}
-
-.section-title{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:13px;
-}
-
-.section-title h2{margin:0}
-
-.section-title span{
-color:#666;
-font-size:11px;
-}
-
-/* =========================
-   ACHIEVEMENTS
-========================= */
-
-.achievements{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-}
-
-.achievement{
-padding:20px;
-text-align:center;
-background:rgba(17,17,23,.85);
-border:1px solid #25252d;
-border-radius:10px;
-transition:.2s ease;
-}
-
-.achievement:hover{
-border-color:#8b5cf6;
-transform:translateY(-5px);
-}
-
-.achievement-icon{font-size:30px}
-
-.achievement-name{
-margin-top:7px;
-font-size:13px;
-font-weight:1000;
-}
-
-.achievement-desc{
-color:#666;
-font-size:10px;
-margin-top:5px;
-}
-
-footer{
-text-align:center;
-padding:35px;
-color:#444;
-font-size:11px;
-border-top:1px solid #17171d;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:700px){
-
-body{cursor:default}
-
-.cursor,
-.cursor-dot{display:none}
-
-.nav{
-flex-wrap:wrap;
-padding:13px;
-}
-
-.search{
-order:5;
-flex-basis:100%;
-max-width:none;
-}
-
-main{
-padding:25px 15px 60px;
-}
-
-.featured{
-height:280px;
-}
-
-.featured-content{
-padding:28px;
-}
-
-.game{
-flex-basis:190px;
-height:260px;
-}
-
-.thumbnail{
-height:175px;
-}
-
-.achievements{
-grid-template-columns:repeat(2,1fr);
-}
-}
-
-@media(max-width:430px){
-
-.achievements{
-grid-template-columns:1fr;
-}
-
-.game{
-flex-basis:180px;
-}
-}
-</style>
-</head>
-
-<body>
-
-<div class="background" id="background"></div>
-<div class="particles" id="particles"></div>
-
-<!-- INTRO -->
-
-<div class="enter-screen" id="enterScreen">
-
-<div class="enter-box">
-
-<div class="enter-logo">
-<span>P</span>Styla Games
-</div>
-
-<div class="enter-message">
-Hey 👋 thanks for choosing PStyla.
-<br>
-Enjoy our many games, discover something new,
-and have fun.
-</div>
-
-<div class="enter-update">
-✨ New updates and games will arrive every
-<span>1–2 weeks</span>.
-</div>
-
-<button class="enter-button" id="enterButton">
-🎮 ENTER PSTYLA
-</button>
-
-</div>
-</div>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-
-<!-- HEADER -->
-
-<header>
-
-<div class="nav">
-
-<div class="logo">
-<span class="logo-mark">P</span>
-<span>PStyla</span> Games
-</div>
-
-<div class="search">
-<input id="search" type="search" placeholder="Search games...">
-</div>
-
-<div class="music-control">
-
-<button class="music-button" id="musicButton">🎵</button>
-
-<button class="new-tab-button" onclick="openNewPStylaTab()">
-🪟 New Tab
-</button>
-
-<button class="home-button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-Home
-</button>
-
-</div>
-
-</div>
-</header>
-
-<!-- MAIN -->
-
-<main>
-
-<div class="welcome">
-
-<div class="welcome-small">
-Welcome back
-</div>
-
-<h1>PStyla Games</h1>
-
-<p>Choose a game and get playing.</p>
-
-</div>
-
-<!-- FEATURED -->
-
-<div class="featured">
-
-<div class="featured-content">
-
-<div class="featured-label">
-🔥 GAME OF THE DAY
-</div>
-
-<h2>Iron Snout</h2>
-
-<p>
-A fast-paced action game where you fight off waves of enemies.
-</p>
-
-<a
-class="featured-play"
-href="https://topvaz.com/go/iron-snout/"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Iron Snout')">
-
-PLAY NOW
-
-</a>
-
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-</div>
-
-<!-- TOOLBAR -->
-
-<div class="toolbar">
-
-<h2>🎮 Games</h2>
-
-<button class="random" id="randomButton">
-🎲 Surprise Me
-</button>
-
-</div>
-
-<!-- CATEGORIES -->
-
-<div class="categories">
-
-<button class="category active" data-category="all">All</button>
-<button class="category" data-category="action">Action</button>
-<button class="category" data-category="arcade">Arcade</button>
-<button class="category" data-category="racing">Racing</button>
-<button class="category" data-category="sports">Sports</button>
-<button class="category" data-category="puzzle">Puzzle</button>
-<button class="category" data-category="platformer">Platformer</button>
-
-</div>
-
-<!-- GAMES -->
-
-<div class="game-row" id="games">
-
-<!-- DRIFT BOSS -->
-
-<div class="game" data-name="Drift Boss" data-category="racing">
-
-<div class="thumbnail" style="--one:#ef4444;--two:#7f1d1d">
-🏎️
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Drift Boss</div>
-<div class="game-category">Racing</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-drift-boss"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Drift Boss')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- IRON SNOUT -->
-
-<div class="game" data-name="Iron Snout" data-category="action">
-
-<div class="thumbnail" style="--one:#ec4899;--two:#7c3aed">
-🐷
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Iron Snout</div>
-<div class="game-category">Action</div>
-
-<a
-class="play"
-href="https://topvaz.com/go/iron-snout/"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Iron Snout')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- RUN 3 -->
-
-<div class="game" data-name="Run 3" data-category="action">
-
-<div class="thumbnail" style="--one:#06b6d4;--two:#2563eb">
-🏃
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Run 3</div>
-<div class="game-category">Action</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-run-3"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Run 3')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- PAPAS -->
-
-<div class="game" data-name="Papa's Freezeria" data-category="arcade">
-
-<div class="thumbnail" style="--one:#38bdf8;--two:#f472b6">
-🍦
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Papa's Freezeria</div>
-<div class="game-category">Arcade</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-papas-freezeria"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Papa’s Freezeria')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- TINY FISHING -->
-
-<div class="game" data-name="Tiny Fishing" data-category="arcade">
-
-<div class="thumbnail" style="--one:#0ea5e9;--two:#0369a1">
-🎣
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Tiny Fishing</div>
-<div class="game-category">Arcade</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-tiny-fishing"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Tiny Fishing')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- SLICE MASTER -->
-
-<div class="game" data-name="Slice Master" data-category="arcade">
-
-<div class="thumbnail" style="--one:#f97316;--two:#dc2626">
-🔪
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Slice Master</div>
-<div class="game-category">Arcade</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-slice-master"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Slice Master')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- SUIKA -->
-
-<div class="game" data-name="Suika" data-category="puzzle">
-
-<div class="thumbnail" style="--one:#22c55e;--two:#16a34a">
-🍉
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Suika</div>
-<div class="game-category">Puzzle</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-suika-watermelon-game"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Suika')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- COOKIE CLICKER -->
-
-<div class="game" data-name="Cookie Clicker" data-category="arcade">
-
-<div class="thumbnail" style="--one:#a16207;--two:#451a03">
-🍪
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Cookie Clicker</div>
-<div class="game-category">Arcade</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-cookie-clicker"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Cookie Clicker')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- MOTO X3M -->
-
-<div class="game" data-name="Moto X3M" data-category="racing">
-
-<div class="thumbnail" style="--one:#f97316;--two:#dc2626">
-🏍️
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Moto X3M</div>
-<div class="game-category">Racing</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-moto-x3m"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Moto X3M')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- 8 BALL -->
-
-<div class="game" data-name="8 Ball Pool" data-category="sports">
-
-<div class="thumbnail" style="--one:#166534;--two:#052e16">
-🎱
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">8 Ball Pool</div>
-<div class="game-category">Sports</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-8-ball-pool"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('8 Ball Pool')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- SNAKE -->
-
-<div class="game" data-name="Snake" data-category="arcade">
-
-<div class="thumbnail" style="--one:#16a34a;--two:#14532d">
-🐍
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Snake</div>
-<div class="game-category">Arcade</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-snake"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Snake')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- OVO -->
-
-<div class="game" data-name="OvO" data-category="platformer">
-
-<div class="thumbnail" style="--one:#6366f1;--two:#312e81">
-🟣
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">OvO</div>
-<div class="game-category">Platformer</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-ovo"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('OvO')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- FIREBOY -->
-
-<div class="game" data-name="Fireboy and Watergirl" data-category="platformer">
-
-<div class="thumbnail" style="--one:#ef4444;--two:#2563eb">
-🔥
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Fireboy & Watergirl</div>
-<div class="game-category">Platformer</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-fireboy-and-water-girl-forest-temple"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Fireboy & Watergirl')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- PENALTY -->
-
-<div class="game" data-name="Penalty Kick Online" data-category="sports">
-
-<div class="thumbnail" style="--one:#22c55e;--two:#15803d">
-⚽
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Penalty Kick Online</div>
-<div class="game-category">Sports</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-penalty-kick-online"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Penalty Kick Online')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- EGGY -->
-
-<div class="game" data-name="Eggy Car" data-category="racing">
-
-<div class="thumbnail" style="--one:#facc15;--two:#f97316">
-🥚
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">Eggy Car</div>
-<div class="game-category">Racing</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-eggy-car"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Eggy Car')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-<!-- WORLDGUESSR -->
-
-<div class="game" data-name="WorldGuessr" data-category="puzzle">
-
-<div class="thumbnail" style="--one:#2563eb;--two:#7c3aed">
-🌎
-</div>
-
-<div class="watermark">PSTYLA™</div>
-
-<div class="info">
-
-<div class="game-name">WorldGuessr</div>
-<div class="game-category">Puzzle</div>
-
-<a
-class="play"
-href="https://www.coolmathgames.com/0-worldguessr"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('WorldGuessr')">
-
-PLAY
-
-</a>
-
-</div>
-</div>
-
-</div>
-
-<div class="no-results" id="noResults">
-😭 No games found.
-</div>
-
-<!-- RECENT -->
-
-<section class="section">
-
-<div class="section-title">
-<h2>🕐 Recently Played</h2>
-<span>Saved on this device</span>
-</div>
-
-<div class="game-row" id="recentGames"></div>
-
-</section>
-
-<!-- ACHIEVEMENTS -->
-
-<section class="section">
-
-<div class="section-title">
-<h2>🏆 Achievements</h2>
-</div>
-
-<div class="achievements">
-
-<div class="achievement">
-<div class="achievement-icon">🎮</div>
-<div class="achievement-name">First Game</div>
-<div class="achievement-desc">Play your first game</div>
-</div>
-
-<div class="achievement">
-<div class="achievement-icon">🔥</div>
-<div class="achievement-name">Getting Addicted</div>
-<div class="achievement-desc">Play 5 different games</div>
-</div>
-
-<div class="achievement">
-<div class="achievement-icon">🎲</div>
-<div class="achievement-name">Lucky Player</div>
-<div class="achievement-desc">Use Surprise Me</div>
-</div>
-
-<div class="achievement">
-<div class="achievement-icon">🧭</div>
-<div class="achievement-name">Explorer</div>
-<div class="achievement-desc">Play every game</div>
-</div>
-
-</div>
-</section>
-
-</main>
-
-<footer>
-PStyla Games © 2026
-</footer>
-
 <script>
 
-/* PARTICLES */
-
-const particleContainer=document.getElementById("particles");
-
-for(let i=0;i<110;i++){
-
-const p=document.createElement("div");
-
-p.className="particle";
-
-p.style.setProperty("--x",Math.random()*100+"%");
-p.style.setProperty("--y",Math.random()*100+"%");
-p.style.setProperty("--size",(Math.random()*3+1)+"px");
-p.style.setProperty("--opacity",Math.random()*.65+.15);
-p.style.setProperty("--duration",(Math.random()*12+9)+"s");
-p.style.setProperty("--delay",-(Math.random()*15)+"s");
-
-particleContainer.appendChild(p);
-
-}
-
-/* CURSOR */
-
-const cursor=document.getElementById("cursor");
-const cursorDot=document.getElementById("cursorDot");
-
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-
-cursorDot.style.left=e.clientX+"px";
-cursorDot.style.top=e.clientY+"px";
-});
-
-function cursorSetup(){
-
-document.querySelectorAll(
-"button,a,input,.game"
-).forEach(el=>{
-
-el.addEventListener("mouseenter",()=>{
-cursor.classList.add("big");
-});
-
-el.addEventListener("mouseleave",()=>{
-cursor.classList.remove("big");
-});
-
-});
-
-}
-
-cursorSetup();
-
-/* NEW TAB */
-
-function openNewPStylaTab(){
-
-window.open(
-window.location.href,
-"_blank",
-"noopener,noreferrer"
-);
-
-}
-
-/* SEARCH */
-
-const search=document.getElementById("search");
-const games=document.querySelectorAll(".game");
-const categories=document.querySelectorAll(".category");
-const noResults=document.getElementById("noResults");
-
-let currentCategory="all";
-
-function updateGames(){
-
-const query=search.value.toLowerCase().trim();
-
-let visible=0;
-
-games.forEach(game=>{
-
-const name=game.dataset.name.toLowerCase();
-const category=game.dataset.category;
-
-const matchName=name.includes(query);
-
-const matchCategory=
-currentCategory==="all"||
-category===currentCategory;
-
-if(matchName&&matchCategory){
-
-game.classList.remove("hidden");
-visible++;
-
-}else{
-
-game.classList.add("hidden");
-
-}
-
-});
-
-noResults.style.display=
-visible===0?"block":"none";
-
-}
-
-search.addEventListener("input",updateGames);
-
-/* CATEGORIES */
-
-categories.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-categories.forEach(b=>b.classList.remove("active"));
-
-button.classList.add("active");
-
-currentCategory=button.dataset.category;
-
-updateGames();
-
-});
-
-});
-
-/* RECENTLY PLAYED */
-
-function savePlayed(name){
-
-let recent=JSON.parse(
-localStorage.getItem("pstylaRecent")||"[]"
-);
-
-recent=recent.filter(item=>item!==name);
-
-recent.unshift(name);
-
-recent=recent.slice(0,5);
-
-localStorage.setItem(
-"pstylaRecent",
-JSON.stringify(recent)
-);
-
-loadRecent();
-
-}
-
-function loadRecent(){
-
-const container=document.getElementById("recentGames");
-
-const recent=JSON.parse(
-localStorage.getItem("pstylaRecent")||"[]"
-);
-
-container.innerHTML="";
-
-recent.forEach(name=>{
-
-const original=
-[...games].find(
-game=>game.dataset.name===name
-);
-
-if(!original)return;
-
-const clone=original.cloneNode(true);
-
-clone.classList.remove("hidden");
-
-container.appendChild(clone);
-
-});
-
-cursorSetup();
-
-}
-
-loadRecent();
-
-/* RANDOM */
-
-document.getElementById("randomButton")
-.addEventListener("click",()=>{
-
-const available=
-[...games].filter(
-game=>!game.classList.contains("hidden")
-);
-
-if(!available.length)return;
-
-const chosen=
-available[
-Math.floor(Math.random()*available.length)
+/* =========================================================
+   PSTYLA GAMES
+   VERSION 1.0.0
+   ========================================================= */
+
+const PSTYLA_VERSION = "1.0.0";
+
+const UPDATE_NOTES = [
+    "75-game library planned",
+    "Added Among Us",
+    "Added version tracking",
+    "Improved game selection system",
+    "Watery zero-gravity background",
+    "Animated PStyla intro"
 ];
 
-chosen.scrollIntoView({
-behavior:"smooth",
-block:"center"
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+const particleContainer =
+    document.getElementById("particles");
+
+for (let i = 0; i < 110; i++) {
+
+    const particle = document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.setProperty(
+        "--x",
+        Math.random() * 100 + "%"
+    );
+
+    particle.style.setProperty(
+        "--y",
+        Math.random() * 100 + "%"
+    );
+
+    particle.style.setProperty(
+        "--size",
+        (Math.random() * 3 + 1) + "px"
+    );
+
+    particle.style.setProperty(
+        "--opacity",
+        Math.random() * .65 + .15
+    );
+
+    particle.style.setProperty(
+        "--duration",
+        (Math.random() * 12 + 9) + "s"
+    );
+
+    particle.style.setProperty(
+        "--delay",
+        -(Math.random() * 15) + "s"
+    );
+
+    particleContainer.appendChild(particle);
+}
+
+
+/* =========================================================
+   CURSOR
+   ========================================================= */
+
+const cursor =
+    document.getElementById("cursor");
+
+const cursorDot =
+    document.getElementById("cursorDot");
+
+document.addEventListener("mousemove", e => {
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+    cursorDot.style.left = e.clientX + "px";
+    cursorDot.style.top = e.clientY + "px";
+
 });
 
-chosen.style.boxShadow=
-"0 0 45px rgba(168,85,247,.95)";
 
-setTimeout(()=>{
-chosen.style.boxShadow="";
-},1800);
+function refreshCursorTargets() {
 
-savePlayed(chosen.dataset.name);
+    document.querySelectorAll(
+        "button,a,input,.game"
+    ).forEach(element => {
 
-});
+        element.addEventListener(
+            "mouseenter",
+            () => cursor.classList.add("big")
+        );
 
-/* BACKGROUND GAME COLORS */
+        element.addEventListener(
+            "mouseleave",
+            () => cursor.classList.remove("big")
+        );
 
-const gameColors={
+    });
 
-"Drift Boss":
-"radial-gradient(circle at 50% 30%,rgba(239,68,68,.25),transparent 38%),linear-gradient(135deg,#100707,#160b0b)",
+}
 
-"Iron Snout":
-"radial-gradient(circle at 50% 30%,rgba(236,72,153,.3),transparent 38%),linear-gradient(135deg,#16091a,#0c0712)",
+refreshCursorTargets();
 
-"Run 3":
-"radial-gradient(circle at 50% 30%,rgba(6,182,212,.25),transparent 38%),linear-gradient(135deg,#061218,#080a16)",
 
-"Papa's Freezeria":
-"radial-gradient(circle at 50% 30%,rgba(244,114,182,.25),transparent 38%),linear-gradient(135deg,#101522,#170b15)",
+/* =========================================================
+   NEW TAB
+   ========================================================= */
 
-"Tiny Fishing":
-"radial-gradient(circle at 50% 30%,rgba(14,165,233,.25),transparent 38%),linear-gradient(135deg,#06131a,#06101a)",
+function openNewPStylaTab() {
 
-"Slice Master":
-"radial-gradient(circle at 50% 30%,rgba(249,115,22,.25),transparent 38%),linear-gradient(135deg,#180b06,#130909)",
+    window.open(
+        window.location.href,
+        "_blank",
+        "noopener,noreferrer"
+    );
 
-"Suika":
-"radial-gradient(circle at 50% 30%,rgba(34,197,94,.2),transparent 38%),linear-gradient(135deg,#07130b,#09100b)",
+}
 
-"Cookie Clicker":
-"radial-gradient(circle at 50% 30%,rgba(161,98,7,.25),transparent 38%),linear-gradient(135deg,#140e06,#100b08)",
 
-"Moto X3M":
-"radial-gradient(circle at 50% 30%,rgba(249,115,22,.28),transparent 38%),linear-gradient(135deg,#170c06,#100b0a)",
+/* =========================================================
+   GAME DATABASE
+   =========================================================
+   
+   These are the games available from the GitHub
+   UnblokedGames library.
 
-"8 Ball Pool":
-"radial-gradient(circle at 50% 30%,rgba(34,197,94,.18),transparent 38%),linear-gradient(135deg,#06100b,#070c09)",
+   Tiny Fishing is intentionally kept on your
+   existing working link.
+   ========================================================= */
 
-"Snake":
-"radial-gradient(circle at 50% 30%,rgba(22,163,74,.2),transparent 38%),linear-gradient(135deg,#061109,#080d09)",
+const gameDatabase = {
 
-"OvO":
-"radial-gradient(circle at 50% 30%,rgba(99,102,241,.28),transparent 38%),linear-gradient(135deg,#08091a,#0b0817)",
+    "Among Us": {
+        category: "action",
+        source: "unblocked"
+    },
 
-"Fireboy and Watergirl":
-"radial-gradient(circle at 50% 30%,rgba(239,68,68,.22),transparent 38%),linear-gradient(135deg,#170808,#080d18)",
+    "Drift Boss": {
+        category: "racing",
+        source: "unblocked"
+    },
 
-"Penalty Kick Online":
-"radial-gradient(circle at 50% 30%,rgba(34,197,94,.2),transparent 38%),linear-gradient(135deg,#061109,#080d0a)",
+    "Cookie Clicker": {
+        category: "arcade",
+        source: "unblocked"
+    },
 
-"Eggy Car":
-"radial-gradient(circle at 50% 30%,rgba(250,204,21,.2),transparent 38%),linear-gradient(135deg,#171306,#110c07)",
+    "Slope": {
+        category: "action",
+        source: "unblocked"
+    },
 
-"WorldGuessr":
-"radial-gradient(circle at 50% 30%,rgba(37,99,235,.24),transparent 38%),linear-gradient(135deg,#070c18,#0c0716)"
+    "Smash Karts": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Subway Surfers": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "Tomb of the Mask": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Geometry Dash": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Doodle Jump": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Flappy Bird": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Fruit Ninja": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Google Snake": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Pac-Man": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Minesweeper": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "2048": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "Cut The Rope": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "Little Alchemy 2": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "Paper.io 2": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Retro Bowl": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Retro Bowl College": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Rooftop Snipers": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "Madalin Stunt Cars 2": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Madalin Stunt Cars 3": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Minecraft Classic": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Project Sand": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "Save the Doge": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "Stack": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Waterworks!": {
+        category: "puzzle",
+        source: "unblocked"
+    },
+
+    "We Become what we Behold": {
+        category: "arcade",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl 2": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl 3": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl 4": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl 5": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Fireboy & Watergirl 6": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "FNAF 1": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "FNAF 2": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "FNAF 3": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "FNAF 4": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "Sister Location": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "FNAF UCN": {
+        category: "action",
+        source: "unblocked"
+    },
+
+    "Moto X3M": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Moto X3M 2": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Moto X3M Winter": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Moto X3M Pool Party": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "Moto X3M Spooky Land": {
+        category: "racing",
+        source: "unblocked"
+    },
+
+    "OvO": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "OvO 2": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "OvO Dimensions": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Basket Random": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Boxing Random": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Soccer Random": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Volley Random": {
+        category: "sports",
+        source: "unblocked"
+    },
+
+    "Snail Bob": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 2": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 3": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 4": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 5": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 6": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 7": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Snail Bob 8": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Vex 3": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Vex 4": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Vex 5": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Vex 6": {
+        category: "platformer",
+        source: "unblocked"
+    },
+
+    "Tiny Fishing": {
+        category: "arcade",
+        source: "existing"
+    }
 
 };
 
-games.forEach(game=>{
 
-game.addEventListener("mouseenter",()=>{
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
-const color=gameColors[game.dataset.name];
+const search =
+    document.getElementById("search");
 
-if(color){
-document.getElementById("background").style.background=color;
+const games =
+    document.querySelectorAll(".game");
+
+const categories =
+    document.querySelectorAll(".category");
+
+const noResults =
+    document.getElementById("noResults");
+
+let currentCategory = "all";
+
+
+function updateGames() {
+
+    const query =
+        search.value.toLowerCase().trim();
+
+    let visible = 0;
+
+    games.forEach(game => {
+
+        const name =
+            game.dataset.name.toLowerCase();
+
+        const category =
+            game.dataset.category;
+
+        const searchMatch =
+            name.includes(query);
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            category === currentCategory;
+
+        if (
+            searchMatch &&
+            categoryMatch
+        ) {
+
+            game.classList.remove("hidden");
+
+            visible++;
+
+        } else {
+
+            game.classList.add("hidden");
+
+        }
+
+    });
+
+    noResults.style.display =
+        visible === 0 ? "block" : "none";
+
 }
 
-});
+
+search.addEventListener(
+    "input",
+    updateGames
+);
+
+
+/* =========================================================
+   CATEGORIES
+   ========================================================= */
+
+categories.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            categories.forEach(
+                b => b.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            currentCategory =
+                button.dataset.category;
+
+            updateGames();
+
+        }
+    );
 
 });
 
-/* INTRO */
 
-const enterScreen=document.getElementById("enterScreen");
-const enterButton=document.getElementById("enterButton");
+/* =========================================================
+   RECENTLY PLAYED
+   ========================================================= */
 
-enterButton.addEventListener("click",()=>{
+function savePlayed(name) {
 
-enterScreen.classList.add("hide");
+    let recent =
+        JSON.parse(
+            localStorage.getItem("pstylaRecent") || "[]"
+        );
 
-});
+    recent =
+        recent.filter(item => item !== name);
 
-/* MOBILE */
+    recent.unshift(name);
 
-if(window.innerWidth<=700){
+    recent =
+        recent.slice(0, 5);
 
-document.body.style.cursor="default";
+    localStorage.setItem(
+        "pstylaRecent",
+        JSON.stringify(recent)
+    );
+
+    loadRecent();
+
+}
+
+
+function loadRecent() {
+
+    const container =
+        document.getElementById("recentGames");
+
+    if (!container)
+        return;
+
+    const recent =
+        JSON.parse(
+            localStorage.getItem("pstylaRecent") || "[]"
+        );
+
+    container.innerHTML = "";
+
+    recent.forEach(name => {
+
+        const original =
+            [...games].find(
+                game =>
+                game.dataset.name === name
+            );
+
+        if (!original)
+            return;
+
+        const clone =
+            original.cloneNode(true);
+
+        clone.classList.remove("hidden");
+
+        container.appendChild(clone);
+
+    });
+
+    refreshCursorTargets();
+
+}
+
+loadRecent();
+
+
+/* =========================================================
+   RANDOM GAME
+   ========================================================= */
+
+const randomButton =
+    document.getElementById("randomButton");
+
+if (randomButton) {
+
+    randomButton.addEventListener(
+        "click",
+        () => {
+
+            const available =
+                [...games].filter(
+                    game =>
+                    !game.classList.contains("hidden")
+                );
+
+            if (!available.length)
+                return;
+
+            const chosen =
+                available[
+                    Math.floor(
+                        Math.random() *
+                        available.length
+                    )
+                ];
+
+            chosen.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            chosen.style.boxShadow =
+                "0 0 45px rgba(168,85,247,.95)";
+
+            setTimeout(() => {
+
+                chosen.style.boxShadow = "";
+
+            }, 1800);
+
+            savePlayed(
+                chosen.dataset.name
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VERSION DISPLAY
+   ========================================================= */
+
+function createVersionBadge() {
+
+    const badge =
+        document.createElement("div");
+
+    badge.id = "pstylaVersion";
+
+    badge.textContent =
+        "PStyla Games v" + PSTYLA_VERSION;
+
+    badge.style.cssText = `
+        position:fixed;
+        bottom:12px;
+        left:12px;
+        z-index:9999;
+        padding:7px 11px;
+        border:1px solid rgba(168,85,247,.35);
+        border-radius:7px;
+        background:rgba(10,8,15,.82);
+        backdrop-filter:blur(10px);
+        color:#9b5cff;
+        font-size:10px;
+        font-weight:900;
+        letter-spacing:.5px;
+        pointer-events:none;
+        box-shadow:0 0 18px rgba(139,92,246,.12);
+    `;
+
+    document.body.appendChild(badge);
+
+}
+
+createVersionBadge();
+
+
+/* =========================================================
+   UPDATE PANEL
+   ========================================================= */
+
+function createUpdatePanel() {
+
+    const panel =
+        document.createElement("div");
+
+    panel.id = "updatePanel";
+
+    panel.innerHTML = `
+        <div class="update-inner">
+
+            <div class="update-version">
+                PSTYLA GAMES v${PSTYLA_VERSION}
+            </div>
+
+            <h2>✨ What's New</h2>
+
+            <div class="update-list">
+                ${UPDATE_NOTES.map(
+                    note => `<div>• ${note}</div>`
+                ).join("")}
+            </div>
+
+            <div class="update-footer">
+                New updates every 1–2 weeks.
+            </div>
+
+            <button id="closeUpdates">
+                CLOSE
+            </button>
+
+        </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const style =
+        document.createElement("style");
+
+    style.textContent = `
+        #updatePanel {
+            position:fixed;
+            inset:0;
+            z-index:40000;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            background:rgba(3,2,6,.78);
+            backdrop-filter:blur(12px);
+        }
+
+        .update-inner {
+            width:min(90%,460px);
+            padding:30px;
+            border:1px solid rgba(168,85,247,.45);
+            border-radius:16px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25,14,38,.97),
+                    rgba(8,7,13,.98)
+                );
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.65),
+                0 0 45px rgba(139,92,246,.16);
+        }
+
+        .update-version {
+            color:#a855f7;
+            font-size:10px;
+            font-weight:900;
+            letter-spacing:2px;
+        }
+
+        .update-inner h2 {
+            margin:8px 0 18px;
+        }
+
+        .update-list {
+            color:#aaa;
+            line-height:2;
+            font-size:13px;
+        }
+
+        .update-footer {
+            margin-top:18px;
+            color:#c084fc;
+            font-size:11px;
+        }
+
+        #closeUpdates {
+            margin-top:20px;
+            border:1px solid #8b5cf6;
+            background:#8b5cf6;
+            color:white;
+            padding:9px 16px;
+            border-radius:7px;
+            font-weight:900;
+            cursor:pointer;
+        }
+    `;
+
+    document.head.appendChild(style);
+
+    document
+        .getElementById("closeUpdates")
+        .onclick = () => {
+
+            panel.style.display = "none";
+
+        };
+
+}
+
+createUpdatePanel();
+
+
+/* =========================================================
+   ADD UPDATE BUTTON
+   ========================================================= */
+
+function addUpdateButton() {
+
+    const nav =
+        document.querySelector(".music-control");
+
+    if (!nav)
+        return;
+
+    const button =
+        document.createElement("button");
+
+    button.className =
+        "new-tab-button";
+
+    button.textContent =
+        "✨ Updates";
+
+    button.onclick = () => {
+
+        const panel =
+            document.getElementById("updatePanel");
+
+        if (panel)
+            panel.style.display = "flex";
+
+    };
+
+    nav.insertBefore(
+        button,
+        nav.firstChild
+    );
+
+}
+
+addUpdateButton();
+
+
+/* =========================================================
+   GAME DATABASE STATUS
+   ========================================================= */
+
+console.log(
+    "PStyla Games v" +
+    PSTYLA_VERSION +
+    " loaded."
+);
+
+console.log(
+    Object.keys(gameDatabase).length +
+    " games registered."
+);
+
+
+/* =========================================================
+   ENTER SCREEN
+   ========================================================= */
+
+const enterScreen =
+    document.getElementById("enterScreen");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+if (enterButton) {
+
+    enterButton.addEventListener(
+        "click",
+        () => {
+
+            if (enterScreen) {
+
+                enterScreen.classList.add("hide");
+
+            }
+
+            if (
+                typeof player !== "undefined" &&
+                player &&
+                player.playVideo
+            ) {
+
+                player.playVideo();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MUSIC
+   ========================================================= */
+
+const musicButton =
+    document.getElementById("musicButton");
+
+let player;
+
+let currentSong = 0;
+
+const songs = [
+    "85wZGRcHHAc",
+    "-5CTaDGlhZU"
+];
+
+let musicOn = true;
+
+
+const tag =
+    document.createElement("script");
+
+tag.src =
+    "https://www.youtube.com/iframe_api";
+
+document.head.appendChild(tag);
+
+
+function onYouTubeIframeAPIReady() {
+
+    player =
+        new YT.Player(
+            "youtubePlayer",
+            {
+
+                height:"1",
+                width:"1",
+
+                videoId:
+                    songs[currentSong],
+
+                playerVars: {
+
+                    autoplay:0,
+                    controls:0,
+                    playsinline:1,
+                    origin:
+                        window.location.origin
+
+                },
+
+                events: {
+
+                    onReady:function() {
+
+                        player.setVolume(35);
+
+                    },
+
+                    onStateChange:
+                        onPlayerStateChange
+
+                }
+
+            }
+        );
+
+}
+
+
+if (musicButton) {
+
+    musicButton.addEventListener(
+        "click",
+        () => {
+
+            if (!player)
+                return;
+
+            if (musicOn) {
+
+                player.pauseVideo();
+
+                musicButton.textContent =
+                    "🔇";
+
+                musicOn = false;
+
+            } else {
+
+                player.playVideo();
+
+                musicButton.textContent =
+                    "🎵";
+
+                musicOn = true;
+
+            }
+
+        }
+    );
+
+}
+
+
+function onPlayerStateChange(event) {
+
+    if (
+        event.data ===
+        YT.PlayerState.ENDED
+    ) {
+
+        currentSong++;
+
+        if (
+            currentSong >=
+            songs.length
+        ) {
+
+            currentSong = 0;
+
+        }
+
+        player.loadVideoById(
+            songs[currentSong]
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+if (window.innerWidth <= 700) {
+
+    document.body.style.cursor = "default";
 
 }
 
 </script>
-
-</body>
-</html>
-```
