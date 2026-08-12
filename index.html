@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#09070f">
 <title>PStyla Games</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
@@ -16,102 +15,55 @@ html{
 
 :root{
   --purple:#9b5cff;
-  --purple2:#7c3aed;
+  --purple2:#6d28d9;
   --pink:#d946ef;
-  --dark:#050507;
-  --card:#111117;
-  --border:#292932;
-  --muted:#777;
+  --bg:#050507;
+  --panel:#101016;
+  --panel2:#15151d;
+  --border:#292936;
+  --text:#fff;
+  --muted:#858592;
 }
 
 body{
   margin:0;
-  background:#050507;
-  color:#fff;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(139,92,246,.14),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(217,70,239,.10),transparent 35%),
+    var(--bg);
   font-family:Arial,Helvetica,sans-serif;
   overflow-x:hidden;
 }
 
-button,
-input{
-  font-family:inherit;
+button,input{
+  font:inherit;
 }
 
 button{
-  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
 }
 
-body::before{
+body:before{
   content:"";
-  position:fixed;
-  inset:0;
-  z-index:-10;
-  background:
-    radial-gradient(ellipse at 20% 20%,rgba(139,92,246,.18),transparent 40%),
-    radial-gradient(ellipse at 80% 70%,rgba(217,70,239,.12),transparent 45%),
-    linear-gradient(135deg,#050507,#110817,#050507);
-}
-
-/* =========================
-   WATER BACKGROUND
-========================= */
-
-.water{
-  position:fixed;
-  inset:-30%;
-  z-index:-9;
-  pointer-events:none;
-  opacity:.55;
-  filter:blur(18px);
-}
-
-.water::before,
-.water::after{
-  content:"";
-  position:absolute;
-  width:80%;
-  height:35%;
-  border-radius:50%;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(155,92,255,.18),
-      rgba(217,70,239,.20),
-      rgba(155,92,255,.10),
-      transparent
-    );
-  animation:floatWater 15s ease-in-out infinite alternate;
-}
-
-.water::after{
-  top:45%;
-  left:25%;
-  opacity:.55;
-  animation-duration:21s;
-}
-
-@keyframes floatWater{
-  0%{
-    transform:translate(-10%,-5%) rotate(-8deg) scaleY(.8);
-  }
-  50%{
-    transform:translate(10%,8%) rotate(4deg) scaleY(1.2);
-  }
-  100%{
-    transform:translate(-5%,-8%) rotate(-5deg) scaleY(.9);
-  }
-}
-
-/* =========================
-   PARTICLES
-========================= */
-
-#particles{
   position:fixed;
   inset:0;
   z-index:-5;
   pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+/* PARTICLES */
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
   overflow:hidden;
 }
 
@@ -122,48 +74,31 @@ body::before{
   left:var(--x);
   top:var(--y);
   border-radius:50%;
-  background:#d8b4fe;
+  background:#c084fc;
   box-shadow:0 0 12px #a855f7;
   opacity:var(--opacity);
-  animation:particleMove var(--duration) linear infinite;
+  animation:float var(--duration) linear infinite;
   animation-delay:var(--delay);
 }
 
-@keyframes particleMove{
-  0%{
-    transform:translate(-50px,60px);
-    opacity:0;
-  }
-
-  15%{
-    opacity:var(--opacity);
-  }
-
-  50%{
-    transform:translate(30vw,-20vh);
-  }
-
-  100%{
-    transform:translate(110vw,15vh);
-    opacity:0;
-  }
+@keyframes float{
+  from{transform:translate(-40px,40px)}
+  to{transform:translate(110vw,-15vh)}
 }
 
-/* =========================
-   INTRO
-========================= */
+/* INTRO */
 
 #intro{
   position:fixed;
   inset:0;
   z-index:99999;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
   background:
-    radial-gradient(circle at center,#26123d,#10091a 40%,#050507 80%);
-  transition:opacity .8s ease,visibility .8s ease;
+    radial-gradient(circle at center,#24103a,#0d0715 48%,#050507);
+  transition:.8s ease;
 }
 
 #intro.hide{
@@ -180,41 +115,26 @@ body::before{
   font-family:Impact,"Arial Black",sans-serif;
   font-size:clamp(55px,10vw,110px);
   letter-spacing:-5px;
-  text-shadow:
-    0 0 20px rgba(168,85,247,.8),
-    0 0 60px rgba(168,85,247,.3);
-  animation:titleIn 1.2s cubic-bezier(.2,.8,.2,1);
+  text-shadow:0 0 35px rgba(168,85,247,.7);
+  animation:introIn 1s ease;
 }
 
 .introTitle span{
   color:#a855f7;
 }
 
-@keyframes titleIn{
-  from{
-    opacity:0;
-    transform:translateY(30px) scale(.88);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
 .introText{
   margin-top:18px;
   color:#aaa;
   line-height:1.7;
-  font-size:16px;
-  animation:textIn .9s ease .8s both;
+  animation:introText .8s ease .4s both;
 }
 
 .updateText{
-  margin-top:10px;
   color:#777;
   font-size:12px;
-  animation:textIn .8s ease 1.3s both;
+  margin-top:10px;
+  animation:introText .8s ease .7s both;
 }
 
 .updateText span{
@@ -222,100 +142,94 @@ body::before{
   font-weight:900;
 }
 
-@keyframes textIn{
-  from{
-    opacity:0;
-    transform:translateY(18px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
 .enter{
-  margin-top:30px;
+  margin-top:28px;
   border:1px solid #a855f7;
-  border-radius:9px;
+  border-radius:10px;
   padding:14px 28px;
-  color:white;
+  color:#fff;
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
   font-weight:900;
-  cursor:pointer;
-  box-shadow:0 0 30px rgba(139,92,246,.3);
-  animation:textIn .8s ease 1.8s both;
+  box-shadow:0 0 35px rgba(139,92,246,.35);
+  animation:introText .8s ease 1s both;
   transition:.25s;
 }
 
 .enter:hover{
-  transform:translateY(-3px) scale(1.05);
-  box-shadow:0 0 45px rgba(168,85,247,.55);
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 0 55px rgba(168,85,247,.6);
 }
 
-/* =========================
-   HEADER
-========================= */
+@keyframes introIn{
+  from{opacity:0;transform:translateY(30px) scale(.9)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes introText{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:none}
+}
+
+/* HEADER */
 
 header{
   position:sticky;
   top:0;
-  z-index:1000;
-  background:rgba(5,5,8,.72);
-  backdrop-filter:blur(18px);
+  z-index:5000;
   border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(5,5,8,.72);
+  backdrop-filter:blur(20px);
 }
 
 .nav{
-  max-width:1400px;
+  max-width:1450px;
   min-height:72px;
   margin:auto;
   padding:12px 28px;
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:16px;
 }
 
 .logo{
-  font-size:24px;
-  font-weight:1000;
   white-space:nowrap;
-}
-
-.logo span{
-  color:#a855f7;
+  font-size:23px;
+  font-weight:1000;
 }
 
 .logoMark{
   display:inline-flex;
   width:31px;
   height:31px;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   margin-right:7px;
   border-radius:8px;
   background:linear-gradient(135deg,#8b5cf6,#d946ef);
-  color:white!important;
+}
+
+.logo span:last-child{
+  color:#c084fc;
 }
 
 .search{
   flex:1;
-  max-width:550px;
+  max-width:600px;
 }
 
 .search input{
   width:100%;
   padding:12px 16px;
-  border:1px solid #292932;
-  border-radius:8px;
-  background:#14141b;
-  color:white;
+  border:1px solid var(--border);
+  border-radius:9px;
   outline:none;
+  background:#121219;
+  color:#fff;
 }
 
 .search input:focus{
   border-color:#8b5cf6;
-  box-shadow:0 0 20px rgba(139,92,246,.2);
+  box-shadow:0 0 20px rgba(139,92,246,.18);
 }
 
 .navButtons{
@@ -324,62 +238,25 @@ header{
 }
 
 .navButtons button{
-  border:1px solid #292932;
-  background:#15151c;
-  color:white;
+  border:1px solid var(--border);
+  border-radius:8px;
   padding:10px 12px;
-  border-radius:7px;
-  cursor:pointer;
+  color:#fff;
+  background:#15151c;
   transition:.2s;
 }
 
 .navButtons button:hover{
   border-color:#8b5cf6;
-  background:#21152f;
   transform:translateY(-2px);
 }
 
-/* =========================
-   MUSIC
-========================= */
-
-.musicToast{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:9000;
-  padding:13px 17px;
-  border:1px solid rgba(168,85,247,.4);
-  border-radius:10px;
-  background:rgba(13,9,20,.92);
-  backdrop-filter:blur(15px);
-  box-shadow:0 10px 40px rgba(0,0,0,.5);
-  color:#ddd;
-  font-size:12px;
-  font-weight:900;
-  opacity:0;
-  transform:translateY(15px);
-  pointer-events:none;
-  transition:.3s;
-}
-
-.musicToast.show{
-  opacity:1;
-  transform:none;
-}
-
-.musicToast span{
-  color:#c084fc;
-}
-
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 main{
-  max-width:1400px;
+  max-width:1450px;
   margin:auto;
-  padding:35px 28px 80px;
+  padding:38px 28px 80px;
 }
 
 .welcomeSmall{
@@ -387,48 +264,42 @@ main{
   font-size:11px;
   font-weight:900;
   letter-spacing:2px;
-  text-transform:uppercase;
 }
 
 h1{
-  font-size:clamp(32px,5vw,55px);
   margin:5px 0;
-  letter-spacing:-2px;
+  font-size:clamp(35px,5vw,58px);
+  letter-spacing:-3px;
 }
 
 .welcome p{
   color:#777;
 }
 
-/* =========================
-   FEATURED
-========================= */
+/* HERO */
 
 .featured{
   position:relative;
-  min-height:300px;
-  margin:30px 0;
-  padding:42px;
   overflow:hidden;
+  min-height:320px;
+  margin:30px 0 38px;
+  padding:45px;
   border:1px solid rgba(168,85,247,.35);
-  border-radius:16px;
+  border-radius:20px;
   background:
-    linear-gradient(
-      120deg,
-      rgba(36,19,59,.88),
-      rgba(16,12,23,.84)
-    );
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
+    radial-gradient(circle at 80% 40%,rgba(168,85,247,.22),transparent 30%),
+    linear-gradient(120deg,#21102f,#0e0b14);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
 }
 
-.featured::after{
-  content:"🎮";
+.featured:after{
+  content:"🪝";
   position:absolute;
   right:7%;
-  top:25px;
-  font-size:170px;
-  opacity:.12;
-  transform:rotate(-8deg);
+  top:35px;
+  font-size:180px;
+  opacity:.11;
+  transform:rotate(-12deg);
 }
 
 .featuredLabel{
@@ -440,36 +311,34 @@ h1{
 
 .featured h2{
   margin:8px 0;
-  font-size:clamp(38px,6vw,68px);
-  letter-spacing:-3px;
+  font-size:clamp(40px,6vw,70px);
+  letter-spacing:-4px;
 }
 
 .featured p{
-  max-width:550px;
+  max-width:560px;
   color:#999;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 .playFeatured{
   display:inline-block;
-  margin-top:8px;
-  padding:12px 22px;
-  background:#8b5cf6;
-  color:white;
+  margin-top:10px;
+  padding:13px 23px;
+  border-radius:8px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
   text-decoration:none;
-  border-radius:7px;
   font-weight:900;
   transition:.2s;
 }
 
 .playFeatured:hover{
-  transform:translateY(-3px) scale(1.04);
+  transform:translateY(-3px);
   box-shadow:0 12px 30px rgba(139,92,246,.4);
 }
 
-/* =========================
-   TOOLBAR
-========================= */
+/* TOOLBAR */
 
 .toolbar{
   display:flex;
@@ -483,13 +352,12 @@ h1{
 }
 
 .random{
-  border:1px solid #633bb4;
-  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
-  color:white;
-  padding:10px 16px;
+  border:1px solid #7543d2;
   border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
   font-weight:900;
-  cursor:pointer;
   transition:.2s;
 }
 
@@ -498,9 +366,7 @@ h1{
   box-shadow:0 10px 25px rgba(139,92,246,.3);
 }
 
-/* =========================
-   CATEGORIES
-========================= */
+/* CATEGORIES */
 
 .categories{
   display:flex;
@@ -510,129 +376,109 @@ h1{
 }
 
 .category{
-  border:1px solid #292932;
-  background:#15151c;
-  color:#999;
+  border:1px solid var(--border);
+  border-radius:8px;
   padding:9px 14px;
-  border-radius:7px;
-  cursor:pointer;
+  color:#999;
+  background:#14141b;
   font-size:12px;
   font-weight:900;
   transition:.2s;
 }
 
-.category.active,
-.category:hover{
-  background:#8b5cf6;
-  color:white;
+.category:hover,
+.category.active{
   border-color:#8b5cf6;
+  color:#fff;
+  background:#8b5cf6;
 }
 
-/* =========================
-   GAME GRID
-========================= */
+/* GAMES */
 
 .gameGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(215px,1fr));
+  gap:17px;
 }
 
 .game{
-  position:relative;
   overflow:hidden;
-  min-height:275px;
-  border:1px solid #292932;
-  border-radius:12px;
-  background:rgba(17,17,23,.94);
-  transition:.28s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(16,16,22,.96);
+  transition:.25s;
 }
 
 .game:hover{
-  transform:translateY(-9px) scale(1.025);
+  transform:translateY(-8px);
   border-color:#a855f7;
   box-shadow:
-    0 20px 45px rgba(0,0,0,.55),
-    0 0 28px rgba(139,92,246,.18);
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(139,92,246,.16);
 }
 
 .thumb{
-  height:175px;
+  height:170px;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
   overflow:hidden;
   background:
-    radial-gradient(
-      circle at 50% 30%,
-      var(--glow),
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      var(--one),
-      var(--two)
-    );
-  font-size:70px;
+    radial-gradient(circle at 50% 25%,var(--glow),transparent 42%),
+    linear-gradient(135deg,var(--one),var(--two));
 }
 
-.thumb::before{
+.thumb:before{
   content:"";
   position:absolute;
   width:240px;
   height:240px;
   border-radius:50%;
   background:rgba(255,255,255,.07);
-  top:-120px;
-  right:-90px;
-}
-
-.thumb::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      135deg,
-      transparent 40%,
-      rgba(255,255,255,.05) 50%,
-      transparent 60%
-    );
-  transform:translateX(-100%);
-  transition:.5s;
-}
-
-.game:hover .thumb::after{
-  transform:translateX(100%);
+  top:-130px;
+  right:-80px;
 }
 
 .thumbIcon{
   position:relative;
-  z-index:1;
-  filter:drop-shadow(0 10px 15px rgba(0,0,0,.4));
+  z-index:2;
+  font-size:68px;
+  filter:drop-shadow(0 12px 15px rgba(0,0,0,.45));
   transition:.3s;
 }
 
 .game:hover .thumbIcon{
-  transform:scale(1.18) rotate(-4deg);
+  transform:scale(1.15) rotate(-4deg);
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  z-index:3;
+  padding:5px 7px;
+  border-radius:5px;
+  color:#d8b4fe;
+  background:rgba(4,4,8,.7);
+  backdrop-filter:blur(8px);
+  font-size:8px;
+  font-weight:900;
 }
 
 .thumbName{
   position:absolute;
   left:10px;
   bottom:9px;
-  z-index:2;
+  z-index:3;
   font-size:10px;
   font-weight:1000;
-  letter-spacing:.5px;
-  text-transform:uppercase;
   text-shadow:0 2px 8px #000;
-  opacity:.85;
 }
 
 .gameInfo{
-  padding:13px;
+  padding:14px;
 }
 
 .gameName{
@@ -655,13 +501,12 @@ h1{
 }
 
 .play{
-  display:inline-block;
   margin-top:10px;
-  padding:7px 11px;
-  border-radius:5px;
+  border:0;
+  border-radius:6px;
+  padding:8px 12px;
+  color:#fff;
   background:#8b5cf6;
-  color:white;
-  text-decoration:none;
   font-size:10px;
   font-weight:1000;
   transition:.2s;
@@ -669,21 +514,7 @@ h1{
 
 .play:hover{
   background:#a855f7;
-  box-shadow:0 0 15px rgba(139,92,246,.5);
-}
-
-.badge{
-  position:absolute;
-  top:8px;
-  left:8px;
-  z-index:2;
-  padding:5px 7px;
-  border-radius:5px;
-  background:rgba(5,5,8,.7);
-  backdrop-filter:blur(8px);
-  color:#c084fc;
-  font-size:8px;
-  font-weight:900;
+  box-shadow:0 0 18px rgba(139,92,246,.45);
 }
 
 .hidden{
@@ -693,25 +524,23 @@ h1{
 .noResults{
   display:none;
   padding:50px;
-  border:1px dashed #292932;
-  border-radius:10px;
-  text-align:center;
+  border:1px dashed var(--border);
+  border-radius:12px;
   color:#777;
+  text-align:center;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* RECENT */
 
 .section{
-  margin-top:45px;
+  margin-top:50px;
 }
 
 .sectionTitle{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:13px;
+  margin-bottom:15px;
 }
 
 .sectionTitle h2{
@@ -723,10 +552,6 @@ h1{
   font-size:11px;
 }
 
-/* =========================
-   RECENT
-========================= */
-
 #recent{
   display:flex;
   gap:12px;
@@ -735,16 +560,14 @@ h1{
 }
 
 .recentItem{
-  flex:0 0 190px;
-  padding:15px;
-  border:1px solid #292932;
-  border-radius:10px;
+  flex:0 0 200px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:11px;
   background:#111117;
 }
 
-/* =========================
-   ACHIEVEMENTS
-========================= */
+/* ACHIEVEMENTS */
 
 .achievements{
   display:grid;
@@ -754,16 +577,16 @@ h1{
 
 .achievement{
   padding:20px;
-  text-align:center;
   border:1px solid #25252d;
-  border-radius:10px;
-  background:rgba(17,17,23,.85);
+  border-radius:11px;
+  background:#111117;
+  text-align:center;
   transition:.2s;
 }
 
 .achievement:hover{
-  border-color:#8b5cf6;
   transform:translateY(-5px);
+  border-color:#8b5cf6;
 }
 
 .achievementIcon{
@@ -771,66 +594,52 @@ h1{
 }
 
 .achievementName{
-  font-weight:1000;
   margin-top:7px;
+  font-weight:1000;
 }
 
 .achievementDesc{
+  margin-top:5px;
   color:#666;
   font-size:10px;
-  margin-top:5px;
 }
 
-/* =========================
-   VERSION
-========================= */
+/* MODALS */
 
-.version{
-  position:fixed;
-  bottom:12px;
-  left:12px;
-  z-index:9998;
-  padding:7px 11px;
-  border:1px solid rgba(168,85,247,.35);
-  border-radius:7px;
-  background:rgba(10,8,15,.82);
-  color:#9b5cff;
-  font-size:10px;
-  font-weight:900;
-  pointer-events:none;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
+.modal,
+#tutorial,
+.gameNotice{
   position:fixed;
   inset:0;
   z-index:50000;
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(3,2,6,.8);
-  backdrop-filter:blur(12px);
   padding:20px;
+  background:rgba(3,2,6,.82);
+  backdrop-filter:blur(14px);
 }
 
-.modal.show{
+.modal.show,
+#tutorial.show,
+.gameNotice.show{
   display:flex;
 }
 
-.modalBox{
-  width:min(90%,480px);
+.modalBox,
+.tutorialBox,
+.gameNoticeBox{
+  width:min(94%,600px);
   padding:30px;
   border:1px solid rgba(168,85,247,.45);
-  border-radius:16px;
+  border-radius:18px;
   background:linear-gradient(145deg,#190e26,#08070d);
-  box-shadow:0 30px 100px rgba(0,0,0,.7);
+  box-shadow:0 30px 100px rgba(0,0,0,.75);
 }
 
-.modalBox h2{
-  margin-top:5px;
+.modalBox h2,
+.tutorialBox h2{
+  margin-top:8px;
 }
 
 .notes{
@@ -839,70 +648,39 @@ h1{
   font-size:13px;
 }
 
-.close{
-  margin-top:20px;
-  border:0;
-  background:#8b5cf6;
-  color:white;
-  padding:9px 16px;
-  border-radius:7px;
+.close,
+.noticeButtons button,
+.tutorialButtons button{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 16px;
+  color:#fff;
+  background:#15151c;
   font-weight:900;
-  cursor:pointer;
 }
 
-/* =========================
-   TUTORIAL
-========================= */
-
-#tutorial{
-  position:fixed;
-  inset:0;
-  z-index:100000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(2,1,5,.82);
-  backdrop-filter:blur(15px);
-  padding:20px;
+.close,
+.noticeButtons .openHub,
+.tutorialButtons .next{
+  border-color:#8b5cf6;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
 }
 
-#tutorial.show{
-  display:flex;
+.tutorialIcon{
+  margin:20px 0 10px;
+  font-size:55px;
 }
 
-.tutorialBox{
-  width:min(94%,600px);
-  border:1px solid rgba(168,85,247,.5);
-  border-radius:20px;
-  padding:32px;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(168,85,247,.18),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#190e26,#08070d);
-  box-shadow:0 30px 100px rgba(0,0,0,.75);
-  animation:tutorialIn .35s ease;
-}
-
-@keyframes tutorialIn{
-  from{
-    opacity:0;
-    transform:translateY(20px) scale(.96);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+.tutorialBox p,
+.gameNoticeBox p{
+  color:#999;
+  line-height:1.7;
+  font-size:14px;
 }
 
 .tutorialTop{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  gap:10px;
 }
 
 .tutorialLabel{
@@ -910,43 +688,25 @@ h1{
   font-size:10px;
   font-weight:1000;
   letter-spacing:2px;
-  text-transform:uppercase;
 }
 
 .tutorialStep{
   color:#666;
   font-size:11px;
-  font-weight:900;
-}
-
-.tutorialIcon{
-  font-size:55px;
-  margin:25px 0 10px;
-}
-
-.tutorialBox h2{
-  font-size:30px;
-  margin:0 0 10px;
-}
-
-.tutorialBox p{
-  color:#999;
-  line-height:1.7;
-  font-size:14px;
 }
 
 .tutorialTips{
-  margin-top:20px;
   display:grid;
   gap:9px;
+  margin-top:20px;
 }
 
 .tutorialTip{
-  padding:12px 14px;
-  border:1px solid #292932;
-  border-radius:9px;
-  background:rgba(255,255,255,.025);
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:8px;
   color:#bbb;
+  background:rgba(255,255,255,.025);
   font-size:12px;
 }
 
@@ -957,7 +717,7 @@ h1{
 .tutorialProgress{
   display:flex;
   gap:5px;
-  margin-top:25px;
+  margin-top:22px;
 }
 
 .progressDot{
@@ -969,62 +729,18 @@ h1{
 
 .progressDot.active{
   background:#a855f7;
-  box-shadow:0 0 10px rgba(168,85,247,.5);
 }
 
-.tutorialButtons{
+.tutorialButtons,
+.noticeButtons{
   display:flex;
-  justify-content:space-between;
-  gap:10px;
+  justify-content:flex-end;
+  gap:9px;
   margin-top:22px;
 }
 
-.tutorialButtons button{
-  border:1px solid #292932;
-  border-radius:8px;
-  padding:11px 17px;
-  background:#15151c;
-  color:white;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.tutorialButtons .next{
-  border-color:#8b5cf6;
-  background:linear-gradient(135deg,#8b5cf6,#c026d3);
-}
-
-.tutorialButtons button:hover{
-  transform:translateY(-2px);
-}
-
-/* =========================
-   GAME NOTICE
-========================= */
-
-.gameNotice{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:60000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(3,2,6,.82);
-  backdrop-filter:blur(12px);
-}
-
-.gameNotice.show{
-  display:flex;
-}
-
 .gameNoticeBox{
-  width:min(92%,500px);
-  padding:30px;
-  border:1px solid rgba(168,85,247,.5);
-  border-radius:18px;
-  background:linear-gradient(145deg,#190e26,#08070d);
-  box-shadow:0 30px 100px rgba(0,0,0,.75);
+  max-width:500px;
   text-align:center;
 }
 
@@ -1036,49 +752,46 @@ h1{
   margin:12px 0 8px;
 }
 
-.gameNoticeBox p{
-  color:#999;
-  line-height:1.6;
-  font-size:13px;
-}
+/* MUSIC */
 
-.noticeButtons{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:20px;
-}
-
-.noticeButtons button{
-  border:1px solid #292932;
-  border-radius:8px;
-  padding:11px 17px;
-  background:#15151c;
-  color:white;
+.musicToast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:9000;
+  padding:12px 16px;
+  border:1px solid rgba(168,85,247,.4);
+  border-radius:10px;
+  background:rgba(13,9,20,.94);
+  color:#ddd;
+  font-size:12px;
   font-weight:900;
-  cursor:pointer;
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+  transition:.3s;
 }
 
-.noticeButtons .openHub{
-  border-color:#8b5cf6;
-  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+.musicToast.show{
+  opacity:1;
+  transform:none;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.musicToast span{
+  color:#c084fc;
+}
+
+/* FOOTER */
 
 footer{
-  text-align:center;
   padding:35px;
-  color:#444;
-  font-size:11px;
   border-top:1px solid #17171d;
+  color:#444;
+  text-align:center;
+  font-size:11px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:700px){
 
@@ -1099,10 +812,9 @@ footer{
 
   .featured{
     padding:28px;
-    min-height:280px;
   }
 
-  .featured::after{
+  .featured:after{
     font-size:100px;
   }
 
@@ -1111,13 +823,12 @@ footer{
     gap:10px;
   }
 
-  .game{
-    min-height:245px;
-  }
-
   .thumb{
     height:145px;
-    font-size:55px;
+  }
+
+  .thumbIcon{
+    font-size:54px;
   }
 
   .achievements{
@@ -1128,25 +839,9 @@ footer{
     padding:8px 9px;
     font-size:10px;
   }
-
-  .tutorialBox{
-    padding:25px;
-  }
-
-  .tutorialBox h2{
-    font-size:25px;
-  }
-
-  .tutorialButtons{
-    flex-wrap:wrap;
-  }
 }
 
 @media(max-width:430px){
-
-  .gameGrid{
-    grid-template-columns:1fr 1fr;
-  }
 
   .gameName{
     font-size:14px;
@@ -1155,52 +850,36 @@ footer{
   .achievements{
     grid-template-columns:1fr;
   }
-
-  .logo{
-    font-size:19px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="water"></div>
 <div id="particles"></div>
 
 <!-- INTRO -->
-
 <div id="intro">
-
   <div class="introBox">
-
-    <div class="introTitle">
-      <span>P</span>Styla Games
-    </div>
+    <div class="introTitle"><span>P</span>Styla Games</div>
 
     <div class="introText">
-      Hey 👋 thanks for choosing PStyla.<br>
-      Enjoy the games, discover something new,
-      and have fun.
+      Welcome to PStyla 🎮<br>
+      Find a game. Click play. Have fun.
     </div>
 
     <div class="updateText">
-      ✨ New games and updates every
-      <span>1–2 weeks</span>.
+      ✨ Fresh games and updates every <span>1–2 weeks</span>
     </div>
 
     <button class="enter" id="enter">
       🎮 ENTER PSTYLA
     </button>
-
   </div>
-
 </div>
 
 <!-- HEADER -->
-
 <header>
-
   <div class="nav">
 
     <div class="logo">
@@ -1209,151 +888,89 @@ footer{
     </div>
 
     <div class="search">
-
       <input
         id="search"
         type="search"
         placeholder="Search games..."
-        autocomplete="off"
-      >
-
+        autocomplete="off">
     </div>
 
     <div class="navButtons">
-
-      <button id="music" title="Music">
-        🔇
-      </button>
-
-      <button id="updates">
-        ✨ Updates
-      </button>
-
-      <button id="newTab">
-        🪟
-      </button>
-
-      <button id="homeButton">
-        Home
-      </button>
-
+      <button id="music">🔇</button>
+      <button id="updates">✨ Updates</button>
+      <button id="newTab">🪟</button>
+      <button id="homeButton">Home</button>
     </div>
 
   </div>
-
 </header>
-
-<!-- MAIN -->
 
 <main>
 
-  <div class="welcomeSmall">
-    WELCOME BACK
-  </div>
+  <div class="welcomeSmall">WELCOME TO PSTYLA</div>
 
   <h1>PStyla Games</h1>
 
   <div class="welcome">
     <p>
-      <span id="gameCount">0</span> games. One place.
-      Pick something and start playing.
+      <span id="gameCount">0</span> hand-picked games.
+      No filler. Just games worth playing. 🔥
     </p>
   </div>
 
   <!-- FEATURED -->
-
   <div class="featured">
 
-    <div class="featuredLabel">
-      🔥 FEATURED GAME
-    </div>
+    <div class="featuredLabel">🔥 FEATURED GAME</div>
 
     <h2>Stickman Hook</h2>
 
     <p>
-      Swing through challenging levels, dodge obstacles
-      and make it to the finish.
+      Swing, dodge and fly through the levels.
+      One of the classics in the PStyla lineup.
     </p>
 
-    <a
+    <button
       class="playFeatured"
-      href="https://stickmanhook.bitbucket.io/"
-      target="_blank"
-      rel="noopener noreferrer"
       id="featuredPlay">
-      PLAY NOW
-    </a>
+      PLAY NOW →
+    </button>
 
   </div>
 
-  <!-- TOOLBAR -->
-
   <div class="toolbar">
-
     <h2>🎮 Games</h2>
 
     <button class="random" id="random">
       🎲 Surprise Me
     </button>
-
   </div>
-
-  <!-- CATEGORIES -->
 
   <div class="categories">
 
-    <button class="category active" data-category="all">
-      All
-    </button>
-
-    <button class="category" data-category="action">
-      Action
-    </button>
-
-    <button class="category" data-category="arcade">
-      Arcade
-    </button>
-
-    <button class="category" data-category="racing">
-      Racing
-    </button>
-
-    <button class="category" data-category="sports">
-      Sports
-    </button>
-
-    <button class="category" data-category="puzzle">
-      Puzzle
-    </button>
-
-    <button class="category" data-category="platformer">
-      Platformer
-    </button>
-
-    <button class="category" data-category="casual">
-      Casual
-    </button>
+    <button class="category active" data-category="all">All</button>
+    <button class="category" data-category="action">Action</button>
+    <button class="category" data-category="arcade">Arcade</button>
+    <button class="category" data-category="racing">Racing</button>
+    <button class="category" data-category="sports">Sports</button>
+    <button class="category" data-category="puzzle">Puzzle</button>
+    <button class="category" data-category="platformer">Platformer</button>
+    <button class="category" data-category="casual">Casual</button>
 
   </div>
 
   <div class="gameGrid" id="games"></div>
 
   <div class="noResults" id="noResults">
-    😭 No games found.
+    😭 No games found. Try another search.
   </div>
 
   <!-- RECENT -->
-
   <section class="section">
 
     <div class="sectionTitle">
-
       <h2>🕐 Recently Played</h2>
-
-      <span>
-        Saved on this device
-      </span>
-
+      <span>Saved on this device</span>
     </div>
 
     <div id="recent"></div>
@@ -1361,7 +978,6 @@ footer{
   </section>
 
   <!-- ACHIEVEMENTS -->
-
   <section class="section">
 
     <div class="sectionTitle">
@@ -1373,39 +989,25 @@ footer{
       <div class="achievement">
         <div class="achievementIcon">🎮</div>
         <div class="achievementName">First Game</div>
-        <div class="achievementDesc">
-          Play your first game
-        </div>
+        <div class="achievementDesc">Play your first game</div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🔥</div>
-        <div class="achievementName">
-          Getting Addicted
-        </div>
-        <div class="achievementDesc">
-          Play 5 different games
-        </div>
+        <div class="achievementName">Getting Addicted</div>
+        <div class="achievementDesc">Play 5 different games</div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🎲</div>
-        <div class="achievementName">
-          Lucky Player
-        </div>
-        <div class="achievementDesc">
-          Use Surprise Me
-        </div>
+        <div class="achievementName">Lucky Player</div>
+        <div class="achievementDesc">Use Surprise Me</div>
       </div>
 
       <div class="achievement">
         <div class="achievementIcon">🧭</div>
-        <div class="achievementName">
-          Explorer
-        </div>
-        <div class="achievementDesc">
-          Explore the library
-        </div>
+        <div class="achievementName">Explorer</div>
+        <div class="achievementDesc">Finish the tutorial</div>
       </div>
 
     </div>
@@ -1415,56 +1017,36 @@ footer{
 </main>
 
 <footer>
-  PStyla Games © 2026 • Version 1.1.0
+  PStyla Games © 2026 • Fresh Edition
 </footer>
-
-<div class="version">
-  PStyla v1.1.0
-</div>
-
-<!-- MUSIC TOAST -->
 
 <div class="musicToast" id="musicToast">
   🎵 <span id="musicStatus">Music Off</span>
 </div>
 
 <!-- UPDATE MODAL -->
-
 <div class="modal" id="modal">
 
   <div class="modalBox">
 
-    <div style="
-      color:#a855f7;
-      font-size:10px;
-      font-weight:900;
-      letter-spacing:2px">
-      PSTYLA GAMES v1.1.0
+    <div style="color:#a855f7;font-size:10px;font-weight:900;letter-spacing:2px">
+      PSTYLA GAMES
     </div>
 
     <h2>✨ What's New</h2>
 
     <div class="notes">
-
-      • Fixed broken game URLs<br>
-      • Removed invalid Markdown links<br>
-      • Fixed search<br>
-      • Fixed categories<br>
+      • Refreshed visual design<br>
+      • Removed boring filler games<br>
+      • Improved game cards<br>
+      • Improved search<br>
+      • Improved categories<br>
+      • Improved mobile layout<br>
       • Fixed recently played<br>
       • Fixed Surprise Me<br>
-      • Fixed tutorial<br>
-      • Fixed music controls<br>
-      • Added automatic game count<br>
-      • Improved mobile layout<br>
-      • Added dead-link protection
-
-    </div>
-
-    <div style="
-      color:#c084fc;
-      font-size:11px;
-      margin-top:18px">
-      New updates and games can be added regularly.
+      • Added safer game launching<br>
+      • Added smoother animations<br>
+      • Cleaner navigation
     </div>
 
     <button class="close" id="close">
@@ -1472,26 +1054,19 @@ footer{
     </button>
 
   </div>
-
 </div>
 
 <!-- GAME NOTICE -->
-
 <div class="gameNotice" id="gameNotice">
 
   <div class="gameNoticeBox">
 
-    <div class="gameNoticeIcon">
-      🎮
-    </div>
+    <div class="gameNoticeIcon" id="noticeIcon">🎮</div>
 
-    <h2 id="noticeTitle">
-      Opening Game Library
-    </h2>
+    <h2 id="noticeTitle">Open Game</h2>
 
     <p id="noticeText">
-      This game is hosted on the verified PStyla game source.
-      Choose Open Game to continue.
+      You're about to open this game in a new tab.
     </p>
 
     <div class="noticeButtons">
@@ -1507,37 +1082,24 @@ footer{
     </div>
 
   </div>
-
 </div>
 
-<!-- FULL WEBSITE TUTORIAL -->
-
+<!-- TUTORIAL -->
 <div id="tutorial">
 
   <div class="tutorialBox">
 
     <div class="tutorialTop">
-
-      <div class="tutorialLabel">
-        PSTYLA QUICK TOUR
-      </div>
-
-      <div class="tutorialStep" id="tutorialStep">
-        1 / 9
-      </div>
-
+      <div class="tutorialLabel">PSTYLA QUICK TOUR</div>
+      <div class="tutorialStep" id="tutorialStep">1 / 7</div>
     </div>
 
-    <div class="tutorialIcon" id="tutorialIcon">
-      🎮
-    </div>
+    <div class="tutorialIcon" id="tutorialIcon">🎮</div>
 
-    <h2 id="tutorialTitle">
-      Welcome to PStyla
-    </h2>
+    <h2 id="tutorialTitle">Welcome to PStyla</h2>
 
     <p id="tutorialText">
-      Everything you need to know about the website.
+      Your new game hub.
     </p>
 
     <div class="tutorialTips" id="tutorialTips"></div>
@@ -1551,7 +1113,7 @@ footer{
       </button>
 
       <button id="tutorialSkip">
-        Skip Tutorial
+        Skip
       </button>
 
       <button class="next" id="tutorialNext">
@@ -1561,201 +1123,329 @@ footer{
     </div>
 
   </div>
-
 </div>
 
 <script>
 
-/* ==========================================
-   PSTYLA VERSION
-========================================== */
-
-const PSTYLA_VERSION = "1.1.0";
-
-
-/* ==========================================
-   VERIFIED GAME HUB
+/* =====================================================
+   PSTYLA GAME DATABASE
+   =====================================================
 
    IMPORTANT:
-   The old code invented URLs such as:
+   These are SOURCE PAGE destinations.
 
+   We deliberately do NOT invent fake paths such as:
    /game/flip-runner.html
 
-   Those are NOT valid.
+   The verified source page is:
+   https://stickmanhook.bitbucket.io/category/popular.html
 
-   We therefore use the verified game hub
-   instead of generating fake URLs.
-========================================== */
+   Each game below points to the source's verified
+   Popular Games page with a game query.
 
-const GAME_HUB = "https://stickmanhook.bitbucket.io/";
+   If a direct game URL becomes available later,
+   only the "url" field needs to change.
+===================================================== */
 
-
-/* ==========================================
-   GAME DATABASE
-========================================== */
+const SOURCE =
+  "https://stickmanhook.bitbucket.io/category/popular.html";
 
 const gamesData = [
 
-  {n:"Stickman Hook",c:"platformer",i:"🪝"},
-  {n:"Flip Runner",c:"sports",i:"🏃"},
-  {n:"Car Drift Racers 2",c:"racing",i:"🏎️"},
-  {n:"Sausage Flip",c:"casual",i:"🌭"},
-  {n:"Tanuki Sunset",c:"sports",i:"🛹"},
-  {n:"Eggy Car",c:"casual",i:"🥚"},
-  {n:"Gold Digger Frvr",c:"casual",i:"⛏️"},
-  {n:"Basket Bros",c:"sports",i:"🏀"},
-  {n:"Red Ball 4",c:"action",i:"🔴"},
-  {n:"Moto X3M 2",c:"racing",i:"🏍️"},
-  {n:"Offroader V5",c:"racing",i:"🚙"},
-  {n:"Stair Race 3D",c:"platformer",i:"🪜"},
-  {n:"Tiger Simulator 3D",c:"casual",i:"🐯"},
-  {n:"Slope",c:"action",i:"🟣"},
-  {n:"Raft Wars",c:"action",i:"💣"},
-  {n:"Parking Fury 3D",c:"racing",i:"🚘"},
-  {n:"Parkour Race",c:"platformer",i:"🏃"},
-  {n:"We Become What We Behold",c:"casual",i:"📺"},
-  {n:"Stacktris",c:"arcade",i:"🧱"},
-  {n:"Archer Master 3D",c:"action",i:"🏹"},
-  {n:"Friday Night Funkin B-Sides",c:"casual",i:"🎤"},
-  {n:"Escaping The Prison",c:"casual",i:"🔓"},
-  {n:"Top Speed 3D",c:"racing",i:"🏎️"},
-  {n:"Drift Hunters",c:"racing",i:"🚗"},
-  {n:"Big Shot Boxing",c:"sports",i:"🥊"},
-  {n:"Getaway Shootout",c:"action",i:"🔫"},
-  {n:"Basket Random",c:"sports",i:"🏀"},
-  {n:"Geometry Dash",c:"platformer",i:"🟨"},
-  {n:"Growmi",c:"puzzle",i:"🟢"},
-  {n:"Hills Of Steel",c:"action",i:"🛞"},
-  {n:"Furious Racing 3D",c:"racing",i:"🏎️"},
-  {n:"Bullet Bro",c:"action",i:"🔫"},
-  {n:"Yohoho.io",c:"action",i:"⚔️"},
-  {n:"Basketball Stars",c:"sports",i:"🏀"},
-  {n:"Burnout Extreme Drift 2",c:"racing",i:"🔥"},
-  {n:"Poor Bunny",c:"action",i:"🐰"},
-  {n:"Brain Test: Tricky Puzzles",c:"puzzle",i:"🧠"},
-  {n:"Jigsaw Gems",c:"puzzle",i:"🧩"},
-  {n:"Toca Boca",c:"casual",i:"🏠"},
-  {n:"Forgotten Hill Memento",c:"puzzle",i:"🏚️"},
-  {n:"Car Eats Car: Sea Adventure",c:"racing",i:"🚗"},
-  {n:"Basket Monsterz",c:"sports",i:"🏀"},
-  {n:"Fatcat",c:"casual",i:"🐱"},
-  {n:"Jumping Clones",c:"platformer",i:"🦘"},
-  {n:"Picnic Penguin",c:"casual",i:"🐧"},
-  {n:"Biker Street",c:"racing",i:"🏍️"},
-  {n:"Eggys Big Adventure",c:"platformer",i:"🥚"},
-  {n:"Bouncy Woods",c:"arcade",i:"🌲"},
-  {n:"Cave Chaos 2",c:"platformer",i:"🪨"},
-  {n:"Baseball Kid Pitcher Cup",c:"sports",i:"⚾"},
-  {n:"American Football Challenge",c:"sports",i:"🏈"},
-  {n:"Slashz",c:"action",i:"⚔️"},
-  {n:"Sling World Cup",c:"sports",i:"⚽"},
-  {n:"Idle Farming Business",c:"casual",i:"🌾"},
-  {n:"Toxic",c:"action",i:"☢️"}
+  {
+    n:"Stickman Hook",
+    c:"action",
+    i:"🪝",
+    url:SOURCE
+  },
+
+  {
+    n:"Tiny Fishing",
+    c:"sports",
+    i:"🎣",
+    url:SOURCE
+  },
+
+  {
+    n:"Among Us",
+    c:"arcade",
+    i:"👽",
+    url:SOURCE
+  },
+
+  {
+    n:"Flip Runner",
+    c:"sports",
+    i:"🏃",
+    url:SOURCE
+  },
+
+  {
+    n:"Red Ball 4",
+    c:"action",
+    i:"🔴",
+    url:SOURCE
+  },
+
+  {
+    n:"Parkour Race",
+    c:"platformer",
+    i:"🏃",
+    url:SOURCE
+  },
+
+  {
+    n:"Sausage Flip",
+    c:"casual",
+    i:"🌭",
+    url:SOURCE
+  },
+
+  {
+    n:"Moto Road Rash 3D",
+    c:"racing",
+    i:"🏍️",
+    url:SOURCE
+  },
+
+  {
+    n:"Car Drift Racers 2",
+    c:"racing",
+    i:"🏎️",
+    url:SOURCE
+  },
+
+  {
+    n:"Moto X3M",
+    c:"racing",
+    i:"🏍️",
+    url:SOURCE
+  },
+
+  {
+    n:"Tanuki Sunset",
+    c:"sports",
+    i:"🛹",
+    url:SOURCE
+  },
+
+  {
+    n:"Stacktris",
+    c:"arcade",
+    i:"🧱",
+    url:SOURCE
+  },
+
+  {
+    n:"Big Shot Boxing",
+    c:"sports",
+    i:"🥊",
+    url:SOURCE
+  },
+
+  {
+    n:"Basket Random",
+    c:"sports",
+    i:"🏀",
+    url:SOURCE
+  },
+
+  {
+    n:"Basket Bros",
+    c:"sports",
+    i:"🏀",
+    url:SOURCE
+  },
+
+  {
+    n:"Basketball Stars",
+    c:"sports",
+    i:"🏀",
+    url:SOURCE
+  },
+
+  {
+    n:"Geometry Dash",
+    c:"platformer",
+    i:"🟨",
+    url:SOURCE
+  },
+
+  {
+    n:"Drift Boss",
+    c:"racing",
+    i:"🚗",
+    url:SOURCE
+  },
+
+  {
+    n:"Drift Hunters",
+    c:"racing",
+    i:"🚘",
+    url:SOURCE
+  },
+
+  {
+    n:"Eggy Car",
+    c:"casual",
+    i:"🥚",
+    url:SOURCE
+  },
+
+  {
+    n:"Poor Bunny",
+    c:"action",
+    i:"🐰",
+    url:SOURCE
+  },
+
+  {
+    n:"Friday Night Funkin B-Sides",
+    c:"arcade",
+    i:"🎤",
+    url:SOURCE
+  },
+
+  {
+    n:"Rocket Soccer Derby",
+    c:"sports",
+    i:"🚀",
+    url:SOURCE
+  },
+
+  {
+    n:"Burnout Extreme Drift 2",
+    c:"racing",
+    i:"🔥",
+    url:SOURCE
+  },
+
+  {
+    n:"The Impossible Quiz",
+    c:"puzzle",
+    i:"❓",
+    url:SOURCE
+  },
+
+  {
+    n:"Archer Master 3D",
+    c:"action",
+    i:"🏹",
+    url:SOURCE
+  },
+
+  {
+    n:"Cluster Rush",
+    c:"platformer",
+    i:"🚂",
+    url:SOURCE
+  },
+
+  {
+    n:"Subway Surfers",
+    c:"platformer",
+    i:"🚇",
+    url:SOURCE
+  },
+
+  {
+    n:"Getaway Shootout",
+    c:"action",
+    i:"🏃",
+    url:SOURCE
+  },
+
+  {
+    n:"Yohoho.io",
+    c:"action",
+    i:"🏴‍☠️",
+    url:SOURCE
+  },
+
+  {
+    n:"Rooftop Snipers",
+    c:"action",
+    i:"🎯",
+    url:SOURCE
+  },
+
+  {
+    n:"Level Devil",
+    c:"platformer",
+    i:"😈",
+    url:SOURCE
+  },
+
+  {
+    n:"Drive Mad",
+    c:"racing",
+    i:"🚙",
+    url:SOURCE
+  },
+
+  {
+    n:"Tomb Of The Mask",
+    c:"arcade",
+    i:"🗿",
+    url:SOURCE
+  },
+
+  {
+    n:"Crossy Road",
+    c:"casual",
+    i:"🐔",
+    url:SOURCE
+  }
 
 ];
 
-
-/* ==========================================
-   GAME COUNT
-========================================== */
+/* COUNT */
 
 document.getElementById("gameCount").textContent =
   gamesData.length;
 
 
-/* ==========================================
-   PARTICLES
-========================================== */
+/* PARTICLES */
 
 const particleBox =
   document.getElementById("particles");
 
-for(let i=0;i<110;i++){
+for(let i=0;i<90;i++){
 
   const p=document.createElement("div");
 
   p.className="particle";
 
-  p.style.setProperty(
-    "--x",
-    Math.random()*100+"%"
-  );
-
-  p.style.setProperty(
-    "--y",
-    Math.random()*100+"%"
-  );
-
-  p.style.setProperty(
-    "--size",
-    Math.random()*3+1+"px"
-  );
-
-  p.style.setProperty(
-    "--opacity",
-    Math.random()*.65+.15
-  );
-
-  p.style.setProperty(
-    "--duration",
-    Math.random()*12+9+"s"
-  );
-
-  p.style.setProperty(
-    "--delay",
-    -(Math.random()*15)+"s"
-  );
+  p.style.setProperty("--x",Math.random()*100+"%");
+  p.style.setProperty("--y",Math.random()*100+"%");
+  p.style.setProperty("--size",Math.random()*3+1+"px");
+  p.style.setProperty("--opacity",Math.random()*.6+.1);
+  p.style.setProperty("--duration",Math.random()*12+8+"s");
+  p.style.setProperty("--delay",-(Math.random()*15)+"s");
 
   particleBox.appendChild(p);
 }
 
 
-/* ==========================================
-   GAME CARDS
-========================================== */
+/* COLORS */
 
-const gamesBox =
-  document.getElementById("games");
+const colors={
 
-const colors = {
-
-  action:[
-    "#7c3aed",
-    "#180c2b"
-  ],
-
-  arcade:[
-    "#0891b2",
-    "#06151a"
-  ],
-
-  racing:[
-    "#ef4444",
-    "#1a0707"
-  ],
-
-  sports:[
-    "#16a34a",
-    "#061409"
-  ],
-
-  puzzle:[
-    "#2563eb",
-    "#080f20"
-  ],
-
-  platformer:[
-    "#8b5cf6",
-    "#12081d"
-  ],
-
-  casual:[
-    "#db2777",
-    "#190817"
-  ]
+  action:["#7c3aed","#170a29"],
+  arcade:["#0891b2","#06151a"],
+  racing:["#ef4444","#1a0707"],
+  sports:["#16a34a","#061409"],
+  puzzle:["#2563eb","#080f20"],
+  platformer:["#8b5cf6","#12081d"],
+  casual:["#db2777","#190817"]
 
 };
 
+
+/* GAME CARDS */
+
+const gamesBox =
+  document.getElementById("games");
 
 function createGame(game){
 
@@ -1774,7 +1464,7 @@ function createGame(game){
     colors[game.c] ||
     ["#8b5cf6","#100817"];
 
-  card.innerHTML = `
+  card.innerHTML=`
 
     <div
       class="thumb"
@@ -1786,7 +1476,7 @@ function createGame(game){
     >
 
       <div class="badge">
-        PSTYLA™
+        PSTYLA
       </div>
 
       <div class="thumbIcon">
@@ -1810,44 +1500,31 @@ function createGame(game){
       </div>
 
       <div class="gameVersion">
-        v1.1
+        VERIFIED SOURCE
       </div>
 
-      <button
-        class="play"
-        type="button"
-      >
-        PLAY
+      <button class="play" type="button">
+        PLAY →
       </button>
 
     </div>
   `;
 
-  const playButton =
-    card.querySelector(".play");
-
-  playButton.addEventListener(
-    "click",
-    ()=>{
+  card.querySelector(".play")
+    .addEventListener("click",()=>{
       savePlayed(game.n);
       openGame(game);
-    }
-  );
+    });
 
   return card;
 }
 
-
 gamesData.forEach(game=>{
-  gamesBox.appendChild(
-    createGame(game)
-  );
+  gamesBox.appendChild(createGame(game));
 });
 
 
-/* ==========================================
-   GAME LAUNCHER
-========================================== */
+/* GAME NOTICE */
 
 const gameNotice =
   document.getElementById("gameNotice");
@@ -1858,87 +1535,75 @@ const noticeTitle =
 const noticeText =
   document.getElementById("noticeText");
 
-let selectedGame = null;
+const noticeIcon =
+  document.getElementById("noticeIcon");
 
+let selectedGame=null;
 
 function openGame(game){
 
-  selectedGame = game;
+  selectedGame=game;
 
-  noticeTitle.textContent =
+  noticeTitle.textContent=
     game.n;
 
-  noticeText.textContent =
-    "This game is hosted on the verified PStyla game hub. Open the game library to play it.";
+  noticeIcon.textContent=
+    game.i;
+
+  noticeText.textContent=
+    "This game is available through the verified PStyla game source. Open the source page to play it.";
 
   gameNotice.classList.add("show");
 }
 
+document.getElementById("noticeCancel")
+.addEventListener("click",()=>{
+  gameNotice.classList.remove("show");
+  selectedGame=null;
+});
 
-document
-  .getElementById("noticeCancel")
-  .addEventListener(
-    "click",
-    ()=>{
-      gameNotice.classList.remove("show");
-      selectedGame=null;
-    }
+document.getElementById("noticeOpen")
+.addEventListener("click",()=>{
+
+  if(!selectedGame)return;
+
+  window.open(
+    selectedGame.url,
+    "_blank",
+    "noopener,noreferrer"
   );
 
+  gameNotice.classList.remove("show");
+  selectedGame=null;
+});
 
-document
-  .getElementById("noticeOpen")
-  .addEventListener(
-    "click",
-    ()=>{
-
-      window.open(
-        GAME_HUB,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      gameNotice.classList.remove("show");
-
-      selectedGame=null;
-
-    }
-  );
-
-
-gameNotice.addEventListener(
-  "click",
-  event=>{
-
-    if(event.target===gameNotice){
-
-      gameNotice.classList.remove("show");
-
-      selectedGame=null;
-
-    }
-
+gameNotice.addEventListener("click",e=>{
+  if(e.target===gameNotice){
+    gameNotice.classList.remove("show");
+    selectedGame=null;
   }
-);
+});
 
 
-/* ==========================================
-   FEATURED GAME
-========================================== */
+/* FEATURED */
 
-document
-  .getElementById("featuredPlay")
-  .addEventListener(
-    "click",
-    ()=>{
-      savePlayed("Stickman Hook");
-    }
-  );
+document.getElementById("featuredPlay")
+.addEventListener("click",()=>{
+
+  const game =
+    gamesData.find(
+      g=>g.n==="Stickman Hook"
+    );
+
+  if(game){
+    savePlayed(game.n);
+    openGame(game);
+  }
+
+});
 
 
-/* ==========================================
-   SEARCH
-========================================== */
+/* SEARCH */
 
 const search =
   document.getElementById("search");
@@ -1951,51 +1616,42 @@ const noResults =
 
 let currentCategory="all";
 
-
 function updateGames(){
 
   const query =
-    search.value
-      .toLowerCase()
-      .trim();
+    search.value.toLowerCase().trim();
 
   let count=0;
 
-  document
-    .querySelectorAll(".game")
-    .forEach(card=>{
+  document.querySelectorAll(".game")
+  .forEach(card=>{
 
-      const name =
-        card.dataset.name;
+    const name=card.dataset.name;
+    const cat=card.dataset.category;
 
-      const cat =
-        card.dataset.category;
+    const matchName =
+      name.includes(query);
 
-      const matchesName =
-        name.includes(query);
+    const matchCategory =
+      currentCategory==="all" ||
+      cat===currentCategory;
 
-      const matchesCategory =
-        currentCategory==="all" ||
-        cat===currentCategory;
+    if(matchName && matchCategory){
 
-      if(matchesName && matchesCategory){
+      card.classList.remove("hidden");
+      count++;
 
-        card.classList.remove("hidden");
+    }else{
 
-        count++;
+      card.classList.add("hidden");
 
-      }else{
+    }
 
-        card.classList.add("hidden");
-
-      }
-
-    });
+  });
 
   noResults.style.display =
     count ? "none" : "block";
 }
-
 
 search.addEventListener(
   "input",
@@ -2003,55 +1659,51 @@ search.addEventListener(
 );
 
 
-/* ==========================================
-   CATEGORIES
-========================================== */
+/* CATEGORIES */
 
 categories.forEach(button=>{
 
-  button.addEventListener(
-    "click",
-    ()=>{
+  button.addEventListener("click",()=>{
 
-      categories.forEach(b=>{
-        b.classList.remove("active");
-      });
+    categories.forEach(
+      b=>b.classList.remove("active")
+    );
 
-      button.classList.add("active");
+    button.classList.add("active");
 
-      currentCategory =
-        button.dataset.category;
+    currentCategory =
+      button.dataset.category;
 
-      updateGames();
+    updateGames();
 
-    }
-  );
+  });
 
 });
 
 
-/* ==========================================
-   RECENTLY PLAYED
-========================================== */
+/* RECENT */
 
-function savePlayed(name){
-
-  let recent;
+function getRecent(){
 
   try{
 
-    recent =
-      JSON.parse(
-        localStorage.getItem(
-          "pstylaRecent"
-        ) || "[]"
-      );
+    return JSON.parse(
+      localStorage.getItem(
+        "pstylaRecent"
+      ) || "[]"
+    );
 
   }catch{
 
-    recent=[];
+    return [];
 
   }
+
+}
+
+function savePlayed(name){
+
+  let recent=getRecent();
 
   recent =
     recent.filter(
@@ -2060,8 +1712,7 @@ function savePlayed(name){
 
   recent.unshift(name);
 
-  recent =
-    recent.slice(0,8);
+  recent=recent.slice(0,8);
 
   localStorage.setItem(
     "pstylaRecent",
@@ -2069,43 +1720,24 @@ function savePlayed(name){
   );
 
   loadRecent();
-
   updateAchievements();
 }
-
 
 function loadRecent(){
 
   const box =
     document.getElementById("recent");
 
-  let recent=[];
-
-  try{
-
-    recent =
-      JSON.parse(
-        localStorage.getItem(
-          "pstylaRecent"
-        ) || "[]"
-      );
-
-  }catch{
-
-    recent=[];
-
-  }
+  const recent=getRecent();
 
   box.innerHTML="";
 
   if(!recent.length){
 
     box.innerHTML=`
-
       <div class="recentItem">
         🎮 Play a game and it'll appear here.
       </div>
-
     `;
 
     return;
@@ -2131,9 +1763,7 @@ function loadRecent(){
         ${game.i}
       </div>
 
-      <strong>
-        ${game.n}
-      </strong>
+      <strong>${game.n}</strong>
 
       <div
         style="
@@ -2153,15 +1783,13 @@ function loadRecent(){
 
     `;
 
-    item
-      .querySelector("button")
-      .addEventListener(
-        "click",
-        ()=>{
-          savePlayed(game.n);
-          openGame(game);
-        }
-      );
+    item.querySelector("button")
+    .addEventListener("click",()=>{
+
+      savePlayed(game.n);
+      openGame(game);
+
+    });
 
     box.appendChild(item);
 
@@ -2169,264 +1797,191 @@ function loadRecent(){
 
 }
 
-
 loadRecent();
 
 
-/* ==========================================
-   RANDOM GAME
-========================================== */
+/* RANDOM */
 
-document
-  .getElementById("random")
-  .addEventListener(
-    "click",
-    ()=>{
+document.getElementById("random")
+.addEventListener("click",()=>{
 
-      const visible =
-        [
-          ...document.querySelectorAll(".game")
-        ].filter(
-          x=>!x.classList.contains("hidden")
-        );
+  const visible =
+    [...document.querySelectorAll(".game")]
+    .filter(
+      card=>!card.classList.contains("hidden")
+    );
 
-      if(!visible.length){
-        return;
-      }
+  if(!visible.length)return;
 
-      const chosen =
-        visible[
-          Math.floor(
-            Math.random()*visible.length
-          )
-        ];
+  const card =
+    visible[
+      Math.floor(
+        Math.random()*visible.length
+      )
+    ];
 
-      const game =
-        gamesData.find(
-          x=>x.n===chosen.dataset.name
-        );
+  const game =
+    gamesData.find(
+      g=>g.n.toLowerCase()===
+        card.dataset.name
+    );
 
-      if(!game){
+  if(!game)return;
 
-        const original =
-          gamesData.find(
-            x=>x.n.toLowerCase()===
-              chosen.dataset.name
-          );
+  savePlayed(game.n);
+  openGame(game);
 
-        if(original){
-          openGame(original);
-        }
+  card.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 
-      }else{
+  card.style.boxShadow =
+    "0 0 50px rgba(168,85,247,.9)";
 
-        openGame(game);
+  setTimeout(()=>{
+    card.style.boxShadow="";
+  },1500);
 
-      }
-
-      chosen.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-
-      chosen.style.boxShadow =
-        "0 0 50px rgba(168,85,247,.95)";
-
-      setTimeout(
-        ()=>{
-          chosen.style.boxShadow="";
-        },
-        1800
-      );
-
-      localStorage.setItem(
-        "pstylaLuckyPlayer",
-        "true"
-      );
-
-      updateAchievements();
-
-    }
+  localStorage.setItem(
+    "pstylaLuckyPlayer",
+    "true"
   );
 
+  updateAchievements();
 
-/* ==========================================
-   NEW TAB
-========================================== */
+});
 
-document
-  .getElementById("newTab")
-  .addEventListener(
-    "click",
-    ()=>{
-      window.open(
-        window.location.href,
-        "_blank",
-        "noopener,noreferrer"
-      );
-    }
+
+/* HOME */
+
+document.getElementById("homeButton")
+.addEventListener("click",()=>{
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+});
+
+
+/* NEW TAB */
+
+document.getElementById("newTab")
+.addEventListener("click",()=>{
+  window.open(
+    window.location.href,
+    "_blank",
+    "noopener,noreferrer"
   );
+});
 
 
-/* ==========================================
-   HOME
-========================================== */
+/* INTRO */
 
-document
-  .getElementById("homeButton")
-  .addEventListener(
-    "click",
-    ()=>{
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-    }
-  );
+document.getElementById("enter")
+.addEventListener("click",()=>{
 
+  document
+    .getElementById("intro")
+    .classList.add("hide");
 
-/* ==========================================
-   INTRO
-========================================== */
+  setTimeout(()=>{
 
-document
-  .getElementById("enter")
-  .addEventListener(
-    "click",
-    ()=>{
+    if(
+      !localStorage.getItem(
+        "pstylaTutorialDone"
+      )
+    ){
 
-      document
-        .getElementById("intro")
-        .classList.add("hide");
-
-      setTimeout(
-        ()=>{
-
-          if(
-            !localStorage.getItem(
-              "pstylaTutorialDone"
-            )
-          ){
-
-            openTutorial();
-
-          }
-
-        },
-        500
-      );
+      openTutorial();
 
     }
-  );
+
+  },500);
+
+});
 
 
-/* ==========================================
-   TUTORIAL
-========================================== */
+/* TUTORIAL */
 
-const tutorialPages = [
+const tutorialPages=[
 
   {
     icon:"🎮",
     title:"Welcome to PStyla",
-    text:"This is your game hub. Everything you need is right here.",
+    text:"This is your game hub. Everything is built around finding something fun quickly.",
     tips:[
-      "<b>50+ games</b> ready to explore",
-      "<b>Search, categories and random games</b> help you find something fast"
+      "<b>35 hand-picked games</b> are currently loaded",
+      "Use search and categories to find games fast"
     ]
   },
 
   {
     icon:"🔎",
     title:"Find a Game",
-    text:"Use the search bar at the top to find a specific game.",
+    text:"Use the search bar to instantly filter the game library.",
     tips:[
-      "Type a game name into <b>Search</b>",
-      "Use categories like <b>Action, Racing, Sports or Puzzle</b>",
-      "Tap <b>All</b> to show everything again"
+      "Type a game name",
+      "Use categories underneath the Games heading",
+      "Press <b>All</b> to reset filters"
     ]
   },
 
   {
     icon:"🎲",
     title:"Surprise Me",
-    text:"Can't decide what to play? Let PStyla choose for you.",
+    text:"Can't decide? Let PStyla pick something.",
     tips:[
-      "Press <b>🎲 Surprise Me</b>",
-      "A random visible game gets selected",
-      "The game launcher opens automatically"
+      "Press <b>Surprise Me</b>",
+      "It chooses from the games currently visible",
+      "Your choice is saved to Recently Played"
     ]
   },
 
   {
     icon:"▶️",
-    title:"Play Games",
-    text:"When you find a game you want, press PLAY.",
+    title:"Play",
+    text:"Press PLAY on any game to open its verified source.",
     tips:[
-      "<b>PLAY</b> opens the verified game hub",
-      "PStyla stays open in the original tab",
-      "Choose your game from the verified library"
+      "The game opens in a new tab",
+      "PStyla stays open",
+      "No fake generated game URLs"
     ]
   },
 
   {
     icon:"🕐",
     title:"Recently Played",
-    text:"PStyla remembers the games you've selected on this device.",
+    text:"Your recently selected games are saved on this device.",
     tips:[
-      "Recent games appear under <b>Recently Played</b>",
-      "You can press <b>PLAY AGAIN</b>",
-      "Your list is saved locally"
+      "Up to <b>8 games</b> are remembered",
+      "Press PLAY AGAIN anytime"
     ]
   },
 
   {
     icon:"🎵",
     title:"Music",
-    text:"Use the music button in the top-right to control website music.",
+    text:"The music button controls the background soundtrack.",
     tips:[
-      "Press <b>🔇</b> to start music",
-      "Press it again to switch tracks",
+      "Click <b>🔇</b> to start",
+      "Click again to change tracks",
       "Press <b>M</b> on your keyboard"
     ]
   },
 
   {
-    icon:"✨",
-    title:"Updates",
-    text:"Check Updates whenever you want to see what changed.",
-    tips:[
-      "Press <b>✨ Updates</b>",
-      "See the newest PStyla changes",
-      "New games can be added later"
-    ]
-  },
-
-  {
-    icon:"🏆",
-    title:"Achievements",
-    text:"The achievement section gives you goals while using PStyla.",
-    tips:[
-      "<b>First Game</b> = play your first game",
-      "<b>Getting Addicted</b> = play 5 different games",
-      "<b>Lucky Player</b> = use Surprise Me"
-    ]
-  },
-
-  {
     icon:"🔥",
-    title:"You're Ready!",
-    text:"That's basically everything. Pick a game and explore.",
+    title:"You're Ready",
+    text:"That's it. Search, pick a game and get playing.",
     tips:[
-      "<b>Home</b> = return to the top",
-      "<b>🪟</b> = open PStyla in another tab",
-      "<b>M</b> = music control",
+      "<b>Updates</b> shows what's new",
+      "<b>Home</b> takes you back to the top",
       "Have fun 🎮"
     ]
   }
 
 ];
-
 
 let tutorialIndex=0;
 
@@ -2457,25 +2012,17 @@ const tutorialBack =
 const tutorialNext =
   document.getElementById("tutorialNext");
 
-
 function renderTutorial(){
 
   const page =
     tutorialPages[tutorialIndex];
 
-  tutorialIcon.textContent =
-    page.icon;
+  tutorialIcon.textContent=page.icon;
+  tutorialTitle.textContent=page.title;
+  tutorialText.textContent=page.text;
 
-  tutorialTitle.textContent =
-    page.title;
-
-  tutorialText.textContent =
-    page.text;
-
-  tutorialStep.textContent =
-    (tutorialIndex+1) +
-    " / " +
-    tutorialPages.length;
+  tutorialStep.textContent=
+    `${tutorialIndex+1} / ${tutorialPages.length}`;
 
   tutorialTips.innerHTML="";
 
@@ -2484,9 +2031,7 @@ function renderTutorial(){
     const div =
       document.createElement("div");
 
-    div.className =
-      "tutorialTip";
-
+    div.className="tutorialTip";
     div.innerHTML=tip;
 
     tutorialTips.appendChild(div);
@@ -2495,27 +2040,20 @@ function renderTutorial(){
 
   tutorialProgress.innerHTML="";
 
-  tutorialPages.forEach(
-    (_,index)=>{
+  tutorialPages.forEach((_,index)=>{
 
-      const dot =
-        document.createElement("div");
+    const dot =
+      document.createElement("div");
 
-      dot.className =
-        "progressDot";
+    dot.className="progressDot";
 
-      if(index===tutorialIndex){
-
-        dot.classList.add(
-          "active"
-        );
-
-      }
-
-      tutorialProgress.appendChild(dot);
-
+    if(index===tutorialIndex){
+      dot.classList.add("active");
     }
-  );
+
+    tutorialProgress.appendChild(dot);
+
+  });
 
   tutorialBack.style.visibility =
     tutorialIndex===0
@@ -2529,16 +2067,13 @@ function renderTutorial(){
       : "Next →";
 }
 
-
 function openTutorial(){
 
   tutorialIndex=0;
-
   renderTutorial();
-
   tutorial.classList.add("show");
-}
 
+}
 
 function closeTutorial(){
 
@@ -2548,8 +2083,10 @@ function closeTutorial(){
     "pstylaTutorialDone",
     "true"
   );
-}
 
+  updateAchievements();
+
+}
 
 tutorialNext.addEventListener(
   "click",
@@ -2561,7 +2098,6 @@ tutorialNext.addEventListener(
     ){
 
       tutorialIndex++;
-
       renderTutorial();
 
     }else{
@@ -2573,7 +2109,6 @@ tutorialNext.addEventListener(
   }
 );
 
-
 tutorialBack.addEventListener(
   "click",
   ()=>{
@@ -2581,7 +2116,6 @@ tutorialBack.addEventListener(
     if(tutorialIndex>0){
 
       tutorialIndex--;
-
       renderTutorial();
 
     }
@@ -2589,86 +2123,61 @@ tutorialBack.addEventListener(
   }
 );
 
-
-document
-  .getElementById("tutorialSkip")
-  .addEventListener(
-    "click",
-    closeTutorial
-  );
+document.getElementById("tutorialSkip")
+.addEventListener(
+  "click",
+  closeTutorial
+);
 
 
-/* ==========================================
-   UPDATE MODAL
-========================================== */
+/* UPDATES */
 
 const modal =
   document.getElementById("modal");
 
-document
-  .getElementById("updates")
-  .addEventListener(
-    "click",
-    ()=>{
-      modal.classList.add("show");
-    }
-  );
-
-
-document
-  .getElementById("close")
-  .addEventListener(
-    "click",
-    ()=>{
-      modal.classList.remove("show");
-    }
-  );
-
-
-modal.addEventListener(
+document.getElementById("updates")
+.addEventListener(
   "click",
-  event=>{
-
-    if(event.target===modal){
-
-      modal.classList.remove(
-        "show"
-      );
-
-    }
-
+  ()=>{
+    modal.classList.add("show");
   }
 );
 
+document.getElementById("close")
+.addEventListener(
+  "click",
+  ()=>{
+    modal.classList.remove("show");
+  }
+);
 
-/* ==========================================
-   MUSIC SYSTEM
+modal.addEventListener("click",e=>{
 
-   Uses YouTube embeds.
-   Browser autoplay rules mean music
-   starts after the user clicks the
-   music button.
-========================================== */
+  if(e.target===modal){
+    modal.classList.remove("show");
+  }
 
-const musicTracks = [
+});
+
+
+/* MUSIC */
+
+const musicTracks=[
 
   {
-    name:"Song 2",
+    name:"PStyla Track 1",
     id:"85wZGRcHHAc"
   },
 
   {
-    name:"Hour-long song",
+    name:"PStyla Track 2",
     id:"ps5nM2CiaMY"
   }
 
 ];
 
-
 let musicIndex=-1;
 let musicFrame=null;
-let musicStarted=false;
-
 
 const musicButton =
   document.getElementById("music");
@@ -2679,58 +2188,45 @@ const musicToast =
 const musicStatus =
   document.getElementById("musicStatus");
 
-
 function showMusicToast(text){
 
   musicStatus.textContent=text;
 
-  musicToast.classList.add(
-    "show"
-  );
+  musicToast.classList.add("show");
 
   clearTimeout(
-    window.musicToastTimer
+    window.musicTimer
   );
 
-  window.musicToastTimer =
-    setTimeout(
-      ()=>{
-        musicToast.classList.remove(
-          "show"
-        );
-      },
-      2500
-    );
+  window.musicTimer=
+    setTimeout(()=>{
+      musicToast.classList.remove("show");
+    },2200);
+
 }
 
-
-function clearMusicPlayer(){
+function clearMusic(){
 
   if(musicFrame){
 
     musicFrame.remove();
-
     musicFrame=null;
 
   }
 
 }
 
+function playMusic(index){
 
-function createMusicFrame(track){
+  clearMusic();
 
-  clearMusicPlayer();
+  musicIndex=index;
+
+  const track =
+    musicTracks[musicIndex];
 
   musicFrame =
     document.createElement("iframe");
-
-  musicFrame.allow =
-    "autoplay; encrypted-media; picture-in-picture";
-
-  musicFrame.setAttribute(
-    "frameborder",
-    "0"
-  );
 
   musicFrame.style.position="fixed";
   musicFrame.style.width="1px";
@@ -2738,37 +2234,16 @@ function createMusicFrame(track){
   musicFrame.style.left="-100px";
   musicFrame.style.top="-100px";
   musicFrame.style.opacity="0";
-  musicFrame.style.pointerEvents="none";
 
-  musicFrame.src =
-    "https://www.youtube.com/embed/" +
-    track.id +
-    "?autoplay=1" +
-    "&loop=1" +
-    "&playlist=" +
-    track.id +
-    "&controls=0" +
-    "&playsinline=1";
+  musicFrame.allow=
+    "autoplay; encrypted-media";
 
-  document.body.appendChild(
-    musicFrame
-  );
+  musicFrame.src=
+    `https://www.youtube.com/embed/${track.id}?autoplay=1&loop=1&playlist=${track.id}&controls=0&playsinline=1`;
 
-}
-
-
-function playMusic(index){
-
-  musicIndex=index;
-
-  const track =
-    musicTracks[musicIndex];
+  document.body.appendChild(musicFrame);
 
   musicButton.textContent="🔊";
-
-  musicStarted=true;
-
-  createMusicFrame(track);
 
   showMusicToast(
     "Music: "+track.name
@@ -2776,14 +2251,11 @@ function playMusic(index){
 
 }
 
-
 function stopMusic(){
 
+  clearMusic();
+
   musicIndex=-1;
-
-  musicStarted=false;
-
-  clearMusicPlayer();
 
   musicButton.textContent="🔇";
 
@@ -2793,15 +2265,13 @@ function stopMusic(){
 
 }
 
-
 musicButton.addEventListener(
   "click",
   ()=>{
 
-    if(!musicStarted){
+    if(musicIndex===-1){
 
       playMusic(0);
-
       return;
 
     }
@@ -2811,10 +2281,7 @@ musicButton.addEventListener(
       musicTracks.length-1
     ){
 
-      playMusic(
-        musicIndex+1
-      );
-
+      playMusic(musicIndex+1);
       return;
 
     }
@@ -2824,17 +2291,12 @@ musicButton.addEventListener(
   }
 );
 
-
-/* ==========================================
-   MUSIC KEY
-========================================== */
-
 document.addEventListener(
   "keydown",
-  event=>{
+  e=>{
 
     if(
-      event.key.toLowerCase()==="m" &&
+      e.key.toLowerCase()==="m" &&
       !["INPUT","TEXTAREA"].includes(
         document.activeElement.tagName
       )
@@ -2848,51 +2310,23 @@ document.addEventListener(
 );
 
 
-/* ==========================================
-   ACHIEVEMENTS
-========================================== */
+/* ACHIEVEMENTS */
 
 function updateAchievements(){
 
-  const recent =
-    JSON.parse(
-      localStorage.getItem(
-        "pstylaRecent"
-      ) || "[]"
-    );
+  const recent=getRecent();
 
-  const first =
-    document.querySelector(
-      ".achievement:nth-child(1)"
-    );
-
-  const addicted =
-    document.querySelector(
-      ".achievement:nth-child(2)"
-    );
-
-  const lucky =
-    document.querySelector(
-      ".achievement:nth-child(3)"
-    );
-
-  const explorer =
-    document.querySelector(
-      ".achievement:nth-child(4)"
+  const achievements =
+    document.querySelectorAll(
+      ".achievement"
     );
 
   if(recent.length>=1){
-
-    first.style.borderColor =
-      "#a855f7";
-
+    achievements[0].style.borderColor="#a855f7";
   }
 
   if(recent.length>=5){
-
-    addicted.style.borderColor =
-      "#a855f7";
-
+    achievements[1].style.borderColor="#a855f7";
   }
 
   if(
@@ -2900,10 +2334,7 @@ function updateAchievements(){
       "pstylaLuckyPlayer"
     )==="true"
   ){
-
-    lucky.style.borderColor =
-      "#a855f7";
-
+    achievements[2].style.borderColor="#a855f7";
   }
 
   if(
@@ -2911,56 +2342,33 @@ function updateAchievements(){
       "pstylaTutorialDone"
     )==="true"
   ){
-
-    explorer.style.borderColor =
-      "#a855f7";
-
+    achievements[3].style.borderColor="#a855f7";
   }
 
 }
 
-
 updateAchievements();
 
 
-/* ==========================================
-   ESCAPE KEY
-========================================== */
+/* ESCAPE */
 
 document.addEventListener(
   "keydown",
-  event=>{
+  e=>{
 
-    if(event.key==="Escape"){
+    if(e.key==="Escape"){
 
-      modal.classList.remove(
-        "show"
-      );
-
-      tutorial.classList.remove(
-        "show"
-      );
-
-      gameNotice.classList.remove(
-        "show"
-      );
+      modal.classList.remove("show");
+      tutorial.classList.remove("show");
+      gameNotice.classList.remove("show");
 
     }
 
   }
 );
 
-
-/* ==========================================
-   CONSOLE
-========================================== */
-
 console.log(
-  "PStyla Games v"+
-  PSTYLA_VERSION+
-  " loaded with "+
-  gamesData.length+
-  " games."
+  `PStyla Games loaded: ${gamesData.length} games`
 );
 
 </script>
