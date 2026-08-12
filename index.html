@@ -991,7 +991,7 @@ footer{
    <input
     id="search"
     type="search"
-    placeholder="Search 75 games..."
+    placeholder="Search 55 games..."
    >
   </div>
 
@@ -1029,7 +1029,7 @@ footer{
 
  <div class="welcome">
   <p>
-   75 games. One place. Pick something and start playing.
+   55 games. One place. Pick something and start playing.
   </p>
  </div>
 
@@ -1041,18 +1041,18 @@ footer{
    🔥 FEATURED GAME
   </div>
 
-  <h2>Among Us</h2>
+  <h2>Stickman Hook</h2>
 
   <p>
-   Find the impostor, complete your tasks and try not to get ejected.
+   Swing through challenging levels, dodge obstacles and make it to the finish.
   </p>
 
   <a
    class="playFeatured"
-   href="https://githubgames.gitlab.io/game/among-us.html"
+   href="https://stickmanhook.bitbucket.io/"
    target="_blank"
    rel="noopener noreferrer"
-   onclick="savePlayed('Among Us')">
+   onclick="savePlayed('Stickman Hook')">
    PLAY NOW
   </a>
 
@@ -1218,8 +1218,8 @@ footer{
 
   <div class="notes">
 
-   • 75-game library<br>
-   • Added Among Us<br>
+   • 55-game library<br>
+   • Added Stickman Hook library<br>
    • Added version tracking<br>
    • Improved game selection<br>
    • Added watery background<br>
@@ -1315,92 +1315,61 @@ const PSTYLA_VERSION="1.0.0";
 
 const gamesData=[
 
- {n:"Among Us",c:"action",i:"🔪",u:"among-us"},
- {n:"1v1.LOL",c:"action",i:"🔫",u:"1v1-lol"},
- {n:"2048",c:"puzzle",i:"🔢",u:"2048"},
- {n:"BitLife",c:"casual",i:"📱",u:"bitlife"},
- {n:"Basket Random",c:"sports",i:"🏀",u:"basket-random"},
- {n:"Boxing Random",c:"sports",i:"🥊",u:"boxing-random"},
- {n:"Soccer Random",c:"sports",i:"⚽",u:"soccer-random"},
- {n:"Volley Random",c:"sports",i:"🏐",u:"volley-random"},
- {n:"Cookie Clicker",c:"arcade",i:"🍪",u:"cookie-clicker"},
- {n:"Cut The Rope",c:"puzzle",i:"🍬",u:"cut-the-rope"},
- {n:"Doodle Jump",c:"platformer",i:"🦘",u:"doodle-jump"},
- {n:"Drift Boss",c:"racing",i:"🏎️",u:"drift-boss"},
- {n:"Drift Hunters",c:"racing",i:"🚗",u:"drift-hunters"},
- {n:"Flappy Bird",c:"arcade",i:"🐦",u:"flappy-bird"},
- {n:"Fruit Ninja",c:"arcade",i:"🍉",u:"fruit-ninja"},
- {n:"Geometry Dash",c:"platformer",i:"🟨",u:"geometry-dash"},
- {n:"Google Snake",c:"arcade",i:"🐍",u:"google-snake"},
- {n:"Hextris",c:"puzzle",i:"🔷",u:"hextris"},
- {n:"Idle Breakout",c:"arcade",i:"🧱",u:"idle-breakout"},
- {n:"Little Alchemy 2",c:"puzzle",i:"⚗️",u:"little-alchemy-2"},
- {n:"Madalin Stunt Cars 2",c:"racing",i:"🏎️",u:"madalin-stunt-cars-2"},
- {n:"Madalin Stunt Cars 3",c:"racing",i:"🚘",u:"madalin-stunt-cars-3"},
- {n:"Minecraft Classic",c:"arcade",i:"⛏️",u:"minecraft-classic"},
- {n:"Minesweeper",c:"puzzle",i:"💣",u:"minesweeper"},
- {n:"Pac-Man",c:"arcade",i:"🟡",u:"pacman"},
- {n:"Paper.io 2",c:"arcade",i:"🟦",u:"paper-io-2"},
- {n:"Project Sand",c:"puzzle",i:"🏖️",u:"project-sand"},
- {n:"Rocketpult",c:"arcade",i:"🚀",u:"rocketpult"},
- {n:"Rooftop Snipers",c:"action",i:"🎯",u:"rooftop-snipers"},
- {n:"Save the Doge",c:"puzzle",i:"🐶",u:"save-the-doge"},
- {n:"Slope",c:"action",i:"🟣",u:"slope"},
- {n:"Smash Karts",c:"racing",i:"🏎️",u:"smash-karts"},
- {n:"Solitaire",c:"puzzle",i:"🃏",u:"solitare"},
- {n:"Stack",c:"arcade",i:"🟪",u:"stack"},
- {n:"Tomb of the Mask",c:"arcade",i:"😷",u:"tomb-of-the-mask"},
- {n:"Waterworks!",c:"puzzle",i:"💧",u:"waterworks"},
- {n:"We Become What We Behold",c:"casual",i:"📺",u:"we-become-what-we-behold"},
-
- {n:"Fireboy & Watergirl",c:"platformer",i:"🔥",u:"fireboy-and-watergirl"},
- {n:"Fireboy & Watergirl 2",c:"platformer",i:"💧",u:"fireboy-and-watergirl-2"},
- {n:"Fireboy & Watergirl 3",c:"platformer",i:"❄️",u:"fireboy-and-watergirl-3"},
- {n:"Fireboy & Watergirl 4",c:"platformer",i:"💎",u:"fireboy-and-watergirl-4"},
- {n:"Fireboy & Watergirl 5",c:"platformer",i:"🌊",u:"fireboy-and-watergirl-5"},
- {n:"Fireboy & Watergirl 6",c:"platformer",i:"🧚",u:"fireboy-and-watergirl-6"},
-
- {n:"FNAF 1",c:"action",i:"🐻",u:"fnaf-1"},
- {n:"FNAF 2",c:"action",i:"🤖",u:"fnaf-2"},
- {n:"FNAF 3",c:"action",i:"👻",u:"fnaf-3"},
- {n:"FNAF 4",c:"action",i:"🌙",u:"fnaf-4"},
- {n:"Sister Location",c:"action",i:"🎭",u:"sister-location"},
- {n:"FNAF UCN",c:"action",i:"🎪",u:"fnaf-ucn"},
-
- {n:"Moto X3M",c:"racing",i:"🏍️",u:"moto-x3m"},
- {n:"Moto X3M 2",c:"racing",i:"🏍️",u:"moto-x3m-2"},
- {n:"Moto X3M Winter",c:"racing",i:"❄️",u:"moto-x3m-winter"},
- {n:"Moto X3M Pool Party",c:"racing",i:"🏖️",u:"moto-x3m-pool-party"},
- {n:"Moto X3M Spooky Land",c:"racing",i:"🎃",u:"moto-x3m-spooky-land"},
-
- {n:"OvO",c:"platformer",i:"🟣",u:"ovo"},
- {n:"OvO 2",c:"platformer",i:"🟪",u:"ovo-2"},
- {n:"OvO Dimensions",c:"platformer",i:"🌀",u:"ovo-dimensions"},
-
- {n:"Snail Bob",c:"platformer",i:"🐌",u:"snail-bob"},
- {n:"Snail Bob 2",c:"platformer",i:"🐌",u:"snail-bob-2"},
- {n:"Snail Bob 3",c:"platformer",i:"🐌",u:"snail-bob-3"},
- {n:"Snail Bob 4",c:"platformer",i:"🐌",u:"snail-bob-4"},
- {n:"Snail Bob 5",c:"platformer",i:"🐌",u:"snail-bob-5"},
- {n:"Snail Bob 6",c:"platformer",i:"🐌",u:"snail-bob-6"},
- {n:"Snail Bob 7",c:"platformer",i:"🐌",u:"snail-bob-7"},
- {n:"Snail Bob 8",c:"platformer",i:"🐌",u:"snail-bob-8"},
-
- {n:"Vex 3",c:"platformer",i:"🕴️",u:"vex3"},
- {n:"Vex 4",c:"platformer",i:"🕴️",u:"vex4"},
- {n:"Vex 5",c:"platformer",i:"🕴️",u:"vex5"},
- {n:"Vex 6",c:"platformer",i:"🕴️",u:"vex6"},
- {n:"Vex 7",c:"platformer",i:"🕴️",u:"vex7"},
- {n:"Vex 8",c:"platformer",i:"🕴️",u:"vex8"},
-
- {n:"Retro Bowl",c:"sports",i:"🏈",u:"retro-bowl"},
- {n:"Retro Bowl College",c:"sports",i:"🏈",u:"retro-bowl-college"},
- {n:"Stickman Hook",c:"platformer",i:"🪝",u:"stickman-hook"},
- {n:"Subway Surfers",c:"action",i:"🚇",u:"subway-surfers"},
- {n:"Temple Run 2",c:"action",i:"🏃",u:"temple-run-2"},
- {n:"Crossy Road",c:"arcade",i:"🐔",u:"crossy-road"},
- {n:"Snow Rider 3D",c:"racing",i:"🏂",u:"snow-rider-3d"},
- {n:"Tiny Fishing",c:"arcade",i:"🎣",u:"tiny-fishing"}
+ {n:"Stickman Hook",c:"platformer",i:"🪝",u:"https://stickmanhook.bitbucket.io/"},
+ {n:"Flip Runner",c:"sports",i:"🏃",u:"https://stickmanhook.bitbucket.io/game/flip-runner.html"},
+ {n:"Car Drift Racers 2",c:"racing",i:"🏎️",u:"https://stickmanhook.bitbucket.io/game/car-drift-racers-2.html"},
+ {n:"Sausage Flip",c:"casual",i:"🌭",u:"https://stickmanhook.bitbucket.io/game/sausage-flip.html"},
+ {n:"Tanuki Sunset",c:"sports",i:"🛹",u:"https://stickmanhook.bitbucket.io/game/tanuki-sunset.html"},
+ {n:"Eggy Car",c:"casual",i:"🥚",u:"https://stickmanhook.bitbucket.io/game/eggy-car.html"},
+ {n:"Gold Digger Frvr",c:"casual",i:"⛏️",u:"https://stickmanhook.bitbucket.io/game/gold-digger-frvr.html"},
+ {n:"Basket Bros",c:"sports",i:"🏀",u:"https://stickmanhook.bitbucket.io/game/basket-bros.html"},
+ {n:"Red Ball 4",c:"action",i:"🔴",u:"https://stickmanhook.bitbucket.io/game/red-ball-4.html"},
+ {n:"Moto X3M 2",c:"racing",i:"🏍️",u:"https://stickmanhook.bitbucket.io/game/moto-x3m-2.html"},
+ {n:"Offroader V5",c:"racing",i:"🚙",u:"https://stickmanhook.bitbucket.io/game/offroader-v5.html"},
+ {n:"Stair Race 3D",c:"platformer",i:"🪜",u:"https://stickmanhook.bitbucket.io/game/stair-race-3d.html"},
+ {n:"Tiger Simulator 3D",c:"casual",i:"🐯",u:"https://stickmanhook.bitbucket.io/game/tiger-simulator-3d.html"},
+ {n:"Slope",c:"action",i:"🟣",u:"https://stickmanhook.bitbucket.io/game/slope.html"},
+ {n:"Raft Wars",c:"action",i:"💣",u:"https://stickmanhook.bitbucket.io/game/raft-wars.html"},
+ {n:"Parking Fury 3D",c:"racing",i:"🚘",u:"https://stickmanhook.bitbucket.io/game/parking-fury-3d.html"},
+ {n:"Parkour Race",c:"platformer",i:"🏃",u:"https://stickmanhook.bitbucket.io/game/parkour-race.html"},
+ {n:"We Become What We Behold",c:"casual",i:"📺",u:"https://stickmanhook.bitbucket.io/game/we-become-what-we-behold.html"},
+ {n:"Stacktris",c:"arcade",i:"🧱",u:"https://stickmanhook.bitbucket.io/game/stacktris.html"},
+ {n:"Archer Master 3D",c:"action",i:"🏹",u:"https://stickmanhook.bitbucket.io/game/archer-master-3d.html"},
+ {n:"Friday Night Funkin B-Sides",c:"casual",i:"🎤",u:"https://stickmanhook.bitbucket.io/game/friday-night-funkin-b-sides.html"},
+ {n:"Escaping The Prison",c:"casual",i:"🔓",u:"https://stickmanhook.bitbucket.io/game/escaping-the-prison.html"},
+ {n:"Top Speed 3D",c:"racing",i:"🏎️",u:"https://stickmanhook.bitbucket.io/game/top-speed-3d.html"},
+ {n:"Drift Hunters",c:"racing",i:"🚗",u:"https://stickmanhook.bitbucket.io/game/drift-hunters.html"},
+ {n:"Big Shot Boxing",c:"sports",i:"🥊",u:"https://stickmanhook.bitbucket.io/game/big-shot-boxing.html"},
+ {n:"Getaway Shootout",c:"action",i:"🔫",u:"https://stickmanhook.bitbucket.io/game/getaway-shootout.html"},
+ {n:"Basket Random",c:"sports",i:"🏀",u:"https://stickmanhook.bitbucket.io/game/basket-random.html"},
+ {n:"Geometry Dash",c:"platformer",i:"🟨",u:"https://stickmanhook.bitbucket.io/game/geometry-dash.html"},
+ {n:"Growmi",c:"puzzle",i:"🟢",u:"https://stickmanhook.bitbucket.io/game/growmi.html"},
+ {n:"Hills Of Steel",c:"action",i:"🛞",u:"https://stickmanhook.bitbucket.io/game/hills-of-steel.html"},
+ {n:"Furious Racing 3D",c:"racing",i:"🏎️",u:"https://stickmanhook.bitbucket.io/game/furious-racing-3d.html"},
+ {n:"Bullet Bro",c:"action",i:"🔫",u:"https://stickmanhook.bitbucket.io/game/bullet-bro.html"},
+ {n:"Yohoho.io",c:"action",i:"⚔️",u:"https://stickmanhook.bitbucket.io/game/yohoho-io.html"},
+ {n:"Basketball Stars",c:"sports",i:"🏀",u:"https://stickmanhook.bitbucket.io/game/basketball-stars.html"},
+ {n:"Burnout Extreme Drift 2",c:"racing",i:"🔥",u:"https://stickmanhook.bitbucket.io/game/burnout-extreme-drift-2.html"},
+ {n:"Poor Bunny",c:"action",i:"🐰",u:"https://stickmanhook.bitbucket.io/game/poor-bunny.html"},
+ {n:"Brain Test: Tricky Puzzles",c:"puzzle",i:"🧠",u:"https://stickmanhook.bitbucket.io/game/brain-test-tricky-puzzles.html"},
+ {n:"Jigsaw Gems",c:"puzzle",i:"🧩",u:"https://stickmanhook.bitbucket.io/game/jigsaw-gems.html"},
+ {n:"Toca Boca",c:"casual",i:"🏠",u:"https://stickmanhook.bitbucket.io/game/toca-boca.html"},
+ {n:"Forgotten Hill Memento",c:"puzzle",i:"🏚️",u:"https://stickmanhook.bitbucket.io/game/forgotten-hill-memento-buried-things.html"},
+ {n:"Car Eats Car: Sea Adventure",c:"racing",i:"🚗",u:"https://stickmanhook.bitbucket.io/game/car-eats-car-sea-adventure.html"},
+ {n:"Basket Monsterz",c:"sports",i:"🏀",u:"https://stickmanhook.bitbucket.io/game/basket-monsterz.html"},
+ {n:"Fatcat",c:"casual",i:"🐱",u:"https://stickmanhook.bitbucket.io/game/fatcat.html"},
+ {n:"Jumping Clones",c:"platformer",i:"🦘",u:"https://stickmanhook.bitbucket.io/game/jumping-clones.html"},
+ {n:"Picnic Penguin",c:"casual",i:"🐧",u:"https://stickmanhook.bitbucket.io/game/picnic-penguin.html"},
+ {n:"Biker Street",c:"racing",i:"🏍️",u:"https://stickmanhook.bitbucket.io/game/biker-street.html"},
+ {n:"Eggys Big Adventure",c:"platformer",i:"🥚",u:"https://stickmanhook.bitbucket.io/game/eggys-big-adventure.html"},
+ {n:"Bouncy Woods",c:"arcade",i:"🌲",u:"https://stickmanhook.bitbucket.io/game/bouncy-woods.html"},
+ {n:"Cave Chaos 2",c:"platformer",i:"🪨",u:"https://stickmanhook.bitbucket.io/game/cave-chaos-2.html"},
+ {n:"Baseball Kid Pitcher Cup",c:"sports",i:"⚾",u:"https://stickmanhook.bitbucket.io/game/baseball-kid-pitcher-cup.html"},
+ {n:"American Football Challenge",c:"sports",i:"🏈",u:"https://stickmanhook.bitbucket.io/game/american-football-challenge.html"},
+ {n:"Slashz",c:"action",i:"⚔️",u:"https://stickmanhook.bitbucket.io/game/slashz.html"},
+ {n:"Sling World Cup",c:"sports",i:"⚽",u:"https://stickmanhook.bitbucket.io/game/sling-world-cup.html"},
+ {n:"Idle Farming Business",c:"casual",i:"🌾",u:"https://stickmanhook.bitbucket.io/game/idle-farming-business.html"},
+ {n:"Toxic",c:"action",i:"☢️",u:"https://stickmanhook.bitbucket.io/game/toxic.html"}
 
 ];
 
@@ -1434,8 +1403,8 @@ for(let i=0;i<110;i++){
 
 const gamesBox=document.getElementById("games");
 
-function slugURL(slug){
- return "https://githubgames.gitlab.io/game/"+slug+".html";
+function slugURL(url){
+ return url;
 }
 
 function createGame(game){
@@ -1760,7 +1729,7 @@ const tutorialPages=[
   title:"Welcome to PStyla",
   text:"This is your game hub. Everything you need is right here, from finding games to music and updates.",
   tips:[
-   "<b>75+ games</b> ready to play",
+   "<b>55 games</b> ready to play",
    "<b>Search, categories and random games</b> help you find something fast"
   ]
  },
@@ -2007,7 +1976,6 @@ modal.addEventListener("click",e=>{
 
 /* ==========================================
    MUSIC SYSTEM
-==========================================
 
    SONG ORDER:
 
