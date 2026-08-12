@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,8 +13,6 @@ html{scroll-behavior:smooth}
  --purple:#9b5cff;
  --pink:#d946ef;
  --dark:#050507;
- --panel:rgba(13,12,20,.82);
- --border:rgba(168,85,247,.22);
 }
 
 body{
@@ -167,7 +164,10 @@ body:before{
  animation:textIn .8s ease 1.3s both;
 }
 
-.updateText span{color:#c084fc;font-weight:900}
+.updateText span{
+ color:#c084fc;
+ font-weight:900;
+}
 
 @keyframes textIn{
  from{opacity:0;transform:translateY(18px)}
@@ -274,7 +274,7 @@ header{
  transform:translateY(-2px);
 }
 
-/* MUSIC PLAYER */
+/* MUSIC */
 #musicPlayer{
  position:fixed;
  width:1px;
@@ -293,7 +293,7 @@ header{
  padding:13px 17px;
  border:1px solid rgba(168,85,247,.4);
  border-radius:10px;
- background:rgba(13,9,20,.92);
+ background:rgba(13,9,20,.94);
  backdrop-filter:blur(15px);
  box-shadow:0 10px 40px rgba(0,0,0,.5);
  color:#ddd;
@@ -310,9 +310,7 @@ header{
  transform:none;
 }
 
-.musicToast span{
- color:#c084fc;
-}
+.musicToast span{color:#c084fc}
 
 /* MAIN */
 main{
@@ -407,8 +405,7 @@ h1{
 
 .toolbar h2{margin:0}
 
-.random,
-.updateBtn{
+.random{
  border:1px solid #633bb4;
  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
  color:white;
@@ -419,8 +416,7 @@ h1{
  transition:.2s;
 }
 
-.random:hover,
-.updateBtn:hover{
+.random:hover{
  transform:translateY(-3px);
  box-shadow:0 10px 25px rgba(139,92,246,.3);
 }
@@ -477,7 +473,7 @@ h1{
  0 0 28px rgba(139,92,246,.18);
 }
 
-/* BETTER THUMBNAILS */
+/* THUMBNAILS */
 .thumb{
  height:175px;
  display:flex;
@@ -507,7 +503,12 @@ h1{
  position:absolute;
  inset:0;
  background:
- linear-gradient(135deg,transparent 40%,rgba(255,255,255,.05) 50%,transparent 60%);
+ linear-gradient(
+ 135deg,
+ transparent 40%,
+ rgba(255,255,255,.05) 50%,
+ transparent 60%
+ );
  transform:translateX(-100%);
  transition:.5s;
 }
@@ -527,7 +528,6 @@ h1{
  transform:scale(1.18) rotate(-4deg);
 }
 
-/* IMAGE-STYLE GAME THUMBNAIL LABEL */
 .thumbName{
  position:absolute;
  left:10px;
@@ -541,9 +541,7 @@ h1{
  opacity:.85;
 }
 
-.gameInfo{
- padding:13px;
-}
+.gameInfo{padding:13px}
 
 .gameName{
  font-size:16px;
@@ -608,9 +606,7 @@ h1{
 }
 
 /* SECTIONS */
-.section{
- margin-top:45px;
-}
+.section{margin-top:45px}
 
 .sectionTitle{
  display:flex;
@@ -748,7 +744,10 @@ footer{
 
  main{padding:25px 15px 60px}
 
- .featured{padding:28px;min-height:280px}
+ .featured{
+  padding:28px;
+  min-height:280px;
+ }
 
  .featured:after{font-size:100px}
 
@@ -759,7 +758,10 @@ footer{
 
  .game{min-height:245px}
 
- .thumb{height:145px;font-size:55px}
+ .thumb{
+  height:145px;
+  font-size:55px;
+ }
 
  .achievements{
   grid-template-columns:repeat(2,1fr);
@@ -777,7 +779,6 @@ footer{
  .achievements{grid-template-columns:1fr}
 }
 </style>
-
 </head>
 
 <body>
@@ -785,8 +786,7 @@ footer{
 <div class="water"></div>
 <div id="particles"></div>
 
-<!-- MUSIC PLAYER -->
-
+<!-- INVISIBLE YOUTUBE MUSIC PLAYER -->
 <div id="musicPlayer"></div>
 
 <div class="musicToast" id="musicToast">
@@ -794,7 +794,6 @@ footer{
 </div>
 
 <!-- INTRO -->
-
 <div id="intro">
  <div class="introBox">
 
@@ -833,7 +832,7 @@ footer{
   </div>
 
   <div class="navButtons">
-   <button id="music">🎵</button>
+   <button id="music">🔇</button>
    <button id="updates">✨ Updates</button>
    <button onclick="openNewTab()">🪟</button>
    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</button>
@@ -854,22 +853,23 @@ footer{
  </div>
 
  <!-- FEATURED -->
-
  <div class="featured">
   <div class="featuredLabel">🔥 FEATURED GAME</div>
+
   <h2>Among Us</h2>
+
   <p>
    Find the impostor, complete your tasks and try not to get ejected.
   </p>
 
-<a
-class="playFeatured"
-href="https://githubgames.gitlab.io/game/among-us.html"
-target="_blank"
-rel="noopener noreferrer"
-onclick="savePlayed('Among Us')">
-PLAY NOW </a>
-
+  <a
+   class="playFeatured"
+   href="https://githubgames.gitlab.io/game/among-us.html"
+   target="_blank"
+   rel="noopener noreferrer"
+   onclick="savePlayed('Among Us')">
+   PLAY NOW
+  </a>
  </div>
 
  <div class="toolbar">
@@ -898,7 +898,6 @@ PLAY NOW </a>
  </div>
 
  <!-- RECENT -->
-
  <section class="section">
   <div class="sectionTitle">
    <h2>🕐 Recently Played</h2>
@@ -909,7 +908,6 @@ PLAY NOW </a>
  </section>
 
  <!-- ACHIEVEMENTS -->
-
  <section class="section">
   <div class="sectionTitle">
    <h2>🏆 Achievements</h2>
@@ -955,7 +953,6 @@ PLAY NOW </a>
 </div>
 
 <!-- UPDATE MODAL -->
-
 <div class="modal" id="modal">
  <div class="modalBox">
 
@@ -998,7 +995,7 @@ const PSTYLA_VERSION = "1.0.0";
 
 
 /* ==========================================
-   75 GAME DATABASE
+   GAME DATABASE
 ========================================== */
 
 const gamesData = [
@@ -1100,7 +1097,9 @@ const gamesData = [
 const particleBox=document.getElementById("particles");
 
 for(let i=0;i<110;i++){
+
  const p=document.createElement("div");
+
  p.className="particle";
 
  p.style.setProperty("--x",Math.random()*100+"%");
@@ -1161,8 +1160,11 @@ function createGame(game){
   </div>
 
   <div class="gameInfo">
+
    <div class="gameName">${game.n}</div>
+
    <div class="gameCategory">${game.c}</div>
+
    <div class="gameVersion">v1.0</div>
 
    <a
@@ -1172,6 +1174,7 @@ function createGame(game){
     rel="noopener noreferrer">
     PLAY
    </a>
+
   </div>
  `;
 
@@ -1217,10 +1220,14 @@ function updateGames(){
    cat===currentCategory;
 
   if(matchesName && matchesCategory){
+
    card.classList.remove("hidden");
    count++;
+
   }else{
+
    card.classList.add("hidden");
+
   }
 
  });
@@ -1311,6 +1318,7 @@ function loadRecent(){
 
   item.innerHTML=`
    <div style="font-size:35px">${game.i}</div>
+
    <strong>${game.n}</strong>
 
    <div style="color:#777;font-size:10px;margin-top:4px">
@@ -1331,6 +1339,7 @@ function loadRecent(){
   };
 
   box.appendChild(item);
+
  });
 }
 
@@ -1364,7 +1373,9 @@ document.getElementById("random").addEventListener("click",()=>{
   chosen.style.boxShadow="";
  },1800);
 
- chosen.querySelector(".play").click();
+ setTimeout(()=>{
+  chosen.querySelector(".play").click();
+ },400);
 
 });
 
@@ -1374,11 +1385,13 @@ document.getElementById("random").addEventListener("click",()=>{
 ========================================== */
 
 function openNewTab(){
+
  window.open(
   window.location.href,
   "_blank",
   "noopener,noreferrer"
  );
+
 }
 
 
@@ -1408,62 +1421,48 @@ document.getElementById("close").onclick=()=>{
 };
 
 modal.addEventListener("click",e=>{
+
  if(e.target===modal){
   modal.classList.remove("show");
  }
+
 });
 
 
 /* ==========================================
-   MUSIC SYSTEM
-   ORDER:
-
-   1. A Walk Along the Gates
-   2. Hide (Slow)
-   3. Hour-long YouTube song
-   4. OFF
+   🎵 PSTYLA MUSIC SYSTEM
+   SONG 1 → SONG 2 → OFF
 ========================================== */
 
 /*
- IMPORTANT:
-
- The hour-long song is your exact link:
+ SONG 1:
  https://www.youtube.com/watch?v=ps5nM2CiaMY
 
- Hide (Slow) is the official Dorian Concept version.
+ SONG 2:
+ https://www.youtube.com/watch?v=85wZGRcHHAc
 
- A Walk Along the Gates is the MORELOCKE track.
-
- YouTube videos are loaded through an invisible
- YouTube player rather than pretending a YouTube
- page is a normal MP3 file.
+ No Hide.
+ No A Walk Along the Gates.
+ No other tracks.
 */
 
 const musicTracks=[
 
  {
-  name:"A Walk Along the Gates",
-  type:"bandcamp",
-  url:"https://morelocke.bandcamp.com/track/a-walk-along-the-gates"
- },
-
- {
-  name:"Hide (Slow)",
-  type:"soundcloud",
-  url:"https://soundcloud.com/dorian-concept/dorian-concept-hide-slow"
- },
-
- {
-  name:"Hour-long song",
-  type:"youtube",
+  name:"Song 1",
   id:"ps5nM2CiaMY"
+ },
+
+ {
+  name:"Song 2",
+  id:"85wZGRcHHAc"
  }
 
 ];
 
 let musicIndex=-1;
-let musicFrame=null;
-let musicStarted=false;
+let youtubePlayer=null;
+let youtubeReady=false;
 
 const musicButton=document.getElementById("music");
 const musicToast=document.getElementById("musicToast");
@@ -1472,132 +1471,207 @@ const musicStatus=document.getElementById("musicStatus");
 function showMusicToast(text){
 
  musicStatus.textContent=text;
+
  musicToast.classList.add("show");
 
  clearTimeout(window.musicToastTimer);
 
  window.musicToastTimer=setTimeout(()=>{
+
   musicToast.classList.remove("show");
+
  },2500);
+
 }
 
-function clearMusicPlayer(){
 
- if(musicFrame){
-  musicFrame.remove();
-  musicFrame=null;
+/* LOAD YOUTUBE API */
+
+function loadYouTubeAPI(){
+
+ if(window.YT && window.YT.Player){
+
+  createYouTubePlayer();
+  return;
+
  }
 
- const oldFrames=document.querySelectorAll(".hiddenMusicFrame");
+ const script=document.createElement("script");
 
- oldFrames.forEach(frame=>frame.remove());
+ script.src="https://www.youtube.com/iframe_api";
+
+ document.head.appendChild(script);
+
 }
 
-function createMusicFrame(track){
 
- clearMusicPlayer();
+/* YOUTUBE API CALLBACK */
 
- musicFrame=document.createElement("iframe");
+window.onYouTubeIframeAPIReady=function(){
 
- musicFrame.className="hiddenMusicFrame";
+ youtubeReady=true;
 
- musicFrame.allow=
-  "autoplay; encrypted-media; picture-in-picture";
+ createYouTubePlayer();
 
- musicFrame.setAttribute("frameborder","0");
+};
 
- musicFrame.style.position="fixed";
- musicFrame.style.width="1px";
- musicFrame.style.height="1px";
- musicFrame.style.left="-100px";
- musicFrame.style.top="-100px";
- musicFrame.style.opacity="0";
- musicFrame.style.pointerEvents="none";
 
- if(track.type==="youtube"){
+/* CREATE PLAYER */
 
-  musicFrame.src=
-   "https://www.youtube.com/embed/"+
-   track.id+
-   "?autoplay=1&loop=1&playlist="+
-   track.id+
-   "&controls=0&playsinline=1";
+function createYouTubePlayer(){
 
- }
+ if(youtubePlayer)return;
 
- /*
-  These two services may require their own
-  player permissions. If a browser blocks them,
-  the music button still works and the next track
-  can be selected.
- */
+ const container=document.createElement("div");
 
- if(track.type==="soundcloud"){
+ container.id="youtubePlayer";
 
-  musicFrame.src=
-   "https://w.soundcloud.com/player/?url="+
-   encodeURIComponent(track.url)+
-   "&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false";
+ container.style.position="fixed";
+ container.style.width="1px";
+ container.style.height="1px";
+ container.style.left="-100px";
+ container.style.top="-100px";
+ container.style.opacity="0";
+ container.style.pointerEvents="none";
 
- }
+ document.body.appendChild(container);
 
- if(track.type==="bandcamp"){
+ youtubePlayer=new YT.Player("youtubePlayer",{
 
-  musicFrame.src=track.url;
- }
+  height:"1",
+  width:"1",
 
- document.body.appendChild(musicFrame);
+  videoId:"ps5nM2CiaMY",
+
+  playerVars:{
+   autoplay:0,
+   controls:0,
+   disablekb:1,
+   playsinline:1,
+   rel:0,
+   modestbranding:1
+  },
+
+  events:{
+
+   onReady:function(){
+
+    youtubeReady=true;
+
+   },
+
+   onStateChange:function(event){
+
+    /*
+     When a song finishes, automatically
+     move to the next song.
+    */
+
+    if(
+     event.data===YT.PlayerState.ENDED &&
+     musicIndex>=0
+    ){
+
+     if(musicIndex<musicTracks.length-1){
+
+      playMusic(musicIndex+1);
+
+     }else{
+
+      stopMusic();
+
+     }
+
+    }
+
+   }
+
+  }
+
+ });
+
 }
+
+
+/* START MUSIC */
 
 function playMusic(index){
 
  musicIndex=index;
 
- const track=musicTracks[musicIndex];
+ const track=musicTracks[index];
+
+ if(!youtubePlayer){
+
+  loadYouTubeAPI();
+
+  setTimeout(()=>{
+
+   if(youtubePlayer){
+
+    youtubePlayer.loadVideoById(track.id);
+    youtubePlayer.playVideo();
+
+   }
+
+  },1000);
+
+ }else{
+
+  youtubePlayer.loadVideoById(track.id);
+  youtubePlayer.playVideo();
+
+ }
 
  musicButton.textContent="🔊";
 
- musicStarted=true;
+ showMusicToast("🎵 Playing "+track.name);
 
- createMusicFrame(track);
-
- showMusicToast("Now playing: "+track.name);
 }
+
+
+/* STOP MUSIC */
 
 function stopMusic(){
 
  musicIndex=-1;
 
- musicStarted=false;
+ if(youtubePlayer){
 
- clearMusicPlayer();
+  youtubePlayer.stopVideo();
+
+ }
 
  musicButton.textContent="🔇";
 
- showMusicToast("Music Off");
+ showMusicToast("🔇 Music Off");
+
 }
+
+
+/* MUSIC BUTTON
+
+  FIRST PRESS  = SONG 1
+  SECOND PRESS = SONG 2
+  THIRD PRESS  = OFF
+*/
 
 musicButton.addEventListener("click",()=>{
 
- /*
-   First click = Track 1
-   Second click = Track 2
-   Third click = Track 3
-   Fourth click = OFF
- */
-
- if(!musicStarted){
+ if(musicIndex===-1){
 
   playMusic(0);
 
   return;
+
  }
 
- if(musicIndex<musicTracks.length-1){
+ if(musicIndex===0){
 
-  playMusic(musicIndex+1);
+  playMusic(1);
 
   return;
+
  }
 
  stopMusic();
@@ -1605,19 +1679,27 @@ musicButton.addEventListener("click",()=>{
 });
 
 
-/* ==========================================
-   MUSIC KEYBOARD CONTROL
-========================================== */
+/* KEYBOARD M = MUSIC */
 
 document.addEventListener("keydown",event=>{
 
- if(event.key.toLowerCase()==="m"){
+ if(
+  event.key.toLowerCase()==="m" &&
+  !["INPUT","TEXTAREA"].includes(
+   document.activeElement.tagName
+  )
+ ){
 
   musicButton.click();
 
  }
 
 });
+
+
+/* LOAD PLAYER */
+
+loadYouTubeAPI();
 
 
 /* ==========================================
