@@ -39,7 +39,6 @@ body:before{
 }
 
 /* WATER */
-
 .water{
  position:fixed;
  inset:-30%;
@@ -82,7 +81,6 @@ body:before{
 }
 
 /* PARTICLES */
-
 #particles{
  position:fixed;
  inset:0;
@@ -113,7 +111,6 @@ body:before{
 }
 
 /* INTRO */
-
 #intro{
  position:fixed;
  inset:0;
@@ -199,7 +196,6 @@ body:before{
 }
 
 /* HEADER */
-
 header{
  position:sticky;
  top:0;
@@ -280,20 +276,19 @@ header{
  transform:translateY(-2px);
 }
 
-/* HIDDEN MUSIC */
-
-.hiddenMusicFrame{
+/* HIDDEN MUSIC PLAYER */
+.musicFrame{
  position:fixed;
  width:1px;
  height:1px;
- left:-100px;
- top:-100px;
+ left:-9999px;
+ top:-9999px;
  opacity:0;
  pointer-events:none;
+ border:0;
 }
 
 /* MAIN */
-
 main{
  max-width:1400px;
  margin:auto;
@@ -317,7 +312,6 @@ h1{
 .welcome p{color:#777}
 
 /* FEATURED */
-
 .featured{
  position:relative;
  min-height:300px;
@@ -378,7 +372,6 @@ h1{
 }
 
 /* TOOLBAR */
-
 .toolbar{
  display:flex;
  justify-content:space-between;
@@ -405,7 +398,6 @@ h1{
 }
 
 /* CATEGORIES */
-
 .categories{
  display:flex;
  flex-wrap:wrap;
@@ -433,7 +425,6 @@ h1{
 }
 
 /* GAME GRID */
-
 .gameGrid{
  display:grid;
  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
@@ -459,7 +450,6 @@ h1{
 }
 
 /* THUMBNAILS */
-
 .thumb{
  height:175px;
  display:flex;
@@ -589,7 +579,6 @@ h1{
 }
 
 /* SECTIONS */
-
 .section{
  margin-top:45px;
 }
@@ -609,7 +598,6 @@ h1{
 }
 
 /* RECENT */
-
 #recent{
  display:flex;
  gap:12px;
@@ -626,7 +614,6 @@ h1{
 }
 
 /* ACHIEVEMENTS */
-
 .achievements{
  display:grid;
  grid-template-columns:repeat(4,1fr);
@@ -652,7 +639,6 @@ h1{
 .achievementDesc{color:#666;font-size:10px;margin-top:5px}
 
 /* VERSION */
-
 .version{
  position:fixed;
  bottom:12px;
@@ -668,8 +654,15 @@ h1{
  pointer-events:none;
 }
 
-/* MODAL */
+footer{
+ text-align:center;
+ padding:35px;
+ color:#444;
+ font-size:11px;
+ border-top:1px solid #17171d;
+}
 
+/* MODAL */
 .modal{
  position:fixed;
  inset:0;
@@ -711,16 +704,7 @@ h1{
  cursor:pointer;
 }
 
-footer{
- text-align:center;
- padding:35px;
- color:#444;
- font-size:11px;
- border-top:1px solid #17171d;
-}
-
 /* MOBILE */
-
 @media(max-width:700px){
 
  .nav{
@@ -793,13 +777,10 @@ footer{
 <div class="water"></div>
 <div id="particles"></div>
 
-<!-- HIDDEN MUSIC PLAYER -->
 <div id="musicPlayer"></div>
 
 <!-- INTRO -->
-
 <div id="intro">
-
  <div class="introBox">
 
   <div class="introTitle">
@@ -822,13 +803,9 @@ footer{
   </button>
 
  </div>
-
 </div>
 
-<!-- HEADER -->
-
 <header>
-
  <div class="nav">
 
   <div class="logo">
@@ -837,46 +814,23 @@ footer{
   </div>
 
   <div class="search">
-   <input
-    id="search"
-    type="search"
-    placeholder="Search 75 games..."
-   >
+   <input id="search" type="search" placeholder="Search 75 games...">
   </div>
 
   <div class="navButtons">
-
    <button id="music">🔇</button>
-
-   <button id="updates">
-    ✨ Updates
-   </button>
-
-   <button onclick="openNewTab()">
-    🪟
-   </button>
-
-   <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    Home
-   </button>
-
+   <button id="updates">✨ Updates</button>
+   <button onclick="openNewTab()">🪟</button>
+   <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</button>
   </div>
 
  </div>
-
 </header>
-
-<!-- MAIN -->
 
 <main>
 
- <div class="welcomeSmall">
-  WELCOME BACK
- </div>
-
- <h1>
-  PStyla Games
- </h1>
+ <div class="welcomeSmall">WELCOME BACK</div>
+ <h1>PStyla Games</h1>
 
  <div class="welcome">
   <p>
@@ -884,17 +838,11 @@ footer{
   </p>
  </div>
 
- <!-- FEATURED -->
-
  <div class="featured">
 
-  <div class="featuredLabel">
-   🔥 FEATURED GAME
-  </div>
+  <div class="featuredLabel">🔥 FEATURED GAME</div>
 
-  <h2>
-   Among Us
-  </h2>
+  <h2>Among Us</h2>
 
   <p>
    Find the impostor, complete your tasks and try not to get ejected.
@@ -905,63 +853,29 @@ footer{
    href="https://githubgames.gitlab.io/game/among-us.html"
    target="_blank"
    rel="noopener noreferrer"
-   onclick="savePlayed('Among Us')"
-  >
+   onclick="savePlayed('Among Us')">
    PLAY NOW
   </a>
 
  </div>
 
- <!-- TOOLBAR -->
-
  <div class="toolbar">
-
-  <h2>
-   🎮 Games
-  </h2>
+  <h2>🎮 Games</h2>
 
   <button class="random" id="random">
    🎲 Surprise Me
   </button>
-
  </div>
 
- <!-- CATEGORIES -->
-
  <div class="categories">
-
-  <button class="category active" data-category="all">
-   All
-  </button>
-
-  <button class="category" data-category="action">
-   Action
-  </button>
-
-  <button class="category" data-category="arcade">
-   Arcade
-  </button>
-
-  <button class="category" data-category="racing">
-   Racing
-  </button>
-
-  <button class="category" data-category="sports">
-   Sports
-  </button>
-
-  <button class="category" data-category="puzzle">
-   Puzzle
-  </button>
-
-  <button class="category" data-category="platformer">
-   Platformer
-  </button>
-
-  <button class="category" data-category="casual">
-   Casual
-  </button>
-
+  <button class="category active" data-category="all">All</button>
+  <button class="category" data-category="action">Action</button>
+  <button class="category" data-category="arcade">Arcade</button>
+  <button class="category" data-category="racing">Racing</button>
+  <button class="category" data-category="sports">Sports</button>
+  <button class="category" data-category="puzzle">Puzzle</button>
+  <button class="category" data-category="platformer">Platformer</button>
+  <button class="category" data-category="casual">Casual</button>
  </div>
 
  <div class="gameGrid" id="games"></div>
@@ -970,80 +884,50 @@ footer{
   😭 No games found.
  </div>
 
- <!-- RECENT -->
-
  <section class="section">
 
   <div class="sectionTitle">
-
-   <h2>
-    🕐 Recently Played
-   </h2>
-
-   <span>
-    Saved on this device
-   </span>
-
+   <h2>🕐 Recently Played</h2>
+   <span>Saved on this device</span>
   </div>
 
   <div id="recent"></div>
 
  </section>
 
- <!-- ACHIEVEMENTS -->
-
  <section class="section">
 
   <div class="sectionTitle">
-   <h2>
-    🏆 Achievements
-   </h2>
+   <h2>🏆 Achievements</h2>
   </div>
 
   <div class="achievements">
 
    <div class="achievement">
     <div class="achievementIcon">🎮</div>
-    <div class="achievementName">
-     First Game
-    </div>
-    <div class="achievementDesc">
-     Play your first game
-    </div>
+    <div class="achievementName">First Game</div>
+    <div class="achievementDesc">Play your first game</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🔥</div>
-    <div class="achievementName">
-     Getting Addicted
-    </div>
-    <div class="achievementDesc">
-     Play 5 different games
-    </div>
+    <div class="achievementName">Getting Addicted</div>
+    <div class="achievementDesc">Play 5 different games</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🎲</div>
-    <div class="achievementName">
-     Lucky Player
-    </div>
-    <div class="achievementDesc">
-     Use Surprise Me
-    </div>
+    <div class="achievementName">Lucky Player</div>
+    <div class="achievementDesc">Use Surprise Me</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🧭</div>
-    <div class="achievementName">
-     Explorer
-    </div>
-    <div class="achievementDesc">
-     Explore the library
-    </div>
+    <div class="achievementName">Explorer</div>
+    <div class="achievementDesc">Explore the library</div>
    </div>
 
   </div>
-
  </section>
 
 </main>
@@ -1056,8 +940,6 @@ footer{
  PStyla v1.0.0
 </div>
 
-<!-- UPDATE MODAL -->
-
 <div class="modal" id="modal">
 
  <div class="modalBox">
@@ -1066,9 +948,7 @@ footer{
    PSTYLA GAMES v1.0.0
   </div>
 
-  <h2>
-   ✨ What's New
-  </h2>
+  <h2>✨ What's New</h2>
 
   <div class="notes">
    • 75-game library<br>
@@ -1091,23 +971,17 @@ footer{
   </button>
 
  </div>
-
 </div>
 
 <script>
 
-/* ==========================================
-   PSTYLA VERSION
-========================================== */
-
-const PSTYLA_VERSION = "1.0.0";
-
+const PSTYLA_VERSION="1.0.0";
 
 /* ==========================================
-   75 GAME DATABASE
+   GAME DATABASE
 ========================================== */
 
-const gamesData = [
+const gamesData=[
 
  {n:"Among Us",c:"action",i:"🔪",u:"among-us"},
  {n:"1v1.LOL",c:"action",i:"🔫",u:"1v1-lol"},
@@ -1198,12 +1072,11 @@ const gamesData = [
 
 ];
 
-
 /* ==========================================
    PARTICLES
 ========================================== */
 
-const particleBox = document.getElementById("particles");
+const particleBox=document.getElementById("particles");
 
 for(let i=0;i<110;i++){
 
@@ -1221,7 +1094,6 @@ for(let i=0;i<110;i++){
  particleBox.appendChild(p);
 }
 
-
 /* ==========================================
    GAME CARDS
 ========================================== */
@@ -1229,9 +1101,7 @@ for(let i=0;i<110;i++){
 const gamesBox=document.getElementById("games");
 
 function slugURL(slug){
-
  return "https://githubgames.gitlab.io/game/"+slug+".html";
-
 }
 
 function createGame(game){
@@ -1239,13 +1109,10 @@ function createGame(game){
  const card=document.createElement("div");
 
  card.className="game";
-
  card.dataset.name=game.n.toLowerCase();
-
  card.dataset.category=game.c;
 
  const colors={
-
   action:["#7c3aed","#180c2b"],
   arcade:["#0891b2","#06151a"],
   racing:["#ef4444","#1a0707"],
@@ -1253,21 +1120,16 @@ function createGame(game){
   puzzle:["#2563eb","#080f20"],
   platformer:["#8b5cf6","#12081d"],
   casual:["#db2777","#190817"]
-
  };
 
  const pair=colors[game.c]||["#8b5cf6","#100817"];
 
  card.innerHTML=`
 
-  <div
-   class="thumb"
-   style="--one:${pair[0]};--two:${pair[1]};--glow:${pair[0]}"
-  >
+  <div class="thumb"
+   style="--one:${pair[0]};--two:${pair[1]};--glow:${pair[0]}">
 
-   <div class="badge">
-    PSTYLA™
-   </div>
+   <div class="badge">PSTYLA™</div>
 
    <div class="thumbIcon">
     ${game.i}
@@ -1281,33 +1143,24 @@ function createGame(game){
 
   <div class="gameInfo">
 
-   <div class="gameName">
-    ${game.n}
-   </div>
+   <div class="gameName">${game.n}</div>
 
-   <div class="gameCategory">
-    ${game.c}
-   </div>
+   <div class="gameCategory">${game.c}</div>
 
-   <div class="gameVersion">
-    v1.0
-   </div>
+   <div class="gameVersion">v1.0</div>
 
    <a
     class="play"
     href="${slugURL(game.u)}"
     target="_blank"
-    rel="noopener noreferrer"
-   >
+    rel="noopener noreferrer">
     PLAY
    </a>
 
   </div>
  `;
 
- const link=card.querySelector(".play");
-
- link.addEventListener("click",()=>{
+ card.querySelector(".play").addEventListener("click",()=>{
   savePlayed(game.n);
  });
 
@@ -1318,15 +1171,12 @@ gamesData.forEach(game=>{
  gamesBox.appendChild(createGame(game));
 });
 
-
 /* ==========================================
    SEARCH
 ========================================== */
 
 const search=document.getElementById("search");
-
 const categories=document.querySelectorAll(".category");
-
 const noResults=document.getElementById("noResults");
 
 let currentCategory="all";
@@ -1340,7 +1190,6 @@ function updateGames(){
  document.querySelectorAll(".game").forEach(card=>{
 
   const name=card.dataset.name;
-
   const cat=card.dataset.category;
 
   const matchesName=name.includes(query);
@@ -1350,37 +1199,28 @@ function updateGames(){
    cat===currentCategory;
 
   if(matchesName && matchesCategory){
-
    card.classList.remove("hidden");
-
    count++;
-
   }else{
-
    card.classList.add("hidden");
-
   }
 
  });
 
  noResults.style.display=count?"none":"block";
-
 }
 
 search.addEventListener("input",updateGames);
 
-
 /* ==========================================
-   CATEGORY BUTTONS
+   CATEGORIES
 ========================================== */
 
 categories.forEach(button=>{
 
  button.addEventListener("click",()=>{
 
-  categories.forEach(b=>{
-   b.classList.remove("active");
-  });
+  categories.forEach(b=>b.classList.remove("active"));
 
   button.classList.add("active");
 
@@ -1391,7 +1231,6 @@ categories.forEach(button=>{
  });
 
 });
-
 
 /* ==========================================
    RECENTLY PLAYED
@@ -1415,7 +1254,6 @@ function savePlayed(name){
  );
 
  loadRecent();
-
 }
 
 function loadRecent(){
@@ -1431,11 +1269,9 @@ function loadRecent(){
  if(!recent.length){
 
   box.innerHTML=`
-
    <div class="recentItem">
     🎮 Play a game and it'll appear here.
    </div>
-
   `;
 
   return;
@@ -1443,9 +1279,7 @@ function loadRecent(){
 
  recent.forEach(name=>{
 
-  const game=gamesData.find(
-   x=>x.n===name
-  );
+  const game=gamesData.find(x=>x.n===name);
 
   if(!game)return;
 
@@ -1455,13 +1289,9 @@ function loadRecent(){
 
   item.innerHTML=`
 
-   <div style="font-size:35px">
-    ${game.i}
-   </div>
+   <div style="font-size:35px">${game.i}</div>
 
-   <strong>
-    ${game.n}
-   </strong>
+   <strong>${game.n}</strong>
 
    <div style="color:#777;font-size:10px;margin-top:4px">
     ${game.c.toUpperCase()}
@@ -1471,11 +1301,9 @@ function loadRecent(){
     class="play"
     href="${slugURL(game.u)}"
     target="_blank"
-    rel="noopener noreferrer"
-   >
+    rel="noopener noreferrer">
     PLAY AGAIN
    </a>
-
   `;
 
   item.querySelector("a").onclick=()=>{
@@ -1485,11 +1313,9 @@ function loadRecent(){
   box.appendChild(item);
 
  });
-
 }
 
 loadRecent();
-
 
 /* ==========================================
    RANDOM GAME
@@ -1522,7 +1348,6 @@ document.getElementById("random").addEventListener("click",()=>{
 
 });
 
-
 /* ==========================================
    NEW TAB
 ========================================== */
@@ -1537,17 +1362,175 @@ function openNewTab(){
 
 }
 
+/* ==========================================
+   MUSIC SYSTEM
+==========================================
+
+ SONG 1:
+ https://www.youtube.com/watch?v=ps5nM2CiaMY
+
+ SONG 2:
+ https://www.youtube.com/watch?v=85wZGRcHHAc
+
+ START ORDER:
+ SONG 2 FIRST
+
+ MUSIC BUTTON:
+ Song 1 -> Song 2 -> OFF
+
+========================================== */
+
+const musicTracks=[
+
+ {
+  name:"Song 1",
+  id:"ps5nM2CiaMY"
+ },
+
+ {
+  name:"Song 2",
+  id:"85wZGRcHHAc"
+ }
+
+];
+
+let musicIndex=1;
+let musicStarted=false;
+let musicFrame=null;
+
+const musicButton=document.getElementById("music");
+
+/* Remove old player */
+function clearMusicPlayer(){
+
+ if(musicFrame){
+
+  musicFrame.remove();
+  musicFrame=null;
+
+ }
+
+ document
+  .querySelectorAll(".musicFrame")
+  .forEach(frame=>frame.remove());
+
+}
+
+/* Create YouTube player */
+function createMusicFrame(track){
+
+ clearMusicPlayer();
+
+ musicFrame=document.createElement("iframe");
+
+ musicFrame.className="musicFrame";
+
+ musicFrame.allow=
+  "autoplay; encrypted-media; picture-in-picture";
+
+ musicFrame.setAttribute("allowfullscreen","");
+
+ musicFrame.src=
+  "https://www.youtube.com/embed/"+
+  track.id+
+  "?autoplay=1"+
+  "&controls=0"+
+  "&loop=1"+
+  "&playlist="+track.id+
+  "&playsinline=1"+
+  "&rel=0";
+
+ document.body.appendChild(musicFrame);
+}
+
+/* Play selected song */
+function playMusic(index){
+
+ musicIndex=index;
+
+ const track=musicTracks[musicIndex];
+
+ createMusicFrame(track);
+
+ musicStarted=true;
+
+ musicButton.textContent="🔊";
+}
+
+/* Stop */
+function stopMusic(){
+
+ clearMusicPlayer();
+
+ musicStarted=false;
+
+ musicButton.textContent="🔇";
+}
+
+/* Music button */
+
+musicButton.addEventListener("click",()=>{
+
+ if(!musicStarted){
+
+  playMusic(1);
+
+  return;
+
+ }
+
+ if(musicIndex===1){
+
+  playMusic(0);
+
+  return;
+
+ }
+
+ if(musicIndex===0){
+
+  stopMusic();
+
+  return;
+
+ }
+
+});
 
 /* ==========================================
-   INTRO
+   ENTER PSTYLA
+   START SONG 2
 ========================================== */
 
 document.getElementById("enter").addEventListener("click",()=>{
 
- document.getElementById("intro").classList.add("hide");
+ /*
+  Because ENTER is an actual user click,
+  the browser allows the YouTube iframe
+  to begin autoplay here.
+ */
+
+ playMusic(1);
+
+ document
+  .getElementById("intro")
+  .classList.add("hide");
 
 });
 
+/* ==========================================
+   KEYBOARD MUSIC
+========================================== */
+
+document.addEventListener("keydown",event=>{
+
+ if(event.key.toLowerCase()==="m"){
+
+  musicButton.click();
+
+ }
+
+});
 
 /* ==========================================
    UPDATE MODAL
@@ -1570,165 +1553,6 @@ modal.addEventListener("click",e=>{
  }
 
 });
-
-
-/* ==========================================
-   MUSIC SYSTEM
-   SONG 2 FIRST
-   SONG 2 → SONG 1 → OFF
-========================================== */
-
-const musicTracks=[
-
- {
-  name:"Song 2",
-  id:"85wZGRcHHAc"
- },
-
- {
-  name:"Song 1",
-  id:"ps5nM2CiaMY"
- }
-
-];
-
-let musicIndex=-1;
-
-let musicStarted=false;
-
-let musicFrame=null;
-
-const musicButton=document.getElementById("music");
-
-
-/* REMOVE OLD MUSIC */
-
-function clearMusicPlayer(){
-
- if(musicFrame){
-
-  musicFrame.remove();
-
-  musicFrame=null;
-
- }
-
- document
-  .querySelectorAll(".hiddenMusicFrame")
-  .forEach(frame=>frame.remove());
-
-}
-
-
-/* CREATE YOUTUBE PLAYER */
-
-function createMusicFrame(track){
-
- clearMusicPlayer();
-
- musicFrame=document.createElement("iframe");
-
- musicFrame.className="hiddenMusicFrame";
-
- musicFrame.allow=
-  "autoplay; encrypted-media; picture-in-picture";
-
- musicFrame.setAttribute(
-  "frameborder",
-  "0"
- );
-
- musicFrame.src=
-  "https://www.youtube.com/embed/"+
-  track.id+
-  "?autoplay=1"+
-  "&loop=1"+
-  "&playlist="+track.id+
-  "&controls=0"+
-  "&playsinline=1";
-
- document.body.appendChild(musicFrame);
-
-}
-
-
-/* PLAY MUSIC */
-
-function playMusic(index){
-
- musicIndex=index;
-
- musicStarted=true;
-
- const track=musicTracks[musicIndex];
-
- createMusicFrame(track);
-
- musicButton.textContent="🔊";
-
-}
-
-
-/* STOP MUSIC */
-
-function stopMusic(){
-
- musicIndex=-1;
-
- musicStarted=false;
-
- clearMusicPlayer();
-
- musicButton.textContent="🔇";
-
-}
-
-
-/* MUSIC BUTTON */
-
-musicButton.addEventListener("click",()=>{
-
- /*
-  CLICK 1 = SONG 2
-  CLICK 2 = SONG 1
-  CLICK 3 = OFF
- */
-
- if(!musicStarted){
-
-  playMusic(0);
-
-  return;
-
- }
-
- if(musicIndex < musicTracks.length-1){
-
-  playMusic(musicIndex+1);
-
-  return;
-
- }
-
- stopMusic();
-
-});
-
-
-/* ==========================================
-   MUSIC KEYBOARD CONTROL
-========================================== */
-
-document.addEventListener("keydown",event=>{
-
- if(event.key.toLowerCase()==="m"){
-
-  musicButton.click();
-
- }
-
-});
-
 
 /* ==========================================
    VERSION
