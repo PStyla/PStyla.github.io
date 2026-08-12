@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PStyla Games</title>
 
 <style>
@@ -11,17 +12,16 @@ html{scroll-behavior:smooth}
 
 :root{
  --purple:#9b5cff;
- --purple2:#7c3aed;
  --pink:#d946ef;
  --dark:#050507;
  --panel:rgba(13,12,20,.82);
- --border:rgba(168,85,247,.24);
+ --border:rgba(168,85,247,.22);
 }
 
 body{
  margin:0;
  background:#050507;
- color:#fff;
+ color:white;
  font-family:Arial,Helvetica,sans-serif;
  overflow-x:hidden;
 }
@@ -32,22 +32,21 @@ body:before{
  content:"";
  position:fixed;
  inset:0;
- z-index:-20;
+ z-index:-10;
  background:
- radial-gradient(circle at 15% 20%,rgba(139,92,246,.2),transparent 35%),
- radial-gradient(circle at 85% 75%,rgba(217,70,239,.15),transparent 38%),
- linear-gradient(135deg,#040406,#12091b 50%,#050507);
+ radial-gradient(ellipse at 20% 20%,rgba(139,92,246,.18),transparent 40%),
+ radial-gradient(ellipse at 80% 70%,rgba(217,70,239,.12),transparent 45%),
+ linear-gradient(135deg,#050507,#110817,#050507);
 }
 
-/* ================= WATER ================= */
-
+/* WATER */
 .water{
  position:fixed;
  inset:-30%;
- z-index:-15;
+ z-index:-9;
  pointer-events:none;
  opacity:.55;
- filter:blur(20px);
+ filter:blur(18px);
 }
 
 .water:before,
@@ -57,13 +56,14 @@ body:before{
  width:80%;
  height:35%;
  border-radius:50%;
- background:linear-gradient(
-  90deg,
-  transparent,
-  rgba(155,92,255,.16),
-  rgba(217,70,239,.2),
-  rgba(155,92,255,.1),
-  transparent
+ background:
+ linear-gradient(
+ 90deg,
+ transparent,
+ rgba(155,92,255,.18),
+ rgba(217,70,239,.20),
+ rgba(155,92,255,.10),
+ transparent
  );
  animation:floatWater 15s ease-in-out infinite alternate;
 }
@@ -81,12 +81,11 @@ body:before{
  100%{transform:translate(-5%,-8%) rotate(-5deg) scaleY(.9)}
 }
 
-/* ================= PARTICLES ================= */
-
+/* PARTICLES */
 #particles{
  position:fixed;
  inset:0;
- z-index:-10;
+ z-index:-5;
  pointer-events:none;
  overflow:hidden;
 }
@@ -112,8 +111,7 @@ body:before{
  100%{transform:translate(110vw,15vh);opacity:0}
 }
 
-/* ================= INTRO ================= */
-
+/* INTRO */
 #intro{
  position:fixed;
  inset:0;
@@ -123,8 +121,8 @@ body:before{
  align-items:center;
  text-align:center;
  background:
- radial-gradient(circle at center,#28123f,#10091a 45%,#050507 85%);
- transition:opacity .9s ease,visibility .9s ease;
+ radial-gradient(circle at center,#26123d,#10091a 40%,#050507 80%);
+ transition:opacity .8s ease,visibility .8s ease;
 }
 
 #intro.hide{
@@ -134,7 +132,7 @@ body:before{
 }
 
 .introBox{
- width:min(90%,760px);
+ width:min(90%,700px);
 }
 
 .introTitle{
@@ -143,7 +141,7 @@ body:before{
  letter-spacing:-5px;
  text-shadow:
  0 0 20px rgba(168,85,247,.8),
- 0 0 60px rgba(168,85,247,.35);
+ 0 0 60px rgba(168,85,247,.3);
  animation:titleIn 1.2s cubic-bezier(.2,.8,.2,1);
 }
 
@@ -169,10 +167,7 @@ body:before{
  animation:textIn .8s ease 1.3s both;
 }
 
-.updateText span{
- color:#c084fc;
- font-weight:900;
-}
+.updateText span{color:#c084fc;font-weight:900}
 
 @keyframes textIn{
  from{opacity:0;transform:translateY(18px)}
@@ -184,7 +179,7 @@ body:before{
  border:1px solid #a855f7;
  border-radius:9px;
  padding:14px 28px;
- color:#fff;
+ color:white;
  background:linear-gradient(135deg,#8b5cf6,#c026d3);
  font-weight:900;
  cursor:pointer;
@@ -198,8 +193,7 @@ body:before{
  box-shadow:0 0 45px rgba(168,85,247,.55);
 }
 
-/* ================= HEADER ================= */
-
+/* HEADER */
 header{
  position:sticky;
  top:0;
@@ -225,6 +219,8 @@ header{
  white-space:nowrap;
 }
 
+.logo span{color:#a855f7}
+
 .logoMark{
  display:inline-flex;
  width:31px;
@@ -234,9 +230,8 @@ header{
  margin-right:7px;
  border-radius:8px;
  background:linear-gradient(135deg,#8b5cf6,#d946ef);
+ color:white!important;
 }
-
-.logo span:last-child span{color:#a855f7}
 
 .search{
  flex:1;
@@ -249,7 +244,7 @@ header{
  border:1px solid #292932;
  border-radius:8px;
  background:#14141b;
- color:#fff;
+ color:white;
  outline:none;
 }
 
@@ -266,7 +261,7 @@ header{
 .navButtons button{
  border:1px solid #292932;
  background:#15151c;
- color:#fff;
+ color:white;
  padding:10px 12px;
  border-radius:7px;
  cursor:pointer;
@@ -279,8 +274,47 @@ header{
  transform:translateY(-2px);
 }
 
-/* ================= MAIN ================= */
+/* MUSIC PLAYER */
+#musicPlayer{
+ position:fixed;
+ width:1px;
+ height:1px;
+ opacity:0;
+ pointer-events:none;
+ left:-100px;
+ top:-100px;
+}
 
+.musicToast{
+ position:fixed;
+ right:20px;
+ bottom:20px;
+ z-index:9000;
+ padding:13px 17px;
+ border:1px solid rgba(168,85,247,.4);
+ border-radius:10px;
+ background:rgba(13,9,20,.92);
+ backdrop-filter:blur(15px);
+ box-shadow:0 10px 40px rgba(0,0,0,.5);
+ color:#ddd;
+ font-size:12px;
+ font-weight:900;
+ opacity:0;
+ transform:translateY(15px);
+ pointer-events:none;
+ transition:.3s;
+}
+
+.musicToast.show{
+ opacity:1;
+ transform:none;
+}
+
+.musicToast span{
+ color:#c084fc;
+}
+
+/* MAIN */
 main{
  max-width:1400px;
  margin:auto;
@@ -303,43 +337,25 @@ h1{
 
 .welcome p{color:#777}
 
-/* ================= FEATURED ================= */
-
+/* FEATURED */
 .featured{
  position:relative;
- min-height:320px;
+ min-height:300px;
  margin:30px 0;
  padding:42px;
  overflow:hidden;
  border:1px solid rgba(168,85,247,.35);
  border-radius:16px;
  background:
- linear-gradient(120deg,rgba(36,19,59,.9),rgba(16,12,23,.84));
+ linear-gradient(120deg,rgba(36,19,59,.88),rgba(16,12,23,.84));
  box-shadow:0 25px 70px rgba(0,0,0,.45);
-}
-
-.featured:before{
- content:"";
- position:absolute;
- width:450px;
- height:450px;
- right:-120px;
- top:-170px;
- border-radius:50%;
- background:radial-gradient(circle,#a855f755,transparent 65%);
- animation:featuredGlow 5s ease-in-out infinite alternate;
-}
-
-@keyframes featuredGlow{
- from{transform:scale(.8);opacity:.5}
- to{transform:scale(1.2);opacity:1}
 }
 
 .featured:after{
  content:"🎮";
  position:absolute;
  right:7%;
- top:45px;
+ top:25px;
  font-size:170px;
  opacity:.12;
  transform:rotate(-8deg);
@@ -356,16 +372,12 @@ h1{
  margin:8px 0;
  font-size:clamp(38px,6vw,68px);
  letter-spacing:-3px;
- position:relative;
- z-index:2;
 }
 
 .featured p{
  max-width:550px;
  color:#999;
  line-height:1.6;
- position:relative;
- z-index:2;
 }
 
 .playFeatured{
@@ -373,13 +385,11 @@ h1{
  margin-top:8px;
  padding:12px 22px;
  background:#8b5cf6;
- color:#fff;
+ color:white;
  text-decoration:none;
  border-radius:7px;
  font-weight:900;
  transition:.2s;
- position:relative;
- z-index:2;
 }
 
 .playFeatured:hover{
@@ -387,8 +397,7 @@ h1{
  box-shadow:0 12px 30px rgba(139,92,246,.4);
 }
 
-/* ================= TOOLBAR ================= */
-
+/* TOOLBAR */
 .toolbar{
  display:flex;
  justify-content:space-between;
@@ -402,7 +411,7 @@ h1{
 .updateBtn{
  border:1px solid #633bb4;
  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
- color:#fff;
+ color:white;
  padding:10px 16px;
  border-radius:8px;
  font-weight:900;
@@ -416,8 +425,7 @@ h1{
  box-shadow:0 10px 25px rgba(139,92,246,.3);
 }
 
-/* ================= CATEGORIES ================= */
-
+/* CATEGORIES */
 .categories{
  display:flex;
  flex-wrap:wrap;
@@ -440,12 +448,11 @@ h1{
 .category.active,
 .category:hover{
  background:#8b5cf6;
- color:#fff;
+ color:white;
  border-color:#8b5cf6;
 }
 
-/* ================= GAME GRID ================= */
-
+/* GAME GRID */
 .gameGrid{
  display:grid;
  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
@@ -455,7 +462,7 @@ h1{
 .game{
  position:relative;
  overflow:hidden;
- min-height:300px;
+ min-height:275px;
  border:1px solid #292932;
  border-radius:12px;
  background:rgba(17,17,23,.94);
@@ -467,19 +474,10 @@ h1{
  border-color:#a855f7;
  box-shadow:
  0 20px 45px rgba(0,0,0,.55),
- 0 0 28px rgba(139,92,246,.22);
+ 0 0 28px rgba(139,92,246,.18);
 }
 
-.game:hover .thumbIcon{
- transform:scale(1.18) rotate(-4deg);
-}
-
-.game:hover .thumbShape{
- transform:rotate(20deg) scale(1.1);
-}
-
-/* REAL THUMBNAIL */
-
+/* BETTER THUMBNAILS */
 .thumb{
  height:175px;
  display:flex;
@@ -488,61 +486,59 @@ h1{
  position:relative;
  overflow:hidden;
  background:
- radial-gradient(circle at 50% 25%,var(--glow),transparent 42%),
+ radial-gradient(circle at 50% 30%,var(--glow),transparent 40%),
  linear-gradient(135deg,var(--one),var(--two));
+ font-size:70px;
 }
 
 .thumb:before{
  content:"";
  position:absolute;
- width:250px;
- height:250px;
+ width:240px;
+ height:240px;
  border-radius:50%;
- background:rgba(255,255,255,.055);
- top:-130px;
- right:-80px;
+ background:rgba(255,255,255,.07);
+ top:-120px;
+ right:-90px;
 }
 
 .thumb:after{
  content:"";
  position:absolute;
- width:160px;
- height:160px;
- border:2px solid rgba(255,255,255,.08);
- border-radius:30%;
- transform:rotate(35deg);
+ inset:0;
+ background:
+ linear-gradient(135deg,transparent 40%,rgba(255,255,255,.05) 50%,transparent 60%);
+ transform:translateX(-100%);
+ transition:.5s;
 }
 
-.thumbShape{
- position:absolute;
- width:90px;
- height:90px;
- border-radius:25px;
- background:rgba(255,255,255,.07);
- transform:rotate(10deg);
- transition:.4s;
+.game:hover .thumb:after{
+ transform:translateX(100%);
 }
 
 .thumbIcon{
  position:relative;
- z-index:3;
- font-size:70px;
- filter:drop-shadow(0 8px 15px rgba(0,0,0,.45));
- transition:.4s cubic-bezier(.2,.8,.2,1);
+ z-index:1;
+ filter:drop-shadow(0 10px 15px rgba(0,0,0,.4));
+ transition:.3s;
 }
 
-.thumbTitle{
+.game:hover .thumbIcon{
+ transform:scale(1.18) rotate(-4deg);
+}
+
+/* IMAGE-STYLE GAME THUMBNAIL LABEL */
+.thumbName{
  position:absolute;
- bottom:8px;
  left:10px;
- right:10px;
- z-index:4;
- font-size:9px;
+ bottom:9px;
+ z-index:2;
+ font-size:10px;
  font-weight:1000;
- letter-spacing:1px;
+ letter-spacing:.5px;
  text-transform:uppercase;
- color:rgba(255,255,255,.7);
  text-shadow:0 2px 8px #000;
+ opacity:.85;
 }
 
 .gameInfo{
@@ -574,7 +570,7 @@ h1{
  padding:7px 11px;
  border-radius:5px;
  background:#8b5cf6;
- color:#fff;
+ color:white;
  text-decoration:none;
  font-size:10px;
  font-weight:1000;
@@ -590,25 +586,12 @@ h1{
  position:absolute;
  top:8px;
  left:8px;
- z-index:5;
+ z-index:2;
  padding:5px 7px;
  border-radius:5px;
  background:rgba(5,5,8,.7);
  backdrop-filter:blur(8px);
  color:#c084fc;
- font-size:8px;
- font-weight:900;
-}
-
-.hotBadge{
- position:absolute;
- top:8px;
- right:8px;
- z-index:5;
- padding:5px 7px;
- border-radius:5px;
- background:rgba(217,70,239,.85);
- color:#fff;
  font-size:8px;
  font-weight:900;
 }
@@ -624,8 +607,7 @@ h1{
  color:#777;
 }
 
-/* ================= RECENT ================= */
-
+/* SECTIONS */
 .section{
  margin-top:45px;
 }
@@ -644,6 +626,7 @@ h1{
  font-size:11px;
 }
 
+/* RECENT */
 #recent{
  display:flex;
  gap:12px;
@@ -659,8 +642,7 @@ h1{
  background:#111117;
 }
 
-/* ================= ACHIEVEMENTS ================= */
-
+/* ACHIEVEMENTS */
 .achievements{
  display:grid;
  grid-template-columns:repeat(4,1fr);
@@ -685,104 +667,7 @@ h1{
 .achievementName{font-weight:1000;margin-top:7px}
 .achievementDesc{color:#666;font-size:10px;margin-top:5px}
 
-/* ================= MUSIC PLAYER ================= */
-
-.musicPanel{
- position:fixed;
- right:18px;
- bottom:18px;
- z-index:9000;
- width:270px;
- padding:14px;
- border:1px solid rgba(168,85,247,.35);
- border-radius:14px;
- background:rgba(10,8,15,.9);
- backdrop-filter:blur(18px);
- box-shadow:0 15px 50px rgba(0,0,0,.5);
- transform:translateY(150%);
- transition:.4s cubic-bezier(.2,.8,.2,1);
-}
-
-.musicPanel.show{
- transform:translateY(0);
-}
-
-.musicTop{
- display:flex;
- align-items:center;
- gap:10px;
-}
-
-.musicDisc{
- width:42px;
- height:42px;
- border-radius:50%;
- display:flex;
- align-items:center;
- justify-content:center;
- background:linear-gradient(135deg,#8b5cf6,#d946ef);
- box-shadow:0 0 20px rgba(168,85,247,.35);
-}
-
-.musicDisc.playing{
- animation:spin 3s linear infinite;
-}
-
-@keyframes spin{
- to{transform:rotate(360deg)}
-}
-
-.musicName{
- font-size:12px;
- font-weight:1000;
-}
-
-.musicArtist{
- color:#777;
- font-size:9px;
- margin-top:3px;
-}
-
-.musicStatus{
- color:#a855f7;
- font-size:9px;
- margin-top:10px;
-}
-
-.musicControls{
- display:flex;
- gap:7px;
- margin-top:10px;
-}
-
-.musicControls button{
- flex:1;
- border:1px solid #292932;
- background:#15151c;
- color:#fff;
- padding:8px;
- border-radius:7px;
- cursor:pointer;
-}
-
-.musicControls button:hover{
- border-color:#8b5cf6;
-}
-
-/* Hidden YouTube player */
-
-#youtubePlayer{
- position:fixed;
- width:1px;
- height:1px;
- left:-10px;
- bottom:-10px;
- opacity:0;
- pointer-events:none;
-}
-
-/* ================= VERSION ================= */
-
+/* VERSION */
 .version{
  position:fixed;
  bottom:12px;
@@ -798,8 +683,7 @@ h1{
  pointer-events:none;
 }
 
-/* ================= MODAL ================= */
-
+/* MODAL */
 .modal{
  position:fixed;
  inset:0;
@@ -834,7 +718,7 @@ h1{
  margin-top:20px;
  border:0;
  background:#8b5cf6;
- color:#fff;
+ color:white;
  padding:9px 16px;
  border-radius:7px;
  font-weight:900;
@@ -849,10 +733,8 @@ footer{
  border-top:1px solid #17171d;
 }
 
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media(max-width:700px){
-
  .nav{
   flex-wrap:wrap;
   padding:12px 15px;
@@ -866,10 +748,7 @@ footer{
 
  main{padding:25px 15px 60px}
 
- .featured{
-  padding:28px;
-  min-height:280px;
- }
+ .featured{padding:28px;min-height:280px}
 
  .featured:after{font-size:100px}
 
@@ -878,13 +757,9 @@ footer{
   gap:10px;
  }
 
- .game{min-height:260px}
+ .game{min-height:245px}
 
- .thumb{
-  height:145px;
- }
-
- .thumbIcon{font-size:55px}
+ .thumb{height:145px;font-size:55px}
 
  .achievements{
   grid-template-columns:repeat(2,1fr);
@@ -894,34 +769,15 @@ footer{
   padding:8px 9px;
   font-size:10px;
  }
-
- .musicPanel{
-  left:15px;
-  right:15px;
-  width:auto;
-  bottom:15px;
- }
-
- .version{
-  display:none;
- }
 }
 
 @media(max-width:430px){
-
- .gameGrid{
-  grid-template-columns:1fr 1fr;
- }
-
- .gameName{
-  font-size:14px;
- }
-
- .achievements{
-  grid-template-columns:1fr;
- }
+ .gameGrid{grid-template-columns:1fr 1fr}
+ .gameName{font-size:14px}
+ .achievements{grid-template-columns:1fr}
 }
 </style>
+
 </head>
 
 <body>
@@ -929,10 +785,17 @@ footer{
 <div class="water"></div>
 <div id="particles"></div>
 
-<!-- ================= INTRO ================= -->
+<!-- MUSIC PLAYER -->
+
+<div id="musicPlayer"></div>
+
+<div class="musicToast" id="musicToast">
+ 🎵 <span id="musicStatus">Music Off</span>
+</div>
+
+<!-- INTRO -->
 
 <div id="intro">
-
  <div class="introBox">
 
   <div class="introTitle">
@@ -941,7 +804,7 @@ footer{
 
   <div class="introText">
    Hey 👋 thanks for choosing PStyla.<br>
-   Enjoy our games, discover something new,
+   Enjoy our many games, discover something new,
    and have fun.
   </div>
 
@@ -955,60 +818,33 @@ footer{
   </button>
 
  </div>
-
 </div>
 
-<!-- ================= HEADER ================= -->
-
 <header>
-
  <div class="nav">
 
   <div class="logo">
    <span class="logoMark">P</span>
-   <span style="color:#a855f7">PStyla</span> Games
+   <span>PStyla</span> Games
   </div>
 
   <div class="search">
-   <input
-    id="search"
-    type="search"
-    placeholder="Search 75 games..."
-   >
+   <input id="search" type="search" placeholder="Search 75 games...">
   </div>
 
   <div class="navButtons">
-
-   <button id="music">
-    🎵
-   </button>
-
-   <button id="updates">
-    ✨ Updates
-   </button>
-
-   <button onclick="openNewTab()">
-    🪟
-   </button>
-
-   <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    Home
-   </button>
-
+   <button id="music">🎵</button>
+   <button id="updates">✨ Updates</button>
+   <button onclick="openNewTab()">🪟</button>
+   <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</button>
   </div>
 
  </div>
-
 </header>
-
-<!-- ================= MAIN ================= -->
 
 <main>
 
- <div class="welcomeSmall">
-  WELCOME BACK
- </div>
-
+ <div class="welcomeSmall">WELCOME BACK</div>
  <h1>PStyla Games</h1>
 
  <div class="welcome">
@@ -1020,78 +856,39 @@ footer{
  <!-- FEATURED -->
 
  <div class="featured">
-
-  <div class="featuredLabel">
-   🔥 FEATURED GAME
-  </div>
-
+  <div class="featuredLabel">🔥 FEATURED GAME</div>
   <h2>Among Us</h2>
-
   <p>
-   Find the impostor, complete your tasks
-   and try not to get ejected.
+   Find the impostor, complete your tasks and try not to get ejected.
   </p>
 
-  <a
-   class="playFeatured"
-   href="https://githubgames.gitlab.io/game/among-us.html"
-   target="_blank"
-   rel="noopener noreferrer"
-   onclick="savePlayed('Among Us')"
-  >
-   PLAY NOW
-  </a>
+<a
+class="playFeatured"
+href="https://githubgames.gitlab.io/game/among-us.html"
+target="_blank"
+rel="noopener noreferrer"
+onclick="savePlayed('Among Us')">
+PLAY NOW </a>
 
  </div>
 
- <!-- TOOLBAR -->
-
  <div class="toolbar">
-
   <h2>🎮 Games</h2>
 
   <button class="random" id="random">
    🎲 Surprise Me
   </button>
-
  </div>
 
- <!-- CATEGORIES -->
-
  <div class="categories">
-
-  <button class="category active" data-category="all">
-   All
-  </button>
-
-  <button class="category" data-category="action">
-   Action
-  </button>
-
-  <button class="category" data-category="arcade">
-   Arcade
-  </button>
-
-  <button class="category" data-category="racing">
-   Racing
-  </button>
-
-  <button class="category" data-category="sports">
-   Sports
-  </button>
-
-  <button class="category" data-category="puzzle">
-   Puzzle
-  </button>
-
-  <button class="category" data-category="platformer">
-   Platformer
-  </button>
-
-  <button class="category" data-category="casual">
-   Casual
-  </button>
-
+  <button class="category active" data-category="all">All</button>
+  <button class="category" data-category="action">Action</button>
+  <button class="category" data-category="arcade">Arcade</button>
+  <button class="category" data-category="racing">Racing</button>
+  <button class="category" data-category="sports">Sports</button>
+  <button class="category" data-category="puzzle">Puzzle</button>
+  <button class="category" data-category="platformer">Platformer</button>
+  <button class="category" data-category="casual">Casual</button>
  </div>
 
  <div class="gameGrid" id="games"></div>
@@ -1103,29 +900,19 @@ footer{
  <!-- RECENT -->
 
  <section class="section">
-
   <div class="sectionTitle">
-
    <h2>🕐 Recently Played</h2>
-
-   <span>
-    Saved on this device
-   </span>
-
+   <span>Saved on this device</span>
   </div>
 
   <div id="recent"></div>
-
  </section>
 
  <!-- ACHIEVEMENTS -->
 
  <section class="section">
-
   <div class="sectionTitle">
-
    <h2>🏆 Achievements</h2>
-
   </div>
 
   <div class="achievements">
@@ -1133,132 +920,64 @@ footer{
    <div class="achievement">
     <div class="achievementIcon">🎮</div>
     <div class="achievementName">First Game</div>
-    <div class="achievementDesc">
-     Play your first game
-    </div>
+    <div class="achievementDesc">Play your first game</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🔥</div>
     <div class="achievementName">Getting Addicted</div>
-    <div class="achievementDesc">
-     Play 5 different games
-    </div>
+    <div class="achievementDesc">Play 5 different games</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🎲</div>
     <div class="achievementName">Lucky Player</div>
-    <div class="achievementDesc">
-     Use Surprise Me
-    </div>
+    <div class="achievementDesc">Use Surprise Me</div>
    </div>
 
    <div class="achievement">
     <div class="achievementIcon">🧭</div>
     <div class="achievementName">Explorer</div>
-    <div class="achievementDesc">
-     Explore the library
-    </div>
+    <div class="achievementDesc">Explore the library</div>
    </div>
 
   </div>
-
  </section>
 
 </main>
 
 <footer>
- PStyla Games © 2026 • Version 1.0.0 • Made by Peter Faamanu
+ PStyla Games © 2026 • Version 1.0.0
 </footer>
 
 <div class="version">
  PStyla v1.0.0
 </div>
 
-<!-- ================= MUSIC PANEL ================= -->
-
-<div class="musicPanel" id="musicPanel">
-
- <div class="musicTop">
-
-  <div class="musicDisc" id="musicDisc">
-   🎵
-  </div>
-
-  <div>
-   <div class="musicName">
-    Hide (Slow)
-   </div>
-
-   <div class="musicArtist">
-    Dorian Concept
-   </div>
-  </div>
-
- </div>
-
- <div class="musicStatus" id="musicStatus">
-  Music paused
- </div>
-
- <div class="musicControls">
-
-  <button id="musicPlay">
-   ▶ Play
-  </button>
-
-  <button id="musicStop">
-   ■ Stop
-  </button>
-
- </div>
-
-</div>
-
-<!-- YouTube music player -->
-
-<div id="youtubePlayer"></div>
-
-<!-- ================= UPDATE MODAL ================= -->
+<!-- UPDATE MODAL -->
 
 <div class="modal" id="modal">
-
  <div class="modalBox">
 
-  <div style="
-   color:#a855f7;
-   font-size:10px;
-   font-weight:900;
-   letter-spacing:2px;
-  ">
+  <div style="color:#a855f7;font-size:10px;font-weight:900;letter-spacing:2px">
    PSTYLA GAMES v1.0.0
   </div>
 
-  <h2>
-   ✨ What's New
-  </h2>
+  <h2>✨ What's New</h2>
 
   <div class="notes">
-
    • 75-game library<br>
    • Added Among Us<br>
-   • Added upgraded thumbnails<br>
-   • Added animated game cards<br>
    • Added version tracking<br>
    • Improved game selection<br>
    • Added watery zero-gravity background<br>
    • Added animated PStyla intro<br>
    • Added recently played games<br>
-   • Added PStyla music player
-
+   • Added music switcher<br>
+   • Added upgraded game thumbnails
   </div>
 
-  <div style="
-   color:#c084fc;
-   font-size:11px;
-   margin-top:18px;
-  ">
+  <div style="color:#c084fc;font-size:11px;margin-top:18px">
    New updates and games every 1–2 weeks.
   </div>
 
@@ -1267,7 +986,6 @@ footer{
   </button>
 
  </div>
-
 </div>
 
 <script>
@@ -1276,16 +994,16 @@ footer{
    PSTYLA VERSION
 ========================================== */
 
-const PSTYLA_VERSION="1.0.0";
+const PSTYLA_VERSION = "1.0.0";
 
 
 /* ==========================================
-   GAME DATABASE
+   75 GAME DATABASE
 ========================================== */
 
-const gamesData=[
+const gamesData = [
 
- {n:"Among Us",c:"action",i:"🔪",u:"among-us",hot:true},
+ {n:"Among Us",c:"action",i:"🔪",u:"among-us"},
  {n:"1v1.LOL",c:"action",i:"🔫",u:"1v1-lol"},
  {n:"2048",c:"puzzle",i:"🔢",u:"2048"},
  {n:"BitLife",c:"casual",i:"📱",u:"bitlife"},
@@ -1296,18 +1014,18 @@ const gamesData=[
  {n:"Cookie Clicker",c:"arcade",i:"🍪",u:"cookie-clicker"},
  {n:"Cut The Rope",c:"puzzle",i:"🍬",u:"cut-the-rope"},
  {n:"Doodle Jump",c:"platformer",i:"🦘",u:"doodle-jump"},
- {n:"Drift Boss",c:"racing",i:"🏎️",u:"drift-boss",hot:true},
+ {n:"Drift Boss",c:"racing",i:"🏎️",u:"drift-boss"},
  {n:"Drift Hunters",c:"racing",i:"🚗",u:"drift-hunters"},
  {n:"Flappy Bird",c:"arcade",i:"🐦",u:"flappy-bird"},
  {n:"Fruit Ninja",c:"arcade",i:"🍉",u:"fruit-ninja"},
- {n:"Geometry Dash",c:"platformer",i:"🟨",u:"geometry-dash",hot:true},
+ {n:"Geometry Dash",c:"platformer",i:"🟨",u:"geometry-dash"},
  {n:"Google Snake",c:"arcade",i:"🐍",u:"google-snake"},
  {n:"Hextris",c:"puzzle",i:"🔷",u:"hextris"},
  {n:"Idle Breakout",c:"arcade",i:"🧱",u:"idle-breakout"},
  {n:"Little Alchemy 2",c:"puzzle",i:"⚗️",u:"little-alchemy-2"},
  {n:"Madalin Stunt Cars 2",c:"racing",i:"🏎️",u:"madalin-stunt-cars-2"},
  {n:"Madalin Stunt Cars 3",c:"racing",i:"🚘",u:"madalin-stunt-cars-3"},
- {n:"Minecraft Classic",c:"arcade",i:"⛏️",u:"minecraft-classic",hot:true},
+ {n:"Minecraft Classic",c:"arcade",i:"⛏️",u:"minecraft-classic"},
  {n:"Minesweeper",c:"puzzle",i:"💣",u:"minesweeper"},
  {n:"Pac-Man",c:"arcade",i:"🟡",u:"pacman"},
  {n:"Paper.io 2",c:"arcade",i:"🟦",u:"paper-io-2"},
@@ -1315,7 +1033,7 @@ const gamesData=[
  {n:"Rocketpult",c:"arcade",i:"🚀",u:"rocketpult"},
  {n:"Rooftop Snipers",c:"action",i:"🎯",u:"rooftop-snipers"},
  {n:"Save the Doge",c:"puzzle",i:"🐶",u:"save-the-doge"},
- {n:"Slope",c:"action",i:"🟣",u:"slope",hot:true},
+ {n:"Slope",c:"action",i:"🟣",u:"slope"},
  {n:"Smash Karts",c:"racing",i:"🏎️",u:"smash-karts"},
  {n:"Solitaire",c:"puzzle",i:"🃏",u:"solitare"},
  {n:"Stack",c:"arcade",i:"🟪",u:"stack"},
@@ -1323,21 +1041,21 @@ const gamesData=[
  {n:"Waterworks!",c:"puzzle",i:"💧",u:"waterworks"},
  {n:"We Become What We Behold",c:"casual",i:"📺",u:"we-become-what-we-behold"},
 
- {n:"Fireboy & Watergirl",c:"platformer",i:"🔥",u:"fireboy-and-watergirl",hot:true},
+ {n:"Fireboy & Watergirl",c:"platformer",i:"🔥",u:"fireboy-and-watergirl"},
  {n:"Fireboy & Watergirl 2",c:"platformer",i:"💧",u:"fireboy-and-watergirl-2"},
  {n:"Fireboy & Watergirl 3",c:"platformer",i:"❄️",u:"fireboy-and-watergirl-3"},
  {n:"Fireboy & Watergirl 4",c:"platformer",i:"💎",u:"fireboy-and-watergirl-4"},
  {n:"Fireboy & Watergirl 5",c:"platformer",i:"🌊",u:"fireboy-and-watergirl-5"},
  {n:"Fireboy & Watergirl 6",c:"platformer",i:"🧚",u:"fireboy-and-watergirl-6"},
 
- {n:"FNAF 1",c:"action",i:"🐻",u:"fnaf-1",hot:true},
+ {n:"FNAF 1",c:"action",i:"🐻",u:"fnaf-1"},
  {n:"FNAF 2",c:"action",i:"🤖",u:"fnaf-2"},
  {n:"FNAF 3",c:"action",i:"👻",u:"fnaf-3"},
  {n:"FNAF 4",c:"action",i:"🌙",u:"fnaf-4"},
  {n:"Sister Location",c:"action",i:"🎭",u:"sister-location"},
  {n:"FNAF UCN",c:"action",i:"🎪",u:"fnaf-ucn"},
 
- {n:"Moto X3M",c:"racing",i:"🏍️",u:"moto-x3m",hot:true},
+ {n:"Moto X3M",c:"racing",i:"🏍️",u:"moto-x3m"},
  {n:"Moto X3M 2",c:"racing",i:"🏍️",u:"moto-x3m-2"},
  {n:"Moto X3M Winter",c:"racing",i:"❄️",u:"moto-x3m-winter"},
  {n:"Moto X3M Pool Party",c:"racing",i:"🏖️",u:"moto-x3m-pool-party"},
@@ -1365,8 +1083,8 @@ const gamesData=[
 
  {n:"Retro Bowl",c:"sports",i:"🏈",u:"retro-bowl"},
  {n:"Retro Bowl College",c:"sports",i:"🏈",u:"retro-bowl-college"},
- {n:"Stickman Hook",c:"platformer",i:"🪝",u:"stickman-hook",hot:true},
- {n:"Subway Surfers",c:"action",i:"🚇",u:"subway-surfers",hot:true},
+ {n:"Stickman Hook",c:"platformer",i:"🪝",u:"stickman-hook"},
+ {n:"Subway Surfers",c:"action",i:"🚇",u:"subway-surfers"},
  {n:"Temple Run 2",c:"action",i:"🏃",u:"temple-run-2"},
  {n:"Crossy Road",c:"arcade",i:"🐔",u:"crossy-road"},
  {n:"Snow Rider 3D",c:"racing",i:"🏂",u:"snow-rider-3d"},
@@ -1382,9 +1100,7 @@ const gamesData=[
 const particleBox=document.getElementById("particles");
 
 for(let i=0;i<110;i++){
-
  const p=document.createElement("div");
-
  p.className="particle";
 
  p.style.setProperty("--x",Math.random()*100+"%");
@@ -1395,25 +1111,7 @@ for(let i=0;i<110;i++){
  p.style.setProperty("--delay",-(Math.random()*15)+"s");
 
  particleBox.appendChild(p);
-
 }
-
-
-/* ==========================================
-   GAME THUMBNAIL COLORS
-========================================== */
-
-const colors={
-
- action:["#7c3aed","#180c2b"],
- arcade:["#0891b2","#06151a"],
- racing:["#ef4444","#1a0707"],
- sports:["#16a34a","#061409"],
- puzzle:["#2563eb","#080f20"],
- platformer:["#8b5cf6","#12081d"],
- casual:["#db2777","#190817"]
-
-};
 
 
 /* ==========================================
@@ -1431,67 +1129,49 @@ function createGame(game){
  const card=document.createElement("div");
 
  card.className="game";
-
  card.dataset.name=game.n.toLowerCase();
-
  card.dataset.category=game.c;
+
+ const colors={
+  action:["#7c3aed","#180c2b"],
+  arcade:["#0891b2","#06151a"],
+  racing:["#ef4444","#1a0707"],
+  sports:["#16a34a","#061409"],
+  puzzle:["#2563eb","#080f20"],
+  platformer:["#8b5cf6","#12081d"],
+  casual:["#db2777","#190817"]
+ };
 
  const pair=colors[game.c]||["#8b5cf6","#100817"];
 
  card.innerHTML=`
-
   <div class="thumb"
-   style="
-    --one:${pair[0]};
-    --two:${pair[1]};
-    --glow:${pair[0]};
-   ">
+   style="--one:${pair[0]};--two:${pair[1]};--glow:${pair[0]}">
 
-   <div class="badge">
-    PSTYLA™
-   </div>
-
-   ${game.hot?`
-    <div class="hotBadge">
-     🔥 HOT
-    </div>
-   `:""}
-
-   <div class="thumbShape"></div>
+   <div class="badge">PSTYLA™</div>
 
    <div class="thumbIcon">
     ${game.i}
    </div>
 
-   <div class="thumbTitle">
+   <div class="thumbName">
     ${game.n}
    </div>
 
   </div>
 
   <div class="gameInfo">
-
-   <div class="gameName">
-    ${game.n}
-   </div>
-
-   <div class="gameCategory">
-    ${game.c}
-   </div>
-
-   <div class="gameVersion">
-    v1.0
-   </div>
+   <div class="gameName">${game.n}</div>
+   <div class="gameCategory">${game.c}</div>
+   <div class="gameVersion">v1.0</div>
 
    <a
     class="play"
     href="${slugURL(game.u)}"
     target="_blank"
-    rel="noopener noreferrer"
-   >
+    rel="noopener noreferrer">
     PLAY
    </a>
-
   </div>
  `;
 
@@ -1502,7 +1182,6 @@ function createGame(game){
  });
 
  return card;
-
 }
 
 gamesData.forEach(game=>{
@@ -1515,9 +1194,7 @@ gamesData.forEach(game=>{
 ========================================== */
 
 const search=document.getElementById("search");
-
 const categories=document.querySelectorAll(".category");
-
 const noResults=document.getElementById("noResults");
 
 let currentCategory="all";
@@ -1531,7 +1208,6 @@ function updateGames(){
  document.querySelectorAll(".game").forEach(card=>{
 
   const name=card.dataset.name;
-
   const cat=card.dataset.category;
 
   const matchesName=name.includes(query);
@@ -1540,22 +1216,16 @@ function updateGames(){
    currentCategory==="all" ||
    cat===currentCategory;
 
-  if(matchesName&&matchesCategory){
-
+  if(matchesName && matchesCategory){
    card.classList.remove("hidden");
-
    count++;
-
   }else{
-
    card.classList.add("hidden");
-
   }
 
  });
 
  noResults.style.display=count?"none":"block";
-
 }
 
 search.addEventListener("input",updateGames);
@@ -1569,9 +1239,7 @@ categories.forEach(button=>{
 
  button.addEventListener("click",()=>{
 
-  categories.forEach(b=>
-   b.classList.remove("active")
-  );
+  categories.forEach(b=>b.classList.remove("active"));
 
   button.classList.add("active");
 
@@ -1606,7 +1274,6 @@ function savePlayed(name){
  );
 
  loadRecent();
-
 }
 
 function loadRecent(){
@@ -1628,7 +1295,6 @@ function loadRecent(){
   `;
 
   return;
-
  }
 
  recent.forEach(name=>{
@@ -1644,20 +1310,10 @@ function loadRecent(){
   item.className="recentItem";
 
   item.innerHTML=`
+   <div style="font-size:35px">${game.i}</div>
+   <strong>${game.n}</strong>
 
-   <div style="font-size:35px">
-    ${game.i}
-   </div>
-
-   <strong>
-    ${game.n}
-   </strong>
-
-   <div style="
-    color:#777;
-    font-size:10px;
-    margin-top:4px
-   ">
+   <div style="color:#777;font-size:10px;margin-top:4px">
     ${game.c.toUpperCase()}
    </div>
 
@@ -1665,11 +1321,9 @@ function loadRecent(){
     class="play"
     href="${slugURL(game.u)}"
     target="_blank"
-    rel="noopener noreferrer"
-   >
+    rel="noopener noreferrer">
     PLAY AGAIN
    </a>
-
   `;
 
   item.querySelector("a").onclick=()=>{
@@ -1677,9 +1331,7 @@ function loadRecent(){
   };
 
   box.appendChild(item);
-
  });
-
 }
 
 loadRecent();
@@ -1698,9 +1350,7 @@ document.getElementById("random").addEventListener("click",()=>{
  if(!visible.length)return;
 
  const chosen=
-  visible[
-   Math.floor(Math.random()*visible.length)
-  ];
+  visible[Math.floor(Math.random()*visible.length)];
 
  chosen.scrollIntoView({
   behavior:"smooth",
@@ -1724,206 +1374,21 @@ document.getElementById("random").addEventListener("click",()=>{
 ========================================== */
 
 function openNewTab(){
-
  window.open(
   window.location.href,
   "_blank",
   "noopener,noreferrer"
  );
-
 }
 
 
 /* ==========================================
-   INTRO + MUSIC
+   INTRO
 ========================================== */
-
-let musicPlaying=false;
-
-let player=null;
-
-let playerReady=false;
-
-const musicButton=
- document.getElementById("music");
-
-const musicPanel=
- document.getElementById("musicPanel");
-
-const musicDisc=
- document.getElementById("musicDisc");
-
-const musicStatus=
- document.getElementById("musicStatus");
-
-const musicPlay=
- document.getElementById("musicPlay");
-
-const musicStop=
- document.getElementById("musicStop");
-
-
-/*
- Official Dorian Concept
- "Hide (Slow)"
- YouTube video ID:
- Pvf4ieSqWK8
-*/
-
-function startMusic(){
-
- if(!playerReady||!player)return;
-
- player.playVideo();
-
- musicPlaying=true;
-
- updateMusicUI();
-
-}
-
-function stopMusic(){
-
- if(!playerReady||!player)return;
-
- player.pauseVideo();
-
- musicPlaying=false;
-
- updateMusicUI();
-
-}
-
-function updateMusicUI(){
-
- musicButton.textContent=
-  musicPlaying?"🔊":"🎵";
-
- musicStatus.textContent=
-  musicPlaying
-   ?"Now playing • Hide (Slow)"
-   :"Music paused";
-
- musicPlay.textContent=
-  musicPlaying?"❚❚ Pause":"▶ Play";
-
- if(musicPlaying){
-  musicDisc.classList.add("playing");
- }else{
-  musicDisc.classList.remove("playing");
- }
-
-}
-
-musicButton.onclick=()=>{
-
- musicPanel.classList.toggle("show");
-
-};
-
-musicPlay.onclick=()=>{
-
- if(musicPlaying){
-  stopMusic();
- }else{
-  startMusic();
- }
-
-};
-
-musicStop.onclick=()=>{
-
- stopMusic();
-
-};
-
-
-/* ==========================================
-   YOUTUBE API
-========================================== */
-
-function onYouTubeIframeAPIReady(){
-
- player=new YT.Player("youtubePlayer",{
-
-  height:"1",
-
-  width:"1",
-
-  videoId:"Pvf4ieSqWK8",
-
-  playerVars:{
-   autoplay:0,
-   controls:0,
-   loop:1,
-   playlist:"Pvf4ieSqWK8",
-   playsinline:1
-  },
-
-  events:{
-
-   onReady:function(){
-
-    playerReady=true;
-
-   },
-
-   onStateChange:function(event){
-
-    if(event.data===YT.PlayerState.PLAYING){
-
-     musicPlaying=true;
-
-     updateMusicUI();
-
-    }
-
-    if(event.data===YT.PlayerState.PAUSED){
-
-     musicPlaying=false;
-
-     updateMusicUI();
-
-    }
-
-   }
-
-  }
-
- });
-
-}
-
-
-/* Load YouTube player */
-
-const youtubeScript=
- document.createElement("script");
-
-youtubeScript.src=
- "https://www.youtube.com/iframe_api";
-
-document.head.appendChild(youtubeScript);
-
-
-/* ENTER BUTTON */
 
 document.getElementById("enter").addEventListener("click",()=>{
 
- document.getElementById("intro")
-  .classList.add("hide");
-
- musicPanel.classList.add("show");
-
- setTimeout(()=>{
-
-  if(playerReady){
-
-   startMusic();
-
-  }
-
- },500);
+ document.getElementById("intro").classList.add("hide");
 
 });
 
@@ -1932,49 +1397,223 @@ document.getElementById("enter").addEventListener("click",()=>{
    UPDATE MODAL
 ========================================== */
 
-const modal=
- document.getElementById("modal");
+const modal=document.getElementById("modal");
 
 document.getElementById("updates").onclick=()=>{
-
  modal.classList.add("show");
-
 };
 
 document.getElementById("close").onclick=()=>{
-
  modal.classList.remove("show");
-
 };
 
 modal.addEventListener("click",e=>{
-
  if(e.target===modal){
-
   modal.classList.remove("show");
+ }
+});
+
+
+/* ==========================================
+   MUSIC SYSTEM
+   ORDER:
+
+   1. A Walk Along the Gates
+   2. Hide (Slow)
+   3. Hour-long YouTube song
+   4. OFF
+========================================== */
+
+/*
+ IMPORTANT:
+
+ The hour-long song is your exact link:
+ https://www.youtube.com/watch?v=ps5nM2CiaMY
+
+ Hide (Slow) is the official Dorian Concept version.
+
+ A Walk Along the Gates is the MORELOCKE track.
+
+ YouTube videos are loaded through an invisible
+ YouTube player rather than pretending a YouTube
+ page is a normal MP3 file.
+*/
+
+const musicTracks=[
+
+ {
+  name:"A Walk Along the Gates",
+  type:"bandcamp",
+  url:"https://morelocke.bandcamp.com/track/a-walk-along-the-gates"
+ },
+
+ {
+  name:"Hide (Slow)",
+  type:"soundcloud",
+  url:"https://soundcloud.com/dorian-concept/dorian-concept-hide-slow"
+ },
+
+ {
+  name:"Hour-long song",
+  type:"youtube",
+  id:"ps5nM2CiaMY"
+ }
+
+];
+
+let musicIndex=-1;
+let musicFrame=null;
+let musicStarted=false;
+
+const musicButton=document.getElementById("music");
+const musicToast=document.getElementById("musicToast");
+const musicStatus=document.getElementById("musicStatus");
+
+function showMusicToast(text){
+
+ musicStatus.textContent=text;
+ musicToast.classList.add("show");
+
+ clearTimeout(window.musicToastTimer);
+
+ window.musicToastTimer=setTimeout(()=>{
+  musicToast.classList.remove("show");
+ },2500);
+}
+
+function clearMusicPlayer(){
+
+ if(musicFrame){
+  musicFrame.remove();
+  musicFrame=null;
+ }
+
+ const oldFrames=document.querySelectorAll(".hiddenMusicFrame");
+
+ oldFrames.forEach(frame=>frame.remove());
+}
+
+function createMusicFrame(track){
+
+ clearMusicPlayer();
+
+ musicFrame=document.createElement("iframe");
+
+ musicFrame.className="hiddenMusicFrame";
+
+ musicFrame.allow=
+  "autoplay; encrypted-media; picture-in-picture";
+
+ musicFrame.setAttribute("frameborder","0");
+
+ musicFrame.style.position="fixed";
+ musicFrame.style.width="1px";
+ musicFrame.style.height="1px";
+ musicFrame.style.left="-100px";
+ musicFrame.style.top="-100px";
+ musicFrame.style.opacity="0";
+ musicFrame.style.pointerEvents="none";
+
+ if(track.type==="youtube"){
+
+  musicFrame.src=
+   "https://www.youtube.com/embed/"+
+   track.id+
+   "?autoplay=1&loop=1&playlist="+
+   track.id+
+   "&controls=0&playsinline=1";
 
  }
+
+ /*
+  These two services may require their own
+  player permissions. If a browser blocks them,
+  the music button still works and the next track
+  can be selected.
+ */
+
+ if(track.type==="soundcloud"){
+
+  musicFrame.src=
+   "https://w.soundcloud.com/player/?url="+
+   encodeURIComponent(track.url)+
+   "&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false";
+
+ }
+
+ if(track.type==="bandcamp"){
+
+  musicFrame.src=track.url;
+ }
+
+ document.body.appendChild(musicFrame);
+}
+
+function playMusic(index){
+
+ musicIndex=index;
+
+ const track=musicTracks[musicIndex];
+
+ musicButton.textContent="🔊";
+
+ musicStarted=true;
+
+ createMusicFrame(track);
+
+ showMusicToast("Now playing: "+track.name);
+}
+
+function stopMusic(){
+
+ musicIndex=-1;
+
+ musicStarted=false;
+
+ clearMusicPlayer();
+
+ musicButton.textContent="🔇";
+
+ showMusicToast("Music Off");
+}
+
+musicButton.addEventListener("click",()=>{
+
+ /*
+   First click = Track 1
+   Second click = Track 2
+   Third click = Track 3
+   Fourth click = OFF
+ */
+
+ if(!musicStarted){
+
+  playMusic(0);
+
+  return;
+ }
+
+ if(musicIndex<musicTracks.length-1){
+
+  playMusic(musicIndex+1);
+
+  return;
+ }
+
+ stopMusic();
 
 });
 
 
 /* ==========================================
-   KEYBOARD MUSIC CONTROL
+   MUSIC KEYBOARD CONTROL
 ========================================== */
 
-document.addEventListener("keydown",e=>{
+document.addEventListener("keydown",event=>{
 
- if(e.key.toLowerCase()==="m"){
+ if(event.key.toLowerCase()==="m"){
 
-  if(musicPlaying){
-
-   stopMusic();
-
-  }else{
-
-   startMusic();
-
-  }
+  musicButton.click();
 
  }
 
