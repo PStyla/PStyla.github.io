@@ -24,7 +24,7 @@ html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  color:#fff;
+  color:var(--text);
   background:
     radial-gradient(circle at 15% 10%,rgba(139,92,246,.14),transparent 30%),
     radial-gradient(circle at 85% 70%,rgba(217,70,239,.10),transparent 35%),
@@ -102,6 +102,7 @@ body:before{
   font-size:clamp(55px,10vw,110px);
   letter-spacing:-5px;
   text-shadow:0 0 35px rgba(168,85,247,.7);
+  animation:introIn 1s ease;
 }
 
 .introTitle span{color:#a855f7}
@@ -110,12 +111,14 @@ body:before{
   margin-top:18px;
   color:#aaa;
   line-height:1.7;
+  animation:introText .8s ease .4s both;
 }
 
 .updateText{
   color:#777;
   font-size:12px;
   margin-top:10px;
+  animation:introText .8s ease .7s both;
 }
 
 .updateText span{
@@ -132,11 +135,23 @@ body:before{
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
   font-weight:900;
   box-shadow:0 0 35px rgba(139,92,246,.35);
+  animation:introText .8s ease 1s both;
   transition:.25s;
 }
 
 .enter:hover{
   transform:translateY(-4px) scale(1.04);
+  box-shadow:0 0 55px rgba(168,85,247,.6);
+}
+
+@keyframes introIn{
+  from{opacity:0;transform:translateY(30px) scale(.9)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes introText{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:none}
 }
 
 header{
@@ -194,6 +209,7 @@ header{
 
 .search input:focus{
   border-color:#8b5cf6;
+  box-shadow:0 0 20px rgba(139,92,246,.18);
 }
 
 .navButtons{
@@ -247,6 +263,7 @@ h1{
   background:
     radial-gradient(circle at 80% 40%,rgba(168,85,247,.22),transparent 30%),
     linear-gradient(120deg,#21102f,#0e0b14);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
 }
 
 .featured:after{
@@ -286,7 +303,14 @@ h1{
   border-radius:8px;
   color:#fff;
   background:linear-gradient(135deg,#8b5cf6,#c026d3);
+  text-decoration:none;
   font-weight:900;
+  transition:.2s;
+}
+
+.playFeatured:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(139,92,246,.4);
 }
 
 .toolbar{
@@ -305,6 +329,12 @@ h1{
   color:#fff;
   background:linear-gradient(135deg,#8b5cf6,#6d28d9);
   font-weight:900;
+  transition:.2s;
+}
+
+.random:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(139,92,246,.3);
 }
 
 .categories{
@@ -322,10 +352,11 @@ h1{
   background:#14141b;
   font-size:12px;
   font-weight:900;
+  transition:.2s;
 }
 
-.category.active,
-.category:hover{
+.category:hover,
+.category.active{
   border-color:#8b5cf6;
   color:#fff;
   background:#8b5cf6;
@@ -349,7 +380,9 @@ h1{
 .game:hover{
   transform:translateY(-8px);
   border-color:#a855f7;
-  box-shadow:0 20px 50px rgba(0,0,0,.55);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(139,92,246,.16);
 }
 
 .thumb{
@@ -362,6 +395,17 @@ h1{
   background:
     radial-gradient(circle at 50% 25%,var(--glow),transparent 42%),
     linear-gradient(135deg,var(--one),var(--two));
+}
+
+.thumb:before{
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  top:-130px;
+  right:-80px;
 }
 
 .thumbIcon{
@@ -385,13 +429,12 @@ h1{
   border-radius:5px;
   color:#d8b4fe;
   background:rgba(4,4,8,.7);
+  backdrop-filter:blur(8px);
   font-size:8px;
   font-weight:900;
 }
 
-.badge.external{
-  color:#fbbf24;
-}
+.badge.external{color:#fbbf24}
 
 .thumbName{
   position:absolute;
@@ -424,9 +467,7 @@ h1{
   margin-top:5px;
 }
 
-.gameVersion.external{
-  color:#fbbf24;
-}
+.gameVersion.external{color:#fbbf24}
 
 .play{
   margin-top:10px;
@@ -437,11 +478,15 @@ h1{
   background:#8b5cf6;
   font-size:10px;
   font-weight:1000;
+  transition:.2s;
 }
 
-.hidden{
-  display:none!important;
+.play:hover{
+  background:#a855f7;
+  box-shadow:0 0 18px rgba(139,92,246,.45);
 }
+
+.hidden{display:none!important}
 
 .noResults{
   display:none;
@@ -452,9 +497,7 @@ h1{
   text-align:center;
 }
 
-.section{
-  margin-top:50px;
-}
+.section{margin-top:50px}
 
 .sectionTitle{
   display:flex;
@@ -464,11 +507,7 @@ h1{
 }
 
 .sectionTitle h2{margin:0}
-
-.sectionTitle span{
-  color:#666;
-  font-size:11px;
-}
+.sectionTitle span{color:#666;font-size:11px}
 
 #recent{
   display:flex;
@@ -497,6 +536,12 @@ h1{
   border-radius:11px;
   background:#111117;
   text-align:center;
+  transition:.2s;
+}
+
+.achievement:hover{
+  transform:translateY(-5px);
+  border-color:#8b5cf6;
 }
 
 .achievementIcon{font-size:30px}
@@ -533,6 +578,9 @@ h1{
   background:linear-gradient(145deg,#190e26,#08070d);
   box-shadow:0 30px 100px rgba(0,0,0,.75);
 }
+
+.modalBox h2,
+.tutorialBox h2{margin-top:8px}
 
 .notes{
   color:#aaa;
@@ -582,10 +630,7 @@ h1{
   letter-spacing:2px;
 }
 
-.tutorialStep{
-  color:#666;
-  font-size:11px;
-}
+.tutorialStep{color:#666;font-size:11px}
 
 .tutorialTips{
   display:grid;
@@ -602,9 +647,7 @@ h1{
   font-size:12px;
 }
 
-.tutorialTip b{
-  color:#c084fc;
-}
+.tutorialTip b{color:#c084fc}
 
 .tutorialProgress{
   display:flex;
@@ -619,9 +662,7 @@ h1{
   background:#292932;
 }
 
-.progressDot.active{
-  background:#a855f7;
-}
+.progressDot.active{background:#a855f7}
 
 .tutorialButtons,
 .noticeButtons{
@@ -636,13 +677,8 @@ h1{
   text-align:center;
 }
 
-.gameNoticeIcon{
-  font-size:55px;
-}
-
-.gameNoticeBox h2{
-  margin:12px 0 8px;
-}
+.gameNoticeIcon{font-size:55px}
+.gameNoticeBox h2{margin:12px 0 8px}
 
 .musicToast{
   position:fixed;
@@ -667,9 +703,7 @@ h1{
   transform:none;
 }
 
-.musicToast span{
-  color:#c084fc;
-}
+.musicToast span{color:#c084fc}
 
 #gamePlayer{
   position:fixed;
@@ -680,9 +714,7 @@ h1{
   background:#000;
 }
 
-#gamePlayer.show{
-  display:flex;
-}
+#gamePlayer.show{display:flex}
 
 .gamePlayerTop{
   height:58px;
@@ -703,9 +735,7 @@ h1{
   min-width:0;
 }
 
-.gamePlayerTitleIcon{
-  font-size:24px;
-}
+.gamePlayerTitleIcon{font-size:24px}
 
 .gamePlayerTitleText{
   font-weight:1000;
@@ -733,6 +763,16 @@ h1{
   color:#fff;
   background:#17121e;
   font-weight:900;
+}
+
+.gamePlayerControls button:hover{
+  border-color:#a855f7;
+}
+
+#openExternalGame{
+  display:none;
+  border-color:#f59e0b;
+  background:linear-gradient(135deg,#f59e0b,#d97706);
 }
 
 #closeGamePlayer{
@@ -768,34 +808,21 @@ footer{
     max-width:none;
   }
 
-  main{
-    padding:25px 15px 60px;
-  }
+  main{padding:25px 15px 60px}
 
-  .featured{
-    padding:28px;
-  }
+  .featured{padding:28px}
 
-  .featured:after{
-    font-size:100px;
-  }
+  .featured:after{font-size:100px}
 
   .gameGrid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
 
-  .thumb{
-    height:145px;
-  }
+  .thumb{height:145px}
+  .thumbIcon{font-size:54px}
 
-  .thumbIcon{
-    font-size:54px;
-  }
-
-  .achievements{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .achievements{grid-template-columns:repeat(2,1fr)}
 
   .navButtons button{
     padding:8px 9px;
@@ -811,24 +838,20 @@ footer{
     height:calc(100vh - 54px);
   }
 
-  .gamePlayerBadge{
-    display:none;
+  .gamePlayerBadge{display:none}
+
+  .gamePlayerControls button{
+    padding:7px 9px;
+    font-size:10px;
   }
 }
 
 @media(max-width:430px){
 
-  .gameName{
-    font-size:14px;
-  }
+  .gameName{font-size:14px}
+  .achievements{grid-template-columns:1fr}
 
-  .achievements{
-    grid-template-columns:1fr;
-  }
-
-  .gamePlayerTitleText{
-    font-size:12px;
-  }
+  .gamePlayerTitleText{font-size:12px}
 }
 </style>
 </head>
@@ -839,7 +862,6 @@ footer{
 
 <div id="intro">
   <div class="introBox">
-
     <div class="introTitle">
       <span>P</span>Styla Games
     </div>
@@ -856,7 +878,6 @@ footer{
     <button class="enter" id="enter">
       🎮 ENTER PSTYLA
     </button>
-
   </div>
 </div>
 
@@ -878,21 +899,10 @@ footer{
     </div>
 
     <div class="navButtons">
-
       <button id="music">🔇</button>
-
-      <button id="updates">
-        ✨ Updates
-      </button>
-
-      <button id="newTab">
-        🪟
-      </button>
-
-      <button id="homeButton">
-        Home
-      </button>
-
+      <button id="updates">✨ Updates</button>
+      <button id="newTab">🪟</button>
+      <button id="homeButton">Home</button>
     </div>
 
   </div>
@@ -900,9 +910,7 @@ footer{
 
 <main>
 
-  <div class="welcomeSmall">
-    WELCOME TO PSTYLA
-  </div>
+  <div class="welcomeSmall">WELCOME TO PSTYLA</div>
 
   <h1>PStyla Games</h1>
 
@@ -916,9 +924,7 @@ footer{
 
   <div class="featured">
 
-    <div class="featuredLabel">
-      🔥 FEATURED GAME
-    </div>
+    <div class="featuredLabel">🔥 FEATURED GAME</div>
 
     <h2>Stickman Hook</h2>
 
@@ -942,7 +948,6 @@ footer{
   </div>
 
   <div class="categories">
-
     <button class="category active" data-category="all">All</button>
     <button class="category" data-category="action">Action</button>
     <button class="category" data-category="arcade">Arcade</button>
@@ -951,7 +956,6 @@ footer{
     <button class="category" data-category="platformer">Platformer</button>
     <button class="category" data-category="puzzle">Puzzle</button>
     <button class="category" data-category="casual">Casual</button>
-
   </div>
 
   <div class="gameGrid" id="games"></div>
@@ -1033,16 +1037,17 @@ footer{
     <h2>✨ What's New</h2>
 
     <div class="notes">
-      • Games now use the PStyla built-in player<br>
-      • Tiny Fishing remains external<br>
-      • Among Us remains external<br>
-      • No BestGames redirects<br>
-      • No broken BestGames URLs<br>
-      • Improved game launching<br>
-      • Improved search<br>
+      • Real HTML5 game files used where available<br>
+      • Games run inside the PStyla player<br>
+      • Tiny Fishing kept as an exception<br>
+      • Among Us kept as an exception<br>
+      • Fixed game launching<br>
+      • Fixed game-player behavior<br>
       • Improved categories<br>
+      • Improved search<br>
+      • Improved mobile layout<br>
       • Improved recently played<br>
-      • Improved mobile layout
+      • Improved Surprise Me
     </div>
 
     <button class="close" id="close">
@@ -1057,13 +1062,9 @@ footer{
 
   <div class="gameNoticeBox">
 
-    <div class="gameNoticeIcon" id="noticeIcon">
-      🎮
-    </div>
+    <div class="gameNoticeIcon" id="noticeIcon">🎮</div>
 
-    <h2 id="noticeTitle">
-      Open Game
-    </h2>
+    <h2 id="noticeTitle">Open Game</h2>
 
     <p id="noticeText">
       You're about to start this game.
@@ -1143,19 +1144,13 @@ footer{
 
     <div class="gamePlayerTitle">
 
-      <div
-        class="gamePlayerTitleIcon"
-        id="playerIcon"
-      >
+      <div class="gamePlayerTitleIcon" id="playerIcon">
         🎮
       </div>
 
       <div>
 
-        <div
-          class="gamePlayerTitleText"
-          id="playerTitle"
-        >
+        <div class="gamePlayerTitleText" id="playerTitle">
           PStyla Game
         </div>
 
@@ -1173,6 +1168,10 @@ footer{
         ↻ Reload
       </button>
 
+      <button id="openExternalGame">
+        ↗ Open Tab
+      </button>
+
       <button id="closeGamePlayer">
         ✕ Back to PStyla
       </button>
@@ -1186,20 +1185,21 @@ footer{
     title="PStyla Game"
     allow="autoplay; fullscreen; gamepad; pointer-lock"
     allowfullscreen
+    referrerpolicy="no-referrer"
   ></iframe>
 
 </div>
 
 <script>
 
-/* =========================================================
+/* =====================================================
    PSTYLA GAME DATABASE
-   IMPORTANT:
-   ONLY Tiny Fishing + Among Us are external.
-   EVERYTHING ELSE uses a local PStyla game.
-========================================================= */
+   DIRECT HTML5 GAME FILES
+===================================================== */
 
 const gamesData = [
+
+  /* ONLY THESE TWO REMAIN EXTERNAL */
 
   {
     n:"Tiny Fishing",
@@ -1217,137 +1217,139 @@ const gamesData = [
     url:"https://bitstore1612.github.io/g5/class-468/"
   },
 
+  /* REAL DIRECT GAME FILES */
+
   {
     n:"Shape Transform: Shifting Rush",
     c:"platformer",
     i:"🔷",
-    localGame:"runner"
+    gameUrl:"https://www.bestgames.com/games/Shape-Transform-Shifting-Rush/index.html"
   },
 
   {
     n:"Delete Puzzle",
     c:"puzzle",
     i:"🧩",
-    localGame:"delete"
+    gameUrl:"https://html5.gamemonetize.co/ic9ka1ads3apmosue78nqng1hyxv6of2/"
   },
 
   {
     n:"Gun Shooting Range",
     c:"action",
     i:"🎯",
-    localGame:"target"
+    gameUrl:"https://www.bestgames.com/games/Gun-Shooting-Range/index.html"
   },
 
   {
     n:"Hit And Run: Solo Leveling",
     c:"action",
     i:"⚔️",
-    localGame:"runner"
+    gameUrl:"https://html5.gamemonetize.co/f89br0v93lrsimki3ms5qjfpaf83vh2x/"
   },
 
   {
     n:"Build Your Vehicle Run",
     c:"racing",
     i:"🚗",
-    localGame:"racing"
+    gameUrl:"https://html5.gamemonetize.co/cp974vc56hy4rr4732500z5n3c04aefh/"
   },
 
   {
     n:"Geometry Stack 2048 Run",
     c:"puzzle",
     i:"🔢",
-    localGame:"stack"
+    gameUrl:"https://www.bestgames.com/games/Geometry-Stack-2048-Run/index.html"
   },
 
   {
     n:"Join Clash: Color Button",
     c:"arcade",
     i:"🟣",
-    localGame:"clicker"
+    gameUrl:"https://html5.gamemonetize.co/5p0e6629cm0c227ienk6jsiv6puykqnf/"
   },
 
   {
     n:"Lazy Jump Online",
     c:"casual",
     i:"🧍",
-    localGame:"jump"
+    gameUrl:"https://html5.gamemonetize.co/npycpi1rn91379sihu4cbzsvvn5oosjy/"
   },
 
   {
     n:"Save The Duck",
     c:"puzzle",
     i:"🦆",
-    localGame:"duck"
+    gameUrl:"https://www.bestgames.com/games/Save-The-Duck/index.html"
   },
 
   {
     n:"Uphill Rush Water Park 3D",
     c:"racing",
     i:"🌊",
-    localGame:"racing"
+    gameUrl:"https://html5.gamemonetize.co/kct3c24pb3u24xq6mefl1im1xdte6r0y/"
   },
 
   {
     n:"Merge Alphabet 3D",
     c:"puzzle",
     i:"🔤",
-    localGame:"stack"
+    gameUrl:"https://html5.gamemonetize.co/8nh0vlg6u85gvqqxle1z5swjythyt8js/"
   },
 
   {
     n:"Shoes Evolution 3D",
     c:"arcade",
     i:"👟",
-    localGame:"runner"
+    gameUrl:"https://html5.gamemonetize.co/y2lchxvx76pgts75ned1zfav4cmxm160/"
   },
 
   {
     n:"Cut It All",
     c:"action",
     i:"✂️",
-    localGame:"clicker"
+    gameUrl:"https://html5.gamemonetize.co/18n99dqsu01rpazmf1m06hlqsz3fqlf3/"
   },
 
   {
     n:"Giant Head Rush",
     c:"arcade",
     i:"🗿",
-    localGame:"runner"
+    gameUrl:"https://html5.gamemonetize.co/ggdaw86k8m7wha5i3639a26c1qnmepa0/"
   },
 
   {
     n:"Balls Go High",
     c:"sports",
     i:"🏀",
-    localGame:"basket"
+    gameUrl:"https://html5.gamemonetize.co/ga4wun1rt2bmbjxe8qlkzyktfb3xz3i1/"
   },
 
   {
     n:"Blob Runner 3D",
     c:"platformer",
     i:"🟢",
-    localGame:"runner"
+    gameUrl:"https://html5.gamemonetize.co/bsfynu69gzds6me5430fclhccnemu4ly/"
   },
 
   {
     n:"Sky Rolling Balls",
     c:"arcade",
     i:"🔵",
-    localGame:"runner"
+    gameUrl:"https://www.bestgames.com/games/Sky-Rolling-Balls/index.html"
   },
 
   {
     n:"Collect Em All",
     c:"puzzle",
     i:"🔴",
-    localGame:"collect"
+    gameUrl:"https://html5.gamemonetize.co/97xgrsd6ovyudenbgr9rg1fxcuwt4omu/"
   },
 
   {
     n:"Stickman Hook",
     c:"action",
     i:"🪝",
-    localGame:"hook"
+    gameUrl:"https://stickmanhook.bitbucket.io/"
   }
 
 ];
@@ -1356,9 +1358,7 @@ document.getElementById("gameCount").textContent =
   gamesData.length;
 
 
-/* =========================================================
-   PARTICLES
-========================================================= */
+/* PARTICLES */
 
 const particleBox =
   document.getElementById("particles");
@@ -1381,12 +1381,9 @@ for(let i=0;i<90;i++){
 }
 
 
-/* =========================================================
-   COLORS
-========================================================= */
+/* COLORS */
 
 const colors={
-
   action:["#7c3aed","#170a29"],
   arcade:["#0891b2","#06151a"],
   racing:["#ef4444","#1a0707"],
@@ -1394,20 +1391,18 @@ const colors={
   platformer:["#2563eb","#071329"],
   puzzle:["#f59e0b","#1b1004"],
   casual:["#db2777","#190817"]
-
 };
 
 
-/* =========================================================
-   GAME CARDS
-========================================================= */
+/* GAME CARDS */
 
 const gamesBox =
   document.getElementById("games");
 
 function createGame(game){
 
-  const card=document.createElement("div");
+  const card =
+    document.createElement("div");
 
   card.className="game";
 
@@ -1429,7 +1424,7 @@ function createGame(game){
   const version =
     game.external
       ? "EXTERNAL GAME"
-      : "LOCAL PSTYLA GAME";
+      : "IN-SITE GAME";
 
   card.innerHTML=`
 
@@ -1442,7 +1437,7 @@ function createGame(game){
       "
     >
 
-      <div class="badge ${game.external?"external":""}">
+      <div class="badge ${game.external ? "external" : ""}">
         ${badge}
       </div>
 
@@ -1466,14 +1461,11 @@ function createGame(game){
         ${game.c}
       </div>
 
-      <div class="gameVersion ${game.external?"external":""}">
+      <div class="gameVersion ${game.external ? "external" : ""}">
         ${version}
       </div>
 
-      <button
-        class="play"
-        type="button"
-      >
+      <button class="play" type="button">
         PLAY →
       </button>
 
@@ -1483,7 +1475,6 @@ function createGame(game){
   card.querySelector(".play")
     .addEventListener("click",()=>{
 
-      savePlayed(game.n);
       openGame(game);
 
     });
@@ -1491,16 +1482,15 @@ function createGame(game){
   return card;
 }
 
+
 gamesData.forEach(game=>{
-  gamesBox.appendChild(
-    createGame(game)
-  );
+  gamesBox.appendChild(createGame(game));
 });
 
 
-/* =========================================================
-   GAME NOTICE
-========================================================= */
+/* =====================================================
+   GAME LAUNCH SYSTEM
+===================================================== */
 
 const gameNotice =
   document.getElementById("gameNotice");
@@ -1519,11 +1509,6 @@ const noticeOpen =
 
 let selectedGame=null;
 
-
-/* =========================================================
-   GAME PLAYER
-========================================================= */
-
 const gamePlayer =
   document.getElementById("gamePlayer");
 
@@ -1536,12 +1521,11 @@ const playerTitle =
 const playerIcon =
   document.getElementById("playerIcon");
 
+const openExternalGame =
+  document.getElementById("openExternalGame");
+
 let currentPlayingGame=null;
 
-
-/* =========================================================
-   OPEN GAME
-========================================================= */
 
 function openGame(game){
 
@@ -1556,7 +1540,7 @@ function openGame(game){
   if(game.external){
 
     noticeText.textContent =
-      "This is one of the two original external games. It will open separately.";
+      "This is one of your preserved external games. It will open separately.";
 
     noticeOpen.textContent =
       "OPEN GAME ↗";
@@ -1564,7 +1548,7 @@ function openGame(game){
   }else{
 
     noticeText.textContent =
-      "This game runs directly inside PStyla. It will NOT send you to another website.";
+      "This game will load directly inside the PStyla game player.";
 
     noticeOpen.textContent =
       "PLAY INSIDE PSTYLA →";
@@ -1576,389 +1560,9 @@ function openGame(game){
 }
 
 
-/* =========================================================
-   CREATE LOCAL GAME
-========================================================= */
-
-function getLocalGameHTML(game){
-
-  const title =
-    game.n.replace(/</g,"&lt;");
-
-  return `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${title}</title>
-
-<style>
-
-*{
-  box-sizing:border-box;
-}
-
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family:Arial,sans-serif;
-  background:#09070f;
-  color:white;
-}
-
-body{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-#game{
-  position:relative;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 30%,#30145c,#09070f 70%);
-}
-
-.top{
-  position:absolute;
-  top:15px;
-  left:15px;
-  right:15px;
-  z-index:10;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 16px;
-  border:1px solid #38244d;
-  border-radius:12px;
-  background:rgba(5,3,10,.75);
-  backdrop-filter:blur(10px);
-}
-
-.title{
-  font-weight:900;
-}
-
-.score{
-  color:#c084fc;
-  font-weight:900;
-}
-
-#arena{
-  position:absolute;
-  inset:0;
-}
-
-.player{
-  position:absolute;
-  left:50%;
-  bottom:70px;
-  transform:translateX(-50%);
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  background:linear-gradient(135deg,#8b5cf6,#d946ef);
-  box-shadow:0 10px 30px rgba(168,85,247,.5);
-}
-
-.object{
-  position:absolute;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:45px;
-  height:45px;
-  font-size:30px;
-}
-
-.target{
-  border-radius:50%;
-  background:#ef4444;
-  box-shadow:0 0 25px rgba(239,68,68,.5);
-}
-
-.coin{
-  border-radius:50%;
-  background:#fbbf24;
-  box-shadow:0 0 25px rgba(251,191,36,.5);
-}
-
-.road{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:125px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #17151d 0 70px,
-      #201c27 70px 140px
-    );
-  border-top:2px solid #40394a;
-}
-
-.controls{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#aaa;
-  font-size:12px;
-  text-align:center;
-}
-
-button{
-  border:0;
-  border-radius:9px;
-  padding:10px 16px;
-  background:#8b5cf6;
-  color:white;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.center{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:15px;
-  text-align:center;
-}
-
-.big{
-  font-size:80px;
-}
-
-h1{
-  margin:0;
-}
-
-p{
-  color:#aaa;
-}
-
-</style>
-</head>
-
-<body>
-
-<div id="game">
-
-<div class="top">
-  <div class="title">${title}</div>
-  <div class="score">
-    Score: <span id="score">0</span>
-  </div>
-</div>
-
-<div id="arena"></div>
-
-<div class="road"></div>
-
-<div class="controls">
-  WASD / Arrow Keys • Click objects • Have fun 🎮
-</div>
-
-</div>
-
-<script>
-
-const type="${game.localGame}";
-
-const arena=document.getElementById("arena");
-const scoreEl=document.getElementById("score");
-
-let score=0;
-let running=true;
-
-const player=document.createElement("div");
-
-player.className="player";
-
-player.textContent="${
-  game.localGame==="basket"
-    ? "🏀"
-    : game.localGame==="duck"
-    ? "🦆"
-    : game.localGame==="hook"
-    ? "🪝"
-    : game.localGame==="target"
-    ? "🎯"
-    : "🎮"
-}";
-
-arena.appendChild(player);
-
-let px=50;
-let py=70;
-
-function updatePlayer(){
-
-  player.style.left=px+"%";
-  player.style.bottom=py+"px";
-
-}
-
-function move(dx,dy){
-
-  px+=dx;
-  py+=dy;
-
-  px=Math.max(5,Math.min(95,px));
-  py=Math.max(40,Math.min(window.innerHeight-80,py));
-
-  updatePlayer();
-
-}
-
-document.addEventListener("keydown",e=>{
-
-  const key=e.key.toLowerCase();
-
-  if(
-    key==="a" ||
-    key==="arrowleft"
-  ){
-    move(-3,0);
-  }
-
-  if(
-    key==="d" ||
-    key==="arrowright"
-  ){
-    move(3,0);
-  }
-
-  if(
-    key==="w" ||
-    key==="arrowup"
-  ){
-    move(0,8);
-  }
-
-  if(
-    key==="s" ||
-    key==="arrowdown"
-  ){
-    move(0,-8);
-  }
-
-});
-
-function addObject(){
-
-  const obj=document.createElement("div");
-
-  obj.className=
-    "object "+
-    (
-      type==="target"
-      ? "target"
-      : "coin"
-    );
-
-  if(type==="basket"){
-    obj.textContent="🏀";
-  }else if(type==="duck"){
-    obj.textContent="🦆";
-  }else if(type==="hook"){
-    obj.textContent="🪝";
-  }else if(type==="delete"){
-    obj.textContent="🧩";
-  }else if(type==="stack"){
-    obj.textContent=
-      Math.ceil(Math.random()*9);
-  }else if(type==="collect"){
-    obj.textContent="🔴";
-  }else{
-    obj.textContent=
-      type==="target"
-      ? "🎯"
-      : "⭐";
-  }
-
-  obj.style.left=
-    (8+Math.random()*84)+"%";
-
-  obj.style.top=
-    (100+Math.random()*60)+"px";
-
-  arena.appendChild(obj);
-
-  let y=parseFloat(obj.style.top);
-
-  const speed=
-    1.2+
-    Math.random()*2;
-
-  function fall(){
-
-    if(!running)return;
-
-    y-=speed;
-
-    obj.style.top=y+"px";
-
-    if(y<-70){
-
-      obj.remove();
-
-      return;
-
-    }
-
-    requestAnimationFrame(fall);
-
-  }
-
-  fall();
-
-  obj.addEventListener("click",()=>{
-
-    score++;
-
-    scoreEl.textContent=score;
-
-    obj.remove();
-
-  });
-
-}
-
-setInterval(()=>{
-
-  if(running){
-
-    addObject();
-
-  }
-
-},700);
-
-updatePlayer();
-
-<\/script>
-
-</body>
-</html>`;
-}
-
-
-/* =========================================================
-   OPEN SELECTED GAME
-========================================================= */
+/* =====================================================
+   START GAME
+===================================================== */
 
 noticeOpen.addEventListener("click",()=>{
 
@@ -1970,12 +1574,13 @@ noticeOpen.addEventListener("click",()=>{
 
   gameNotice.classList.remove("show");
 
+  savePlayed(game.n);
 
-  /* ONLY THESE TWO ARE EXTERNAL */
+  /* ONLY TINY FISHING + AMONG US OPEN EXTERNALLY */
 
   if(game.external){
 
-    const opened=
+    const opened =
       window.open(
         game.url,
         "_blank",
@@ -1993,43 +1598,89 @@ noticeOpen.addEventListener("click",()=>{
     return;
   }
 
-
-  /* EVERYTHING ELSE IS LOCAL */
+  /* EVERYTHING ELSE STAYS IN PSTYLA */
 
   currentPlayingGame=game;
 
-  playerTitle.textContent=
+  playerTitle.textContent =
     game.n;
 
-  playerIcon.textContent=
+  playerIcon.textContent =
     game.i;
 
-  const html=
-    getLocalGameHTML(game);
+  /*
+    IMPORTANT:
+    Do not open the game URL with window.open.
+    It is loaded ONLY into the PStyla iframe.
+  */
 
-  const blob=
-    new Blob(
-      [html],
-      {type:"text/html"}
-    );
+  openExternalGame.style.display =
+    "none";
 
-  const localURL=
-    URL.createObjectURL(blob);
-
-  gameFrame.src=
-    localURL;
+  gameFrame.src="about:blank";
 
   gamePlayer.classList.add("show");
 
-  document.body.style.overflow=
-    "hidden";
+  document.body.style.overflow="hidden";
+
+  setTimeout(()=>{
+
+    gameFrame.src=game.gameUrl;
+
+  },50);
 
 });
 
 
-/* =========================================================
-   CANCEL
-========================================================= */
+/* =====================================================
+   CLOSE GAME
+===================================================== */
+
+function closeGamePlayer(){
+
+  gameFrame.src="about:blank";
+
+  gamePlayer.classList.remove("show");
+
+  document.body.style.overflow="";
+
+  currentPlayingGame=null;
+
+}
+
+
+document
+  .getElementById("closeGamePlayer")
+  .addEventListener(
+    "click",
+    closeGamePlayer
+  );
+
+
+/* RELOAD */
+
+document
+  .getElementById("reloadGame")
+  .addEventListener("click",()=>{
+
+    if(!currentPlayingGame)
+      return;
+
+    const url =
+      currentPlayingGame.gameUrl;
+
+    gameFrame.src="about:blank";
+
+    setTimeout(()=>{
+
+      gameFrame.src=url;
+
+    },100);
+
+  });
+
+
+/* CANCEL */
 
 document
   .getElementById("noticeCancel")
@@ -2040,6 +1691,9 @@ document
     selectedGame=null;
 
   });
+
+
+/* OUTSIDE NOTICE */
 
 gameNotice.addEventListener("click",e=>{
 
@@ -2054,97 +1708,41 @@ gameNotice.addEventListener("click",e=>{
 });
 
 
-/* =========================================================
-   CLOSE GAME
-========================================================= */
-
-function closeGamePlayer(){
-
-  gameFrame.src="about:blank";
-
-  gamePlayer.classList.remove("show");
-
-  document.body.style.overflow="";
-
-  currentPlayingGame=null;
-
-}
-
-document
-  .getElementById("closeGamePlayer")
-  .addEventListener(
-    "click",
-    closeGamePlayer
-  );
-
-
-/* =========================================================
-   RELOAD
-========================================================= */
-
-document
-  .getElementById("reloadGame")
-  .addEventListener("click",()=>{
-
-    if(!currentPlayingGame)return;
-
-    const game=currentPlayingGame;
-
-    const html=
-      getLocalGameHTML(game);
-
-    const blob=
-      new Blob(
-        [html],
-        {type:"text/html"}
-      );
-
-    const url=
-      URL.createObjectURL(blob);
-
-    gameFrame.src=url;
-
-  });
-
-
-/* =========================================================
-   FEATURED
-========================================================= */
+/* FEATURED */
 
 document
   .getElementById("featuredPlay")
   .addEventListener("click",()=>{
 
-    const game=
+    const stickmanHook =
       gamesData.find(
         g=>g.n==="Stickman Hook"
       );
 
-    savePlayed(game.n);
+    if(!stickmanHook)return;
 
-    openGame(game);
+    openGame(stickmanHook);
 
   });
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+/* SEARCH */
 
-const search=
+const search =
   document.getElementById("search");
 
-const categories=
+const categories =
   document.querySelectorAll(".category");
 
-const noResults=
+const noResults =
   document.getElementById("noResults");
 
 let currentCategory="all";
 
+
 function updateGames(){
 
-  const query=
+  const query =
     search.value
       .toLowerCase()
       .trim();
@@ -2155,20 +1753,20 @@ function updateGames(){
     .querySelectorAll(".game")
     .forEach(card=>{
 
-      const name=
+      const name =
         card.dataset.name;
 
-      const cat=
+      const cat =
         card.dataset.category;
 
-      const matchName=
+      const matchName =
         name.includes(query);
 
-      const matchCategory=
+      const matchCategory =
         currentCategory==="all" ||
         cat===currentCategory;
 
-      if(matchName&&matchCategory){
+      if(matchName && matchCategory){
 
         card.classList.remove("hidden");
 
@@ -2182,10 +1780,11 @@ function updateGames(){
 
     });
 
-  noResults.style.display=
-    count?"none":"block";
+  noResults.style.display =
+    count ? "none" : "block";
 
 }
+
 
 search.addEventListener(
   "input",
@@ -2193,29 +1792,32 @@ search.addEventListener(
 );
 
 
+/* CATEGORIES */
+
 categories.forEach(button=>{
 
-  button.addEventListener("click",()=>{
+  button.addEventListener(
+    "click",
+    ()=>{
 
-    categories.forEach(
-      b=>b.classList.remove("active")
-    );
+      categories.forEach(
+        b=>b.classList.remove("active")
+      );
 
-    button.classList.add("active");
+      button.classList.add("active");
 
-    currentCategory=
-      button.dataset.category;
+      currentCategory =
+        button.dataset.category;
 
-    updateGames();
+      updateGames();
 
-  });
+    }
+  );
 
 });
 
 
-/* =========================================================
-   RECENT
-========================================================= */
+/* RECENT */
 
 function getRecent(){
 
@@ -2224,7 +1826,7 @@ function getRecent(){
     return JSON.parse(
       localStorage.getItem(
         "pstylaRecent"
-      )||"[]"
+      ) || "[]"
     );
 
   }catch{
@@ -2235,19 +1837,18 @@ function getRecent(){
 
 }
 
+
 function savePlayed(name){
 
   let recent=getRecent();
 
-  recent=
-    recent.filter(
-      x=>x!==name
-    );
+  recent=recent.filter(
+    x=>x!==name
+  );
 
   recent.unshift(name);
 
-  recent=
-    recent.slice(0,8);
+  recent=recent.slice(0,8);
 
   localStorage.setItem(
     "pstylaRecent",
@@ -2260,6 +1861,7 @@ function savePlayed(name){
 
 }
 
+
 function findGame(name){
 
   return gamesData.find(
@@ -2268,12 +1870,14 @@ function findGame(name){
 
 }
 
+
 function loadRecent(){
 
-  const box=
+  const box =
     document.getElementById("recent");
 
-  const recent=getRecent();
+  const recent =
+    getRecent();
 
   box.innerHTML="";
 
@@ -2297,7 +1901,7 @@ function loadRecent(){
 
     if(!game)return;
 
-    const item=
+    const item =
       document.createElement("div");
 
     item.className="recentItem";
@@ -2312,11 +1916,13 @@ function loadRecent(){
         ${game.n}
       </strong>
 
-      <div style="
-        color:#777;
-        font-size:10px;
-        margin-top:4px
-      ">
+      <div
+        style="
+          color:#777;
+          font-size:10px;
+          margin-top:4px
+        "
+      >
         ${game.c.toUpperCase()}
       </div>
 
@@ -2329,15 +1935,15 @@ function loadRecent(){
 
     `;
 
-    item
-      .querySelector("button")
-      .addEventListener("click",()=>{
+    item.querySelector("button")
+      .addEventListener(
+        "click",
+        ()=>{
 
-        savePlayed(game.n);
+          openGame(game);
 
-        openGame(game);
-
-      });
+        }
+      );
 
     box.appendChild(item);
 
@@ -2345,136 +1951,153 @@ function loadRecent(){
 
 }
 
+
 loadRecent();
 
 
-/* =========================================================
-   RANDOM
-========================================================= */
+/* RANDOM */
 
 document
   .getElementById("random")
-  .addEventListener("click",()=>{
+  .addEventListener(
+    "click",
+    ()=>{
 
-    const visible=
-      [
-        ...document.querySelectorAll(".game")
-      ]
-      .filter(
-        card=>
-          !card.classList.contains("hidden")
+      const visible =
+        [
+          ...document.querySelectorAll(".game")
+        ]
+        .filter(
+          card=>
+            !card.classList.contains("hidden")
+        );
+
+      if(!visible.length)return;
+
+      const card =
+        visible[
+          Math.floor(
+            Math.random()*visible.length
+          )
+        ];
+
+      const game =
+        gamesData.find(
+          g=>
+            g.n.toLowerCase()===
+            card.dataset.name
+        );
+
+      if(!game)return;
+
+      savePlayed(game.n);
+
+      openGame(game);
+
+      card.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+      card.style.boxShadow =
+        "0 0 50px rgba(168,85,247,.9)";
+
+      setTimeout(()=>{
+
+        card.style.boxShadow="";
+
+      },1500);
+
+      localStorage.setItem(
+        "pstylaLuckyPlayer",
+        "true"
       );
 
-    if(!visible.length)return;
+      updateAchievements();
 
-    const card=
-      visible[
-        Math.floor(
-          Math.random()*visible.length
-        )
-      ];
-
-    const game=
-      gamesData.find(
-        g=>
-          g.n.toLowerCase()===
-          card.dataset.name
-      );
-
-    if(!game)return;
-
-    savePlayed(game.n);
-
-    openGame(game);
-
-    card.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-    localStorage.setItem(
-      "pstylaLuckyPlayer",
-      "true"
-    );
-
-    updateAchievements();
-
-  });
+    }
+  );
 
 
-/* =========================================================
-   HOME
-========================================================= */
+/* HOME */
 
 document
   .getElementById("homeButton")
-  .addEventListener("click",()=>{
+  .addEventListener(
+    "click",
+    ()=>{
 
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
 
-  });
+    }
+  );
 
 
-/* =========================================================
-   NEW TAB
-========================================================= */
+/* NEW TAB */
 
 document
   .getElementById("newTab")
-  .addEventListener("click",()=>{
+  .addEventListener(
+    "click",
+    ()=>{
 
-    const opened=
-      window.open(
-        window.location.href,
-        "_blank"
-      );
+      const currentUrl =
+        window.location.href;
 
-    if(!opened){
+      const newWindow =
+        window.open(
+          currentUrl,
+          "_blank"
+        );
 
-      alert(
-        "Your browser blocked the new tab."
-      );
+      if(!newWindow){
 
-    }
-
-  });
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-document
-  .getElementById("enter")
-  .addEventListener("click",()=>{
-
-    document
-      .getElementById("intro")
-      .classList.add("hide");
-
-    setTimeout(()=>{
-
-      if(
-        !localStorage.getItem(
-          "pstylaTutorialDone"
-        )
-      ){
-
-        openTutorial();
+        alert(
+          "Your browser blocked the new tab. Allow pop-ups for PStyla."
+        );
 
       }
 
-    },500);
+    }
+  );
 
-  });
+
+/* INTRO */
+
+document
+  .getElementById("enter")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document
+        .getElementById("intro")
+        .classList.add("hide");
+
+      setTimeout(()=>{
+
+        if(
+          !localStorage.getItem(
+            "pstylaTutorialDone"
+          )
+        ){
+
+          openTutorial();
+
+        }
+
+      },500);
+
+    }
+  );
 
 
-/* =========================================================
+/* =====================================================
    TUTORIAL
-========================================================= */
+===================================================== */
 
 const tutorialPages=[
 
@@ -2482,10 +2105,10 @@ const tutorialPages=[
     icon:"🎮",
     title:"Welcome to PStyla",
     text:
-      "This is your game hub.",
+      "This is your game hub. Everything is built around finding something fun quickly.",
     tips:[
-      "<b>20 games</b> are loaded",
-      "Search and categories help you find games"
+      "<b>20 games</b> are currently loaded",
+      "Use search and categories to find games fast"
     ]
   },
 
@@ -2493,11 +2116,11 @@ const tutorialPages=[
     icon:"🔎",
     title:"Find a Game",
     text:
-      "Use the search bar to filter games.",
+      "Use the search bar to instantly filter the game library.",
     tips:[
       "Type a game name",
-      "Use categories",
-      "Press All to reset"
+      "Use categories underneath the Games heading",
+      "Press <b>All</b> to reset filters"
     ]
   },
 
@@ -2505,22 +2128,23 @@ const tutorialPages=[
     icon:"🎲",
     title:"Surprise Me",
     text:
-      "Let PStyla choose a game.",
+      "Can't decide? Let PStyla pick something.",
     tips:[
-      "Press Surprise Me",
-      "It chooses from visible games"
+      "Press <b>Surprise Me</b>",
+      "It chooses from the games currently visible",
+      "Your choice is saved to Recently Played"
     ]
   },
 
   {
     icon:"▶️",
-    title:"Games Stay In PStyla",
+    title:"Play Inside PStyla",
     text:
-      "Games are launched inside the PStyla player.",
+      "The game player loads the game inside PStyla.",
     tips:[
-      "No BestGames redirect",
-      "No new website",
-      "Use Back to PStyla when finished"
+      "Games stay inside the PStyla player",
+      "PStyla's interface remains behind the game",
+      "Use <b>Back to PStyla</b> when finished"
     ]
   },
 
@@ -2528,10 +2152,11 @@ const tutorialPages=[
     icon:"🎣",
     title:"Two Exceptions",
     text:
-      "Tiny Fishing and Among Us remain external.",
+      "Tiny Fishing and Among Us stay as your original external games.",
     tips:[
-      "These are the only two external games",
-      "They open in another tab"
+      "They open in a separate tab",
+      "PStyla stays open",
+      "Your original versions are preserved"
     ]
   },
 
@@ -2539,9 +2164,10 @@ const tutorialPages=[
     icon:"🕐",
     title:"Recently Played",
     text:
-      "Your games are saved on this device.",
+      "Your recently selected games are saved on this device.",
     tips:[
-      "Up to 8 games are remembered"
+      "Up to <b>8 games</b> are remembered",
+      "Press PLAY AGAIN anytime"
     ]
   },
 
@@ -2549,65 +2175,69 @@ const tutorialPages=[
     icon:"🔥",
     title:"You're Ready",
     text:
-      "Pick a game and start playing.",
+      "That's it. Search, pick a game and get playing.",
     tips:[
-      "That's literally it 🎮"
+      "<b>Updates</b> shows what's new",
+      "<b>Home</b> takes you back to the top",
+      "Have fun 🎮"
     ]
   }
 
 ];
 
+
 let tutorialIndex=0;
 
-const tutorial=
+const tutorial =
   document.getElementById("tutorial");
 
-const tutorialIcon=
+const tutorialIcon =
   document.getElementById("tutorialIcon");
 
-const tutorialTitle=
+const tutorialTitle =
   document.getElementById("tutorialTitle");
 
-const tutorialText=
+const tutorialText =
   document.getElementById("tutorialText");
 
-const tutorialTips=
+const tutorialTips =
   document.getElementById("tutorialTips");
 
-const tutorialStep=
+const tutorialStep =
   document.getElementById("tutorialStep");
 
-const tutorialProgress=
+const tutorialProgress =
   document.getElementById("tutorialProgress");
 
-const tutorialBack=
+const tutorialBack =
   document.getElementById("tutorialBack");
 
-const tutorialNext=
+const tutorialNext =
   document.getElementById("tutorialNext");
+
 
 function renderTutorial(){
 
-  const page=
+  const page =
     tutorialPages[tutorialIndex];
 
-  tutorialIcon.textContent=
+  tutorialIcon.textContent =
     page.icon;
 
-  tutorialTitle.textContent=
+  tutorialTitle.textContent =
     page.title;
 
-  tutorialText.textContent=
+  tutorialText.textContent =
     page.text;
 
-  tutorialStep.textContent=
+  tutorialStep.textContent =
     `${tutorialIndex+1} / ${tutorialPages.length}`;
 
   tutorialTips.innerHTML="";
 
   page.tips.forEach(tip=>{
 
-    const div=
+    const div =
       document.createElement("div");
 
     div.className="tutorialTip";
@@ -2622,7 +2252,7 @@ function renderTutorial(){
 
   tutorialPages.forEach((_,index)=>{
 
-    const dot=
+    const dot =
       document.createElement("div");
 
     dot.className="progressDot";
@@ -2635,18 +2265,19 @@ function renderTutorial(){
 
   });
 
-  tutorialBack.style.visibility=
+  tutorialBack.style.visibility =
     tutorialIndex===0
-      ?"hidden"
-      :"visible";
+      ? "hidden"
+      : "visible";
 
-  tutorialNext.textContent=
+  tutorialNext.textContent =
     tutorialIndex===
     tutorialPages.length-1
-      ?"Finish ✓"
-      :"Next →";
+      ? "Finish ✓"
+      : "Next →";
 
 }
+
 
 function openTutorial(){
 
@@ -2657,6 +2288,7 @@ function openTutorial(){
   tutorial.classList.add("show");
 
 }
+
 
 function closeTutorial(){
 
@@ -2670,6 +2302,7 @@ function closeTutorial(){
   updateAchievements();
 
 }
+
 
 tutorialNext.addEventListener(
   "click",
@@ -2693,6 +2326,7 @@ tutorialNext.addEventListener(
   }
 );
 
+
 tutorialBack.addEventListener(
   "click",
   ()=>{
@@ -2708,6 +2342,7 @@ tutorialBack.addEventListener(
   }
 );
 
+
 document
   .getElementById("tutorialSkip")
   .addEventListener(
@@ -2716,11 +2351,9 @@ document
   );
 
 
-/* =========================================================
-   UPDATES
-========================================================= */
+/* UPDATES */
 
-const modal=
+const modal =
   document.getElementById("modal");
 
 document
@@ -2741,20 +2374,19 @@ document
     }
   );
 
-modal.addEventListener("click",e=>{
+modal.addEventListener(
+  "click",
+  e=>{
 
-  if(e.target===modal){
-
-    modal.classList.remove("show");
+    if(e.target===modal){
+      modal.classList.remove("show");
+    }
 
   }
+);
 
-});
 
-
-/* =========================================================
-   MUSIC
-========================================================= */
+/* MUSIC */
 
 const musicTracks=[
 
@@ -2773,14 +2405,15 @@ const musicTracks=[
 let musicIndex=-1;
 let musicFrame=null;
 
-const musicButton=
+const musicButton =
   document.getElementById("music");
 
-const musicToast=
+const musicToast =
   document.getElementById("musicToast");
 
-const musicStatus=
+const musicStatus =
   document.getElementById("musicStatus");
+
 
 function showMusicToast(text){
 
@@ -2790,7 +2423,7 @@ function showMusicToast(text){
 
   clearTimeout(window.musicTimer);
 
-  window.musicTimer=
+  window.musicTimer =
     setTimeout(()=>{
 
       musicToast.classList.remove("show");
@@ -2798,6 +2431,7 @@ function showMusicToast(text){
     },2200);
 
 }
+
 
 function clearMusic(){
 
@@ -2811,16 +2445,17 @@ function clearMusic(){
 
 }
 
+
 function playMusic(index){
 
   clearMusic();
 
   musicIndex=index;
 
-  const track=
+  const track =
     musicTracks[musicIndex];
 
-  musicFrame=
+  musicFrame =
     document.createElement("iframe");
 
   musicFrame.style.position="fixed";
@@ -2848,6 +2483,7 @@ function playMusic(index){
 
 }
 
+
 function stopMusic(){
 
   clearMusic();
@@ -2861,6 +2497,7 @@ function stopMusic(){
   );
 
 }
+
 
 musicButton.addEventListener(
   "click",
@@ -2893,15 +2530,32 @@ musicButton.addEventListener(
 );
 
 
-/* =========================================================
-   ACHIEVEMENTS
-========================================================= */
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(
+      e.key.toLowerCase()==="m" &&
+      !["INPUT","TEXTAREA"].includes(
+        document.activeElement.tagName
+      )
+    ){
+
+      musicButton.click();
+
+    }
+
+  }
+);
+
+
+/* ACHIEVEMENTS */
 
 function updateAchievements(){
 
   const recent=getRecent();
 
-  const achievements=
+  const achievements =
     document.querySelectorAll(
       ".achievement"
     );
@@ -2944,12 +2598,11 @@ function updateAchievements(){
 
 }
 
+
 updateAchievements();
 
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+/* ESCAPE */
 
 document.addEventListener(
   "keydown",
@@ -2978,10 +2631,21 @@ document.addEventListener(
   }
 );
 
+
+/* PAGE UNLOAD */
+
+window.addEventListener(
+  "beforeunload",
+  ()=>{
+
+    gameFrame.src="about:blank";
+
+  }
+);
+
+
 console.log(
-  "PStyla loaded:",
-  gamesData.length,
-  "games"
+  `PStyla Games loaded: ${gamesData.length} games`
 );
 
 </script>
