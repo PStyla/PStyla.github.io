@@ -9,9 +9,7 @@
 <style>
 *{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 :root{
   --purple:#9b5cff;
@@ -36,13 +34,8 @@ body{
   overflow-x:hidden;
 }
 
-button,input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
+button,input{font:inherit}
+button{cursor:pointer}
 
 body:before{
   content:"";
@@ -107,9 +100,7 @@ body:before{
   pointer-events:none;
 }
 
-.introBox{
-  width:min(90%,700px);
-}
+.introBox{width:min(90%,700px)}
 
 .introTitle{
   font-family:Impact,"Arial Black",sans-serif;
@@ -119,9 +110,7 @@ body:before{
   animation:introIn 1s ease;
 }
 
-.introTitle span{
-  color:#a855f7;
-}
+.introTitle span{color:#a855f7}
 
 .introText{
   margin-top:18px;
@@ -208,9 +197,7 @@ header{
   background:linear-gradient(135deg,#8b5cf6,#d946ef);
 }
 
-.logo span:last-child{
-  color:#c084fc;
-}
+.logo span:last-child{color:#c084fc}
 
 .search{
   flex:1;
@@ -272,9 +259,7 @@ h1{
   letter-spacing:-3px;
 }
 
-.welcome p{
-  color:#777;
-}
+.welcome p{color:#777}
 
 /* HERO */
 
@@ -348,9 +333,7 @@ h1{
   gap:15px;
 }
 
-.toolbar h2{
-  margin:0;
-}
+.toolbar h2{margin:0}
 
 .random{
   border:1px solid #7543d2;
@@ -468,6 +451,10 @@ h1{
   font-weight:900;
 }
 
+.badge.external{
+  color:#fbbf24;
+}
+
 .thumbName{
   position:absolute;
   left:10px;
@@ -478,9 +465,7 @@ h1{
   text-shadow:0 2px 8px #000;
 }
 
-.gameInfo{
-  padding:14px;
-}
+.gameInfo{padding:14px}
 
 .gameName{
   font-size:16px;
@@ -501,6 +486,10 @@ h1{
   margin-top:5px;
 }
 
+.gameVersion.external{
+  color:#fbbf24;
+}
+
 .play{
   margin-top:10px;
   border:0;
@@ -518,9 +507,7 @@ h1{
   box-shadow:0 0 18px rgba(139,92,246,.45);
 }
 
-.hidden{
-  display:none!important;
-}
+.hidden{display:none!important}
 
 .noResults{
   display:none;
@@ -533,9 +520,7 @@ h1{
 
 /* RECENT */
 
-.section{
-  margin-top:50px;
-}
+.section{margin-top:50px}
 
 .sectionTitle{
   display:flex;
@@ -544,14 +529,8 @@ h1{
   margin-bottom:15px;
 }
 
-.sectionTitle h2{
-  margin:0;
-}
-
-.sectionTitle span{
-  color:#666;
-  font-size:11px;
-}
+.sectionTitle h2{margin:0}
+.sectionTitle span{color:#666;font-size:11px}
 
 #recent{
   display:flex;
@@ -590,20 +569,9 @@ h1{
   border-color:#8b5cf6;
 }
 
-.achievementIcon{
-  font-size:30px;
-}
-
-.achievementName{
-  margin-top:7px;
-  font-weight:1000;
-}
-
-.achievementDesc{
-  margin-top:5px;
-  color:#666;
-  font-size:10px;
-}
+.achievementIcon{font-size:30px}
+.achievementName{margin-top:7px;font-weight:1000}
+.achievementDesc{margin-top:5px;color:#666;font-size:10px}
 
 /* MODALS */
 
@@ -639,9 +607,7 @@ h1{
 }
 
 .modalBox h2,
-.tutorialBox h2{
-  margin-top:8px;
-}
+.tutorialBox h2{margin-top:8px}
 
 .notes{
   color:#aaa;
@@ -691,10 +657,7 @@ h1{
   letter-spacing:2px;
 }
 
-.tutorialStep{
-  color:#666;
-  font-size:11px;
-}
+.tutorialStep{color:#666;font-size:11px}
 
 .tutorialTips{
   display:grid;
@@ -711,9 +674,7 @@ h1{
   font-size:12px;
 }
 
-.tutorialTip b{
-  color:#c084fc;
-}
+.tutorialTip b{color:#c084fc}
 
 .tutorialProgress{
   display:flex;
@@ -728,9 +689,7 @@ h1{
   background:#292932;
 }
 
-.progressDot.active{
-  background:#a855f7;
-}
+.progressDot.active{background:#a855f7}
 
 .tutorialButtons,
 .noticeButtons{
@@ -745,13 +704,8 @@ h1{
   text-align:center;
 }
 
-.gameNoticeIcon{
-  font-size:55px;
-}
-
-.gameNoticeBox h2{
-  margin:12px 0 8px;
-}
+.gameNoticeIcon{font-size:55px}
+.gameNoticeBox h2{margin:12px 0 8px}
 
 /* MUSIC */
 
@@ -778,8 +732,84 @@ h1{
   transform:none;
 }
 
-.musicToast span{
+.musicToast span{color:#c084fc}
+
+/* IN-SITE GAME PLAYER */
+
+#gamePlayer{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:none;
+  flex-direction:column;
+  background:#000;
+}
+
+#gamePlayer.show{display:flex}
+
+.gamePlayerTop{
+  height:58px;
+  flex:0 0 58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#0b0711,#15101d);
+  border-bottom:1px solid rgba(168,85,247,.3);
+}
+
+.gamePlayerTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.gamePlayerTitleIcon{font-size:24px}
+
+.gamePlayerTitleText{
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.gamePlayerBadge{
   color:#c084fc;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.gamePlayerControls{
+  display:flex;
+  gap:7px;
+}
+
+.gamePlayerControls button{
+  border:1px solid #30253c;
+  border-radius:7px;
+  padding:8px 12px;
+  color:#fff;
+  background:#17121e;
+  font-weight:900;
+}
+
+.gamePlayerControls button:hover{
+  border-color:#a855f7;
+}
+
+#closeGamePlayer{
+  border-color:#8b5cf6;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+}
+
+#gameFrame{
+  width:100%;
+  height:calc(100vh - 58px);
+  border:0;
+  background:#000;
 }
 
 /* FOOTER */
@@ -807,50 +837,50 @@ footer{
     max-width:none;
   }
 
-  main{
-    padding:25px 15px 60px;
-  }
+  main{padding:25px 15px 60px}
 
-  .featured{
-    padding:28px;
-  }
+  .featured{padding:28px}
 
-  .featured:after{
-    font-size:100px;
-  }
+  .featured:after{font-size:100px}
 
   .gameGrid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
 
-  .thumb{
-    height:145px;
-  }
+  .thumb{height:145px}
+  .thumbIcon{font-size:54px}
 
-  .thumbIcon{
-    font-size:54px;
-  }
-
-  .achievements{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .achievements{grid-template-columns:repeat(2,1fr)}
 
   .navButtons button{
     padding:8px 9px;
+    font-size:10px;
+  }
+
+  .gamePlayerTop{
+    height:54px;
+    flex-basis:54px;
+  }
+
+  #gameFrame{
+    height:calc(100vh - 54px);
+  }
+
+  .gamePlayerBadge{display:none}
+
+  .gamePlayerControls button{
+    padding:7px 9px;
     font-size:10px;
   }
 }
 
 @media(max-width:430px){
 
-  .gameName{
-    font-size:14px;
-  }
+  .gameName{font-size:14px}
+  .achievements{grid-template-columns:1fr}
 
-  .achievements{
-    grid-template-columns:1fr;
-  }
+  .gamePlayerTitleText{font-size:12px}
 }
 </style>
 </head>
@@ -1002,6 +1032,14 @@ footer{
       Platformer
     </button>
 
+    <button class="category" data-category="puzzle">
+      Puzzle
+    </button>
+
+    <button class="category" data-category="casual">
+      Casual
+    </button>
+
   </div>
 
   <div class="gameGrid" id="games"></div>
@@ -1104,18 +1142,19 @@ footer{
 
     <div class="notes">
 
-      • Added 7 verified games<br>
-      • Fixed game links<br>
-      • Removed fake game destinations<br>
-      • Improved game cards<br>
+      • Added BestGames-powered game files<br>
+      • Added in-site game player<br>
+      • Games no longer need to leave PStyla<br>
+      • Fixed double-tab launching<br>
+      • Tiny Fishing kept as an exception<br>
+      • Among Us kept as an exception<br>
+      • Improved game categories<br>
       • Improved search<br>
-      • Improved categories<br>
       • Improved mobile layout<br>
-      • Fixed recently played<br>
-      • Fixed Surprise Me<br>
+      • Improved recently played<br>
+      • Improved Surprise Me<br>
       • Added safer game launching<br>
-      • Added smoother animations<br>
-      • Cleaner navigation
+      • Added smoother animations
 
     </div>
 
@@ -1142,7 +1181,7 @@ footer{
     </h2>
 
     <p id="noticeText">
-      You're about to open this game in a new tab.
+      You're about to start this game.
     </p>
 
     <div class="noticeButtons">
@@ -1152,7 +1191,7 @@ footer{
       </button>
 
       <button class="openHub" id="noticeOpen">
-        Open Game →
+        PLAY GAME →
       </button>
 
     </div>
@@ -1218,62 +1257,223 @@ footer{
 
 </div>
 
+<!-- IN-SITE GAME PLAYER -->
+
+<div id="gamePlayer">
+
+  <div class="gamePlayerTop">
+
+    <div class="gamePlayerTitle">
+
+      <div
+        class="gamePlayerTitleIcon"
+        id="playerIcon"
+      >
+        🎮
+      </div>
+
+      <div>
+
+        <div
+          class="gamePlayerTitleText"
+          id="playerTitle"
+        >
+          PStyla Game
+        </div>
+
+        <div class="gamePlayerBadge">
+          RUNNING INSIDE PSTYLA
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="gamePlayerControls">
+
+      <button id="reloadGame">
+        ↻ Reload
+      </button>
+
+      <button id="closeGamePlayer">
+        ✕ Back to PStyla
+      </button>
+
+    </div>
+
+  </div>
+
+  <iframe
+    id="gameFrame"
+    title="PStyla Game"
+    allow="autoplay; fullscreen; gamepad; pointer-lock"
+    allowfullscreen
+    referrerpolicy="no-referrer"
+  ></iframe>
+
+</div>
+
 <script>
 
 /* =====================================================
    PSTYLA GAME DATABASE
-   DIRECT VERIFIED LINKS
+
+   IMPORTANT:
+   Tiny Fishing + Among Us are intentionally kept
+   as the original PStyla external-link exceptions.
+
+   All other games use BestGames game-file URLs
+   and launch inside the PStyla game player.
 ===================================================== */
 
 const gamesData = [
 
-  {
-    n:"Stickman Hook",
-    c:"action",
-    i:"🪝",
-    url:"https://stickmanhook.bitbucket.io/"
-  },
+  /* EXCEPTION 1 */
 
   {
     n:"Tiny Fishing",
     c:"casual",
     i:"🎣",
+    external:true,
     url:"https://bitstore1612.github.io/g5/class-451/"
   },
+
+  /* EXCEPTION 2 */
 
   {
     n:"Among Us",
     c:"arcade",
     i:"👽",
+    external:true,
     url:"https://bitstore1612.github.io/g5/class-468/"
   },
 
+  /* PSTYLA / BESTGAMES GAMES */
+
   {
-    n:"Slope",
+    n:"Shape Transform: Shifting Rush",
+    c:"platformer",
+    i:"🔷",
+    gameUrl:"https://www.bestgames.com/games/Shape-Transform-Shifting-Rush/index.html"
+  },
+
+  {
+    n:"Delete Puzzle",
+    c:"puzzle",
+    i:"🧩",
+    gameUrl:"https://www.bestgames.com/games/Delete-Puzzle-Erase-One-Part/index.html"
+  },
+
+  {
+    n:"Gun Shooting Range",
+    c:"action",
+    i:"🎯",
+    gameUrl:"https://www.bestgames.com/games/Gun-Shooting-Range/index.html"
+  },
+
+  {
+    n:"Hit And Run: Solo Leveling",
+    c:"action",
+    i:"⚔️",
+    gameUrl:"https://www.bestgames.com/games/Hit-And-Run-Solo-Leveling/index.html"
+  },
+
+  {
+    n:"Build Your Vehicle Run",
+    c:"racing",
+    i:"🚗",
+    gameUrl:"https://www.bestgames.com/games/Build-Your-Vehicle-Run/index.html"
+  },
+
+  {
+    n:"Geometry Stack 2048 Run",
+    c:"puzzle",
+    i:"🔢",
+    gameUrl:"https://www.bestgames.com/games/Geometry-Stack-2048-Run/index.html"
+  },
+
+  {
+    n:"Join Clash: Color Button",
     c:"arcade",
-    i:"🔵",
-    url:"https://stickmanhook.bitbucket.io/class/class-399.html"
+    i:"🟣",
+    gameUrl:"https://www.bestgames.com/games/Join-Clash-Color-Button/index.html"
   },
 
   {
-    n:"Moto X3M",
+    n:"Lazy Jump Online",
+    c:"casual",
+    i:"🧍",
+    gameUrl:"https://www.bestgames.com/games/Lazy-Jump-Online/index.html"
+  },
+
+  {
+    n:"Save The Duck",
+    c:"puzzle",
+    i:"🦆",
+    gameUrl:"https://www.bestgames.com/games/Save-The-Duck/index.html"
+  },
+
+  {
+    n:"Uphill Rush Water Park 3D",
     c:"racing",
-    i:"🏍️",
-    url:"https://stickmanhook.bitbucket.io/class/class-458.html"
+    i:"🌊",
+    gameUrl:"https://www.bestgames.com/games/Uphill-Rush-Water-Park-3d/index.html"
   },
 
   {
-    n:"Drift Hunters",
-    c:"racing",
-    i:"🚘",
-    url:"https://stickmanhook.bitbucket.io/class/class-601.html"
+    n:"Merge Alphabet 3D",
+    c:"puzzle",
+    i:"🔤",
+    gameUrl:"https://www.bestgames.com/games/Merge-Alphabet-3d/index.html"
   },
 
   {
-    n:"Basket Bros",
+    n:"Shoes Evolution 3D",
+    c:"arcade",
+    i:"👟",
+    gameUrl:"https://www.bestgames.com/games/Shoes-Evolution-3d/index.html"
+  },
+
+  {
+    n:"Cut It All",
+    c:"action",
+    i:"✂️",
+    gameUrl:"https://www.bestgames.com/games/Cut-It-All/index.html"
+  },
+
+  {
+    n:"Giant Head Rush",
+    c:"arcade",
+    i:"🗿",
+    gameUrl:"https://www.bestgames.com/games/Giant-Head-Rush/index.html"
+  },
+
+  {
+    n:"Balls Go High",
     c:"sports",
     i:"🏀",
-    url:"https://stickmanhook.bitbucket.io/class/class-482.html"
+    gameUrl:"https://www.bestgames.com/games/Balls-Go-High/index.html"
+  },
+
+  {
+    n:"Blob Runner 3D",
+    c:"platformer",
+    i:"🟢",
+    gameUrl:"https://www.bestgames.com/games/Blob-Runner-3d/index.html"
+  },
+
+  {
+    n:"Sky Rolling Balls",
+    c:"arcade",
+    i:"🔵",
+    gameUrl:"https://www.bestgames.com/games/Sky-Rolling-Balls/index.html"
+  },
+
+  {
+    n:"Collect Em All",
+    c:"puzzle",
+    i:"🔴",
+    gameUrl:"https://www.bestgames.com/games/Collect-Em-All/index.html"
   }
 
 ];
@@ -1296,37 +1496,15 @@ for(let i=0;i<90;i++){
 
   p.className="particle";
 
-  p.style.setProperty(
-    "--x",
-    Math.random()*100+"%"
-  );
-
-  p.style.setProperty(
-    "--y",
-    Math.random()*100+"%"
-  );
-
-  p.style.setProperty(
-    "--size",
-    Math.random()*3+1+"px"
-  );
-
-  p.style.setProperty(
-    "--opacity",
-    Math.random()*.6+.1
-  );
-
-  p.style.setProperty(
-    "--duration",
-    Math.random()*12+8+"s"
-  );
-
-  p.style.setProperty(
-    "--delay",
-    -(Math.random()*15)+"s"
-  );
+  p.style.setProperty("--x",Math.random()*100+"%");
+  p.style.setProperty("--y",Math.random()*100+"%");
+  p.style.setProperty("--size",Math.random()*3+1+"px");
+  p.style.setProperty("--opacity",Math.random()*.6+.1);
+  p.style.setProperty("--duration",Math.random()*12+8+"s");
+  p.style.setProperty("--delay",-(Math.random()*15)+"s");
 
   particleBox.appendChild(p);
+
 }
 
 
@@ -1335,13 +1513,11 @@ for(let i=0;i<90;i++){
 const colors={
 
   action:["#7c3aed","#170a29"],
-
   arcade:["#0891b2","#06151a"],
-
   racing:["#ef4444","#1a0707"],
-
   sports:["#16a34a","#061409"],
-
+  platformer:["#2563eb","#071329"],
+  puzzle:["#f59e0b","#1b1004"],
   casual:["#db2777","#190817"]
 
 };
@@ -1351,6 +1527,7 @@ const colors={
 
 const gamesBox =
   document.getElementById("games");
+
 
 function createGame(game){
 
@@ -1369,6 +1546,16 @@ function createGame(game){
     colors[game.c] ||
     ["#8b5cf6","#100817"];
 
+  const badge =
+    game.external
+      ? "EXTERNAL"
+      : "IN PStyla";
+
+  const version =
+    game.external
+      ? "EXTERNAL GAME"
+      : "IN-SITE GAME";
+
   card.innerHTML=`
 
     <div
@@ -1380,8 +1567,10 @@ function createGame(game){
       "
     >
 
-      <div class="badge">
-        VERIFIED
+      <div
+        class="badge ${game.external ? "external" : ""}"
+      >
+        ${badge}
       </div>
 
       <div class="thumbIcon">
@@ -1404,8 +1593,10 @@ function createGame(game){
         ${game.c}
       </div>
 
-      <div class="gameVersion">
-        DIRECT GAME LINK
+      <div
+        class="gameVersion ${game.external ? "external" : ""}"
+      >
+        ${version}
       </div>
 
       <button
@@ -1440,7 +1631,9 @@ gamesData.forEach(game=>{
 });
 
 
-/* GAME NOTICE */
+/* =====================================================
+   GAME LAUNCH SYSTEM
+===================================================== */
 
 const gameNotice =
   document.getElementById("gameNotice");
@@ -1454,7 +1647,25 @@ const noticeText =
 const noticeIcon =
   document.getElementById("noticeIcon");
 
+const noticeOpen =
+  document.getElementById("noticeOpen");
+
 let selectedGame=null;
+
+
+/* IN-SITE GAME PLAYER */
+
+const gamePlayer =
+  document.getElementById("gamePlayer");
+
+const gameFrame =
+  document.getElementById("gameFrame");
+
+const playerTitle =
+  document.getElementById("playerTitle");
+
+const playerIcon =
+  document.getElementById("playerIcon");
 
 
 function openGame(game){
@@ -1467,101 +1678,217 @@ function openGame(game){
   noticeIcon.textContent =
     game.i;
 
-  noticeText.textContent =
-    "You're about to open " +
-    game.n +
-    ". It will open directly in a new tab.";
+  if(game.external){
+
+    noticeText.textContent =
+      "This is one of the two PStyla exceptions. It will open in a new tab so your PStyla page stays open.";
+
+    noticeOpen.textContent =
+      "OPEN GAME ↗";
+
+  }else{
+
+    noticeText.textContent =
+      "This game will run inside PStyla. Your PStyla page will stay open.";
+
+    noticeOpen.textContent =
+      "PLAY INSIDE PSTYLA →";
+
+  }
 
   gameNotice.classList.add("show");
 
 }
 
 
-document.getElementById("noticeCancel")
-.addEventListener("click",()=>{
+/* OPEN SELECTED GAME */
 
-  gameNotice.classList.remove("show");
-
-  selectedGame=null;
-
-});
-
-
-document.getElementById("noticeOpen")
-.addEventListener("click",()=>{
+noticeOpen.addEventListener("click",()=>{
 
   if(!selectedGame)return;
 
-  const url =
-    selectedGame.url;
-
-  gameNotice.classList.remove("show");
+  const game =
+    selectedGame;
 
   selectedGame=null;
 
-  /*
-    Directly open the exact game URL.
-    No category page.
-    No fake PStyla URL.
-  */
+  gameNotice.classList.remove("show");
 
-  const newWindow =
-    window.open(
-      url,
-      "_blank",
-      "noopener,noreferrer"
-    );
 
-  /*
-    Some browsers block new tabs.
-    If that happens, navigate the current
-    tab to the exact game URL instead.
-  */
+  /* -----------------------------------------------
+     ONLY TWO EXCEPTIONS:
+     Tiny Fishing
+     Among Us
+     ----------------------------------------------- */
 
-  if(!newWindow){
+  if(game.external){
 
-    window.location.href=url;
+    /*
+      ONE click = ONE new tab.
+
+      There is intentionally NO fallback to
+      window.location.href.
+
+      This prevents the double-tab bug.
+    */
+
+    const opened =
+      window.open(
+        game.url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    if(!opened){
+
+      alert(
+        "Your browser blocked the game tab. Allow pop-ups for PStyla to play this game."
+      );
+
+    }
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     EVERY OTHER GAME:
+     RUN INSIDE PSTYLA
+     ----------------------------------------------- */
+
+  playerTitle.textContent =
+    game.n;
+
+  playerIcon.textContent =
+    game.i;
+
+  gameFrame.src =
+    game.gameUrl;
+
+  gamePlayer.classList.add("show");
+
+  document.body.style.overflow="hidden";
+
+});
+
+
+/* CANCEL */
+
+document
+  .getElementById("noticeCancel")
+  .addEventListener("click",()=>{
+
+    gameNotice.classList.remove("show");
+
+    selectedGame=null;
+
+  });
+
+
+/* CLICK OUTSIDE NOTICE */
+
+gameNotice.addEventListener("click",e=>{
+
+  if(e.target===gameNotice){
+
+    gameNotice.classList.remove("show");
+
+    selectedGame=null;
 
   }
 
 });
 
 
-gameNotice.addEventListener(
-  "click",
-  e=>{
+/* CLOSE IN-SITE GAME */
 
-    if(e.target===gameNotice){
+function closeGamePlayer(){
 
-      gameNotice.classList.remove("show");
+  /*
+    Clearing the iframe is important.
 
-      selectedGame=null;
+    It stops the game completely when the user
+    returns to PStyla.
+  */
 
-    }
+  gameFrame.src="about:blank";
 
-  }
-);
+  gamePlayer.classList.remove("show");
+
+  document.body.style.overflow="";
+
+}
+
+
+document
+  .getElementById("closeGamePlayer")
+  .addEventListener(
+    "click",
+    closeGamePlayer
+  );
+
+
+/* RELOAD GAME */
+
+document
+  .getElementById("reloadGame")
+  .addEventListener("click",()=>{
+
+    if(
+      !gamePlayer.classList.contains("show")
+    )return;
+
+    const current =
+      gameFrame.src;
+
+    gameFrame.src="about:blank";
+
+    setTimeout(()=>{
+
+      gameFrame.src=current;
+
+    },50);
+
+  });
 
 
 /* FEATURED */
 
-document.getElementById("featuredPlay")
-.addEventListener("click",()=>{
+document
+  .getElementById("featuredPlay")
+  .addEventListener("click",()=>{
 
-  const game =
-    gamesData.find(
-      g=>g.n==="Stickman Hook"
+    const game =
+      gamesData.find(
+        g=>g.n==="Stickman Hook"
+      );
+
+    /*
+      Stickman Hook isn't in the BestGames
+      list used above, so this creates a
+      safe in-site version using the existing
+      PStyla source.
+    */
+
+    const stickmanHook={
+
+      n:"Stickman Hook",
+      c:"action",
+      i:"🪝",
+      gameUrl:"https://stickmanhook.bitbucket.io/"
+
+    };
+
+    savePlayed(
+      stickmanHook.n
     );
 
-  if(game){
+    openGame(
+      stickmanHook
+    );
 
-    savePlayed(game.n);
-
-    openGame(game);
-
-  }
-
-});
+  });
 
 
 /* SEARCH */
@@ -1587,35 +1914,40 @@ function updateGames(){
 
   let count=0;
 
-  document.querySelectorAll(".game")
-  .forEach(card=>{
+  document
+    .querySelectorAll(".game")
+    .forEach(card=>{
 
-    const name =
-      card.dataset.name;
+      const name =
+        card.dataset.name;
 
-    const cat =
-      card.dataset.category;
+      const cat =
+        card.dataset.category;
 
-    const matchName =
-      name.includes(query);
+      const matchName =
+        name.includes(query);
 
-    const matchCategory =
-      currentCategory==="all" ||
-      cat===currentCategory;
+      const matchCategory =
+        currentCategory==="all" ||
+        cat===currentCategory;
 
-    if(matchName && matchCategory){
+      if(matchName && matchCategory){
 
-      card.classList.remove("hidden");
+        card.classList.remove(
+          "hidden"
+        );
 
-      count++;
+        count++;
 
-    }else{
+      }else{
 
-      card.classList.add("hidden");
+        card.classList.add(
+          "hidden"
+        );
 
-    }
+      }
 
-  });
+    });
 
   noResults.style.display =
     count ? "none" : "block";
@@ -1702,6 +2034,15 @@ function savePlayed(name){
 }
 
 
+function findGame(name){
+
+  return gamesData.find(
+    x=>x.n===name
+  );
+
+}
+
+
 function loadRecent(){
 
   const box =
@@ -1728,10 +2069,26 @@ function loadRecent(){
 
   recent.forEach(name=>{
 
-    const game =
-      gamesData.find(
-        x=>x.n===name
-      );
+    let game =
+      findGame(name);
+
+    /*
+      Stickman Hook is the featured game,
+      so recreate it if it exists in recent.
+    */
+
+    if(!game && name==="Stickman Hook"){
+
+      game={
+
+        n:"Stickman Hook",
+        c:"action",
+        i:"🪝",
+        gameUrl:"https://stickmanhook.bitbucket.io/"
+
+      };
+
+    }
 
     if(!game)return;
 
@@ -1794,133 +2151,142 @@ loadRecent();
 
 /* RANDOM */
 
-document.getElementById("random")
-.addEventListener(
-  "click",
-  ()=>{
+document
+  .getElementById("random")
+  .addEventListener(
+    "click",
+    ()=>{
 
-    const visible =
-      [...document.querySelectorAll(".game")]
-      .filter(
-        card=>
-          !card.classList.contains("hidden")
+      const visible =
+        [
+          ...document.querySelectorAll(".game")
+        ]
+        .filter(
+          card=>
+            !card.classList.contains(
+              "hidden"
+            )
+        );
+
+      if(!visible.length)return;
+
+      const card =
+        visible[
+          Math.floor(
+            Math.random()*visible.length
+          )
+        ];
+
+      const game =
+        gamesData.find(
+          g=>
+            g.n.toLowerCase()===
+            card.dataset.name
+        );
+
+      if(!game)return;
+
+      savePlayed(game.n);
+
+      openGame(game);
+
+      card.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+      card.style.boxShadow =
+        "0 0 50px rgba(168,85,247,.9)";
+
+      setTimeout(()=>{
+
+        card.style.boxShadow="";
+
+      },1500);
+
+      localStorage.setItem(
+        "pstylaLuckyPlayer",
+        "true"
       );
 
-    if(!visible.length)return;
+      updateAchievements();
 
-    const card =
-      visible[
-        Math.floor(
-          Math.random()*visible.length
-        )
-      ];
-
-    const game =
-      gamesData.find(
-        g=>
-          g.n.toLowerCase()===
-          card.dataset.name
-      );
-
-    if(!game)return;
-
-    savePlayed(game.n);
-
-    openGame(game);
-
-    card.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-    card.style.boxShadow =
-      "0 0 50px rgba(168,85,247,.9)";
-
-    setTimeout(()=>{
-
-      card.style.boxShadow="";
-
-    },1500);
-
-    localStorage.setItem(
-      "pstylaLuckyPlayer",
-      "true"
-    );
-
-    updateAchievements();
-
-  }
-);
+    }
+  );
 
 
 /* HOME */
 
-document.getElementById("homeButton")
-.addEventListener(
-  "click",
-  ()=>{
+document
+  .getElementById("homeButton")
+  .addEventListener(
+    "click",
+    ()=>{
 
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
 
-  }
-);
+    }
+  );
 
 
 /* NEW TAB */
 
-document.getElementById("newTab")
-.addEventListener(
-  "click",
-  ()=>{
+document
+  .getElementById("newTab")
+  .addEventListener(
+    "click",
+    ()=>{
 
-    const newWindow =
-      window.open(
-        window.location.href,
-        "_blank"
-      );
+      const newWindow =
+        window.open(
+          window.location.href,
+          "_blank",
+          "noopener,noreferrer"
+        );
 
-    if(!newWindow){
+      if(!newWindow){
 
-      alert(
-        "Your browser blocked the new tab."
-      );
+        alert(
+          "Your browser blocked the new tab."
+        );
+
+      }
 
     }
-
-  }
-);
+  );
 
 
 /* INTRO */
 
-document.getElementById("enter")
-.addEventListener(
-  "click",
-  ()=>{
+document
+  .getElementById("enter")
+  .addEventListener(
+    "click",
+    ()=>{
 
-    document
-      .getElementById("intro")
-      .classList.add("hide");
+      document
+        .getElementById("intro")
+        .classList.add("hide");
 
-    setTimeout(()=>{
+      setTimeout(()=>{
 
-      if(
-        !localStorage.getItem(
-          "pstylaTutorialDone"
-        )
-      ){
+        if(
+          !localStorage.getItem(
+            "pstylaTutorialDone"
+          )
+        ){
 
-        openTutorial();
+          openTutorial();
 
-      }
+        }
 
-    },500);
+      },500);
 
-  }
-);
+    }
+  );
 
 
 /* TUTORIAL */
@@ -1929,112 +2295,84 @@ const tutorialPages=[
 
   {
     icon:"🎮",
-
     title:"Welcome to PStyla",
-
     text:
       "This is your game hub. Everything is built around finding something fun quickly.",
-
     tips:[
-      "<b>7 verified games</b> are currently loaded",
+      "<b>18 games</b> are currently loaded",
       "Use search and categories to find games fast"
     ]
-
   },
 
   {
     icon:"🔎",
-
     title:"Find a Game",
-
     text:
       "Use the search bar to instantly filter the game library.",
-
     tips:[
       "Type a game name",
       "Use categories underneath the Games heading",
       "Press <b>All</b> to reset filters"
     ]
-
   },
 
   {
     icon:"🎲",
-
     title:"Surprise Me",
-
     text:
       "Can't decide? Let PStyla pick something.",
-
     tips:[
       "Press <b>Surprise Me</b>",
       "It chooses from the games currently visible",
       "Your choice is saved to Recently Played"
     ]
-
   },
 
   {
     icon:"▶️",
-
-    title:"Play",
-
+    title:"Play Inside PStyla",
     text:
-      "Press PLAY on any game to open the exact game page.",
-
+      "Most games now run directly inside PStyla instead of taking you away.",
     tips:[
-      "The game opens in a new tab",
+      "Games open in the built-in player",
       "PStyla stays open",
-      "Every game has its own direct link"
+      "Use <b>Back to PStyla</b> when finished"
     ]
+  },
 
+  {
+    icon:"🎣",
+    title:"Two Exceptions",
+    text:
+      "Tiny Fishing and Among Us are intentionally kept as your original external games.",
+    tips:[
+      "They open in a separate tab",
+      "PStyla stays open",
+      "They will never replace your existing versions"
+    ]
   },
 
   {
     icon:"🕐",
-
     title:"Recently Played",
-
     text:
       "Your recently selected games are saved on this device.",
-
     tips:[
       "Up to <b>8 games</b> are remembered",
       "Press PLAY AGAIN anytime"
     ]
-
-  },
-
-  {
-    icon:"🎵",
-
-    title:"Music",
-
-    text:
-      "The music button controls the background soundtrack.",
-
-    tips:[
-      "Click <b>🔇</b> to start",
-      "Click again to change tracks",
-      "Press <b>M</b> on your keyboard"
-    ]
-
   },
 
   {
     icon:"🔥",
-
     title:"You're Ready",
-
     text:
       "That's it. Search, pick a game and get playing.",
-
     tips:[
       "<b>Updates</b> shows what's new",
       "<b>Home</b> takes you back to the top",
       "Have fun 🎮"
     ]
-
   }
 
 ];
@@ -2203,11 +2541,12 @@ tutorialBack.addEventListener(
 );
 
 
-document.getElementById("tutorialSkip")
-.addEventListener(
-  "click",
-  closeTutorial
-);
+document
+  .getElementById("tutorialSkip")
+  .addEventListener(
+    "click",
+    closeTutorial
+  );
 
 
 /* UPDATES */
@@ -2216,22 +2555,24 @@ const modal =
   document.getElementById("modal");
 
 
-document.getElementById("updates")
-.addEventListener(
-  "click",
-  ()=>{
-    modal.classList.add("show");
-  }
-);
+document
+  .getElementById("updates")
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.add("show");
+    }
+  );
 
 
-document.getElementById("close")
-.addEventListener(
-  "click",
-  ()=>{
-    modal.classList.remove("show");
-  }
-);
+document
+  .getElementById("close")
+  .addEventListener(
+    "click",
+    ()=>{
+      modal.classList.remove("show");
+    }
+  );
 
 
 modal.addEventListener(
@@ -2492,8 +2833,26 @@ document.addEventListener(
 
       selectedGame=null;
 
+      if(
+        gamePlayer.classList.contains("show")
+      ){
+
+        closeGamePlayer();
+
+      }
+
     }
 
+  }
+);
+
+
+/* PREVENT BACKGROUND SCROLL WHEN PLAYER IS OPEN */
+
+window.addEventListener(
+  "beforeunload",
+  ()=>{
+    gameFrame.src="about:blank";
   }
 );
 
